@@ -17,6 +17,28 @@ Eine kurze Beschreibung des Dokuments. Wenige Absätze.
 
 == Aufgabenstellung und Zielsetzung
 Text aus Aufgabenstellung kopieren und ggfs. präzisieren.
+
+Unsere Vinothek (WineShop) hat zwei Typen von Benutzer:innen (User): Angestellte (Employee) und Chef (Admin) mit unterschiedlichen Verantwortlichkeiten.
+
+Jede Benutzer:in darf auf den Katalog (Catalogue) zugreifen, allerdings dürfen Angestellten keine Änderungen daran vornehmen. Der Katalog beinhaltet Informationen über alle Produkte (Wine) des Weingeschäfts. Jeder Weinsorte wird ein Bild (pic) zugeordnet mit zahlreichen Informationen über Artikelnummer (itemNr), Name (name), Sorte (type), Jahrgang (vintage), Herkunft (origin), Geschichte (history), Geschmack (flavour), Preis (price), verbleibende Anzahl im Lager (bottles_left).
+
+Jede Kund:in  (Customer) besitzt genau ein Konto in unserem System. Unter diesem Konto werden folgende Kundedaten gespeichert: Kunden-ID (customer_ID), Vorname (forename), Zuname (surname), Geburtsdatum (dob), E-Mail-Adresse (email). Kund:in darf zum Zeitpunkt der Kontoerstellung nicht minderjährig (not_underage) sein.
+
+Shopping-Modus:
+
+Unsere Kund:innen werden in der nächsten Zukunft keinen Zugang zu unserem Shop haben, Einkäufe werden von Angestellten erfasst. Bevor man shoppen kann, muss man zuerst die Kund:in aus der Kundenliste (list_of_customers) auswählen, bzw. ein neues Konto erstellen(add_customer).
+
+Im Shopping-Modus bei jeder Ware im Katalog erscheinen jeweils zwei Felder: Anzahl (quantity) und "In den Warenkorb" (add_to_basket). Jede Ware kann zum Warenkorb hinzugefügt werden, egal ob sie vorhanden ist oder nicht.
+
+Im Warenkorb-Modus kann die Anzahl jeder Ware geändert werden (edit), jede einzelne Ware (remove) bzw. der gesamte Warenkorb (empty) können gelöscht werden.
+
+Wenn die Kund:in fertig mit dem Einkaufen ist, klickt die Verkäufer:in auf "Zur Kasse gehen". Im neuen Fenster wird die Kund:in aus der Kundenliste ausgewählt. Die möglichen Zahlungsarten (payment_method) sind Bargeld (cash) oder Kreditkarte (credit_card). Danach klickt man auf "Bezahlt" (Orders.add). 
+
+Falls eine Bestellung aus nicht vorhandenen Waren besteht (Order.status: opened),ist die fehlende Ware nachzubestellen (reorder). Die Kund:in wird per E-Mail informiert, sobald die Ware eingetroffen ist (Order.status: closed).
+
+Unsere Produkte werden im Weinlager (Inventory) aufbewahrt. Jeder Weinsorte (InventoryItem) wird die Anzahl (quantity) und der Status (reordering) zugespeichert. Jede Weinsorte kann nachbestellt (reorder) werden. Es darf pro Weinsorte gleichzeitig maximal eine Nachbestellung laufen.
+
+
 Insbesondere ergänzen, welche Ziele mit dem Abschluss des Projektes erreicht werden sollen.
 
 == Produktnutzung
