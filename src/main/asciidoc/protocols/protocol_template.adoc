@@ -133,6 +133,38 @@ __Teilnehmer:__
 * Entwurf eines ersten Modells auf Grundlage von CRC-Karten
 * erste Arbeiten an Pflichtenheft
 
+{nbsp} +
+
+== Treffen am 10.11.2020
+
+Ort:      online +
+Beginn:   09:20 Uhr +
+Ende:     11:00 Uhr
+
+__Schriftführer:__ Henrik John
+
+*Nächstes Treffen:* +
+XX.XX.2020, XX:XX Uhr, online
+
+__Teilnehmer:__
+
+- Noah Brinschwitz
+- Henrik John
+- Deokgeun Kim
+- David Nicklaser
+- Lavon Śpirydonaŭ
+- Tom Uhlemann
+- Steven Schwarz (Tutor/Kunde)
+
+=== Bemerkungen
+
+* erste Arbeiten an Pflichtenheft vorgestellt
+* Beginn mit Arbeiten an UML-Diagrammen
+
+=== Aktueller Stand
+
+* Arbeit an Pflichtenheft fortgesetzt
+
 ////
 
 == Template:
