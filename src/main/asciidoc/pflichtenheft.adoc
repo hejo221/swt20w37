@@ -116,8 +116,8 @@ image::./images/ViewCatalog.png[Sequence diagram: View Catalog, 100%, 100%, pdfw
 |===
 |ID                         |**<<UC00XZ>>**
 |Name                       |ViewDetails
-|Beschreibung               |Hier bekommt man Informationen über die Weinsorten bzw. Verfügbarkeit auf dem Lager.
-|Akteure                    |User
+|Beschreibung               |Hier bekommt man ausführliche Informationen über eine konkrete Weinsorte bzw. Verfügbarkeit auf dem Lager.
+|Akteure                    |User (Employee & Admin)
 |Trigger                    |
 _Details_: Benutzer:in möchte Details über eine Weinsorte erfahren.
 
@@ -130,6 +130,8 @@ _Zurück_: Benutzer:in befindet sich im Beschreibungsmodus
 |Functional Requirements    |<<F00XY>>
 |===
 
+[[sequence_diagram_view_details]]
+image::./images/ViewDetails.png[Sequence diagram: View Details, 100%, 100%, pdfwidth=100%, title= "Sequenzdiagramm: View Details", align=center]
  
  
 
