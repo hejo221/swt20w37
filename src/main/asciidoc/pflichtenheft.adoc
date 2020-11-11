@@ -87,7 +87,7 @@ Die typischen Anwendungsfälle (Anlegen, Ändern, Löschen) können zu einem ein
 |===
 |ID                         |**<<UC00XY>>**
 |Name                       |ViewCatalog
-|Beschreibung               |Hier bekommt man Informationen über alle Weinsorten, die sich im Katalog befinden.
+|Beschreibung               |Hier bekommt man eine Liste mit allen Produkten, die die Vinothek verkauft.
 |Akteure                    |User (Employee & Admin)
 |Trigger                    |
 _Katalog_: Benutzer:in möchte den Katalog aufrufen.
@@ -95,16 +95,14 @@ _Katalog_: Benutzer:in möchte den Katalog aufrufen.
 |Vorbedienung(en)           a|
 _Katalog_: Benutzer:in ist angemeldet.
 
-|Essential Steps           a|keine
 
-|Extensions                 |-
 |Functional Requirements    |<<F00XY>>
 |===
 
 [[sequence_diagram_view_catalog]]
-image::./images/ViewCatalog.png[Sequence diagram: View Catalog, 100%, 100%, pdfwidth=100%, title= "Sequenz-Diagramm: View Catalog", align=center]
+image::./images/ViewCatalog.png[Sequence diagram: View Catalog, 100%, 100%, pdfwidth=100%, title= "Sequenzdiagramm: View Catalog", align=center]
 
- 
+ ***
  
 
 [cols="1h, 3"]
@@ -112,24 +110,22 @@ image::./images/ViewCatalog.png[Sequence diagram: View Catalog, 100%, 100%, pdfw
 |===
 |ID                         |**<<UC00XY>>**
 |Name                       |ViewDetails
-|Beschreibung               |Hier bekommt man Informationen über die Weinsorten bzw. Verfügbarkeit auf dem Lager.
-|Akteure                    |User
+|Beschreibung               |Hier bekommt man Informationen über eine konkrete Weinsorte inkl. Verfügbarkeit auf dem Lager.
+|Akteure                    |User (Employee & Admin)
 |Trigger                    |
-_Details_: Benutzer:in möchte Details über eine Weinsorte erfahren.
+_Details_: Benutzer:in möchte Details über eine Weinsorte abrufen.
 
 _Zurück_: Benutzer:in befindet sich im Beschreibungsmenü und möchte zurück zur Produktliste zurückkehren.
 |Vorbedienung(en)           a|
 _Details_: Benutzer:in befindet sich im Katalog-Menü
 
 _Zurück_: Benutzer:in befindet sich im Beschreibungsmodus
-|Essential Steps           a|
-keine
 
-|Extensions                 |-
 |Functional Requirements    |<<F00XY>>
 |===
 
- 
+ [[sequence_diagram_view_catalog]]
+image::./images/ViewDetails.png[Sequence diagram: View Details, 100%, 100%, pdfwidth=100%, title= "Sequenzdiagramm: View Details", align=center]
  
 
 == Funktionale Anforderungen
