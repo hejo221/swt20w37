@@ -17,23 +17,20 @@ Dieses Dokument benötigt ein Inhaltsverzeichnis. Es existieren mehrere Einbindu
 Eine kurze Beschreibung des Dokuments. Wenige Absätze.
 
 == Aufgabenstellung und Zielsetzung
-Text aus Aufgabenstellung kopieren und ggfs. präzisieren.
 
 Unsere Vinothek (_WineShop_) hat zwei Typen von Benutzer:innen (_User_): Angestellte (_Employee_) und Chef (_Admin_) mit unterschiedlichen Verantwortlichkeiten.
 
 Jede Benutzer:in darf auf den Katalog (_Catalog_) zugreifen, allerdings dürfen Angestellten keine Änderungen daran vornehmen. Der Katalog beinhaltet Informationen über alle Produkte (_Wine_) des Weingeschäfts. Jeder Weinsorte wird ein Bild (_pic_) zugeordnet mit zahlreichen Informationen, wie z.B. Artikelnummer (_itemNr_), Name (_name_), Sorte (_type_), Jahrgang (_vintage_), Herkunft (_origin_), Geschichte (_history_), Geschmack (_flavour_), Preis (_price_), verbleibende Anzahl im Lager (_bottles_left_).
 
-Jede Kund:in  (_Customer_) besitzt genau ein Konto in unserem System. Unter diesem Konto werden folgende Kundedaten gespeichert: Kunden-ID (customer_ID), Vorname (forename), Zuname (surname), Geburtsdatum (dob), E-Mail-Adresse (email). Kund:in darf zum Zeitpunkt der Kontoerstellung nicht minderjährig (not_underage) sein.
+Jede Kund:in  (_Customer_) besitzt genau ein Konto in unserem System. Unter diesem Konto werden folgende Kundedaten gespeichert: Kunden-ID (_customerID_), Vorname (_forename_), Zuname (_surname_), Geburtsdatum (_dob_), E-Mail-Adresse (_email_). Kund:in darf zum Zeitpunkt der Kontoerstellung nicht minderjährig (_notUnderage_) sein.
 
 Shopping-Modus:
 
-Unsere Kund:innen werden in der nächsten Zukunft keinen Zugang zu unserem Shop haben, Einkäufe werden von Angestellten erfasst. Bevor man shoppen kann, muss man zuerst die Kund:in aus der Kundenliste (list_of_customers) auswählen, bzw. ein neues Konto erstellen(add_customer).
+Unsere Kund:innen werden in der nächsten Zukunft keinen Zugang zu unserem Shop haben, Einkäufe werden von Angestellten erfasst. Im Shopping-Modus bei jeder Ware im Katalog erscheinen jeweils zwei Felder: Anzahl (_quantity_) und "In den Warenkorb" (_addToBasket_). Jede Ware kann zum Warenkorb hinzugefügt werden, egal ob sie vorhanden ist oder nicht.
 
-Im Shopping-Modus bei jeder Ware im Katalog erscheinen jeweils zwei Felder: Anzahl (quantity) und "In den Warenkorb" (add_to_basket). Jede Ware kann zum Warenkorb hinzugefügt werden, egal ob sie vorhanden ist oder nicht.
+Im Warenkorb-Modus kann die Anzahl jeder Ware geändert werden (_edit_), jede einzelne Ware (_remove_) bzw. der gesamte Warenkorb (_empty_) können gelöscht werden.
 
-Im Warenkorb-Modus kann die Anzahl jeder Ware geändert werden (edit), jede einzelne Ware (remove) bzw. der gesamte Warenkorb (empty) können gelöscht werden.
-
-Wenn die Kund:in fertig mit dem Einkaufen ist, klickt die Verkäufer:in auf "Zur Kasse gehen". Im neuen Fenster wird die Kund:in aus der Kundenliste ausgewählt. Die möglichen Zahlungsarten (payment_method) sind Bargeld (cash) oder Kreditkarte (credit_card). Danach klickt man auf "Bezahlt" (Orders.add). 
+Wenn die Kund:in fertig mit dem Einkaufen ist, klickt die Verkäufer:in auf "Zur Kasse gehen"(_METHODE_). Im neuen Fenster wird die Kund:in in der Kundenliste ausgewählt(_listOfCustomers_). Falls die Kund:in nicht in der Datenbank ist, wird sie/er in die Datenbank eingetragen (_addCustomer_). Die möglichen Zahlungsarten (payment_method) sind Bargeld (cash) oder Kreditkarte (credit_card). Danach klickt man auf "Bezahlt" (Orders.add). 
 
 Falls eine Bestellung aus nicht vorhandenen Waren besteht (Order.status: opened),ist die fehlende Ware nachzubestellen (reorder). Die Kund:in wird per E-Mail informiert, sobald die Ware eingetroffen ist (Order.status: closed).
 
