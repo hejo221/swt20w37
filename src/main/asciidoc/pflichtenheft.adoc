@@ -107,12 +107,12 @@ _Katalog_: Benutzer:in ist angemeldet.
 [[sequence_diagram_view_catalog]]
 image::./images/ViewCatalog.png[Sequence diagram: View Catalog, 100%, 100%, pdfwidth=100%, title= "Sequenzdiagramm: View Catalog", align=center]
 
+
  ***
  _View Details_
  
-
 [cols="1h, 3"]
-[[UC0010]]
+[[UC00X0]]
 |===
 |ID                         |**<<UC00XY>>**
 |Name                       |ViewDetails
@@ -126,10 +126,7 @@ _Zurück_: Benutzer:in befindet sich im Beschreibungsmenü und möchte zurück z
 _Details_: Benutzer:in befindet sich im Katalog-Menü
 
 _Zurück_: Benutzer:in befindet sich im Beschreibungsmodus
-|Essential Steps           a|
-keine
 
-|Extensions                 |-
 |Functional Requirements    |<<F00XY>>
 |===
 
