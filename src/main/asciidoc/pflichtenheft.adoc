@@ -74,6 +74,31 @@ Weitere relevante Spalten können bei Bedarf ergänzt werden.
 === Überblick Anwendungsfalldiagramm
 Anwendungsfall-Diagramm, das alle Anwendungsfälle und alle Akteure darstellt
 
+[cols="1h, 3"]
+[[UC0010]]
+|===
+|ID                         |**<<UC00XY>>**
+|Name                       |ViewCatalog
+|Beschreibung               |Hier bekommt man Informationen über die Weinsorten bzw. Verfügbarkeit auf dem Lager.
+|Akteure                    |User
+|Trigger                    |
+_Details_: Benutzer:in möchte Details über eine Weinsorte erfahren.
+
+_Zurück_: Benutzer:in befindet sich im Beschreibungsmenü und möchte zurück zur Produktliste zurückkehren.
+|Vorbedienung(en)           a|
+_Details_: Benutzer:in befindet sich im Katalog-Menü
+
+_Zurück_: Benutzer:in befindet sich im Beschreibungsmodus
+|Essential Steps           a|
+keine
+
+|Extensions                 |-
+|Functional Requirements    |<<F00XY>>
+|===
+
+[[sequence_diagram_view_catalog]]
+image::./images/Sequence_Diagrams/View_Catalog.png[Sequence diagram: View Catalog, 100%, 100%, pdfwidth=100%, title= "Sequence diagram: View Catalog", align=center]
+
 === Anwendungsfallbeschreibungen
 Dieser Unterabschnitt beschreibt die Anwendungsfälle. In dieser Beschreibung müssen noch nicht alle Sonderfälle und Varianten berücksichtigt werden. Schwerpunkt ist es, die wichtigsten Anwendungsfälle des Systems zu finden. Wichtig sind solche Anwendungsfälle, die für den Auftraggeber, den Nutzer den größten Nutzen bringen.
 Für komplexere Anwendungsfälle ein UML-Sequenzdiagramm ergänzen.
