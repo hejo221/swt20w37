@@ -97,7 +97,7 @@ keine
 |===
 
 [[sequence_diagram_view_catalog]]
-image::./images/Sequence_Diagrams/View_Catalog.png[Sequence diagram: View Catalog, 100%, 100%, pdfwidth=100%, title= "Sequence diagram: View Catalog", align=center]
+image::./images/View_Catalog.png[Sequence diagram: View Catalog, 100%, 100%, pdfwidth=100%, title= "Sequence diagram: View Catalog", align=center]
 
 === Anwendungsfallbeschreibungen
 Dieser Unterabschnitt beschreibt die Anwendungsfälle. In dieser Beschreibung müssen noch nicht alle Sonderfälle und Varianten berücksichtigt werden. Schwerpunkt ist es, die wichtigsten Anwendungsfälle des Systems zu finden. Wichtig sind solche Anwendungsfälle, die für den Auftraggeber, den Nutzer den größten Nutzen bringen.
