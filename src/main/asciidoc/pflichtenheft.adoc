@@ -102,7 +102,10 @@ _Katalog_: Benutzer:in ist angemeldet.
 |===
 
 [[sequence_diagram_view_catalog]]
-image::./images/ViewCatalog.png[Sequence diagram: View Catalog, 100%, 100%, pdfwidth=100%, title= "Sequence diagram: View Catalog", align=center]
+image::./images/ViewCatalog.png[Sequence diagram: View Catalog, 100%, 100%, pdfwidth=100%, title= "Sequenz-Diagramm: View Catalog", align=center]
+
+
+
 
 [cols="1h, 3"]
 [[UC0010]]
@@ -125,6 +128,9 @@ keine
 |Extensions                 |-
 |Functional Requirements    |<<F00XY>>
 |===
+
+
+
 
 == Funktionale Anforderungen
 
