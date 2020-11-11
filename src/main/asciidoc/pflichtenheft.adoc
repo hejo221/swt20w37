@@ -124,7 +124,7 @@ _Zurück_: Benutzer:in befindet sich im Beschreibungsmodus
 |Functional Requirements    |<<F00XY>>
 |===
 
- [[sequence_diagram_view_catalog]]
+ [[sequence_diagram_view_details]]
 image::./images/ViewDetails.png[Sequence diagram: View Details, 100%, 100%, pdfwidth=100%, title= "Sequenzdiagramm: View Details", align=center]
  
 
