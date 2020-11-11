@@ -1,6 +1,4 @@
-= Pflichtenheft
-
-== __Vinothek «La Bouteille»__
+= Pflichtenheft __Vinothèque «La Bouteille»__
 
 [options="header"]
 [cols="1, 1, 1, 1, 4"]
