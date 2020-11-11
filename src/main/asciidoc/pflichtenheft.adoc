@@ -150,7 +150,7 @@ Diese Tabelle enthält:
 |v0.1
 |Registrierung
 a|
-Das System wird mit einem standardmäßigen Admin-Zugang ausgeliefert. Der Admin kann neue Mitarbeiterkonten anlegen. Dafür werden folgende Informationen benötigt:
+Das System wird mit einem standardmäßigen Admin-Zugang ausgeliefert. Weitere Benutzerkonten sollen jedoch von jedem angelegt werden können. Dafür werden folgende Informationen benötigt:
 
 * Benutzername
 * Passwort
@@ -266,9 +266,9 @@ Das System soll es den Mitarbeitern ermöglichen, die von den Kunden gewählten 
 * Anschrift			
 * E-Mail-Adresse
 
-Die erfassten Kundendaten sollen persistent im Kundenstamm gespeichert werden ([[F0300]]<<F0300>>).
+Erkennt das System, das die angegebenen Kundendaten bereits im Kundenstamm ([[F0300]]<<F0300>>) vorhanden sind, soll der Mitarbeiter darüber benachrichtigt werden. Andernfalls sollen die Kundendaten persistent im Kundenstamm gespeichert werden ([[F0300]]<<F0300>>), worüber der Mitarbeiter ebenfalls benachrichtigt werden soll.
 
-Beim Kaufversuch soll die potentielle Bestellung validiert werden ([[F0230]]<<F0230>>). Ist der Lagerbestand ausreichend, soll eine Bestellung erstellt werden ([[F0241]]<<F0241>>). Andernfalls sollen die fehlenden Artikel nachbestellt werden ([[F0231]]<<F0231>>).
+Beim Kaufversuch soll die potentielle Bestellung validiert werden ([[F0230]]<<F0230>>). Ist der Lagerbestand ausreichend, soll eine Bestellung erstellt werden ([[F0241]]<<F0241>>). Andernfalls soll die Bestellung auf die vorhandenen und die fehlenden Artikel aufgesplittet werden, die fehlenden Artikel müssen nachbestellt werden ([[F0231]]<<F0231>>).
 
 |[[F0230]]<<F0230>>
 |v0.1
@@ -278,11 +278,15 @@ Das System soll fähig sein  festzustellen, ob der Lagerbestand eines bestimmten
 
 Stellt das System fest, dass der Lagerbestand geringer als die gewünschte Menge ist, sollen die fehlenden Artikel nachbestellt werden ([[F0231]]<<F0231>>).
 
+Das System soll außerdem, wenn nach einem Kauf die festgelegte Mindestanzahl an Lagerbeständen eines Artikel unterschritten wird, eine Warnung ausgeben und eine entsprechende Menge an Artikel nachbestellen ([[F0231]]<<F0231>>).
+
 |[[F0231]]<<F0231>>
 |v0.1
 |Artikel nachbestellen
 a|
 Das System soll in der Lage sein, die bei der Überprüfung der Lagerbestände ([[F0230]]<<F0230>>) festgestellte fehlende Anzahl an Artikeln automatisch nachzubestellen.
+
+Das System soll weiterhin automatisch Artikel nachbestellen, wenn die Lagerbestände durch einen Kauf unter eine festzulegende Mindestanzahl fallen.
 
 Außerdem soll das System Admins ermöglichen, auch manuell Artikel nachzubestellen.
 
@@ -312,9 +316,9 @@ Nachdem die Bestellung bezahlt wurde, soll die Bestellung den Status “BEZAHLT�
 |v0.1
 |Bestellung stornieren
 a|
-Das System soll es ermöglichen, Bestellungen mit dem Status “OFFEN” zu stornieren.
+Das System soll es ermöglichen, Bestellungen mit dem Status “OFFEN” zu stornieren. Bevor die Stornierung durchgeführt wird, muss dies erneut vom Mitarbeiter bestätigt werden.
 
-Nachdem die Bestellung storniert wurde, soll die Bestellung den Status “STORNIERT” haben.
+Nachdem die Bestellung endgültig storniert wurde, soll die Bestellung den Status “STORNIERT” haben.
 
 |[[F0244]]<<F0244>>
 |v0.1
@@ -334,7 +338,7 @@ Das System soll die Funktionalität bieten, Bestellungen im Zustand “ABGESCHLO
 |v0.1
 |Kundenstamm
 a|
-Das System soll die im Kaufprozess ([[F0220]]<<F0220>>) erfassten Kundendaten persistent speichern können
+Das System soll die im Kaufprozess ([[F0220]]<<F0220>>) erfassten Kundendaten persistent speichern können.
 
 |[[F0301]]<<F0302>>
 |v0.1
