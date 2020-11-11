@@ -82,12 +82,15 @@ Für komplexere Anwendungsfälle ein UML-Sequenzdiagramm ergänzen.
 Einfache Anwendungsfälle mit einem Absatz beschreiben.
 Die typischen Anwendungsfälle (Anlegen, Ändern, Löschen) können zu einem einzigen zusammengefasst werden.
 
+***
+_View Catalog_
+
 [cols="1h, 3"]
 [[UC0010]]
 |===
 |ID                         |**<<UC00XY>>**
 |Name                       |ViewCatalog
-|Beschreibung               |Hier bekommt man Informationen über alle Weinsorten, die sich im Katalog befinden.
+|Beschreibung               |Hier bekommt man eine Liste mit allen Produkten, die die Vinothek verkauft.
 |Akteure                    |User (Employee & Admin)
 |Trigger                    |
 _Katalog_: Benutzer:in möchte den Katalog aufrufen.
@@ -102,9 +105,10 @@ _Katalog_: Benutzer:in ist angemeldet.
 |===
 
 [[sequence_diagram_view_catalog]]
-image::./images/ViewCatalog.png[Sequence diagram: View Catalog, 100%, 100%, pdfwidth=100%, title= "Sequenz-Diagramm: View Catalog", align=center]
+image::./images/ViewCatalog.png[Sequence diagram: View Catalog, 100%, 100%, pdfwidth=100%, title= "Sequenzdiagramm: View Catalog", align=center]
 
- 
+ ***
+ _View Details_
  
 
 [cols="1h, 3"]
