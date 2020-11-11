@@ -98,10 +98,7 @@ _Katalog_: Benutzer:in möchte den Katalog aufrufen.
 |Vorbedienung(en)           a|
 _Katalog_: Benutzer:in ist angemeldet.
 
-|Essential Steps           a|keine
-
-|Extensions                 |-
-|Functional Requirements    |<<F00XY>>
+|Funktionale Anforderungen    |<<F0111>>
 |===
 
 [[sequence_diagram_view_catalog]]
@@ -127,7 +124,7 @@ _Details_: Benutzer:in befindet sich im Katalog-Menü
 
 _Zurück_: Benutzer:in befindet sich im Beschreibungsmodus
 
-|Functional Requirements    |<<F00XY>>
+|Funktionale Anforderungen    |<<F0111>>
 |===
 
 [[sequence_diagram_view_details]]
