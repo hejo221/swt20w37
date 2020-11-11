@@ -1,6 +1,6 @@
 = Pflichtenheft
-:project_name: Vinothek «La Bouteille»
-== __{project_name}__
+
+== __Vinothek «La Bouteille»__
 
 [options="header"]
 [cols="1, 1, 1, 1, 4"]
