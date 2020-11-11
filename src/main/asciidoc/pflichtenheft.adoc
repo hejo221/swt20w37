@@ -83,7 +83,7 @@ Einfache Anwendungsfälle mit einem Absatz beschreiben.
 Die typischen Anwendungsfälle (Anlegen, Ändern, Löschen) können zu einem einzigen zusammengefasst werden.
 
 ***
-_View Catalog_
+==== _View Catalog_
 
 [cols="1h, 3"]
 [[UC0010]]
@@ -108,13 +108,13 @@ _Katalog_: Benutzer:in ist angemeldet.
 image::./images/ViewCatalog.png[Sequence diagram: View Catalog, 100%, 100%, pdfwidth=100%, title= "Sequenzdiagramm: View Catalog", align=center]
 
 
- ***
- _View Details_
- 
+***
+==== _View Details_
+
 [cols="1h, 3"]
-[[UC00X0]]
+[[UC0020]]
 |===
-|ID                         |**<<UC00XY>>**
+|ID                         |**<<UC00XZ>>**
 |Name                       |ViewDetails
 |Beschreibung               |Hier bekommt man Informationen über die Weinsorten bzw. Verfügbarkeit auf dem Lager.
 |Akteure                    |User
