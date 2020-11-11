@@ -366,18 +366,92 @@ Das System soll aus der Differenz von Einnahmen und Ausgaben eine Bilanz erstell
 
 
 === Kann-Kriterien
-Anforderungen die das Programm leisten können soll, aber für den korrekten Betrieb entbehrlich sind.
+
+Diese Tabelle enthält:
+
+* eine eindeutige Kennung der Anforderung (ID)
+* die aktuelle Version der Anforderung
+* eine Kurzbezeichnung der Anforderung
+* eine genaue Beschreibung der Anforderung
+
+[options="header", cols="2h, 1, 3, 12"]
+|===
+|ID
+|Version
+|Name
+|Beschreibung
+
+|[[F0030]]<<F0030>>
+|v0.1
+|Passwort ändern
+a|
+Das System soll es den Admins ermöglichen, die Passwörter aller Mitarbeiterkonten zu ändern.
+
+|[[F0245]]<<F0245>>
+|v0.1
+|Bestellungen zeitlich überprüfen
+a|
+Das System soll, falls eine Bestellung zu lange den Status “OFFEN” hat, ermöglichen, dass:
+
+* Lagerbestand, welcher bereits durch diese Bestellung reduziert wurde, wieder erhöht werden muss
+* die Bestellung in den Zustand “STORNIERT” gesetzt wird
+
+|===
 
 == Nicht-Funktionale Anforderungen
 
+Dieser Abschnitt wird einen Überblick über die nicht-funktionalen Anforderungen an das Projekt Vinothek geben. Diese Anforderung beschreiben, wie das System funktioniert und innerhalb welcher Grenzen es arbeiten soll.
+
 === Qualitätsziele
 
-Dokumentieren Sie in einer Tabelle die Qualitätsziele, welche das System erreichen soll, sowie deren Priorität.
+Die folgende Tabelle zeigt welche Qualitätsanforderungen in welchem Umfang erfüllt werden müssen. Die erste Spalte führt die Qualitätsanforderungen auf, in den folgenden Spalten zeigt ein “x” deren Priorität. Die zugewiesene Priorität muss bei der konkreten Ausarbeitung der nicht-funktionalen Anforderungen berücksichtigt werden.
 
-=== Konkrete Nicht-Funktionale Anforderungen
+1 = nicht wichtig … 5 = sehr wichtig
 
-Beschreiben Sie Nicht-Funktionale Anforderungen, welche dazu dienen, die zuvor definierten Qualitätsziele zu erreichen.
-Achten Sie darauf, dass deren Erfüllung (mindestens theoretisch) messbar sein muss.
+[options="header", cols="3h, ^1, ^1, ^1, ^1, ^1"]
+|===
+|Quality Demand           | 1 | 2 | 3 | 4 | 5
+|Wartbarkeit          |   |   | x |   | 
+|Benutzerfreundlichkeit                |   |   |  |  | x
+|Sicherheit                 |   |   |   | x |
+|===
+
+=== Konkrete Nicht-Funktionale Anforderungen:
+
+Diese Tabelle enthält:
+
+* eine eindeutige Kennung der Anforderung (ID)
+* die aktuelle Version der Anforderung
+* eine Kurzbezeichnung der Anforderung
+* eine genaue Beschreibung der Anforderung
+
+[options="header", cols="2h, 1, 3, 12"]
+|===
+|ID
+|Version
+|Name
+|Beschreibung
+
+|[[NF0010]]<<NF0010>>
+|v0.1
+|Verfügbarkeit - Uptime
+a|
+Das System soll eine Uptime von mindestens 99,5% erreichen.
+
+|[[NF0020]]<<NF0020>>
+|v0.1
+|Sicherheit - Passwortspeicherung
+a|
+Passwörter sollen nur als Hashwerte
+gespeichert werden, um Datendiebstahl zu verhindern.
+
+|[[NF0030]]<<NF0030>>
+|v0.1
+|Sicherheit - Datenschutz
+a|
+Mitarbeiter müssen sich einloggen, um das System zu benutzen, damit Kunden nicht unbeaufsichtigt auf Kundendaten zugreifen können.
+
+|===
 
 == GUI Prototyp
 
