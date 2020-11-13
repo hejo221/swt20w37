@@ -98,10 +98,12 @@ Akteure sind Benutzer des Systems oder benachbarter Systeme, die darauf zugreife
 
 === 6.2. Use-Case Diagram
 [[Use_Case_Diagram]]
-image::./images/Use_Case_Diagram.png[Use case diagram of Videoshop, 100%, 100%, pdfwidth=100%, title= "Use case diagram of Videoshop", align=center]
+image::./images/Use_Case_Diagram.png[Use case diagram of Videoshop]
+
 
 === 6.3. Use-Case Descriptions
 In diesem Abschnitt werden die im Anwendungsfalldiagramm gezeigten Anwendungsfälle ausführlich beschrieben.
+
 
 ==== Login / Logout
 
@@ -113,10 +115,8 @@ In diesem Abschnitt werden die im Anwendungsfalldiagramm gezeigten Anwendungsfä
 |Beschreibung               |Ein Benutzer muss sich beim System anmelden (authentifizieren) können, um auf weitere Funktionen zugreifen zu können. Dieser Vorgang muss durch Abmelden rückgängig gemacht werden.
 |Akteure                    |User
 |Trigger                    |Loing: Der Benutzer möchte durch Anmelden auf "versteckte" Funktionen zugreifen.
-
                              Logout: Der Benutzer möchte durch Anmelden auf "versteckte" Funktionen zugreifen.
 |Vorbedienung(en)           |Login: Benutzer ist noch nicht authentifiziert.
-
                              Logout: Benutzer ist authentifiziert.
 |Erweiterungen              | None
 |Funktionale Anforderungen  | -
@@ -134,8 +134,9 @@ In diesem Abschnitt werden die im Anwendungsfalldiagramm gezeigten Anwendungsfä
 |Akteure                    |Empoyee
 |Trigger                    |Mitarbieter schreibt die Information von einem Kunden, dann speichern.
 |Vorbedienung(en)           |None
-|Erweiterungen              |1.	Mitarbeiter klickt auf das Navigationselement "Customer".
+|Wesentliche Schritte       |1.	Mitarbeiter klickt auf das Navigationselement "Customer".
                              2.	Mitarbeiter schreibt die Infomation, und speichern.
+|Erweiterungen              | -
 |Funktionale Anforderungen  | -
 |===
 
@@ -151,66 +152,244 @@ In diesem Abschnitt werden die im Anwendungsfalldiagramm gezeigten Anwendungsfä
 |Akteure                    |Empoyee
 |Trigger                    |Zugriff auf das Navigationselement, das für die Anzeige des Katalogs verantwortlich ist.
 |Vorbedienung(en)           |None
-|Erweiterungen              |1.	Mitarbeiter klickt auf das Navigationselement "Weinkatalog".
+|Wesentliche Schritte       |1.	Mitarbeiter klickt auf das Navigationselement "Weinkatalog".
                              2.	Dem Mitarbeiter werden alle Weine der ausgewählten Kategorie angezeigt.
+|Erweiterungen              | -
 |Funktionale Anforderungen  | -
-|===
-
-[[sequence_diagram_view_catalog]]
-image::./images/View_Catalog.png[Sequence diagram: View Catalog, 100%, 100%, pdfwidth=100%, title= "Sequenzdiagramm: View Catalog", align=center]
-
-
-
-
-
-==== _View Catalog_
-
-[cols="1h, 3"]
-[[UC0010]]
-|===
-|ID                         |**<<UC00XY>>**
-|Name                       |ViewCatalog
-|Beschreibung               |Hier bekommt man eine Liste mit allen Produkten, die die Vinothek verkauft.
-|Akteure                    |User (Employee & Admin)
-|Trigger                    |
-_Katalog_: Benutzer:in möchte den Katalog aufrufen.
-
-|Vorbedienung(en)           a|
-_Katalog_: Benutzer:in ist angemeldet.
-
-|Funktionale Anforderungen    |<<F0111>>
 |===
 
 [[sequence_diagram_view_catalog]]
 image::./images/ViewCatalog.png[Sequenzdiagramm: View Catalog]
 
 
-***
-==== _View Details_
+==== View Product Details
 
 [cols="1h, 3"]
-[[UC0020]]
+[[UC0104]]
 |===
-|ID                         |**<<UC00XZ>>**
-|Name                       |ViewDetails
-|Beschreibung               |Hier bekommt man ausführliche Informationen über eine konkrete Weinsorte bzw. Verfügbarkeit auf dem Lager.
-|Akteure                    |User (Employee & Admin)
-|Trigger                    |
-_Details_: Benutzer:in möchte Details über eine Weinsorte erfahren.
-
-_Zurück_: Benutzer:in befindet sich im Beschreibungsmenü und möchte zurück zur Produktliste zurückkehren.
-|Vorbedienung(en)           a|
-_Details_: Benutzer:in befindet sich im Katalog-Menü
-
-_Zurück_: Benutzer:in befindet sich im Beschreibungsmodus
-
-|Funktionale Anforderungen    |<<F0111>>
+|ID                         |**<<UC0104>>**
+|Name                       |View Product Details
+|Beschreibung               |Ein Mitarbeiter muss in der Lage sein, die Details einer Disc auf einer zusätzlichen Seite anzuzeigen.
+|Akteure                    |Empoyee
+|Trigger                    |Der Mitarbeiter zeigt den Katalog an und drückt auf einen Eintrag, um die Details des Weins anzuzeigen.
+|Vorbedienung(en)           |Der Mitarbeiter zeigt den Katalog an.
+|Wesentliche Schritte       |1.	Ein Mitarbeiter drückt auf einen angezeigten Eintrag des Katalogs (Wein).
+                             2.	Einem Mitarbeiter werden die Details der ausgewählten Wein angezeigt.
+|Erweiterungen              | -
+|Funktionale Anforderungen  | -
 |===
 
-[[sequence_diagram_view_details]]
-image::./images/ViewDetails.png[Sequence diagram: View Details, 100%, 100%, pdfwidth=100%, title= "Sequenzdiagramm: View Details", align=center]
- 
- 
+[[sequence_diagram_view_product_details]]
+image::./images/ViewDetails.png[Sequenzdiagramm: View Product Details]
+
+
+
+==== Add Product to Cart
+
+[cols="1h, 3"]
+[[UC0201]]
+|===
+|ID                         |**<<UC0201>>**
+|Name                       |Add Product to Cart
+|Beschreibung               |Ein Mitarbeiter muss in der Lage sein, einen Wein in seinen Einkaufswagen zu legen.
+|Akteure                    |Empoyee
+|Trigger                    |Ein Mitarbeiter zeigt die Detailseite einer Wine an und möchte sie in seinen Warenkorb legen.
+|Vorbedienung(en)           |1.	Der Akteur hat sich beim System authentifiziert (d. H. Ist ein registrierter Benutzer).
+                             2.	Der Akteur zeigt die Detailseite einer Wine an.
+|Wesentliche Schritte       |1.	Der Akteur gibt eine gewünschte Menge für die ausgewählte Wine ein (1..die Menge in der Lage).
+                             2.	Der Akteuer drückt "zum Warenkorb schaffen".
+                             3.	Die Wine wird mit der ausgewählten Menge in den Warenkorb gelegt.
+|Erweiterungen              | -
+|Funktionale Anforderungen  | -
+|===
+
+[[sequence_diagram_add_product_to_cart]]
+image::./images/Add_Product_to_Cart.png[Sequenzdiagramm: Add Product to Cart]
+
+
+==== Change Quantity
+
+[cols="1h, 3"]
+[[UC0202]]
+|===
+|ID                         |**<<UC0202>>**
+|Name                       |Change Quantity
+|Beschreibung               |Die Menge des ausgewählten Weins kann geändert werden.
+|Akteure                    |Empoyee
+|Trigger                    |Ein Mitarbeiter möchte die Menge des ausgewählten Weins in seinen Warenkorb ändern.
+|Vorbedienung(en)           |Der Mitarbeiter hat mindestens einen Artikel in seinen Warenkorb gelegt.
+|Wesentliche Schritte       |1.	Der Akteur drückt "Warenkorb" in der Navigationsleiste.
+                             2.	Der Akteur ändert die Menge eines Wines.
+|Erweiterungen              | -
+|Funktionale Anforderungen  | -
+|===
+
+
+==== View Cart
+
+[cols="1h, 3"]
+[[UC0203]]
+|===
+|ID                         |**<<UC0203>>**
+|Name                       |View Cart
+|Beschreibung               |Ein Mitarbeiter muss in der Lage sein, den Inhalt seines Einkaufswagens und den Gesamtpreis seiner Wahl anzuzeigen.
+|Akteure                    |Empoyee
+|Trigger                    |Der Akteur drückt "Warenkorb" in der Navigationsleiste.
+|Vorbedienung(en)           |
+|Wesentliche Schritte       |1.	Der Akteur drückt "Warenkorb" in der Navigationsleiste.
+                             2.	Dem Akteur wird der Inhalt seines Wagens sowie der Gesamtpreis angezeigt.
+|Erweiterungen              | -
+|Funktionale Anforderungen  | -
+|===
+
+
+==== Order Products in Cart
+
+[cols="1h, 3"]
+[[UC0204]]
+|===
+|ID                         |**<<UC0204>>**
+|Name                       |Order Products in Cart
+|Beschreibung               |Ein Mitarbeiter muss den Inhalt des Warenkorbs bestellen können.
+|Akteure                    |Empoyee
+|Trigger                    |Ein Mitarbeiter bestellt die Weins, die ein Kunde kaufen möchtet.
+|Vorbedienung(en)           |1.	Der Akteur ist authentifiziert und hat die Rolle "Employee" im System.
+                             2.	Wagen ist nicht leer.
+|Wesentliche Schritte       |1.	Der Mitarbeiter hat mindestens einen Artikel in seinen Warenkorb gelegt.
+                             2.	Mitarbeiter drückt "Bestellung".
+                             3.	Bestellung wird gegen Lagerbestand geprüft.
+                             4.	Bestellung wird automatisch bezahlt.
+                             5.	Weine werden in der gewählten Menge aus dem Bestand genommen
+                             6.	Bestellung wird archiviert.
+|Erweiterungen              | -
+|Funktionale Anforderungen  | -
+|===
+
+
+==== View Customer List
+
+[cols="1h, 3"]
+[[UC0301]]
+|===
+|ID                         |**<<UC0301>>**
+|Name                       |View Customer List
+|Beschreibung               |Ein Mitarbeiter sollte in der Lage sein, die gesamte Liste der Kunden der Anwendung anzuzeigen.
+|Akteure                    |Empoyee
+|Trigger                    |Mitarbeiter wählt " Kunden List" in der Navigationsleiste
+|Vorbedienung(en)           |Der Akteur hat sich beim System authentifiziert (d. H. Ist ein registrierter Benutzer).
+|Wesentliche Schritte       |1.	Der Akteur hat sich beim System authentifiziert (d. H. Ist ein registrierter Benutzer).
+                             2.	Der Aktuer drükt “Kunden List”.
+|Erweiterungen              | -
+|Funktionale Anforderungen  | -
+|===
+
+
+==== View Inventory
+
+[cols="1h, 3"]
+[[UC0302]]
+|===
+|ID                         |**<<UC0302>>**
+|Name                       |View Inventory
+|Beschreibung               |Ein Mitarbeiter muss den Inhalt des Warenkorbs bestellen können.
+|Akteure                    |Empoyee
+|Trigger                    |Mitarbeiter wählt "Lager" in der Navigationsleiste
+|Vorbedienung(en)           |Der Akteur hat sich beim System authentifiziert (d. H. Ist ein registrierter Benutzer).
+|Wesentliche Schritte       |1.	Mitarbeiter wählt "Lager" in der Navigationsleiste.
+                             2.	Die vollständige Liste aller Artikel des Inventars und des aktuellen Lagerbestands wird angezeigt
+|Erweiterungen              | -
+|Funktionale Anforderungen  | -
+|===
+
+
+==== View Order
+
+[cols="1h, 3"]
+[[UC0303]]
+|===
+|ID                         |**<<UC0303>>**
+|Name                       |View Order
+|Beschreibung               |Ein Mitarbeiter muss in der Lage sein, eine Liste der abgeschlossenen Bestellungen anzuzeigen
+|Akteure                    |Empoyee
+|Trigger                    |Mitarbeiter wählt "Bestellungen" in der Navigationsleiste
+|Vorbedienung(en)           |Der Akteur hat sich beim System authentifiziert (d. H. Ist ein registrierter Benutzer).
+|Wesentliche Schritte       |1.	Mitarbeiter wählt "Sorgen" in der Navigationsleiste
+                             2.	Die vollständige Liste aller abgeschlossenen Bestellungen wird angezeigt
+|Erweiterungen              | -
+|Funktionale Anforderungen  | -
+|===
+
+[[sequence_diagram_view_orders]]
+image::./images/View_Orders.png[Sequenzdiagramm: View Orders]
+
+
+==== Example for the function of admin
+
+[cols="1h, 3"]
+[[UC0XXX]]
+|===
+|ID                         |**<<UC0XXX>>**
+|Name                       |-
+|Beschreibung               |-
+|Akteure                    |-
+|Trigger                    |-
+|Vorbedienung(en)           |-
+|Wesentliche Schritte       |-
+|Erweiterungen              | -
+|Funktionale Anforderungen  | -
+|===
+
+
+==== Example for the function of admin
+
+[cols="1h, 3"]
+[[UC0XXX]]
+|===
+|ID                         |**<<UC0XXX>>**
+|Name                       |-
+|Beschreibung               |-
+|Akteure                    |-
+|Trigger                    |-
+|Vorbedienung(en)           |-
+|Wesentliche Schritte       |-
+|Erweiterungen              | -
+|Funktionale Anforderungen  | -
+|===
+
+
+==== Example for the function of admin
+
+[cols="1h, 3"]
+[[UC0XXX]]
+|===
+|ID                         |**<<UC0XXX>>**
+|Name                       |-
+|Beschreibung               |-
+|Akteure                    |-
+|Trigger                    |-
+|Vorbedienung(en)           |-
+|Wesentliche Schritte       |-
+|Erweiterungen              | -
+|Funktionale Anforderungen  | -
+|===
+
+
+==== Example for the function of admin
+
+[cols="1h, 3"]
+[[UC0XXX]]
+|===
+|ID                         |**<<UC0XXX>>**
+|Name                       |-
+|Beschreibung               |-
+|Akteure                    |-
+|Trigger                    |-
+|Vorbedienung(en)           |-
+|Wesentliche Schritte       |-
+|Erweiterungen              | -
+|Funktionale Anforderungen  | -
+|===
+
 
 == Funktionale Anforderungen
 
