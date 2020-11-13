@@ -76,7 +76,31 @@ Für komplexere Anwendungsfälle ein UML-Sequenzdiagramm ergänzen.
 Einfache Anwendungsfälle mit einem Absatz beschreiben.
 Die typischen Anwendungsfälle (Anlegen, Ändern, Löschen) können zu einem einzigen zusammengefasst werden.
 
+
+
 ***
+== 6.Aufgabenstellung und Zielsetzung
+Dieser Abschnitt gibt einen Überblick über die Anwendungsfälle, die das System unterstützen muss. Diese Anwendungsfälle beschreiben, welche Funktionen das System (meistens) aus Sicht des Kunden bereitstellen muss und welche Akteure beteiligt sind.
+
+
+=== 6.1. Actors
+Akteure sind Benutzer des Systems oder benachbarter Systeme, die darauf zugreifen. Die folgende Tabelle fasst alle Akteure des Systems zusammen und enthält eine Beschreibung des Akteurs. Abstrakte Akteure (d. H. Ein Akteur, der andere kursiv geschriebene Akteure gruppiert) werden zum Verallgemeinern und Gruppieren verwendet.
+
+[cols="1h, 3"]
+|===
+|Name                       |Description
+|User                       |Repräsentativ für jede Person, die interagiert und mit dem System interagiert, unabhängig davon, ob sie authentifiziert ist oder nicht.
+|Employee                   |Jeder registrierte (und authentifizierte) Benutzer, der die Rolle "Employee" hat. Er hat ein Konto, und interagiert mit dem System,
+                              aber kann  nicht ein paar Aufgabe tun.
+|Admin                      |Jeder registrierte (und authentifizierte) Benutzer, der die Rolle "BOSS" hat. Ist für die Verwaltung der Anwendung verantwortlich.
+|===
+
+
+=== 6.2. Use-Case Diagram
+[[Use_Case_Diagram]]
+image::./images/Use_Case_Diagram.png[Use case diagram of Videoshop, 100%, 100%, pdfwidth=100%, title= "UseCaseDiagram", align=center]
+
+
 ==== _View Catalog_
 
 [cols="1h, 3"]
