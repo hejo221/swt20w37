@@ -59,11 +59,11 @@ Welche realen und juristischen Personen(-gruppen) haben Einfluss auf die Anforde
 Das Kontextdiagramm zeigt das geplante Software-System in seiner Umgebung. Zur Umgebung gehören alle Nutzergruppen des Systems und Nachbarsysteme. Die Grafik kann auch informell gehalten sein. Überlegen Sie sich dann geeignete Symbole. Die Grafik kann beispielsweise mit Visio erstellt werden. Wenn nötig, erläutern Sie diese Grafik.
 
 [[context_diagram]]
-image:diagrams/images/Vinothek_Context.png[context diagram]
+image:./images/Vinothek_Context.png[context diagram]
 
 === 6.2.Top-Level-Architektur
 Dokumentieren Sie ihre Top-Level-Architektur mit Hilfe eines Komponentendiagramm.
-image:diagrams/images/Top_Level_Architecture.png[top level architecture]
+image:./images/Top_Level_Architecture.png[top level architecture]
 
 
 ***
