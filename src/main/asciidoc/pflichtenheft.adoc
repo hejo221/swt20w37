@@ -97,7 +97,8 @@ Akteure sind Benutzer des Systems oder benachbarter Systeme, die darauf zugreife
 
 
 === 6.2. Use-Case Diagram
-[[Use_Case_Diagram]]
+
+[[my_use_case]]
 image::./images/Use_Case_Diagram.png[Use case diagram of Videoshop, 100%, 100%, pdfwidth=100%, title= "UseCaseDiagram", align=center]
 
 
