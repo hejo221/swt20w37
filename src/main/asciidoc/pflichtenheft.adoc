@@ -114,10 +114,12 @@ In diesem Abschnitt werden die im Anwendungsfalldiagramm gezeigten Anwendungsfä
 |Name                       |Login / Logout
 |Beschreibung               |Ein Benutzer muss sich beim System anmelden (authentifizieren) können, um auf weitere Funktionen zugreifen zu können. Dieser Vorgang muss durch Abmelden rückgängig gemacht werden.
 |Akteure                    |User
-|Trigger                    |Loing: Der Benutzer möchte durch Anmelden auf "versteckte" Funktionen zugreifen.
-                             Logout: Der Benutzer möchte durch Anmelden auf "versteckte" Funktionen zugreifen.
-|Vorbedienung(en)           |Login: Benutzer ist noch nicht authentifiziert.
-                             Logout: Benutzer ist authentifiziert.
+|Trigger                    a|
+Loing: Der Benutzer möchte durch Anmelden auf "versteckte" Funktionen zugreifen.
+Logout: Der Benutzer möchte durch Anmelden auf "versteckte" Funktionen zugreifen.
+|Vorbedienung(en)           a|
+Login: Benutzer ist noch nicht authentifiziert.
+Logout: Benutzer ist authentifiziert.
 |Erweiterungen              | None
 |Funktionale Anforderungen  | -
 |===
@@ -134,8 +136,9 @@ In diesem Abschnitt werden die im Anwendungsfalldiagramm gezeigten Anwendungsfä
 |Akteure                    |Empoyee
 |Trigger                    |Mitarbieter schreibt die Information von einem Kunden, dann speichern.
 |Vorbedienung(en)           |None
-|Wesentliche Schritte       |1.	Mitarbeiter klickt auf das Navigationselement "Customer".
-                             2.	Mitarbeiter schreibt die Infomation, und speichern.
+|Wesentliche Schritte       a|
+1.	Mitarbeiter klickt auf das Navigationselement "Customer".
+2.	Mitarbeiter schreibt die Infomation, und speichern.
 |Erweiterungen              | -
 |Funktionale Anforderungen  | -
 |===
@@ -152,8 +155,9 @@ In diesem Abschnitt werden die im Anwendungsfalldiagramm gezeigten Anwendungsfä
 |Akteure                    |Empoyee
 |Trigger                    |Zugriff auf das Navigationselement, das für die Anzeige des Katalogs verantwortlich ist.
 |Vorbedienung(en)           |None
-|Wesentliche Schritte       |1.	Mitarbeiter klickt auf das Navigationselement "Weinkatalog".
-                             2.	Dem Mitarbeiter werden alle Weine der ausgewählten Kategorie angezeigt.
+|Wesentliche Schritte       a|
+1.	Mitarbeiter klickt auf das Navigationselement "Weinkatalog".
+2.	Dem Mitarbeiter werden alle Weine der ausgewählten Kategorie angezeigt.
 |Erweiterungen              | -
 |Funktionale Anforderungen  | -
 |===
@@ -173,8 +177,9 @@ image::./images/Sequence_Diagrams/View_Catalog.png[Sequence diagram: View Catalo
 |Akteure                    |Empoyee
 |Trigger                    |Der Mitarbeiter zeigt den Katalog an und drückt auf einen Eintrag, um die Details des Weins anzuzeigen.
 |Vorbedienung(en)           |Der Mitarbeiter zeigt den Katalog an.
-|Wesentliche Schritte       |1.	Ein Mitarbeiter drückt auf einen angezeigten Eintrag des Katalogs (Wein).
-                             2.	Einem Mitarbeiter werden die Details der ausgewählten Wein angezeigt.
+|Wesentliche Schritte       a|
+1.	Ein Mitarbeiter drückt auf einen angezeigten Eintrag des Katalogs (Wein).
+2.	Einem Mitarbeiter werden die Details der ausgewählten Wein angezeigt.
 |Erweiterungen              | -
 |Funktionale Anforderungen  | -
 |===
@@ -193,11 +198,13 @@ image::./images/Sequence_Diagrams/ViewDetails.png[Sequence diagram: View Product
 |Beschreibung               |Ein Mitarbeiter muss in der Lage sein, einen Wein in seinen Einkaufswagen zu legen.
 |Akteure                    |Empoyee
 |Trigger                    |Ein Mitarbeiter zeigt die Detailseite einer Wine an und möchte sie in seinen Warenkorb legen.
-|Vorbedienung(en)           |1.	Der Akteur hat sich beim System authentifiziert (d. H. Ist ein registrierter Benutzer).
-                             2.	Der Akteur zeigt die Detailseite einer Wine an.
-|Wesentliche Schritte       |1.	Der Akteur gibt eine gewünschte Menge für die ausgewählte Wine ein (1..die Menge in der Lage).
-                             2.	Der Akteuer drückt "zum Warenkorb schaffen".
-                             3.	Die Wine wird mit der ausgewählten Menge in den Warenkorb gelegt.
+|Vorbedienung(en)           a|
+1.	Der Akteur hat sich beim System authentifiziert (d. H. Ist ein registrierter Benutzer).
+2.	Der Akteur zeigt die Detailseite einer Wine an.
+|Wesentliche Schritte       a|
+1.	Der Akteur gibt eine gewünschte Menge für die ausgewählte Wine ein (1..die Menge in der Lage).
+2.	Der Akteuer drückt "zum Warenkorb schaffen".
+3.	Die Wine wird mit der ausgewählten Menge in den Warenkorb gelegt.
 |Erweiterungen              | -
 |Funktionale Anforderungen  | -
 |===
@@ -217,8 +224,9 @@ image::./images/Sequence_Diagrams/Add_Product_to_Cart.png[Sequence diagram: Add 
 |Akteure                    |Empoyee
 |Trigger                    |Ein Mitarbeiter möchte die Menge des ausgewählten Weins in seinen Warenkorb ändern.
 |Vorbedienung(en)           |Der Mitarbeiter hat mindestens einen Artikel in seinen Warenkorb gelegt.
-|Wesentliche Schritte       |1.	Der Akteur drückt "Warenkorb" in der Navigationsleiste.
-                             2.	Der Akteur ändert die Menge eines Wines.
+|Wesentliche Schritte       a|
+1.	Der Akteur drückt "Warenkorb" in der Navigationsleiste.
+2.	Der Akteur ändert die Menge eines Wines.
 |Erweiterungen              | -
 |Funktionale Anforderungen  | -
 |===
@@ -235,8 +243,9 @@ image::./images/Sequence_Diagrams/Add_Product_to_Cart.png[Sequence diagram: Add 
 |Akteure                    |Empoyee
 |Trigger                    |Der Akteur drückt "Warenkorb" in der Navigationsleiste.
 |Vorbedienung(en)           |
-|Wesentliche Schritte       |1.	Der Akteur drückt "Warenkorb" in der Navigationsleiste.
-                             2.	Dem Akteur wird der Inhalt seines Wagens sowie der Gesamtpreis angezeigt.
+|Wesentliche Schritte       a|
+1.	Der Akteur drückt "Warenkorb" in der Navigationsleiste.
+2.	Dem Akteur wird der Inhalt seines Wagens sowie der Gesamtpreis angezeigt.
 |Erweiterungen              | -
 |Funktionale Anforderungen  | -
 |===
@@ -252,14 +261,16 @@ image::./images/Sequence_Diagrams/Add_Product_to_Cart.png[Sequence diagram: Add 
 |Beschreibung               |Ein Mitarbeiter muss den Inhalt des Warenkorbs bestellen können.
 |Akteure                    |Empoyee
 |Trigger                    |Ein Mitarbeiter bestellt die Weins, die ein Kunde kaufen möchtet.
-|Vorbedienung(en)           |1.	Der Akteur ist authentifiziert und hat die Rolle "Employee" im System.
-                             2.	Wagen ist nicht leer.
-|Wesentliche Schritte       |1.	Der Mitarbeiter hat mindestens einen Artikel in seinen Warenkorb gelegt.
-                             2.	Mitarbeiter drückt "Bestellung".
-                             3.	Bestellung wird gegen Lagerbestand geprüft.
-                             4.	Bestellung wird automatisch bezahlt.
-                             5.	Weine werden in der gewählten Menge aus dem Bestand genommen
-                             6.	Bestellung wird archiviert.
+|Vorbedienung(en)           a|
+1.	Der Akteur ist authentifiziert und hat die Rolle "Employee" im System.
+2.	Wagen ist nicht leer.
+|Wesentliche Schritte       a|
+1.	Der Mitarbeiter hat mindestens einen Artikel in seinen Warenkorb gelegt.
+2.	Mitarbeiter drückt "Bestellung".
+3.	Bestellung wird gegen Lagerbestand geprüft.
+4.	Bestellung wird automatisch bezahlt.
+5.	Weine werden in der gewählten Menge aus dem Bestand genommen
+6.	Bestellung wird archiviert.
 |Erweiterungen              | -
 |Funktionale Anforderungen  | -
 |===
@@ -276,8 +287,9 @@ image::./images/Sequence_Diagrams/Add_Product_to_Cart.png[Sequence diagram: Add 
 |Akteure                    |Empoyee
 |Trigger                    |Mitarbeiter wählt "Kunden List" in der Navigationsleiste
 |Vorbedienung(en)           |Der Akteur hat sich beim System authentifiziert (d. H. Ist ein registrierter Benutzer).
-|Wesentliche Schritte       |1.	Der Akteur hat sich beim System authentifiziert (d. H. Ist ein registrierter Benutzer).
-                             2.	Der Aktuer drükt “Kunden List”.
+|Wesentliche Schritte       a|
+1.	Der Akteur hat sich beim System authentifiziert (d. H. Ist ein registrierter Benutzer).
+2.	Der Aktuer drükt “Kunden List”.
 |Erweiterungen              | -
 |Funktionale Anforderungen  | -
 |===
@@ -294,8 +306,9 @@ image::./images/Sequence_Diagrams/Add_Product_to_Cart.png[Sequence diagram: Add 
 |Akteure                    |Empoyee
 |Trigger                    |Mitarbeiter wählt "Lager" in der Navigationsleiste
 |Vorbedienung(en)           |Der Akteur hat sich beim System authentifiziert (d. H. Ist ein registrierter Benutzer).
-|Wesentliche Schritte       |1.	Mitarbeiter wählt "Lager" in der Navigationsleiste.
-                             2.	Die vollständige Liste aller Artikel des Inventars und des aktuellen Lagerbestands wird angezeigt
+|Wesentliche Schritte       a|
+1.	Mitarbeiter wählt "Lager" in der Navigationsleiste.
+2.	Die vollständige Liste aller Artikel des Inventars und des aktuellen Lagerbestands wird angezeigt
 |Erweiterungen              | -
 |Funktionale Anforderungen  | -
 |===
@@ -312,8 +325,9 @@ image::./images/Sequence_Diagrams/Add_Product_to_Cart.png[Sequence diagram: Add 
 |Akteure                    |Empoyee
 |Trigger                    |Mitarbeiter wählt "Bestellungen" in der Navigationsleiste
 |Vorbedienung(en)           |Der Akteur hat sich beim System authentifiziert (d. H. Ist ein registrierter Benutzer).
-|Wesentliche Schritte       |1.	Mitarbeiter wählt "Sorgen" in der Navigationsleiste
-                             2.	Die vollständige Liste aller abgeschlossenen Bestellungen wird angezeigt
+|Wesentliche Schritte       a|
+1.	Mitarbeiter wählt "Sorgen" in der Navigationsleiste
+2.	Die vollständige Liste aller abgeschlossenen Bestellungen wird angezeigt
 |Erweiterungen              | -
 |Funktionale Anforderungen  | -
 |===
@@ -333,10 +347,11 @@ image::./images/Sequence_Diagrams/View_Orders.png[Sequence diagram: View Orders,
 |Akteure                    |Admin
 |Trigger                    |Der Adminitstrator möchte den Winekatalog ändern, indem er auf "Katalog bearbeiten" drückt.
 |Vorbedienung(en)           |Der Administrator hat sich beim System authentifiziert (d. H. Ist ein registrierter Benutzer).
-|Wesentliche Schritte       |1. Der Administrator hat sich beim System authentifiziert (d. H. Ist ein registrierter Benutzer).
-                             2.	Der Administrator drükt “Katalog bearbeitebn”.
-                             3. Er gibt einen Weinname, ein Bild und usw. ein.
-                             4. Wenn eindeutig: Mit den angegebenen Daten wird den Winekatalog geändert.
+|Wesentliche Schritte       a|
+1. Der Administrator hat sich beim System authentifiziert (d. H. Ist ein registrierter Benutzer).
+2.	Der Administrator drükt “Katalog bearbeitebn”.
+3. Er gibt einen Weinname, ein Bild und usw. ein.
+4. Wenn eindeutig: Mit den angegebenen Daten wird den Winekatalog geändert.
 |Erweiterungen              | -
 |Funktionale Anforderungen  | -
 |===
@@ -353,12 +368,13 @@ image::./images/Sequence_Diagrams/View_Orders.png[Sequence diagram: View Orders,
 |Akteure                    |Admin
 |Trigger                    |Der Administrator möchte ein Konto für einen Mitarbeiter erstellen, indem er auf "Registrieren" drückt.
 |Vorbedienung(en)           |Der Administrator hat sich beim System authentifiziert (d. H. Ist ein registrierter Benutzer).
-|Wesentliche Schritte       |1. Der Administrator hat sich beim System authentifiziert (d. H. Ist ein registrierter Benutzer).
-                             2. Der Administrator drückt "Registrieren".
-                             3. Er gibt den Benutzernamen, das Passwort und usw. eines Mitarbeiters ein
-                             4. Das System überprüft die Eindeutigkeit des Benutzernamens
-                             5. Wenn eindeutig: Mit den angegebenen Daten wird ein Konto erstellt
-                             6. Andernfalls: Eine Fehlermeldung wird angezeigt
+|Wesentliche Schritte       a|
+1. Der Administrator hat sich beim System authentifiziert (d. H. Ist ein registrierter Benutzer).
+2. Der Administrator drückt "Registrieren".
+3. Er gibt den Benutzernamen, das Passwort und usw. eines Mitarbeiters ein
+4. Das System überprüft die Eindeutigkeit des Benutzernamens
+5. Wenn eindeutig: Mit den angegebenen Daten wird ein Konto erstellt
+6. Andernfalls: Eine Fehlermeldung wird angezeigt
 |Erweiterungen              | -
 |Funktionale Anforderungen  | -
 |===
@@ -374,14 +390,16 @@ image::./images/Sequence_Diagrams/View_Orders.png[Sequence diagram: View Orders,
 |Beschreibung               |Der Administrator muss die Weine, deren Menge in der Lage nicht genug sind, bestellen können.
 |Akteure                    |Admin
 |Trigger                    |Der Administrator muss die Weine, deren Menge in der Lage nicht genug sind, bestellen können.
-|Vorbedienung(en)           |1. Der Administrator hat sich beim System authentifiziert (d. H. Ist ein registrierter Benutzer).
-                             2. Es gibt weniger als die Mindestmenge an Wein im Lager.
-|Wesentliche Schritte       |1.	Der Administrator hat sich beim System authentifiziert (d. H. Ist ein registrierter Benutzer).
-                             2.	Administrator drückt "Bestellung".
-                             3.	Bestellung wird gegen Lagerbestand geprüft.
-                             4.	Bestellung wird automatisch bezahlt.
-                             5.	Weine werden in der gewählten Menge aus dem Bestand genommen
-                             6.	Bestellung wird archiviert.
+|Vorbedienung(en)           a|
+1. Der Administrator hat sich beim System authentifiziert (d. H. Ist ein registrierter Benutzer).
+2. Es gibt weniger als die Mindestmenge an Wein im Lager.
+|Wesentliche Schritte       a|
+1.	Der Administrator hat sich beim System authentifiziert (d. H. Ist ein registrierter Benutzer).
+2.	Administrator drückt "Bestellung".
+3.	Bestellung wird gegen Lagerbestand geprüft.
+4.	Bestellung wird automatisch bezahlt.
+5.	Weine werden in der gewählten Menge aus dem Bestand genommen
+6.	Bestellung wird archiviert.
 |Erweiterungen              | -
 |Funktionale Anforderungen  | -
 |===
@@ -398,8 +416,9 @@ image::./images/Sequence_Diagrams/View_Orders.png[Sequence diagram: View Orders,
 |Akteure                    |Admin
 |Trigger                    |Der Administrator wählt "Mitarbeiter List" in der Navigationsleiste
 |Vorbedienung(en)           |Der Administrator hat sich beim System authentifiziert (d. H. Ist ein registrierter Benutzer).
-|Wesentliche Schritte       |1.	Der Administrator hat sich beim System authentifiziert (d. H. Ist ein registrierter Benutzer).
-                             2.	Der Administrator drükt “Mitarbeiter List”.
+|Wesentliche Schritte       a|
+1.	Der Administrator hat sich beim System authentifiziert (d. H. Ist ein registrierter Benutzer).
+2.	Der Administrator drükt “Mitarbeiter List”.
 |Erweiterungen              | -
 |Funktionale Anforderungen  | -
 |===
