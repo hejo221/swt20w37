@@ -7,6 +7,7 @@
 |0.1     | In Arbeit   | 10.10.2020          | Autor       | Initiale Version
 |0.2     | In Arbeit   | 11.11.2020          | Henrik, Lavon | Funktionale Anforderungen + Sequenzdiagramme hinzugefügt
 |0.3     | In Arbeit   | 13.11.2020          | Kim | Systemgrenze und Top-Level-Architektur + Use-Cases
+|0.4     | In Arbeit   | 13.11.2020          | Tom | Produktnutzung + Interessensgruppen (Stakeholders) hinzugefügt
 |===
 
 == 1.Inhaltsverzeichnis
@@ -43,14 +44,56 @@ Insbesondere ergänzen, welche Ziele mit dem Abschluss des Projektes erreicht we
 
 ***
 == 4.Produktnutzung
-In welchem Kontext soll das System später genutzt werden? Welche Rahmenbedingungen gelten?
-Zusätzlich kurze Einleitung für fachfremde Personen
+Das Produkt (die Software) wird als Verkaufssoftware ausschließlich firmenintern (lokal auf den Computern laufend) in der Vinothek „La Bouteille“ benutzt werden. Dabei wird ein Mitarbeiter, die Software bedienend, den Kunden durch den Kaufprozess begleiten. Dadurch soll der Verkaufsprozess sowohl für die Kunden als auch für die Mitarbeiter übersichtlicher und effizienter gestaltet werden. Ermöglicht wird dies durch die zentrale Verwaltung verschiedener Prozesse (die im Zusammenhang mit dem Verkauf stehen) innerhalb der Software (Lagerverwaltung, Bestellungsübersicht, Warenkatalog, Kundeninformationen).
+
+Die Software wird über einen Browser bedient, soll jedoch nicht für Benutzer außerhalb des lokalen Netzwerkes zugänglich sein. Trotzdem sollte sichergestellt werden, dass die Software visuell korrekt auf gängigen Browsern (Google Chrome (Version 86.0.4240.198), Mozilla Firefox (Version 82.0.3)) läuft.
+
+Primär wird die Software von den Mitarbeitern der „La Bouteille“ bedient, welche nicht zwingend mit dem technischen Hintergrund der Software vertraut sind. Deshalb sollte die gesamte Benutzeroberfläche übersichtlich und möglichst intuitiv gestaltet werden, und die Software an sich keine technische Wartung benötigen.
+
+Die Daten sollen dauerhaft in einer lokalen Datenbank gespeichert werden und durch die Software erreichbar sein.
+
 
 
 ***
 == 5.Interessensgruppen (Stakeholders)
-Welche realen und juristischen Personen(-gruppen) haben Einfluss auf die Anforderungen im Projekt?
+Vermerk zur Priorität: 1 bedeutet geringe Priorität, 5 bedeutet hohe Priorität.
+[options="header", cols="4, 1, 2, 12"]
+|===
+|Name
+|Priorität (1...5)
+|Beschreibung
+|Ziele
 
+|"La Bouteille"
+|5
+|Auftragsgeber
+a|
+- effizienter Einsatz von Personal
+- Verkaufsprozess effizienter gestalten
+- bessere Übersicht über Bestellungsprozesse
+
+|Mitarbeiter
+|4
+|Hauptsächlicher Benutzer
+a|
+- Bestellungen schnell und einfach durchführen
+- Lagerbestand und Bestellungen verwalten
+
+|Admin
+|4
+|Geschäftsführender Benutzer
+a|
+- Ziele entsprechen denen der Mitarbeiter
+- Einsicht und Editierung der Daten
+
+|Entwickler
+|2
+|Interagiert mit dem Quellcode
+a|
+- übersichtliche und nachvollziehbare Programmstruktur
+- einfache Erweiterung sowie Wartung der Software
+
+|===
 
 ***
 == 6.Systemgrenze und Top-Level-Architektur
