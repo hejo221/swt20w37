@@ -79,7 +79,7 @@ Die typischen Anwendungsfälle (Anlegen, Ändern, Löschen) können zu einem ein
 
 
 ***
-== 6.Aufgabenstellung und Zielsetzung
+== 6.Use-Cases
 Dieser Abschnitt gibt einen Überblick über die Anwendungsfälle, die das System unterstützen muss. Diese Anwendungsfälle beschreiben, welche Funktionen das System (meistens) aus Sicht des Kunden bereitstellen muss und welche Akteure beteiligt sind.
 
 
@@ -98,7 +98,69 @@ Akteure sind Benutzer des Systems oder benachbarter Systeme, die darauf zugreife
 
 === 6.2. Use-Case Diagram
 [[Use_Case_Diagram]]
-image::./images/Use_Case_Diagram.png[Use case diagram of Videoshop, 100%, 100%, pdfwidth=100%, title= "UseCaseDiagram", align=center]
+image::./images/Use_Case_Diagram.png[Use case diagram of Videoshop, 100%, 100%, pdfwidth=100%, title= "Use case diagram of Videoshop", align=center]
+
+=== 6.3. Use-Case Descriptions
+In diesem Abschnitt werden die im Anwendungsfalldiagramm gezeigten Anwendungsfälle ausführlich beschrieben.
+
+==== Login / Logout
+
+[cols="1h, 3"]
+[[UC0101]]
+|===
+|ID                         |**<<UC0101>>**
+|Name                       |Login / Logout
+|Beschreibung               |Ein Benutzer muss sich beim System anmelden (authentifizieren) können, um auf weitere Funktionen zugreifen zu können. Dieser Vorgang muss durch Abmelden rückgängig gemacht werden.
+|Akteure                    |User
+|Trigger                    |Loing: Der Benutzer möchte durch Anmelden auf "versteckte" Funktionen zugreifen.
+
+                             Logout: Der Benutzer möchte durch Anmelden auf "versteckte" Funktionen zugreifen.
+|Vorbedienung(en)           |Login: Benutzer ist noch nicht authentifiziert.
+
+                             Logout: Benutzer ist authentifiziert.
+|Erweiterungen              | None
+|Funktionale Anforderungen  | -
+|===
+
+
+==== Receive Customer Information
+
+[cols="1h, 3"]
+[[UC0102]]
+|===
+|ID                         |**<<UC0102>>**
+|Name                       |Receive Customer Information
+|Beschreibung               |Ein Mitarbeiter der Vinothek muss die Information von einem Kunden, der Wines bestellt, speichen zur nächsten Bestellung oder usw.
+|Akteure                    |Empoyee
+|Trigger                    |Mitarbieter schreibt die Information von einem Kunden, dann speichern.
+|Vorbedienung(en)           |None
+|Erweiterungen              |1.	Mitarbeiter klickt auf das Navigationselement "Customer".
+                             2.	Mitarbeiter schreibt die Infomation, und speichern.
+|Funktionale Anforderungen  | -
+|===
+
+
+==== View Wine Catalog
+
+[cols="1h, 3"]
+[[UC0103]]
+|===
+|ID                         |**<<UC0103>>**
+|Name                       |View Wine Catalog
+|Beschreibung               |Ein Mitarbeiter der Vinothek muss auf den Katalog zugreifen können, in dem alle angebotenen Weine angezeigt werden. Der Katalog muss einen Namen und einen Preis für Wein enthalten.
+|Akteure                    |Empoyee
+|Trigger                    |Zugriff auf das Navigationselement, das für die Anzeige des Katalogs verantwortlich ist.
+|Vorbedienung(en)           |None
+|Erweiterungen              |1.	Mitarbeiter klickt auf das Navigationselement "Weinkatalog".
+                             2.	Dem Mitarbeiter werden alle Weine der ausgewählten Kategorie angezeigt.
+|Funktionale Anforderungen  | -
+|===
+
+[[sequence_diagram_view_catalog]]
+image::./images/View_Catalog.png[Sequence diagram: View Catalog, 100%, 100%, pdfwidth=100%, title= "Sequenzdiagramm: View Catalog", align=center]
+
+
+
 
 
 ==== _View Catalog_
@@ -120,7 +182,7 @@ _Katalog_: Benutzer:in ist angemeldet.
 |===
 
 [[sequence_diagram_view_catalog]]
-image::./images/ViewCatalog.png[Sequence diagram: View Catalog, 100%, 100%, pdfwidth=100%, title= "Sequenzdiagramm: View Catalog", align=center]
+image::./images/ViewCatalog.png[Sequenzdiagramm: View Catalog]
 
 
 ***
