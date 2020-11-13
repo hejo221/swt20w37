@@ -8,6 +8,7 @@
 |0.2     | In Arbeit   | 11.11.2020          | Henrik, Lavon | Funktionale Anforderungen + Sequenzdiagramme hinzugefügt
 |0.3     | In Arbeit   | 13.11.2020          | Kim | Systemgrenze und Top-Level-Architektur + Use-Cases
 |0.4     | In Arbeit   | 13.11.2020          | Tom | Produktnutzung + Interessensgruppen (Stakeholders) hinzugefügt
+|0.5     | In Arbeit   | 13.11.2020          | Noah |GUI + Akzeptanztestfälle
 |===
 
 == 1.Inhaltsverzeichnis
@@ -828,16 +829,57 @@ Konkrete Absprachen - beispielsweise ob der grafische Prototyp oder die Dialogla
 Erstellen Sie ein Übersichtsdiagramm, das das Zusammenspiel Ihrer Masken zur Laufzeit darstellt. Also mit welchen Aktionen zwischen den Masken navigiert wird.
 //Die nachfolgende Abbildung zeigt eine an die Pinnwand gezeichnete Dialoglandkarte. Ihre Karte sollte zusätzlich die Buttons/Funktionen darstellen, mit deren Hilfe Sie zwischen den Masken navigieren.
 
+[[GUI_view_orders]]
+image::./images/GUI/Untitled Diagram.png[Sequence diagram: View Orders, 100%, 100%, pdfwidth=100%, title= "Sequence diagram: View Orders", align=center]
+***
+
+
 === 9.2.Dialogbeschreibung
 Für jeden Dialog:
 
+==== Katalog Ansicht
 1. Kurze textuelle Dialogbeschreibung eingefügt: Was soll der jeweilige Dialog? Was kann man damit tun? Überblick?
 2. Maskenentwürfe (Screenshot, Mockup)
 3. Maskenelemente (Ein/Ausgabefelder, Aktionen wie Buttons, Listen, …)
 4. Evtl. Maskendetails, spezielle Widgets
 
-
+[[GUI_view_orders]]
+image::./images/GUI/Web Katalog.png[Sequence diagram: View Orders, 100%, 100%, pdfwidth=100%, title= "Sequence diagram: View Orders", align=center]
+==== Katalog Ansicht
 ***
+image::./images/GUI/Web Details.png[Sequence diagram: View Orders, 100%, 100%, pdfwidth=100%, title= "Sequence diagram: View Orders", align=center]
+==== Detail Ansicht des Weines
+***
+image::./images/GUI/Web lager.png[Sequence diagram: View Orders, 100%, 100%, pdfwidth=100%, title= "Sequence diagram: View Orders", align=center]
+
+==== Lager Ansicht
+***
+image::./images/GUI/Web Kundenstammverwaltung.png[Sequence diagram: View Orders, 100%, 100%, pdfwidth=100%, title= "Sequence diagram: View Orders", align=center]
+
+==== Registrierte Kunden
+***
+image::./images/GUI/Web_Benutzerverwaltung.png[Sequence diagram: View Orders, 100%, 100%, pdfwidth=100%, title= "Sequence diagram: View Orders", align=center]
+==== Mitarbeiter Liste
+***
+image::./images/GUI/Web Rechnungen.png[Sequence diagram: View Orders, 100%, 100%, pdfwidth=100%, title= "Sequence diagram: View Orders", align=center]
+==== Rechnungen
+***
+image::./images/GUI/Web Bilanzierrung.png[Sequence diagram: View Orders, 100%, 100%, pdfwidth=100%, title= "Sequence diagram: View Orders", align=center]
+==== Bilanzierung
+***
+image::./images/GUI/Web Warenkorb.png[Sequence diagram: View Orders, 100%, 100%, pdfwidth=100%, title= "Sequence diagram: View Orders", align=center]
+==== Warenkorb
+***
+image::./images/GUI/Web Login.png[Sequence diagram: View Orders, 100%, 100%, pdfwidth=100%, title= "Sequence diagram: View Orders", align=center]
+==== Login
+***
+image::./images/GUI/Web neuer_Benutzer.png[Sequence diagram: View Orders, 100%, 100%, pdfwidth=100%, title= "Sequence diagram: View Orders", align=center]
+==== Benutzer Registrieren
+***
+image::./images/GUI/Web neuer_Kunde.png[Sequence diagram: View Orders, 100%, 100%, pdfwidth=100%, title= "Sequence diagram: View Orders", align=center]
+==== Kunden Registrieren
+
+
 == 10.Datenmodell
 
 === 10.1.Überblick: Klassendiagramm
@@ -858,6 +900,186 @@ Dieser Abschnitt stellt eine Vereinigung von Glossar und der Beschreibung von Kl
 == 11.Akzeptanztestfälle
 Mithilfe von Akzeptanztests wird geprüft, ob die Software die funktionalen Erwartungen und Anforderungen im Gebrauch erfüllt. Diese sollen und können aus den Anwendungsfallbeschreibungen und den UML-Sequenzdiagrammen abgeleitet werden. D.h., pro (komplexen) Anwendungsfall gibt es typischerweise mindestens ein Sequenzdiagramm (welches ein Szenarium beschreibt). Für jedes Szenarium sollte es einen Akzeptanztestfall geben. Listen Sie alle Akzeptanztestfälle in tabellarischer Form auf.
 Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumenten (z.B. im Test-Plan) referenzieren zu können.
+
+[options="header"]
+|===
+|ID| [[AT0010]] <<AT0010>>
+|Use Case                       |[[UC0101]] <<UC0101>>
+|Voraussetzung                  |Das System beinhaltet dein Konto
+|Event                          |Ein unauthentifizierter Benutzer bekommt den login Screen und meldet sich mit dem bereits existierenden Benutzername "Nils" und dem Passwort "plpkpladj" an
+|Erwartetes Ergebnis            |-> Der Benutzer wurde als "Nils" authentifiziert
+
+                                 -> Der Benutzer "Nils" ist in dem System ein Admin und hat auf alle funktionalitäten zugriff
+
+|===
+
+
+[options="header"]
+|===
+|ID| [[AT0011]] <<AT0011>>
+|Use Case                       |[[UC0101]] <<UC0101>>
+|Voraussetzung                  |Ein authentifizierter Benutzer ist gerade angemeldet
+|Event                          |Der Benutzer drückt auf Ausloggen
+|Erwartetes Ergebnis            |-> Er wird zu einem unauthentifizierten Benutzer
+
+                                ->Er verliert alle funktionalitäten und seine Rolle
+|===
+
+[options="header"]
+|===
+|ID| [[AT0020]] <<AT0020>>
+|Use Case                       |[[UC0402]] <<UC0402>>
+|Voraussetzung                  |Nur ein Admin kann einen neuen Mitarbeiter oder einen weiteren Admin erstellen
+|Event                          |->Name: Test
+
+                                 ->Passwort: 123
+
+                                 -> Checkbox: Mitarbeiter
+
+                                 Auf Bestätigen drücken
+|Erwartetes Ergebnis            |Ein neuer Mitarbeiter Account wurde erstellt und dieser kann sich nun anmelden.
+|===
+
+[options="header"]
+|===
+|ID| [[AT0030]] <<AT0030>>
+|Use Case                       |[[UC0102]] <<UC0102>>
+|Voraussetzung                  |Mitarbeiter nimmt Kunden Daten auf der noch nicht registriert ist
+|Event                          |Neuen Kunden erstellen
+
+                                 ->Vorname: "Hans"
+
+                                 ->Nachname: "Lother"
+
+                                 ->Email: "Hansjürgen@gmail.com"
+
+                                 -> Adresse: Lothar Straße 44
+|Erwartetes Ergebnis            |Kundendaten werden angelegt
+|===
+
+[options="header"]
+|===
+|ID| [[AT0040]] <<AT0040>>
+|Use Case                       |[[UC0103]] <<UC0103>>
+|Voraussetzung                  |Ein Mitarbeiter verwendet das System
+|Event                          |Mitarbeiter drückt auf Katalogverwaltung
+|Erwartetes Ergebnis            |Mitarbeiter bekommt zugriff auf den Katalog
+|===
+
+[options="header"]
+|===
+|ID| [[AT0050]] <<AT0050>>
+|Use Case                       |[[UC0104]] <<UC0104>>
+|Voraussetzung                  |Ein Mitarbeiter verwendet das System und geht auf Katalogverwaltung ([[AT0040]] <<AT0040>>)
+|Event                          |Mitarbeiter drückt in der Katalogübersicht auf "Wein 1"
+|Erwartetes Ergebnis            |Es werden die Details vom "Wein 1" angezeigt
+|===
+
+[options="header"]
+|===
+|ID| [[AT0060]] <<AT0060>>
+|Use Case                       |[[UC0201]] <<UC0201>>
+|Voraussetzung                  |Ein Mitarbeiter verwendet das System und ist auf der Detailansicht des Weines ([[AT0050]] <<AT0050>>)
+|Event                          |Mitarbeiter gibt im Anzahl Fenster die zahl "1" ein und geht dann auf "hinzufügen"
+|Erwartetes Ergebnis            |Im Warenkorb wurde der gewünschte Wein 1 mal hinzugefügt
+|===
+
+[options="header"]
+|===
+|ID| [[AT0070]] <<AT0070>>
+|Use Case                       |[[UC0203]] <<UC0203>>
+|Voraussetzung                  |Ein Mitarbeiter verwendet das System
+|Event                          |Auf Warenkorb klicken
+|Erwartetes Ergebnis            |Mitarbeiter bekommt die Warenkob Ansicht
+|===
+
+
+[options="header"]
+|===
+|ID| [[AT0071]] <<AT0071>>
+|Use Case                       |[[UC0202]] <<UC0202>>
+|Voraussetzung                  |Ein Mitarbeiter verwendet das System und ist im Warenkorb ([[AT0070]] <<AT0070>>)
+|Event                          |Auf den "bearbeiten" Knopf drücken und die Anzahl von "Wein 1" von 1 auf 2 erhöhen
+|Erwartetes Ergebnis            |Die Anzahl von "Wein 1" wurde von 1 auf 2 verändert
+|===
+
+[options="header"]
+|===
+|ID| [[AT0072]] <<AT0072>>
+|Use Case                       |[[UC0204]] <<UC0204>>
+|Voraussetzung                  |Ein Mitarbeiter verwendet das System, befindet sich im Warenkorb ([[AT0070]] <<AT0070>>) und der Warenkorb beinhaltet mindestens ein Produkt ([[AT0060]] <<AT0060>>)
+|Event                          |Mitarbeiter klickt auf den Knopf "Kaufen"
+|Erwartetes Ergebnis            |Rechnung wird erstellt und der Kunde hat den gewünschten Wein gekauft
+|===
+
+[options="header"]
+|===
+|ID| [[AT0080]] <<AT0080>>
+|Use Case                       |[[UC0301]] <<UC0301>>
+|Voraussetzung                  |Ein Mitarbeiter vewendet das System
+|Event                          |Mitarbeiter klickt auf "Kundenstammverwaltung"
+|Erwartetes Ergebnis            |Es werden alle Kunden angezeigt die Registriert wurden
+|===
+
+[options="header"]
+|===
+|ID| [[AT0090]] <<AT0090>>
+|Use Case                       |[[UC0302]] <<UC0302>>
+|Voraussetzung                  |Ein Mitarbeiter werwendet das System
+|Event                          |Mitarbeiter klickt auf "Lager & Nachbestellung"
+|Erwartetes Ergebnis            |Es werden alle items des Inventares angezeigt
+|===
+
+[options="header"]
+|===
+|ID| [[AT0100]] <<AT0100>>
+|Use Case                       |[[UC0303]] <<UC0303>>
+|Voraussetzung                  |Ein Mitarbeiter verwendet das System
+|Event                          |Mitarbeiter klickt auf "Rechnungen"
+|Erwartetes Ergebnis            |Es werden alle Rechnungen aufgelistet
+|===
+
+[options="header"]
+|===
+|ID| [[AT0110]] <<AT0110>>
+|Use Case                       |[[UC0402]] <<UC0402>>
+|Voraussetzung                  |Admin verwendet das System
+|Event                          |Admin klickt auf Benutzer Registrieren
+
+                                 ->Vorname: "Andy"
+
+                                 -> Nachname: "Berthold"
+
+                                 -> Benutzername: "Andy"
+
+                                 -> Passwort:   "123"
+
+                                -> Mitarbeiter: check
+|Erwartetes Ergebnis            |Ein Mitarbeiter Account mit dem Benutzername "Andy" und dem Passwort "123" wurde erstellt und kann sich nun anmelden
+|===
+
+[options="header"]
+|===
+|ID| [[AT0120]] <<AT0120>>
+|Use Case                       |[[UC0403]] <<UC0403>>
+|Voraussetzung                  |Admin verwendet das System und ist auf der "Lager & Nachbestellung" Seite ([[AT0090]] <<AT0090>>)
+|Event                          |Auf den "Nachbestellen" Knopf drücken und dann eingeben was für ein Wein man Nachbestellen möchte + die Anzahl
+
+                                 -> Wein: "Wein 1"
+
+
+                                 -> Menge: 20
+|Erwartetes Ergebnis            |"Wein 1" wird mit der Menge 20 nachbestellt
+|===
+
+[options="header"]
+|===
+|ID| [[AT0130]] <<AT0130>>
+|Use Case                       |[[UC0404]] <<UC0404>>
+|Voraussetzung                  |Admin verwendet das System
+|Event                          |Admin klickt auf "Benutzerverwaltung"
+|Erwartetes Ergebnis            |Alle Benutzer werden aufgelistet
+|===
 
 
 ***
