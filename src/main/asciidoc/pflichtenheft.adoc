@@ -98,7 +98,7 @@ Akteure sind Benutzer des Systems oder benachbarter Systeme, die darauf zugreife
 
 === 6.2. Use-Case Diagram
 [[Use_Case_Diagram]]
-image::./images/Use_Case_Diagram.png[Use case diagram of Videoshop]
+image::./images/Use_Case_Diagram.png[Use Case diagram, 100%, 100%, pdfwidth=100%, title= "Use case diagram of Vinothek", align=center]
 
 
 === 6.3. Use-Case Descriptions
@@ -159,7 +159,7 @@ In diesem Abschnitt werden die im Anwendungsfalldiagramm gezeigten Anwendungsfä
 |===
 
 [[sequence_diagram_view_catalog]]
-image::./images/ViewCatalog.png[Sequenzdiagramm: View Catalog]
+image::./images/Sequence_Diagrams/View_Catalog.png[Sequence diagram: View Catalog, 100%, 100%, pdfwidth=100%, title= "Sequence diagram: View Catalog", align=center]
 
 
 ==== View Product Details
@@ -180,8 +180,7 @@ image::./images/ViewCatalog.png[Sequenzdiagramm: View Catalog]
 |===
 
 [[sequence_diagram_view_product_details]]
-image::./images/ViewDetails.png[Sequenzdiagramm: View Product Details]
-
+image::./images/Sequence_Diagrams/ViewDetails.png[Sequence diagram: View Product Details, 100%, 100%, pdfwidth=100%, title= "Sequence diagram: View Product Details", align=center]
 
 
 ==== Add Product to Cart
@@ -204,7 +203,7 @@ image::./images/ViewDetails.png[Sequenzdiagramm: View Product Details]
 |===
 
 [[sequence_diagram_add_product_to_cart]]
-image::./images/Add_Product_to_Cart.png[Sequenzdiagramm: Add Product to Cart]
+image::./images/Sequence_Diagrams/Add_Product_to_Cart.png[Sequence diagram: Add Product to Cart, 100%, 100%, pdfwidth=100%, title= "Sequence diagram: Add Product to Cart", align=center]
 
 
 ==== Change Quantity
@@ -275,7 +274,7 @@ image::./images/Add_Product_to_Cart.png[Sequenzdiagramm: Add Product to Cart]
 |Name                       |View Customer List
 |Beschreibung               |Ein Mitarbeiter sollte in der Lage sein, die gesamte Liste der Kunden der Anwendung anzuzeigen.
 |Akteure                    |Empoyee
-|Trigger                    |Mitarbeiter wählt " Kunden List" in der Navigationsleiste
+|Trigger                    |Mitarbeiter wählt "Kunden List" in der Navigationsleiste
 |Vorbedienung(en)           |Der Akteur hat sich beim System authentifiziert (d. H. Ist ein registrierter Benutzer).
 |Wesentliche Schritte       |1.	Der Akteur hat sich beim System authentifiziert (d. H. Ist ein registrierter Benutzer).
                              2.	Der Aktuer drükt “Kunden List”.
@@ -320,77 +319,93 @@ image::./images/Add_Product_to_Cart.png[Sequenzdiagramm: Add Product to Cart]
 |===
 
 [[sequence_diagram_view_orders]]
-image::./images/View_Orders.png[Sequenzdiagramm: View Orders]
+image::./images/Sequence_Diagrams/View_Orders.png[Sequence diagram: View Orders, 100%, 100%, pdfwidth=100%, title= "Sequence diagram: View Orders", align=center]
 
 
-==== Example for the function of admin
+==== Edit Catalog
 
 [cols="1h, 3"]
-[[UC0XXX]]
+[[UC0401]]
 |===
-|ID                         |**<<UC0XXX>>**
-|Name                       |-
-|Beschreibung               |-
-|Akteure                    |-
-|Trigger                    |-
-|Vorbedienung(en)           |-
-|Wesentliche Schritte       |-
+|ID                         |**<<UC0401>>**
+|Name                       |Edit Catalog
+|Beschreibung               |Der Adminitstrator kann den Winekatalog ändern.
+|Akteure                    |Admin
+|Trigger                    |Der Adminitstrator möchte den Winekatalog ändern, indem er auf "Katalog bearbeiten" drückt.
+|Vorbedienung(en)           |Der Administrator hat sich beim System authentifiziert (d. H. Ist ein registrierter Benutzer).
+|Wesentliche Schritte       |1. Der Administrator hat sich beim System authentifiziert (d. H. Ist ein registrierter Benutzer).
+                             2.	Der Administrator drükt “Katalog bearbeitebn”.
+                             3. Er gibt einen Weinname, ein Bild und usw. ein.
+                             4. Wenn eindeutig: Mit den angegebenen Daten wird den Winekatalog geändert.
 |Erweiterungen              | -
 |Funktionale Anforderungen  | -
 |===
 
 
-==== Example for the function of admin
+==== Register Employee
 
 [cols="1h, 3"]
-[[UC0XXX]]
+[[UC0402]]
 |===
-|ID                         |**<<UC0XXX>>**
-|Name                       |-
-|Beschreibung               |-
-|Akteure                    |-
-|Trigger                    |-
-|Vorbedienung(en)           |-
-|Wesentliche Schritte       |-
+|ID                         |**<<UC0402>>**
+|Name                       |Register Employee
+|Beschreibung               |Der Administrator muss in der Lage sein, ein Konto für einen nicht authentifizierten Benutzer als Mitarbeiter zu erstellen
+|Akteure                    |Admin
+|Trigger                    |Der Administrator möchte ein Konto für einen Mitarbeiter erstellen, indem er auf "Registrieren" drückt.
+|Vorbedienung(en)           |Der Administrator hat sich beim System authentifiziert (d. H. Ist ein registrierter Benutzer).
+|Wesentliche Schritte       |1. Der Administrator hat sich beim System authentifiziert (d. H. Ist ein registrierter Benutzer).
+                             2. Der Administrator drückt "Registrieren".
+                             3. Er gibt den Benutzernamen, das Passwort und usw. eines Mitarbeiters ein
+                             4. Das System überprüft die Eindeutigkeit des Benutzernamens
+                             5. Wenn eindeutig: Mit den angegebenen Daten wird ein Konto erstellt
+                             6. Andernfalls: Eine Fehlermeldung wird angezeigt
 |Erweiterungen              | -
 |Funktionale Anforderungen  | -
 |===
 
 
-==== Example for the function of admin
+==== Stock and re-ordering
 
 [cols="1h, 3"]
-[[UC0XXX]]
+[[UC0403]]
 |===
-|ID                         |**<<UC0XXX>>**
-|Name                       |-
-|Beschreibung               |-
-|Akteure                    |-
-|Trigger                    |-
-|Vorbedienung(en)           |-
-|Wesentliche Schritte       |-
+|ID                         |**<<UC0403>>**
+|Name                       |Stock and re-ordering
+|Beschreibung               |Der Administrator muss die Weine, deren Menge in der Lage nicht genug sind, bestellen können.
+|Akteure                    |Admin
+|Trigger                    |Der Administrator muss die Weine, deren Menge in der Lage nicht genug sind, bestellen können.
+|Vorbedienung(en)           |1. Der Administrator hat sich beim System authentifiziert (d. H. Ist ein registrierter Benutzer).
+                             2. Es gibt weniger als die Mindestmenge an Wein im Lager.
+|Wesentliche Schritte       |1.	Der Administrator hat sich beim System authentifiziert (d. H. Ist ein registrierter Benutzer).
+                             2.	Administrator drückt "Bestellung".
+                             3.	Bestellung wird gegen Lagerbestand geprüft.
+                             4.	Bestellung wird automatisch bezahlt.
+                             5.	Weine werden in der gewählten Menge aus dem Bestand genommen
+                             6.	Bestellung wird archiviert.
 |Erweiterungen              | -
 |Funktionale Anforderungen  | -
 |===
 
 
-==== Example for the function of admin
+==== View Account
 
 [cols="1h, 3"]
-[[UC0XXX]]
+[[UC0404]]
 |===
-|ID                         |**<<UC0XXX>>**
-|Name                       |-
-|Beschreibung               |-
-|Akteure                    |-
-|Trigger                    |-
-|Vorbedienung(en)           |-
-|Wesentliche Schritte       |-
+|ID                         |**<<UC0404>>**
+|Name                       |View Account
+|Beschreibung               |Der Administrator sollte in der Lage sein, die gesamte Liste der Mitarbeiter der Anwendung anzuzeigen.
+|Akteure                    |Admin
+|Trigger                    |Der Administrator wählt "Mitarbeiter List" in der Navigationsleiste
+|Vorbedienung(en)           |Der Administrator hat sich beim System authentifiziert (d. H. Ist ein registrierter Benutzer).
+|Wesentliche Schritte       |1.	Der Administrator hat sich beim System authentifiziert (d. H. Ist ein registrierter Benutzer).
+                             2.	Der Administrator drükt “Mitarbeiter List”.
 |Erweiterungen              | -
 |Funktionale Anforderungen  | -
 |===
 
 
+***
 == Funktionale Anforderungen
 
 Die folgenden Tabellen sollen einen Überblick geben über die Anforderungen, die das zu erstellende Programm auf jeden Fall leisten muss (Muss-Kriterien) und Anforderungen, die das Programm leisten können soll, aber für den korrekten Betrieb entbehrlich sind (Kann-Kriterien).
