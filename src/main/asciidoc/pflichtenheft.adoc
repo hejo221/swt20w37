@@ -6,7 +6,7 @@
 |Version | Status      | Bearbeitungsdatum   | Autor(en) |  Vermerk
 |0.1     | In Arbeit   | 10.10.2020          | Autor       | Initiale Version
 |0.2     | In Arbeit   | 11.11.2020          | Henrik, Lavon | Funktionale Anforderungen + Sequenzdiagramme hinzugefügt
-|0.3     | In Arbeit   | 13.11.2020          | Kim | Kontextdiagramm + Use_Case Diagramm
+|0.3     | In Arbeit   | 13.11.2020          | Kim | Systemgrenze und Top-Level-Architektur + Use-Cases
 |===
 
 == 1.Inhaltsverzeichnis
@@ -57,13 +57,13 @@ Welche realen und juristischen Personen(-gruppen) haben Einfluss auf die Anforde
 
 
 === 6.1.Kontextdiagramm
-Das Kontextdiagramm zeigt das geplante Software-System in seiner Umgebung. Zur Umgebung gehören alle Nutzergruppen des Systems und Nachbarsysteme. Die Grafik kann auch informell gehalten sein. Überlegen Sie sich dann geeignete Symbole. Die Grafik kann beispielsweise mit Visio erstellt werden. Wenn nötig, erläutern Sie diese Grafik.
+Das Systemkontextdiagramm zeigt das geplante System in seiner Umgebung. Dies umfasst alle Benutzertypen, ihre Zugriffsmöglichkeiten auf das System sowie Systeme von Drittanbietern, die auf unser System zugreifen oder von diesem aufgerufen werden.
 
 [[context_diagram]]
 image:./images/Vinothek_Context.png[context diagram]
 
 === 6.2.Top-Level-Architektur
-Dokumentieren Sie ihre Top-Level-Architektur mit Hilfe eines Komponentendiagramm.
+Top-Level-Ansicht des Systems.
 image:./images/Top_Level_Architecture.png[top level architecture]
 
 
