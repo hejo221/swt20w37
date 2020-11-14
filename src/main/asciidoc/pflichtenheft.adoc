@@ -18,23 +18,23 @@
 == 1.Inhaltsverzeichnis
 1. <<Inhaltsverzeichnis, Inhaltsverzeichnis>>
 2. <<Zusammenfassung, Zusammenfassung>>
-3. Aufgabenstellung und Zielsetzung
-4. Produktnutzung
-5. Interessensgruppen (Stakeholders)
-6. Systemgrenze und Top-Level-Architektur
-  * 6.1. Kontextdiagramm
-  * 6.2. Top-Level-Architektur
-7. Anwendungsfälle
-  * 7.1.Akteure
-  * 7.2.Überblick Anwendungsfalldiagramm
-  * 7.3.Anwendungsfallbeschreibungen
-8. Funktionale Anforderungen
-  * 8.1.Muss-Kriterien
-  * 8.2.Kann-Kriterien
-9. Nicht-Funktionale Anforderungen
-  * 9.1.Qualitätsziele
-  * 9.2.Konkrete Nicht-Funktionale Anforderungen:
-10. GUI Prototyp
+3. <<Aufgabenstellung, Aufgabenstellung und Zielsetzung>>
+4. <<Produktnutzung>>
+5. <<Interessensgruppen, Interessensgruppen (Stakeholders)>>
+6. <<Systemgrenze, Systemgrenze und Top-Level-Architektur>>
+  * 6.1. <<Kontextdiagramm>>
+  * 6.2. <<Top-Level-Architektur>>
+7. <<Anwendungsfälle>>
+  * 7.1. <<Akteure, Akteure>>
+  * 7.2. <<Anwendungsfalldiagramm, Überblick Anwendungsfalldiagramm>>
+  * 7.3. <<Anwendungsfallbeschreibungen, Anwendungsfallbeschreibungen>>
+8. <<Funktionale Anforderungen, Funktionale Anforderungen>>
+  * 8.1. <<Muss-Kriterien, Muss-Kriterien>>
+  * 8.2. <<Kann-Kriterien, Kann-Kriterien>>
+9. <<Nicht-Funktionale Anforderungen, Nicht-Funktionale Anforderungen>>
+  * 9.1. <<Qualitätsziele, Qualitätsziele>>
+  * 9.2. <<Konkrete Nicht-Funktionale Anforderungen, Konkrete Nicht-Funktionale Anforderungen>>
+10. <<GUI Prototyp, GUI Prototyp>>
   * 10.1.Überblick: Dialoglandkarte
   * 10.2.Dialogbeschreibung
 11. Datenmodell
@@ -61,6 +61,7 @@ Im Abschnitt "GUI Prototyp" wird das Aussehen der Software dargestellt.
 
 
 ***
+[[Aufgabenstellung]]
 == 3.Aufgabenstellung und Zielsetzung
 
 Unsere Vinothek (_WineShop_) hat zwei Typen von Benutzer:innen (_User_): Angestellte (_Employee_) und Chef (_Admin_) mit unterschiedlichen Verantwortlichkeiten.
@@ -84,6 +85,7 @@ Insbesondere ergänzen, welche Ziele mit dem Abschluss des Projektes erreicht we
 
 
 ***
+[[Produktnutzung]]
 == 4.Produktnutzung
 Das Produkt (die Software) wird als Verkaufssoftware ausschließlich firmenintern (lokal auf den Computern laufend) in der Vinothek „La Bouteille“ benutzt werden. Dabei wird ein Mitarbeiter, die Software bedienend, den Kunden durch den Kaufprozess begleiten. Dadurch soll der Verkaufsprozess sowohl für die Kunden als auch für die Mitarbeiter übersichtlicher und effizienter gestaltet werden. Ermöglicht wird dies durch die zentrale Verwaltung verschiedener Prozesse (die im Zusammenhang mit dem Verkauf stehen) innerhalb der Software (Lagerverwaltung, Bestellungsübersicht, Warenkatalog, Kundeninformationen).
 
@@ -96,6 +98,7 @@ Die Daten sollen dauerhaft in einer lokalen Datenbank gespeichert werden und dur
 
 
 ***
+[[Interessensgruppen]]
 == 5.Interessensgruppen (Stakeholders)
 Vermerk zur Priorität: 1 bedeutet geringe Priorität, 5 bedeutet hohe Priorität.
 [options="header", cols="4, 1, 2, 12"]
@@ -137,6 +140,7 @@ a|
 |===
 
 ***
+[[Systemgrenze]]
 == 6.Systemgrenze und Top-Level-Architektur
 
 
