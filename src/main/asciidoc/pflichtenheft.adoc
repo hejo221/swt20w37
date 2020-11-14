@@ -11,6 +11,7 @@
 |0.5     | In Arbeit   | 13.11.2020          | Noah |GUI + Akzeptanztestfälle
 |0.6     | In Arbeit   | 14.11.2020          | David |Class Diagram
 |0.7     | In Arbeit   | 14.11.2020          | Kim |Inhaltsverzeichnis + Die Ordnung korrigieren
+|0.8     | In Arbeit   | 14.11.2020          | Henrik | Glossar hinzugefügt + Anforderungen den Anwenungsfällen 
 |===
 
 == 1.Inhaltsverzeichnis
@@ -184,7 +185,7 @@ Logout: Der Benutzer möchte durch Anmelden auf "versteckte" Funktionen zugreife
 Login: Benutzer ist noch nicht authentifiziert.
 Logout: Benutzer ist authentifiziert.
 |Erweiterungen              | None
-|Funktionale Anforderungen  | -
+|Funktionale Anforderungen  | <<F0020>>
 |===
 
 
@@ -203,7 +204,7 @@ Logout: Benutzer ist authentifiziert.
 1.	Mitarbeiter klickt auf das Navigationselement "Customer".
 2.	Mitarbeiter schreibt die Infomation, und speichern.
 |Erweiterungen              | -
-|Funktionale Anforderungen  | -
+|Funktionale Anforderungen  | <<F0300>> <<F0301>>
 |===
 
 
@@ -222,7 +223,7 @@ Logout: Benutzer ist authentifiziert.
 1.	Mitarbeiter klickt auf das Navigationselement "Weinkatalog".
 2.	Dem Mitarbeiter werden alle Weine der ausgewählten Kategorie angezeigt.
 |Erweiterungen              | -
-|Funktionale Anforderungen  | -
+|Funktionale Anforderungen  | <<F0110>> <<F0111>> <<F0112>> <<F0113>> <<F0115>>
 |===
 
 [[sequence_diagram_view_catalog]]
@@ -236,7 +237,7 @@ image::./images/Sequence_Diagrams/View_Catalog.png[Sequence diagram: View Catalo
 |===
 |ID                         |**<<UC0104>>**
 |Name                       |View Product Details
-|Beschreibung               |Ein Mitarbeiter muss in der Lage sein, die Details einer Disc auf einer zusätzlichen Seite anzuzeigen.
+|Beschreibung               |Ein Mitarbeiter muss in der Lage sein, die Details eines Weins auf einer zusätzlichen Seite anzuzeigen.
 |Akteure                    |Empoyee
 |Trigger                    |Der Mitarbeiter zeigt den Katalog an und drückt auf einen Eintrag, um die Details des Weins anzuzeigen.
 |Vorbedienung(en)           |Der Mitarbeiter zeigt den Katalog an.
@@ -269,7 +270,7 @@ image::./images/Sequence_Diagrams/ViewDetails.png[Sequence diagram: View Product
 2.	Der Akteuer drückt "zum Warenkorb schaffen".
 3.	Die Wine wird mit der ausgewählten Menge in den Warenkorb gelegt.
 |Erweiterungen              | -
-|Funktionale Anforderungen  | -
+|Funktionale Anforderungen  | <<F0200>>  <<F0201>>
 |===
 
 [[sequence_diagram_add_product_to_cart]]
@@ -291,7 +292,7 @@ image::./images/Sequence_Diagrams/Add_Product_to_Cart.png[Sequence diagram: Add 
 1.	Der Akteur drückt "Warenkorb" in der Navigationsleiste.
 2.	Der Akteur ändert die Menge eines Wines.
 |Erweiterungen              | -
-|Funktionale Anforderungen  | -
+|Funktionale Anforderungen  | <<F0211>>
 |===
 
 
@@ -310,7 +311,7 @@ image::./images/Sequence_Diagrams/Add_Product_to_Cart.png[Sequence diagram: Add 
 1.	Der Akteur drückt "Warenkorb" in der Navigationsleiste.
 2.	Dem Akteur wird der Inhalt seines Wagens sowie der Gesamtpreis angezeigt.
 |Erweiterungen              | -
-|Funktionale Anforderungen  | -
+|Funktionale Anforderungen  | <<F0210>>
 |===
 
 
@@ -335,7 +336,7 @@ image::./images/Sequence_Diagrams/Add_Product_to_Cart.png[Sequence diagram: Add 
 5.	Weine werden in der gewählten Menge aus dem Bestand genommen
 6.	Bestellung wird archiviert.
 |Erweiterungen              | -
-|Funktionale Anforderungen  | -
+|Funktionale Anforderungen  | <<F0220> <<F0230>>
 |===
 
 
@@ -354,7 +355,7 @@ image::./images/Sequence_Diagrams/Add_Product_to_Cart.png[Sequence diagram: Add 
 1.	Der Akteur hat sich beim System authentifiziert (d. H. Ist ein registrierter Benutzer).
 2.	Der Aktuer drükt “Kunden List”.
 |Erweiterungen              | -
-|Funktionale Anforderungen  | -
+|Funktionale Anforderungen  | <<F0300>> <<F0301>>
 |===
 
 
@@ -373,7 +374,7 @@ image::./images/Sequence_Diagrams/Add_Product_to_Cart.png[Sequence diagram: Add 
 1.	Mitarbeiter wählt "Lager" in der Navigationsleiste.
 2.	Die vollständige Liste aller Artikel des Inventars und des aktuellen Lagerbestands wird angezeigt
 |Erweiterungen              | -
-|Funktionale Anforderungen  | -
+|Funktionale Anforderungen  | <<F0100>> <<F0102>>
 |===
 
 
@@ -392,7 +393,7 @@ image::./images/Sequence_Diagrams/Add_Product_to_Cart.png[Sequence diagram: Add 
 1.	Mitarbeiter wählt "Sorgen" in der Navigationsleiste
 2.	Die vollständige Liste aller abgeschlossenen Bestellungen wird angezeigt
 |Erweiterungen              | -
-|Funktionale Anforderungen  | -
+|Funktionale Anforderungen  | <<F0250>>
 |===
 
 [[sequence_diagram_view_orders]]
@@ -416,7 +417,7 @@ image::./images/Sequence_Diagrams/View_Orders.png[Sequence diagram: View Orders,
 3. Er gibt einen Weinname, ein Bild und usw. ein.
 4. Wenn eindeutig: Mit den angegebenen Daten wird den Winekatalog geändert.
 |Erweiterungen              | -
-|Funktionale Anforderungen  | -
+|Funktionale Anforderungen  | <<F0114>>
 |===
 
 
@@ -439,7 +440,7 @@ image::./images/Sequence_Diagrams/View_Orders.png[Sequence diagram: View Orders,
 5. Wenn eindeutig: Mit den angegebenen Daten wird ein Konto erstellt
 6. Andernfalls: Eine Fehlermeldung wird angezeigt
 |Erweiterungen              | -
-|Funktionale Anforderungen  | -
+|Funktionale Anforderungen  | <<F0010>> <<F0011>>
 |===
 
 
@@ -464,7 +465,7 @@ image::./images/Sequence_Diagrams/View_Orders.png[Sequence diagram: View Orders,
 5.	Weine werden in der gewählten Menge aus dem Bestand genommen
 6.	Bestellung wird archiviert.
 |Erweiterungen              | -
-|Funktionale Anforderungen  | -
+|Funktionale Anforderungen  | <<F0231>>
 |===
 
 
@@ -483,7 +484,7 @@ image::./images/Sequence_Diagrams/View_Orders.png[Sequence diagram: View Orders,
 1.	Der Administrator hat sich beim System authentifiziert (d. H. Ist ein registrierter Benutzer).
 2.	Der Administrator drükt “Mitarbeiter List”.
 |Erweiterungen              | -
-|Funktionale Anforderungen  | -
+|Funktionale Anforderungen  | <<F0030>>
 |===
 
 
@@ -533,7 +534,7 @@ Das System soll sicherstellen, dass nur Mitarbeiter auf das System zugreifen kö
 |v0.1
 |Berechtigungen ändern
 a|
-Das System soll ermöglichen, dass Benutzer mit der Berechtigung Admin anderen Benutzern die Berechtigung Admin geben können, sowie sie anderen Admins entziehen können.
+Das System soll eine Liste von registrierten Benutzern anzeigen und ermöglichen, dass Benutzer mit der Berechtigung Admin anderen Benutzern die Berechtigung Admin geben können, sowie sie anderen Admins entziehen können.
 
 |[[F0100]]<<F0100>>
 |v0.1
@@ -702,7 +703,7 @@ Das System soll die Funktionalität bieten, Bestellungen im Zustand “ABGESCHLO
 a|
 Das System soll die im Kaufprozess ([[F0220]]<<F0220>>) erfassten Kundendaten persistent speichern können.
 
-|[[F0301]]<<F0302>>
+|[[F0301]]<<F0301>>
 |v0.1
 |Kundenstamm ansehen
 a|
@@ -895,6 +896,7 @@ Die folgende Tabelle gibt einen Überblick über die im Domänenmodell verwendet
 
 // See http://asciidoctor.org/docs/user-manual/#tables
 [options="header"]
+[[classes_enumerations]]
 |===
 |Klasse/Enumeration |Beschreibung
 |Wine               |**<<UC0404>>**
@@ -1104,10 +1106,40 @@ Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumen
 
 ***
 == 13.Glossar
-Sämtliche Begriffe, die innerhalb des Projektes verwendet werden und deren gemeinsames Verständnis aller beteiligten Stakeholder essentiell ist, sollten hier aufgeführt werden.
-Insbesondere Begriffe der zu implementierenden Domäne wurden bereits beschrieben, jedoch gibt es meist mehr Begriffe, die einer Beschreibung bedürfen. +
-Beispiel: Was bedeutet "Kunde"? Ein Nutzer des Systems? Der Kunde des Projektes (Auftraggeber)?
+Das Glossar enthält eine Liste aller in diesem Projekt verwendeten Wörter und Ausdrücke, für die eine Beschreibung erforderlich ist, um Missverständnisse zwischen den Beteiligten zu vermeiden. Weitere Definitionen der Begriffe finden Sie auch in der Liste der Akteure, in der Liste der Interessensgruppen und im Domänenmodell.
 
+:Client_Description: Synonym für den Kunden des Projekts ({company_name})
+:domain_ref: See <<classes_enumerations, domain overview>>
+
+[options="header", cols="1h, 4"]
+[[glossar]]
+|===
+|Bezeichnung		  |Beschreibung
+|Wine 			      |{domain_ref}
+|CartItem		      |{domain_ref}
+|Cart			        |{domain_ref}
+|InventoryItem	  |{domain_ref}
+|Inventory		    |{domain_ref}
+|Catalog		      |{domain_ref}
+|Orderline		    |{domain_ref}
+|Accounting		    |{domain_ref}
+|OrderManager		  |{domain_ref}
+|Preorder		      |{domain_ref}
+|Order			      |{domain_ref}
+|OrderStatus		  |{domain_ref}
+|CustomerManager	|{domain_ref}
+|Customer		      |{domain_ref}
+|User			        |{domain_ref}
+|Role			        |{domain_ref}
+|WineShop		      |{domain_ref}
+|Login			      |Erfolgreiche Authentifizierung nach Eingabe der korrekten (vorhandenen) Anmeldeinformationen eines Benutzers (Users)
+|Registrierung		|Prozess zum Erstellen eines neuen Kontos im System (eine neue Benutzerdarstellung)
+|System			      |Allgemeiner Begriff für das Softwaresystem, das während dieses Projekts implementiert werden muss
+|Mitarbeiter		  |Synonym für User	
+|Auftraggeber	  	|Synonym für den Kunden dieses Projekts (La Bouteille)
+|Auftragnehmer		|Verantwortliche für die Implementierung der Software 
+|Produkt		      |Abstraktion eines Weins. Jeder Wein ist ein Produkt
+|===
 
 ***
 == 14.Offene Punkte
