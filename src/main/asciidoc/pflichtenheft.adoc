@@ -11,7 +11,7 @@
 |0.5     | In Arbeit   | 13.11.2020          | Noah |GUI + Akzeptanztestfälle
 |0.6     | In Arbeit   | 14.11.2020          | David |Class Diagram
 |0.7     | In Arbeit   | 14.11.2020          | Kim |Inhaltsverzeichnis + Die Ordnung korrigieren
-|0.8     | In Arbeit   | 14.11.2020          | Henrik | Glossar hinzugefügt + Anforderungen den Anwenungsfällen + Anforderungen überarbeitet
+|0.8     | In Arbeit   | 14.11.2020          | Henrik | Glossar hinzugefügt + Anforderungen den Anwendungsfällen zugeordnet + Anforderungen überarbeitet
 |===
 
 == 1.Inhaltsverzeichnis
