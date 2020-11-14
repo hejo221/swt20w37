@@ -20,28 +20,28 @@
 ==== 4.Produktnutzung
 ==== 5.Interessensgruppen (Stakeholders)
 ==== 6.Systemgrenze und Top-Level-Architektur
-===== 6.1.Kontextdiagramm
-===== 6.2.Top-Level-Architektur
+=====     6.1.Kontextdiagramm
+=====     6.2.Top-Level-Architektur
 ==== 7.Anwendungsfälle
-===== 7.1.Akteure
-===== 7.2.Überblick Anwendungsfalldiagramm
-===== 7.3.Anwendungsfallbeschreibungen
+=====     7.1.Akteure
+=====     7.2.Überblick Anwendungsfalldiagramm
+=====     7.3.Anwendungsfallbeschreibungen
 ==== 8.Use-Cases
-===== 8.1. Actors
-===== 8.2. Use-Case Diagram
-===== 8.3. Use-Case Descriptions
+=====     8.1. Actors
+=====     8.2. Use-Case Diagram
+=====     8.3. Use-Case Descriptions
 ==== 9.Funktionale Anforderungen
-===== 9.1.Muss-Kriterien
-===== 9.2.Kann-Kriterien
+=====     9.1.Muss-Kriterien
+=====     9.2.Kann-Kriterien
 ==== 10.Nicht-Funktionale Anforderungen
-===== 10.1.Qualitätsziele
-===== 10.2.Konkrete Nicht-Funktionale Anforderungen:
+=====     10.1.Qualitätsziele
+=====     10.2.Konkrete Nicht-Funktionale Anforderungen:
 ==== 11.GUI Prototyp
-===== 11.1.Überblick: Dialoglandkarte
-===== 11.2.Dialogbeschreibung
+=====     11.1.Überblick: Dialoglandkarte
+=====     11.2.Dialogbeschreibung
 ==== 12.Datenmodell
-===== 12.1.Überblick: Klassendiagramm
-===== 12.2.Klassen und Enumerationen
+=====     12.1.Überblick: Klassendiagramm
+=====     12.2.Klassen und Enumerationen
 ==== 13.Akzeptanztestfälle
 ==== 14.Glossar
 ==== 15.Offene Punkte
