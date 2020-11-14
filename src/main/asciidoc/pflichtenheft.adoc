@@ -39,7 +39,7 @@
   * 10.1. <<ÜberblickDialoglandkarte, Überblick: Dialoglandkarte>>
   * 10.2. <<Dialogbeschreibung, Dialogbeschreibung>>
 11. <<Datenmodell, Datenmodell>>
-  * 11.1. <<ÜberblickKlassendiagramm, Überblick: Klassendiagramm>>
+  * 11.1. <<Klassendiagramm, Klassendiagramm>>
   * 11.2. <<KlassenundEnumerationen, Klassen und Enumerationen>>
 12. <<Akzeptanztestfälle, Akzeptanztestfälle>>
 13. <<Glossar, Glossar>>
@@ -874,7 +874,7 @@ In diesem Kapitel soll ein Entwurf der Navigationsmöglichkeiten und Dialoge des
 Idealerweise entsteht auch ein grafischer Prototyp, welcher dem Kunden zeigt, wie sein System visuell umgesetzt werden soll.
 Konkrete Absprachen - beispielsweise ob der grafische Prototyp oder die Dialoglandkarte höhere Priorität hat - sind mit dem Kunden zu treffen.
 
-[[Überblick: Dialoglandkarte]]
+[[ÜberblickDialoglandkarte]]
 === 10.1.Überblick: Dialoglandkarte
 Erstellen Sie ein Übersichtsdiagramm, das das Zusammenspiel Ihrer Masken zur Laufzeit darstellt. Also mit welchen Aktionen zwischen den Masken navigiert wird.
 //Die nachfolgende Abbildung zeigt eine an die Pinnwand gezeichnete Dialoglandkarte. Ihre Karte sollte zusätzlich die Buttons/Funktionen darstellen, mit deren Hilfe Sie zwischen den Masken navigieren.
