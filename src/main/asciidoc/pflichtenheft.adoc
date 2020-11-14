@@ -15,38 +15,47 @@
 |===
 
 == 1.Inhaltsverzeichnis
-=== 1.Inhaltsverzeichnis
-=== 2.Zusammenfassung
-=== 3.Aufgabenstellung und Zielsetzung
-=== 4.Produktnutzung
-=== 5.Interessensgruppen (Stakeholders)
-=== 6.Systemgrenze und Top-Level-Architektur
-===== 6.1.Kontextdiagramm
-===== 6.2.Top-Level-Architektur
-=== 7.Anwendungsfälle
-===== 7.1.Akteure
-===== 7.2.Überblick Anwendungsfalldiagramm
-===== 7.3.Anwendungsfallbeschreibungen
-=== 8.Funktionale Anforderungen
-===== 8.1.Muss-Kriterien
-===== 8.2.Kann-Kriterien
-=== 9.Nicht-Funktionale Anforderungen
-===== 9.1.Qualitätsziele
-===== 9.2.Konkrete Nicht-Funktionale Anforderungen:
-=== 10.GUI Prototyp
-===== 10.1.Überblick: Dialoglandkarte
-===== 10.2.Dialogbeschreibung
-=== 11.Datenmodell
-===== 11.1.Überblick: Klassendiagramm
-===== 11.2.Klassen und Enumerationen
-=== 12.Akzeptanztestfälle
-=== 13.Glossar
-=== 14.Offene Punkte
+1. Inhaltsverzeichnis
+2. Zusammenfassung
+3. Aufgabenstellung und Zielsetzung
+4. Produktnutzung
+5. Interessensgruppen (Stakeholders)
+6. Systemgrenze und Top-Level-Architektur
+  * 6.1. Kontextdiagramm
+  * 6.2. Top-Level-Architektur
+7. Anwendungsfälle
+  * 7.1.Akteure
+  * 7.2.Überblick Anwendungsfalldiagramm
+  * 7.3.Anwendungsfallbeschreibungen
+8. Funktionale Anforderungen
+  * 8.1.Muss-Kriterien
+  * 8.2.Kann-Kriterien
+9. Nicht-Funktionale Anforderungen
+  * 9.1.Qualitätsziele
+  * 9.2.Konkrete Nicht-Funktionale Anforderungen:
+10. GUI Prototyp
+  * 10.1.Überblick: Dialoglandkarte
+  * 10.2.Dialogbeschreibung
+11. Datenmodell
+  * 11.1.Überblick: Klassendiagramm
+  * 11.2.Klassen und Enumerationen
+12. Akzeptanztestfälle
+13. Glossar
+14. Offene Punkte
 
 
 ***
 == 2.Zusammenfassung
-Eine kurze Beschreibung des Dokuments. Wenige Absätze.
+
+Dieses Dokument hat zwei Funktionen: eine informative, beschreibende Funktion einerseits, andererseits dient es als Vertrag zwischen dem Kunden und der IT-Firma.
+
+In der Aufgabenstellung wurde die Funktionalität der künftigen Software beschrieben, dabei kursiv in die Klammern wurden Klassen- und Methodennamen gesetzt.
+
+Anwendungsfälle beschreiben einzelne Manipulationen mit der Software, z.B. eine Ware wird zum Warenkorb hinzugefügt, oder Angestellte:r meldet sich im System an. Dabei werden Kollaborationen zwischen entsprechenden Klassen angezeigt.
+
+Im Klassendiagramm wird die ganze Software mit gesamten Klassen und Methoden abgebildet.
+
+Im Abschnitt "GUI Prototyp" wird das Aussehen der Software dargestellt.
 
 
 ***
