@@ -14,9 +14,10 @@
 |0.8     | In Arbeit   | 14.11.2020          | Henrik | Glossar hinzugefügt + Anforderungen den Anwendungsfällen zugeordnet + Anforderungen überarbeitet
 |===
 
+[[Inhaltsverzeichnis]]
 == 1.Inhaltsverzeichnis
-1. Inhaltsverzeichnis
-2. Zusammenfassung
+1. <<Inhaltsverzeichnis, Inhaltsverzeichnis>>
+2. <<Zusammenfassung, Zusammenfassung>>
 3. Aufgabenstellung und Zielsetzung
 4. Produktnutzung
 5. Interessensgruppen (Stakeholders)
@@ -45,6 +46,7 @@
 
 
 ***
+[[Zusammenfassung]]
 == 2.Zusammenfassung
 
 Dieses Dokument hat zwei Funktionen: eine informative, beschreibende Funktion einerseits, andererseits dient es als Vertrag zwischen dem Kunden und der IT-Firma.
