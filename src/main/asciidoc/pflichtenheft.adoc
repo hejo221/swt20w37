@@ -366,7 +366,7 @@ image::./images/Sequence_Diagrams/Add_Product_to_Cart.png[Sequence diagram: Add 
 |===
 |ID                         |**<<UC0302>>**
 |Name                       |View Inventory
-|Beschreibung               |Ein Mitarbeiter muss den Inhalt des Warenkorbs bestellen können.
+|Beschreibung               |Ein Mitarbeiter muss in der Lage sein, das Inventar einschließlich des aktuellen Bestands anzuzeigen.
 |Akteure                    |Empoyee
 |Trigger                    |Mitarbeiter wählt "Lager" in der Navigationsleiste
 |Vorbedienung(en)           |Der Akteur hat sich beim System authentifiziert (d. H. Ist ein registrierter Benutzer).
