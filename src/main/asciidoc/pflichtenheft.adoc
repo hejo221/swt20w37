@@ -223,7 +223,7 @@ Logout: Benutzer ist authentifiziert.
 1.	Mitarbeiter klickt auf das Navigationselement "Weinkatalog".
 2.	Dem Mitarbeiter werden alle Weine der ausgewählten Kategorie angezeigt.
 |Erweiterungen              | -
-|Funktionale Anforderungen  | <<F0110>> <<F0111>> <<F0112>> <<F0113>> <<F0115>>
+|Funktionale Anforderungen  | <<F0110>> <<F0111>> <<F0112>> <<F0113>> <<F0114>>
 |===
 
 [[sequence_diagram_view_catalog]]
@@ -336,7 +336,7 @@ image::./images/Sequence_Diagrams/Add_Product_to_Cart.png[Sequence diagram: Add 
 5.	Weine werden in der gewählten Menge aus dem Bestand genommen
 6.	Bestellung wird archiviert.
 |Erweiterungen              | -
-|Funktionale Anforderungen  | <<F0220> <<F0230>>
+|Funktionale Anforderungen  | <<F0220>> <<F0230>>
 |===
 
 
@@ -417,7 +417,7 @@ image::./images/Sequence_Diagrams/View_Orders.png[Sequence diagram: View Orders,
 3. Er gibt einen Weinname, ein Bild und usw. ein.
 4. Wenn eindeutig: Mit den angegebenen Daten wird den Winekatalog geändert.
 |Erweiterungen              | -
-|Funktionale Anforderungen  | <<F0114>>
+|Funktionale Anforderungen  | <<F0120>>
 |===
 
 
@@ -515,41 +515,50 @@ Diese Tabelle enthält
 a|
 Das System wird mit einem standardmäßigen Admin-Zugang ausgeliefert. Weitere Benutzerkonten sollen jedoch von jedem angelegt werden können. Dafür werden folgende Informationen benötigt:
 
+* Vorname
+* Name
 * Benutzername
 * Passwort
+* Rechte (Mitarbeiter oder Admin)
 
 |[[F0011]]<<F0011>>
-|v0.1
+|v0.2
 |Registrierung überprüfen
 a|
 Das System soll bei der Registrierung die eingegebenen Daten überprüfen. Die Einzigartigkeit des Benutzernamens muss garantiert werden.
 
 |[[F0020]]<<F0020>>
-|v0.1
+|v0.2
 |Login
 a|
 Das System soll sicherstellen, dass nur Mitarbeiter auf das System zugreifen können, indem sich diese mit deren Benutzername und Passwort anmelden müssen.
 
 |[[F0030]]<<F0030>>
-|v0.1
-|Berechtigungen ändern
+|v0.8
+|Liste registrierter Mitarbeiter anzeigen
 a|
-Das System soll eine Liste von registrierten Benutzern anzeigen und ermöglichen, dass Benutzer mit der Berechtigung Admin anderen Benutzern die Berechtigung Admin geben können, sowie sie anderen Admins entziehen können.
+Das System soll eine Liste von registrierten Benutzern mit deren vollständigen Namen und deren Rechten anzeigen.
+
+|[[F0031]]<<F0031>>
+|v0.8
+|Mitarbeiterliste bearbeiten
+a|
+Das System soll Admins die Möglichkeit geben, die Mitarbeiter zu bearbeiten und einzelne Mitarbeiter zu entfernen.
 
 |[[F0100]]<<F0100>>
-|v0.1
+|v0.2
 |Lagerbestand
 a|
 Das System soll den Lagerbestand der einzelnen Weine aus dem Katalog persistent speichern können.
 
 |[[F0101]]<<F0101>>
-|v0.1
+|v0.2
 |Lagerbestand ändern
 a|
-Das System soll den Lagerbestand an Weinen verringern und erhöhen können.
+Das System soll es ermöglichen, den Lagerbestand an Weinen verringern und erhöhen können.
 
 |[[F0102]]<<F0102>>
-|v0.1
+|v0.2
 |Lagerbestand ansehen
 a|
 Das System soll es den Mitarbeitern ermöglichen, den Lagerbestand der einzelnen Weine einzusehen.
@@ -561,49 +570,55 @@ a|
 Das System soll im Katalog jeden Wein mit seinen Eigenschaften abspeichern. Jeder im Katalog gelistete Wein soll sich im Lagerbestand befinden können und sich ggf. nachbestellen lassen.
 
 |[[F0111]]<<F0111>>
-|v0.1
+|v0.2
 |Katalog ansehen
 a|
 Das System soll die Mitarbeiter die Inhalte des Katalogs ansehen lassen.
 
 |[[F0112]]<<F0112>>
-|v0.1
+|v0.2
 |Katalog durchsuchen
 a|
 Das System soll den Mitarbeitern die Möglichkeit bieten, den Katalog nach dem Namen eines bestimmten Weins zu durchsuchen.
 
 |[[F0113]]<<F0113>>
-|v0.1
+|v0.2
 |Katalog filtern
 a|
 Das System soll den Mitarbeitern die Möglichkeit bieten, den Katalog nach bestimmten Weinen zu filtern (z.B. nach Jahrgang, Art, etc.).
 
 |[[F0114]]<<F0114>>
-|v0.1
-|Katalog ändern
-a|
-Das System soll es den Admins ermöglichen, Weine aus dem Katalog entfernen und hinzufügen können.
-
-|[[F0115]]<<F0115>>
-|v0.1
+|v0.2
 |Katalog sortieren
 a|
 Das System soll es den Mitarbeitern ermöglichen, den Katalog nach bestimmten Merkmalen zu sortieren (z.B. Preis).
 
+|[[F0115]]<<F0115>>
+|v0.2
+|Katalog-Detailansicht aufrufen
+a|
+Das System soll zu jedem Wein im Katalog eine Detailseite haben, auf der die Eigenschaften des Weins im Detail angezeigt werden sollen.
+
+|[[F0120]]<<F0120>>
+|v0.2
+|Katalog ändern
+a|
+Das System soll es den Admins ermöglichen, Weine aus dem Katalog entfernen und hinzufügen können.
+
 |[[F0200]]<<F0200>>
-|v0.1
+|v0.2
 |Warenkorb
 a|
 Das System soll jedem Mitarbeiter einen Warenkorb zur Verfügung, in dem die vom Kunden ausgewählten Artikel temporär gespeichert werden sollen.
 
 |[[F0201]]<<F0201>>
-|v0.1
+|v0.2
 |Artikel in den Warenkorb legen
 a|
 Das System soll es den Mitarbeitern ermöglichen, Artikel aus dem Katalog direkt für die Kunden in den Warenkorb zu legen.
 
 |[[F0210]]<<F0210>>
-|v0.1
+|v0.2
 |Warenkorb ansehen
 a|
 Das System soll es den Mitarbeitern ermöglichen, sich den Warenkorb anzusehen. Dort soll aufgelistet werden:
@@ -614,27 +629,23 @@ Das System soll es den Mitarbeitern ermöglichen, sich den Warenkorb anzusehen. 
 * Gesamtpreis des Warenkorbs
 
 |[[F0211]]<<F0211>>
-|v0.1
+|v0.2
 |Warenkorb ändern
 a|
 Das System soll es den Mitarbeitern ermöglichen, die Anzahl der gewünschten Weine im Warenkorb zu erhöhen oder zu verringern. Außerdem soll es möglich sein, einen Wein gänzlich aus dem Warenkorb zu entfernen.
 
 |[[F0220]]<<F0220>>
-|v0.1
+|v0.2
 |Artikel im Warenkorb kaufen
 a|
-Das System soll es den Mitarbeitern ermöglichen, die von den Kunden gewählten Artikel im Warenkorb zu kaufen. Dabei sollen von den Kunden folgende Daten erfasst werden:
+Das System soll es den Mitarbeitern ermöglichen, die von den Kunden gewählten Artikel im Warenkorb zu kaufen. 
 
-* Name
-* Anschrift			
-* E-Mail-Adresse
-
-Erkennt das System, das die angegebenen Kundendaten bereits im Kundenstamm ([[F0300]]<<F0300>>) vorhanden sind, soll der Mitarbeiter darüber benachrichtigt werden. Andernfalls sollen die Kundendaten persistent im Kundenstamm gespeichert werden ([[F0300]]<<F0300>>), worüber der Mitarbeiter ebenfalls benachrichtigt werden soll.
+Je nachdem, ob ein Kunde ein Neukunde oder Bestandskunde ist, soll dieser sich registrieren ([[F0301]]<<F0301>>) bzw. sich mit der bereits bekannten E-Mail-Adresse identifizieren.
 
 Beim Kaufversuch soll die potentielle Bestellung validiert werden ([[F0230]]<<F0230>>). Ist der Lagerbestand ausreichend, soll eine Bestellung erstellt werden ([[F0241]]<<F0241>>). Andernfalls soll die Bestellung auf die vorhandenen und die fehlenden Artikel aufgesplittet werden, die fehlenden Artikel müssen nachbestellt werden ([[F0231]]<<F0231>>).
 
 |[[F0230]]<<F0230>>
-|v0.1
+|v0.2
 |Ausreichende Lagerbestände überprüfen
 a|
 Das System soll fähig sein  festzustellen, ob der Lagerbestand eines bestimmten Produkts mit der gewünschten Menge übereinstimmt.
@@ -644,7 +655,7 @@ Stellt das System fest, dass der Lagerbestand geringer als die gewünschte Menge
 Das System soll außerdem, wenn nach einem Kauf die festgelegte Mindestanzahl an Lagerbeständen eines Artikel unterschritten wird, eine Warnung ausgeben und eine entsprechende Menge an Artikel nachbestellen ([[F0231]]<<F0231>>).
 
 |[[F0231]]<<F0231>>
-|v0.1
+|v0.2
 |Artikel nachbestellen
 a|
 Das System soll in der Lage sein, die bei der Überprüfung der Lagerbestände ([[F0230]]<<F0230>>) festgestellte fehlende Anzahl an Artikeln automatisch nachzubestellen.
@@ -654,13 +665,13 @@ Das System soll weiterhin automatisch Artikel nachbestellen, wenn die Lagerbest�
 Außerdem soll das System Admins ermöglichen, auch manuell Artikel nachzubestellen.
 
 |[[F0240]]<<F0240>>
-|v0.1
+|v0.2
 |Bestellungen
 a|
 Das System soll Bestellungen persistent speichern.
 
 |[[F0241]]<<F0241>>
-|v0.1
+|v0.2
 |Bestellung anlegen
 a|
 Das System soll aus den Inhalten eines Warenkorbes eine Bestellung anlegen.
@@ -668,61 +679,71 @@ Das System soll aus den Inhalten eines Warenkorbes eine Bestellung anlegen.
 Eine angelegte Bestellung soll den Status “OFFEN” haben.
 
 |[[F0242]]<<F0242>>
-|v0.1
+|v0.8
 |Bestellung bezahlen
 a|
 Das System soll es ermöglichen, Bestellungen mit dem Status “OFFEN” mit unterschiedlichen Zahlungsmitteln zu bezahlen.
 
-Nachdem die Bestellung bezahlt wurde, soll die Bestellung den Status “BEZAHLT” haben.
+Nachdem die Bestellung bezahlt wurde, soll die Bestellung den Status “ABGESCHLOSSEN” haben.
 
 |[[F0243]]<<F0243>>
-|v0.1
+|v0.2
 |Bestellung stornieren
 a|
 Das System soll es ermöglichen, Bestellungen mit dem Status “OFFEN” zu stornieren. Bevor die Stornierung durchgeführt wird, muss dies erneut vom Mitarbeiter bestätigt werden.
 
 Nachdem die Bestellung endgültig storniert wurde, soll die Bestellung den Status “STORNIERT” haben.
 
-|[[F0244]]<<F0244>>
-|v0.1
-|Bestellung schließen
-a|
-Das System soll es ermöglichen, Bestellungen mit dem Status “BEZAHLT” zu schließen, wenn die bestellten Artikel an den Kunden übergeben wurden.
-
-Nachdem die Bestellung geschlossen wurde, soll die Bestellung den Status “ABGESCHLOSSEN” haben und archiviert werden.
 
 |[[F0250]]<<F0250>>
-|v0.1
+|v0.2
 |Abgeschlossene Bestellungen ansehen
 a|
 Das System soll die Funktionalität bieten, Bestellungen im Zustand “ABGESCHLOSSEN” ([[F0244]]<<F0244>>) anzusehen.
 
 |[[F0300]]<<F0300>>
-|v0.1
+|v0.2
 |Kundenstamm
 a|
 Das System soll die im Kaufprozess ([[F0220]]<<F0220>>) erfassten Kundendaten persistent speichern können.
 
 |[[F0301]]<<F0301>>
-|v0.1
+|v0.8
+|Neuen Kunden zu Kundenstamm hinzufügen
+a|
+Das System soll Neukunden zum Kundenstamm hinzufügen, indem diese sich mit folgenden Angaben registrieren:
+
+* Vorname
+* Name
+* E-Mail-Adresse
+* Anschrift
+
+|[[F0302]]<<F0302>>
+|v0.2
+|Bestandskunde in Kundenstamm finden
+a|
+Das System soll es ermöglichen, bereits registrierte Kunden anhand ihrer E-Mail-Adresse im Kundenstamm zu finden.
+
+|[[F0303]]<<F0303>>
+|v0.2
 |Kundenstamm ansehen
 a|
 Das System soll die Möglichkeit bieten, eine Liste mit allen Kundendaten einzusehen.
 
-|[[F0302]]<<F0302>>
-|v0.1
+|[[F0304]]<<F0304>>
+|v0.2
 |Kundenstamm verwalten
 a|
 Das System soll die Möglichkeiten bieten, einzelne Kundendaten zu bearbeiten bzw. aus dem Kundenstamm zu entfernen.
 
 |[[F0400]]<<F0400>>
-|v0.1
+|v0.2
 |Bilanz
 a|
 Das System soll die Einnahmen von Bestellungen und Ausgaben für Nachbestellungen persistent speichern.
 
 |[[F0401]]<<F0401>>
-|v0.1
+|v0.2
 |Bilanz ansehen
 a|
 Das System soll aus der Differenz von Einnahmen und Ausgaben eine Bilanz erstellen und anzeigen können
@@ -746,11 +767,11 @@ Diese Tabelle enthält:
 |Name
 |Beschreibung
 
-|[[F0030]]<<F0030>>
+|[[F0031]]<<F0030>>
 |v0.1
 |Passwort ändern
 a|
-Das System soll es den Admins ermöglichen, die Passwörter aller Mitarbeiterkonten zu ändern.
+Das System soll es den Admins zusätzlich ermöglichen, die Passwörter aller Mitarbeiterkonten zu ändern.
 
 |[[F0245]]<<F0245>>
 |v0.1
@@ -1108,7 +1129,6 @@ Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumen
 == 13.Glossar
 Das Glossar enthält eine Liste aller in diesem Projekt verwendeten Wörter und Ausdrücke, für die eine Beschreibung erforderlich ist, um Missverständnisse zwischen den Beteiligten zu vermeiden. Weitere Definitionen der Begriffe finden Sie auch in der Liste der Akteure, in der Liste der Interessensgruppen und im Domänenmodell.
 
-:Client_Description: Synonym für den Kunden des Projekts ({company_name})
 :domain_ref: See <<classes_enumerations, domain overview>>
 
 [options="header", cols="1h, 4"]
