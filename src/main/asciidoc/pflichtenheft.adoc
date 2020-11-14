@@ -12,6 +12,7 @@
 |0.6     | In Arbeit   | 14.11.2020          | David |Class Diagram
 |0.7     | In Arbeit   | 14.11.2020          | Kim |Inhaltsverzeichnis + Die Ordnung korrigieren
 |0.8     | In Arbeit   | 14.11.2020          | Henrik | Glossar hinzugefügt + Anforderungen den Anwendungsfällen zugeordnet + Anforderungen überarbeitet
+|0.9     | In Arbeit   | 15.11.2020          | Lavon      | Inhaltverzeichnis mit dem Inhalt verlinkt, Zusammenfassung hinzugefügt
 |===
 
 [[Inhaltsverzeichnis]]
@@ -28,21 +29,21 @@
   * 7.1. <<Akteure, Akteure>>
   * 7.2. <<Anwendungsfalldiagramm, Überblick Anwendungsfalldiagramm>>
   * 7.3. <<Anwendungsfallbeschreibungen, Anwendungsfallbeschreibungen>>
-8. <<Funktionale Anforderungen, Funktionale Anforderungen>>
+8. <<FunktionaleAnforderungen, Funktionale Anforderungen>>
   * 8.1. <<Muss-Kriterien, Muss-Kriterien>>
   * 8.2. <<Kann-Kriterien, Kann-Kriterien>>
-9. <<Nicht-Funktionale Anforderungen, Nicht-Funktionale Anforderungen>>
+9. <<Nicht-FunktionaleAnforderungen, Nicht-Funktionale Anforderungen>>
   * 9.1. <<Qualitätsziele, Qualitätsziele>>
-  * 9.2. <<Konkrete Nicht-Funktionale Anforderungen, Konkrete Nicht-Funktionale Anforderungen>>
-10. <<GUI Prototyp, GUI Prototyp>>
-  * 10.1. <<Überblick: Dialoglandkarte, Überblick: Dialoglandkarte>>
+  * 9.2. <<KonkreteNicht-FunktionaleAnforderungen, Konkrete Nicht-Funktionale Anforderungen>>
+10. <<GUIPrototyp, GUI Prototyp>>
+  * 10.1. <<ÜberblickDialoglandkarte, Überblick: Dialoglandkarte>>
   * 10.2. <<Dialogbeschreibung, Dialogbeschreibung>>
 11. <<Datenmodell, Datenmodell>>
-  * 11.1. <<Überblick: Klassendiagramm, Überblick: Klassendiagramm>>
-  * 11.2. <<Klassen und Enumerationen, Klassen und Enumerationen>>
+  * 11.1. <<ÜberblickKlassendiagramm, Überblick: Klassendiagramm>>
+  * 11.2. <<KlassenundEnumerationen, Klassen und Enumerationen>>
 12. <<Akzeptanztestfälle, Akzeptanztestfälle>>
 13. <<Glossar, Glossar>>
-14. <<Offene Punkte, Offene Punkte>>
+14. <<OffenePunkte, Offene Punkte>>
 
 
 ***
@@ -806,7 +807,7 @@ Das System soll, falls eine Bestellung zu lange den Status “OFFEN” hat, erm�
 
 
 ***
-[[Nicht-Funktionale Anforderungen]]
+[[Nicht-FunktionaleAnforderungen]]
 == 9.Nicht-Funktionale Anforderungen
 
 Dieser Abschnitt wird einen Überblick über die nicht-funktionalen Anforderungen an das Projekt Vinothek geben. Diese Anforderung beschreiben, wie das System funktioniert und innerhalb welcher Grenzen es arbeiten soll.
@@ -866,7 +867,7 @@ Mitarbeiter müssen sich einloggen, um das System zu benutzen, damit Kunden nich
 
 
 ***
-[[GUI Prototyp]]
+[[GUIPrototyp]]
 == 10.GUI Prototyp
 
 In diesem Kapitel soll ein Entwurf der Navigationsmöglichkeiten und Dialoge des Systems erstellt werden.
@@ -940,7 +941,7 @@ Das (Analyse-) Klassendiagramm soll einen Überblick über die Domäne im Kontex
 [[class_diagram]]
 image::./images/diagrams/Class_Diagram.png[Class_Diagram, 100%, 100%, pdfwidth=100%, title= " Domain model of Vinothek", align=center]
 
-[[Klassen und Enumerationen]]
+[[KlassenundEnumerationen]]
 === 11.2.Klassen und Enumerationen
 Die folgende Tabelle gibt einen Überblick über die im Domänenmodell verwendeten Klassen / Aufzählungen. Daher ist dieser Abschnitt eine Teilmenge des Glossars und soll jedem Stakeholder ein gemeinsames Verständnis der zentralen Begriffe und Konzepte der Domäne des Systems vermitteln.
 
@@ -1193,6 +1194,6 @@ Das Glossar enthält eine Liste aller in diesem Projekt verwendeten Wörter und 
 |===
 
 ***
-[[Offene Punkte]]
+[[OffenePunkte]]
 == 14.Offene Punkte
 Offene Punkte werden entweder direkt in der Spezifikation notiert. Wenn das Pflichtenheft zum finalen Review vorgelegt wird, sollte es keine offenen Punkte mehr geben.
