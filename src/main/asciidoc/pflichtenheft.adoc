@@ -11,7 +11,7 @@
 |0.5     | In Arbeit   | 13.11.2020          | Noah |GUI + Akzeptanztestfälle
 |0.6     | In Arbeit   | 14.11.2020          | David |Class Diagram
 |0.7     | In Arbeit   | 14.11.2020          | Kim |Inhaltsverzeichnis + Die Ordnung korrigieren
-|0.8     | In Arbeit   | 14.11.2020          | Henrik | Glossar hinzugefügt + Anforderungen den Anwenungsfällen 
+|0.8     | In Arbeit   | 14.11.2020          | Henrik | Glossar hinzugefügt + Anforderungen den Anwenungsfällen + Anforderungen überarbeitet
 |===
 
 == 1.Inhaltsverzeichnis
@@ -198,7 +198,7 @@ Logout: Benutzer ist authentifiziert.
 |Name                       |Receive Customer Information
 |Beschreibung               |Ein Mitarbeiter der Vinothek muss die Information von einem Kunden, der Wines bestellt, speichen zur nächsten Bestellung oder usw.
 |Akteure                    |Empoyee
-|Trigger                    |Mitarbieter schreibt die Information von einem Kunden, dann speichern.
+|Trigger                    |Mitarbeiter schreibt die Information von einem Kunden, dann speichern.
 |Vorbedienung(en)           |None
 |Wesentliche Schritte       a|
 1.	Mitarbeiter klickt auf das Navigationselement "Customer".
@@ -245,7 +245,7 @@ image::./images/Sequence_Diagrams/View_Catalog.png[Sequence diagram: View Catalo
 1.	Ein Mitarbeiter drückt auf einen angezeigten Eintrag des Katalogs (Wein).
 2.	Einem Mitarbeiter werden die Details der ausgewählten Wein angezeigt.
 |Erweiterungen              | -
-|Funktionale Anforderungen  | -
+|Funktionale Anforderungen  | <<F0115>>
 |===
 
 [[sequence_diagram_view_product_details]]
@@ -336,7 +336,7 @@ image::./images/Sequence_Diagrams/Add_Product_to_Cart.png[Sequence diagram: Add 
 5.	Weine werden in der gewählten Menge aus dem Bestand genommen
 6.	Bestellung wird archiviert.
 |Erweiterungen              | -
-|Funktionale Anforderungen  | <<F0220>> <<F0230>>
+|Funktionale Anforderungen  | <<F0220>> <<F0230>> <<F0231>>
 |===
 
 
@@ -355,7 +355,7 @@ image::./images/Sequence_Diagrams/Add_Product_to_Cart.png[Sequence diagram: Add 
 1.	Der Akteur hat sich beim System authentifiziert (d. H. Ist ein registrierter Benutzer).
 2.	Der Aktuer drükt “Kunden List”.
 |Erweiterungen              | -
-|Funktionale Anforderungen  | <<F0300>> <<F0301>>
+|Funktionale Anforderungen  | <<F0302>> <<F0303>>
 |===
 
 
@@ -374,7 +374,7 @@ image::./images/Sequence_Diagrams/Add_Product_to_Cart.png[Sequence diagram: Add 
 1.	Mitarbeiter wählt "Lager" in der Navigationsleiste.
 2.	Die vollständige Liste aller Artikel des Inventars und des aktuellen Lagerbestands wird angezeigt
 |Erweiterungen              | -
-|Funktionale Anforderungen  | <<F0100>> <<F0102>>
+|Funktionale Anforderungen  | <<F0100>> <<F0101>> <<F0102>>
 |===
 
 
@@ -393,7 +393,7 @@ image::./images/Sequence_Diagrams/Add_Product_to_Cart.png[Sequence diagram: Add 
 1.	Mitarbeiter wählt "Sorgen" in der Navigationsleiste
 2.	Die vollständige Liste aller abgeschlossenen Bestellungen wird angezeigt
 |Erweiterungen              | -
-|Funktionale Anforderungen  | <<F0250>>
+|Funktionale Anforderungen  | <<F0240>> <<F0250>>
 |===
 
 [[sequence_diagram_view_orders]]
@@ -417,7 +417,7 @@ image::./images/Sequence_Diagrams/View_Orders.png[Sequence diagram: View Orders,
 3. Er gibt einen Weinname, ein Bild und usw. ein.
 4. Wenn eindeutig: Mit den angegebenen Daten wird den Winekatalog geändert.
 |Erweiterungen              | -
-|Funktionale Anforderungen  | <<F0120>>
+|Funktionale Anforderungen  | <<F0101>> <<F0120>>
 |===
 
 
@@ -465,7 +465,7 @@ image::./images/Sequence_Diagrams/View_Orders.png[Sequence diagram: View Orders,
 5.	Weine werden in der gewählten Menge aus dem Bestand genommen
 6.	Bestellung wird archiviert.
 |Erweiterungen              | -
-|Funktionale Anforderungen  | <<F0231>>
+|Funktionale Anforderungen  | <<F0230>> <<F0231>>
 |===
 
 
@@ -484,7 +484,7 @@ image::./images/Sequence_Diagrams/View_Orders.png[Sequence diagram: View Orders,
 1.	Der Administrator hat sich beim System authentifiziert (d. H. Ist ein registrierter Benutzer).
 2.	Der Administrator drükt “Mitarbeiter List”.
 |Erweiterungen              | -
-|Funktionale Anforderungen  | <<F0030>>
+|Funktionale Anforderungen  | <<F0030>> <<F0031>>
 |===
 
 
