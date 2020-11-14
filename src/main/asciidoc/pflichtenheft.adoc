@@ -26,25 +26,21 @@
 ===== 7.1.Akteure
 ===== 7.2.Überblick Anwendungsfalldiagramm
 ===== 7.3.Anwendungsfallbeschreibungen
-=== 8.Use-Cases
-===== 8.1. Actors
-===== 8.2. Use-Case Diagram
-===== 8.3. Use-Case Descriptions
-=== 9.Funktionale Anforderungen
-===== 9.1.Muss-Kriterien
-===== 9.2.Kann-Kriterien
-=== 10.Nicht-Funktionale Anforderungen
-===== 10.1.Qualitätsziele
-===== 10.2.Konkrete Nicht-Funktionale Anforderungen:
-=== 11.GUI Prototyp
-===== 11.1.Überblick: Dialoglandkarte
-===== 11.2.Dialogbeschreibung
-=== 12.Datenmodell
-===== 12.1.Überblick: Klassendiagramm
-===== 12.2.Klassen und Enumerationen
-=== 13.Akzeptanztestfälle
-=== 14.Glossar
-=== 15.Offene Punkte
+=== 8.Funktionale Anforderungen
+===== 8.1.Muss-Kriterien
+===== 8.2.Kann-Kriterien
+=== 9.Nicht-Funktionale Anforderungen
+===== 9.1.Qualitätsziele
+===== 9.2.Konkrete Nicht-Funktionale Anforderungen:
+=== 10.GUI Prototyp
+===== 10.1.Überblick: Dialoglandkarte
+===== 10.2.Dialogbeschreibung
+=== 11.Datenmodell
+===== 11.1.Überblick: Klassendiagramm
+===== 11.2.Klassen und Enumerationen
+=== 12.Akzeptanztestfälle
+=== 13.Glossar
+=== 14.Offene Punkte
 
 
 ***
@@ -145,41 +141,15 @@ image:./images/Top_Level_Architecture.png[top level architecture]
 
 ***
 == 7.Anwendungsfälle
+Dieser Abschnitt gibt einen Überblick über die Anwendungsfälle, die das System unterstützen muss. Diese Anwendungsfälle beschreiben, welche Funktionen das System (meistens) aus Sicht des Kunden bereitstellen muss und welche Akteure beteiligt sind.
+
 
 === 7.1.Akteure
-
-Akteure sind die Benutzer des Software-Systems oder Nachbarsysteme, welche darauf zugreifen. Dokumentieren Sie die Akteure in einer Tabelle. Diese Tabelle gibt einen Überblick über die Akteure und beschreibt sie kurz. Die Tabelle hat also mindestens zwei Spalten (Akteur Name und Kommentar).
-Weitere relevante Spalten können bei Bedarf ergänzt werden.
+Akteure sind Benutzer des Systems oder benachbarter Systeme, die darauf zugreifen. Die folgende Tabelle fasst alle Akteure des Systems zusammen und enthält eine Beschreibung des Akteurs. Abstrakte Akteure (d. H. Ein Akteur, der andere kursiv geschriebene Akteure gruppiert) werden zum Verallgemeinern und Gruppieren verwendet.
 
 // See http://asciidoctor.org/docs/user-manual/#tables
 [options="header"]
 [cols="1,4"]
-|===
-|Name |Beschreibung
-|...  |...
-|===
-
-=== 7.2.Überblick Anwendungsfalldiagramm
-Anwendungsfall-Diagramm, das alle Anwendungsfälle und alle Akteure darstellt
-
-
-
-=== 7.3.Anwendungsfallbeschreibungen
-Dieser Unterabschnitt beschreibt die Anwendungsfälle. In dieser Beschreibung müssen noch nicht alle Sonderfälle und Varianten berücksichtigt werden. Schwerpunkt ist es, die wichtigsten Anwendungsfälle des Systems zu finden. Wichtig sind solche Anwendungsfälle, die für den Auftraggeber, den Nutzer den größten Nutzen bringen.
-Für komplexere Anwendungsfälle ein UML-Sequenzdiagramm ergänzen.
-Einfache Anwendungsfälle mit einem Absatz beschreiben.
-Die typischen Anwendungsfälle (Anlegen, Ändern, Löschen) können zu einem einzigen zusammengefasst werden.
-
-
-***
-== 8.Use-Cases
-Dieser Abschnitt gibt einen Überblick über die Anwendungsfälle, die das System unterstützen muss. Diese Anwendungsfälle beschreiben, welche Funktionen das System (meistens) aus Sicht des Kunden bereitstellen muss und welche Akteure beteiligt sind.
-
-
-=== 8.1. Actors
-Akteure sind Benutzer des Systems oder benachbarter Systeme, die darauf zugreifen. Die folgende Tabelle fasst alle Akteure des Systems zusammen und enthält eine Beschreibung des Akteurs. Abstrakte Akteure (d. H. Ein Akteur, der andere kursiv geschriebene Akteure gruppiert) werden zum Verallgemeinern und Gruppieren verwendet.
-
-[cols="1h, 3"]
 |===
 |Name                       |Description
 |User                       |Repräsentativ für jede Person, die interagiert und mit dem System interagiert, unabhängig davon, ob sie authentifiziert ist oder nicht.
@@ -189,12 +159,12 @@ Akteure sind Benutzer des Systems oder benachbarter Systeme, die darauf zugreife
 |===
 
 
-=== 8.2. Use-Case Diagram
+=== 7.2.Überblick Anwendungsfalldiagramm
 [[Use_Case_Diagram]]
 image::./images/Use_Case_Diagram.png[Use Case diagram, 100%, 100%, pdfwidth=100%, title= "Use case diagram of Vinothek", align=center]
 
 
-=== 8.3. Use-Case Descriptions
+=== 7.3.Anwendungsfallbeschreibungen
 In diesem Abschnitt werden die im Anwendungsfalldiagramm gezeigten Anwendungsfälle ausführlich beschrieben.
 
 
@@ -518,11 +488,11 @@ image::./images/Sequence_Diagrams/View_Orders.png[Sequence diagram: View Orders,
 
 
 ***
-== 9.Funktionale Anforderungen
+== 8.Funktionale Anforderungen
 
 Die folgenden Tabellen sollen einen Überblick geben über die Anforderungen, die das zu erstellende Programm auf jeden Fall leisten muss (Muss-Kriterien) und Anforderungen, die das Programm leisten können soll, aber für den korrekten Betrieb entbehrlich sind (Kann-Kriterien).
 
-=== 9.1.Muss-Kriterien:
+=== 8.1.Muss-Kriterien:
 
 Diese Tabelle enthält
 
@@ -759,7 +729,7 @@ Das System soll aus der Differenz von Einnahmen und Ausgaben eine Bilanz erstell
 |===
 
 
-=== 9.2.Kann-Kriterien
+=== 8.2.Kann-Kriterien
 
 Diese Tabelle enthält:
 
@@ -794,11 +764,11 @@ Das System soll, falls eine Bestellung zu lange den Status “OFFEN” hat, erm�
 
 
 ***
-== 10.Nicht-Funktionale Anforderungen
+== 9.Nicht-Funktionale Anforderungen
 
 Dieser Abschnitt wird einen Überblick über die nicht-funktionalen Anforderungen an das Projekt Vinothek geben. Diese Anforderung beschreiben, wie das System funktioniert und innerhalb welcher Grenzen es arbeiten soll.
 
-=== 10.1.Qualitätsziele
+=== 9.1.Qualitätsziele
 
 Die folgende Tabelle zeigt welche Qualitätsanforderungen in welchem Umfang erfüllt werden müssen. Die erste Spalte führt die Qualitätsanforderungen auf, in den folgenden Spalten zeigt ein “x” deren Priorität. Die zugewiesene Priorität muss bei der konkreten Ausarbeitung der nicht-funktionalen Anforderungen berücksichtigt werden.
 
@@ -812,7 +782,7 @@ Die folgende Tabelle zeigt welche Qualitätsanforderungen in welchem Umfang erf�
 |Sicherheit                 |   |   |   | x |
 |===
 
-=== 10.2.Konkrete Nicht-Funktionale Anforderungen:
+=== 9.2.Konkrete Nicht-Funktionale Anforderungen:
 
 Diese Tabelle enthält:
 
@@ -851,13 +821,13 @@ Mitarbeiter müssen sich einloggen, um das System zu benutzen, damit Kunden nich
 
 
 ***
-== 11.GUI Prototyp
+== 10.GUI Prototyp
 
 In diesem Kapitel soll ein Entwurf der Navigationsmöglichkeiten und Dialoge des Systems erstellt werden.
 Idealerweise entsteht auch ein grafischer Prototyp, welcher dem Kunden zeigt, wie sein System visuell umgesetzt werden soll.
 Konkrete Absprachen - beispielsweise ob der grafische Prototyp oder die Dialoglandkarte höhere Priorität hat - sind mit dem Kunden zu treffen.
 
-=== 11.1.Überblick: Dialoglandkarte
+=== 10.1.Überblick: Dialoglandkarte
 Erstellen Sie ein Übersichtsdiagramm, das das Zusammenspiel Ihrer Masken zur Laufzeit darstellt. Also mit welchen Aktionen zwischen den Masken navigiert wird.
 //Die nachfolgende Abbildung zeigt eine an die Pinnwand gezeichnete Dialoglandkarte. Ihre Karte sollte zusätzlich die Buttons/Funktionen darstellen, mit deren Hilfe Sie zwischen den Masken navigieren.
 
@@ -866,7 +836,7 @@ image::./images/GUI/Untitled Diagram.png[Sequence diagram: View Orders, 100%, 10
 ***
 
 
-=== 11.2.Dialogbeschreibung
+=== 10.2.Dialogbeschreibung
 Für jeden Dialog:
 
 ==== Katalog Ansicht
@@ -912,15 +882,15 @@ image::./images/GUI/Web neuer_Kunde.png[Sequence diagram: View Orders, 100%, 100
 ==== Kunden Registrieren
 
 
-== 12.Datenmodell
+== 11.Datenmodell
 
-=== 12.1.Klassendiagramm
+=== 11.1.Klassendiagramm
 Das (Analyse-) Klassendiagramm soll einen Überblick über die Domäne im Kontext des Systems geben, das im Rahmen dieses Projekts entwickelt werden soll
 
 [[class_diagram]]
 image::./images/diagrams/Class_Diagram.png[Class_Diagram, 100%, 100%, pdfwidth=100%, title= " Domain model of Vinothek", align=center]
 
-=== 12.2.Klassen und Enumerationen
+=== 11.2.Klassen und Enumerationen
 Die folgende Tabelle gibt einen Überblick über die im Domänenmodell verwendeten Klassen / Aufzählungen. Daher ist dieser Abschnitt eine Teilmenge des Glossars und soll jedem Stakeholder ein gemeinsames Verständnis der zentralen Begriffe und Konzepte der Domäne des Systems vermitteln.
 
 // See http://asciidoctor.org/docs/user-manual/#tables
@@ -947,7 +917,7 @@ Die folgende Tabelle gibt einen Überblick über die im Domänenmodell verwendet
 
 
 ***
-== 13.Akzeptanztestfälle
+== 12.Akzeptanztestfälle
 Mithilfe von Akzeptanztests wird geprüft, ob die Software die funktionalen Erwartungen und Anforderungen im Gebrauch erfüllt. Diese sollen und können aus den Anwendungsfallbeschreibungen und den UML-Sequenzdiagrammen abgeleitet werden. D.h., pro (komplexen) Anwendungsfall gibt es typischerweise mindestens ein Sequenzdiagramm (welches ein Szenarium beschreibt). Für jedes Szenarium sollte es einen Akzeptanztestfall geben. Listen Sie alle Akzeptanztestfälle in tabellarischer Form auf.
 Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumenten (z.B. im Test-Plan) referenzieren zu können.
 
@@ -1133,12 +1103,12 @@ Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumen
 
 
 ***
-== 14.Glossar
+== 13.Glossar
 Sämtliche Begriffe, die innerhalb des Projektes verwendet werden und deren gemeinsames Verständnis aller beteiligten Stakeholder essentiell ist, sollten hier aufgeführt werden.
 Insbesondere Begriffe der zu implementierenden Domäne wurden bereits beschrieben, jedoch gibt es meist mehr Begriffe, die einer Beschreibung bedürfen. +
 Beispiel: Was bedeutet "Kunde"? Ein Nutzer des Systems? Der Kunde des Projektes (Auftraggeber)?
 
 
 ***
-== 15.Offene Punkte
+== 14.Offene Punkte
 Offene Punkte werden entweder direkt in der Spezifikation notiert. Wenn das Pflichtenheft zum finalen Review vorgelegt wird, sollte es keine offenen Punkte mehr geben.
