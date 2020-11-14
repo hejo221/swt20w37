@@ -883,16 +883,34 @@ image::./images/GUI/Web neuer_Kunde.png[Sequence diagram: View Orders, 100%, 100
 == 10.Datenmodell
 
 === 10.1.Überblick: Klassendiagramm
-UML-Analyseklassendiagramm
+Das (Analyse-) Klassendiagramm soll einen Überblick über die Domäne im Kontext des Systems geben, das im Rahmen dieses Projekts entwickelt werden soll
+
+[[class_diagram]]
+image::./images/diagrams/Class_Diagram.png[Class_Diagram, 100%, 100%, pdfwidth=100%, title= " Domain model of Vinothek", align=center]
 
 === 10.2.Klassen und Enumerationen
-Dieser Abschnitt stellt eine Vereinigung von Glossar und der Beschreibung von Klassen/Enumerationen dar. Jede Klasse und Enumeration wird in Form eines Glossars textuell beschrieben. Zusätzlich werden eventuellen Konsistenz- und Formatierungsregeln aufgeführt.
+Die folgende Tabelle gibt einen Überblick über die im Domänenmodell verwendeten Klassen / Aufzählungen. Daher ist dieser Abschnitt eine Teilmenge des Glossars und soll jedem Stakeholder ein gemeinsames Verständnis der zentralen Begriffe und Konzepte der Domäne des Systems vermitteln.
 
 // See http://asciidoctor.org/docs/user-manual/#tables
 [options="header"]
 |===
-|Klasse/Enumeration |Beschreibung |
-|…                  |…            |
+|Klasse/Enumeration |Beschreibung
+|Wine               |**<<UC0404>>**
+|CartItem           |View Account
+|Cart               |Der Administrator sollte in der Lage sein, die gesamte Liste der Mitarbeiter der Anwendung anzuzeigen.
+|InventoryItem      |Admin
+|Inventory          |Der Administrator wählt "Mitarbeiter List" in der Navigationsleiste
+|Orderline          |Der Administrator hat sich beim System authentifiziert (d. H. Ist ein registrierter Benutzer).
+|Accounting         |Stellt Informationen über alte Bestellungen, alte Nachbestellung und Balanzierung bereit.
+|OrderManager       |OrderManager	Verwaltet die Order und speichert die Order in die Buchhaltung ab.
+|Preorder           |Erbt von Order. Wenn eine Bestellung durchgeführt werden soll und die Bestellung trennbar in Nachbestellung nötig und Nachbestellung nicht nötig ist, wird für Nachbestellung nötig die Klasse Preorder statt Order benutzt.
+|Order              |Klasse, welche eine Bestellung verwaltet und dessen Status ändern kann.
+|OrderStatus        |Zustand der Bestellung: OPEN, CLOSED oder CANCELLED.
+|CustomerManager    |Kann alle Kundendaten listen.
+|Customer           |Customer	Kunde, welcher im System mit seinen Daten für spätere Bestellungen oder Werbeaktionen gespeichert werden soll.
+|User               |Benutzer, welcher sich einloggen kann. Je nach Berechtigungsstufe: Admin oder Mitarbeiter.
+|Role               |Berechtigungsstufe für User: Admin oder Mitarbeiter.
+|WineShop           |WineShop	Zentrale Klasse, worin später alle Hauptobjekte abgelegt werden.
 |===
 
 
