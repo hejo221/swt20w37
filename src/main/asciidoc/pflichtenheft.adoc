@@ -508,7 +508,7 @@ image::./images/Sequence_Diagrams/View_Orders.png[Sequence diagram: View Orders,
 
 
 ***
-[[Funktionale Anforderungen]]
+[[FunktionaleAnforderungen]]
 == 8.Funktionale Anforderungen
 
 Die folgenden Tabellen sollen einen Überblick geben über die Anforderungen, die das zu erstellende Programm auf jeden Fall leisten muss (Muss-Kriterien) und Anforderungen, die das Programm leisten können soll, aber für den korrekten Betrieb entbehrlich sind (Kann-Kriterien).
@@ -827,7 +827,7 @@ Die folgende Tabelle zeigt welche Qualitätsanforderungen in welchem Umfang erf�
 |Sicherheit                 |   |   |   | x |
 |===
 
-[[Konkrete Nicht-Funktionale Anforderungen]]
+[[KonkreteNicht-Funktionale Anforderungen]]
 === 9.2.Konkrete Nicht-Funktionale Anforderungen:
 
 Diese Tabelle enthält:
