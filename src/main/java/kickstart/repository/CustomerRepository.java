@@ -1,5 +1,5 @@
 /*
- * Copyright 2014-2020 the original author or authors.
+ * Copyright 2013-2019 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,16 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package kickstart.controller;
+package kickstart.repository;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import kickstart.model.Customer;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.util.Streamable;
 
-@Controller
-public class WelcomeController {
+public interface CustomerRepository extends CrudRepository<Customer, Long> {
 
-	@GetMapping("/")
-	public String index() {
-		return "welcome";
-	}
+	@Override
+	Streamable<Customer> findAll();
 }

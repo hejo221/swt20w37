@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+    <head th:fragment="head(title)">
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+        <link href="../../static/resources/css/style.css" th:href="@{/resources/css/style.css}" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+        <title th:text="${title}">Vinothek</title>
+    </head>
+
+    <body>
+        <div th:fragment="menu(menu)">
+            <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+                <a class="navbar-brand" href="#">Vinothek</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item" th:classappend="${menu} == 'index'? 'active'">
+                            <a class="nav-link" href="#" th:href="@{/}">Home <span class="sr-only" th:if="${menu} == 'index'">(current)</span></a>
+                        </li>
+                        <li class="nav-item" th:classappend="${menu} == 'catalog'? 'active'">
+                            <a class="nav-link" href="#" th:href="@{/catalog}">Catalog <span class="sr-only" th:if="${menu} == 'catalog'">(current)</span></a>
+                        </li>
+
+                        <li class="nav-item dropdown" sec:authorize="isAuthenticated()">
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Arbeitsliste</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdown02">
+                                <a class="dropdown-item" href="#" th:href="@{/}">Katalogverwaltung</a>
+                                <a class="dropdown-item" href="#" th:href="@{/}">Lager & Nachbestellung</a>
+                                <a class="dropdown-item" href="#" th:href="@{/customer/list}">Kundenstammverwaltung</a>
+                                <a class="dropdown-item" href="#" th:href="@{/}">Benutzerverwaltung</a>
+                                <a class="dropdown-item" href="#" th:href="@{/}">Rechnungen</a>
+                                <a class="dropdown-item" href="#" th:href="@{/}">Bilanzierung</a>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="nav-item icons">
+                        <a class="material-icons md-24 md-light" sec:authorize="isAuthenticated()" href="#" th:href="@{/}">shopping_cart</a>
+                        <a class="material-icons md-24 md-light" sec:authorize="isAuthenticated()" href="#" th:href="@{/}">filter_alt</a>
+                        <a class="material-icons md-24 md-light" sec:authorize="hasRole('BOSS')" href="#" th:href="@{/user/register}">person_add</a>
+                        <!--<a class="material-icons md-24 md-light" sec:authorize="!isAuthenticated()" href="#" th:href="@{/user/login}">login</a>-->
+                    </div>
+
+                    <a class="btn btn-secondary my-2 mr-2 my-sm-0" th:href="@{/user/login}"
+                       sec:authorize="!isAuthenticated()">Login</a>
+                    <form class="form-inline my-2 my-lg-0" th:action="@{/logout}" sec:authorize="isAuthenticated()">
+                        <<!--<input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">-->
+                        <span class="text-white" sec:authentication="name">User</span>
+                        <span class="text-white mx-2" sec:authentication="principal.authorities">Role</span>
+                        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Logout</button>
+                    </form>
+                </div>
+
+            </nav>
+            <!--
+            <form class="form-inline my-2 my-lg-0 justify-content-end">
+                <input class="form-control mr-sm-2" type="text" placeholder="Suchen" aria-label="Search">
+                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+            </form>
+            -->
+        </div>
+    </body>
+</html>
