@@ -10,47 +10,45 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="../static/resources/css/style.css" th:href="@{/resources/css/style.css}" rel="stylesheet">
 
-        <title>Customer List</title>
+        <title>User List</title>
     </head>
 
     <body>
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" th:replace="fragments/common :: menu('empl')" />
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" th:replace="fragments/common :: menu('admin')" />
 
         <main role="main" class="container">
             <header class="text-center">
-                <h1 th:text="#{customer.list}">Customer List</h1>
+                <h1 th:text="#{user.list}">User List</h1>
             </header>
 
-            <form class="form mb-3" method="get" th:action="@{/customer/register}">
-                <button type="submit" class="btn btn-success">Add customer</button>
+            <form sec:authorize="hasRole('ADMIN')" class="form mb-3" method="get" th:action="@{/user/register}">
+                <button type="submit" class="btn btn-success">Add Employee</button>
             </form>
 
             <table class="ui celled table text-center">
                 <thead>
                 <tr>
+                    <th scope="col" th:text="#{username}">Username</th>
                     <th scope="col" th:text="#{firstName}">First Name</th>
                     <th scope="col" th:text="#{lastName}">Last Name</th>
-                    <th scope="col" th:text="#{address}">Address</th>
-                    <th scope="col" th:text="#{email}">Email</th>
                     <th scope="col" th:text="#{edit}">Edit</th>
                     <th scope="col" th:text="#{delete}">Delete</th>
                 </tr>
                 </thead>
                 <tbody th:remove="all-but-first">
-                <tr th:each=" customer : ${customers}">
-                    <td th:text="${customer.userAccount.firstname}">Paul</td>
-                    <td th:text="${customer.userAccount.lastname}">Max</td>
-                    <td th:text="${customer.address}">Nöthnitzer Straße 46</td>
-                    <td th:text="${customer.userAccount.email}">paul@gmail.com</td>
+                <tr th:each=" user : ${users}">
+                    <td th:text="${user.username}">paul1984</td>
+                    <td th:text="${user.userAccount.firstname}">Paul</td>
+                    <td th:text="${user.userAccount.lastname}">Max</td>
                     <td>
-                        <form th:action="@{/customer/edit/__${customer.getId()}__}" method="get">
+                        <form th:action="@{/user/edit/__${user.getId()}__}" method="get">
                             <button type="submit" class="btn btn-info" th:text="#{edit}">Edit</button>
                         </form>
                     </td>
                     <td>
-                        <form th:action="@{/customer/delete}" class="ui form" role="form" method="post">
+                        <form th:action="@{/user/delete}" class="ui form" role="form" method="post">
                             <button type="submit" class="btn btn-danger" th:text="#{delete}">Delete</button>
-                            <input type="number"  name="id" th:value="${customer.id}" hidden/>
+                            <input type="number"  name="id" th:value="${user.id}" hidden/>
                         </form>
                     </td>
                 </tr>

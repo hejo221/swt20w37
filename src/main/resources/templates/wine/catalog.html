@@ -1,0 +1,77 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- START BASIC STYLING IMPORTS -->
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    <script src="https://kit.fontawesome.com/6a6b621601.js" crossorigin="anonymous"></script>
+    <!-- END BASIC STYLING IMPORTS -->
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="../static/resources/css/style.css" th:href="@{/resources/css/style.css}" rel="stylesheet">
+    <link href="../static/resources/css/catalog.css" th:href="@{/resources/css/catalog.css}" rel="stylesheet">
+
+    <title>Catalog</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" th:replace="fragments/common :: menu('catalog')" />
+    <header class="text-center">
+        <h1 class="text-center">Katalog</h1>
+        <hr>
+    </header>
+    <main role="main" class="container">
+        <div class="container">
+            <div class="row pt-4">
+                <div class="col-3" sec:authorize="hasAnyRole('ADMIN')">
+                    <div class="input-group">
+                        <a class="btn btn-primary" th:href="@{/wine/add}" role="button"><i class="fas fa-plus pr-2"></i>Add New Wine</a>
+                    </div>
+                </div>
+                <form class="col-4" th:action="@{/wine/catalog}" method="get" id="form">
+                    <div class="row justify-content-end">
+                        <div class="col-12 input-group">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-outline-secondary" type="submit" id="button-addon">Search</button>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Search"
+                                   aria-label="Example text with button addon" aria-describedby="button-addon" name="search">
+                        </div>
+                    </div>
+                    <!-- to write search
+                    <input id="filter" name="filterType" th:value="${type}" type="text" hidden>
+                    -->
+                </form>
+            </div>
+            <div class="row mt-3">
+                <div class="col-4 pt-2 mb-3" th:each="wine : ${wines}">
+                    <div class="card">
+                        <img th:src="@{/resources/image/cover/{image}.jpg(image=${wine.image})}"
+                             src="../static/resources/img/cover/mas.png"
+                             class="card-img-top" alt="image">
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${wine.name}"></h5>
+                            <p class="card-text text-secondary card-description" th:text="${wine.description}"></p>
+                            <div>
+                                <i class="fas fa-euro-sign pr-2"></i>
+                                <span class="card-text" th:text="${wine.price}"></span>
+                            </div>
+                        </div>
+                        <div class="card-footer text-muted font-weight-light">
+                            <span>the total stock : 10</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
+</body>
+</html>
