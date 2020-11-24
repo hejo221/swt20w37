@@ -40,7 +40,7 @@ class CustomerController {
 
 	@GetMapping("/list")
 	String customers(Model model) {
-		model.addAttribute("customers", customerManager.findAll());
+		model.addAttribute("customers", customerRepository.findAll());
 
 		return "/customer/customers";
 	}

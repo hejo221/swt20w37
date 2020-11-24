@@ -30,14 +30,14 @@ public class CustomerManager {
 
 	public static final Role CUSTOMER_ROLE = Role.of("CUSTOMER");
 
-	private final CustomerRepository customers;
+	private final CustomerRepository customerRepository;
 	private final UserAccountManagement userAccounts;
 
-	CustomerManager(CustomerRepository customers, UserAccountManagement userAccounts) {
-		Assert.notNull(customers, "CustomerRepository must not be null!");
+	CustomerManager(CustomerRepository customerRepository, UserAccountManagement userAccounts) {
+		Assert.notNull(customerRepository, "CustomerRepository must not be null!");
 		Assert.notNull(userAccounts, "UserAccountManagement must not be null!");
 
-		this.customers = customers;
+		this.customerRepository = customerRepository;
 		this.userAccounts = userAccounts;
 	}
 
@@ -51,10 +51,7 @@ public class CustomerManager {
 		userAccount.setFirstname(form.getFirstname());
 		userAccount.setLastname(form.getLastname());
 
-		return customers.save(new Customer(userAccount, form.getAddress()));
+		return customerRepository.save(new Customer(userAccount, form.getAddress()));
 	}
 
-	public Streamable<Customer> findAll() {
-		return customers.findAll();
-	}
 }

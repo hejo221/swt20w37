@@ -22,6 +22,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
+import wineshop.user.UserRegistrationForm;
+
+import java.util.List;
 
 import static org.salespointframework.core.Currencies.EURO;
 

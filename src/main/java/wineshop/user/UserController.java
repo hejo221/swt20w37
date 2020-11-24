@@ -15,6 +15,7 @@
  */
 package wineshop.user;
 
+import org.salespointframework.useraccount.Password;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.security.access.prepost.PreAuthorize;

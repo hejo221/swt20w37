@@ -29,7 +29,6 @@ import java.util.List;
 
 
 @Component
-@Order(10)
 class UserDataInitializer implements DataInitializer {
 
 	private static final Logger LOG = LoggerFactory.getLogger(UserDataInitializer.class);

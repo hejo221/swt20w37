@@ -26,7 +26,6 @@ import org.springframework.util.Assert;
 import java.util.List;
 
 @Component
-@Order(10)
 class CustomerDataInitializer implements DataInitializer {
 
 	private static final Logger LOG = LoggerFactory.getLogger(CustomerDataInitializer.class);
