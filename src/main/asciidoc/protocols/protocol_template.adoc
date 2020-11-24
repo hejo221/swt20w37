@@ -1,0 +1,219 @@
+= Protokoll Gruppe 37
+
+== Treffen am 27.10.2020
+
+Ort:      online +
+Beginn:   18:00 Uhr +
+Ende:     19:30 Uhr
+
+__Schriftführer:__ Henrik John
+
+*Nächstes Treffen:* +
+30.10.2020, 13:00 Uhr, online
+
+__Teilnehmer:__
+
+- Noah Brinschwitz
+- Henrik John
+- David Nicklaser
+- Lavon Śpirydonaŭ
+- Tom Uhlemann
+- Steven Schwarz (Tutor)
+
+=== Bemerkungen
+
+* erstes Kennenlernen der Teammitglieder
+* erste Besprechung der Aufgabenstellung
+
+{nbsp} +
+
+== Treffen am 30.10.2020
+
+Ort:      online +
+Beginn:   12:30 Uhr +
+Ende:     15:00 Uhr
+
+__Schriftführer:__ Henrik John
+
+*Nächstes Treffen:* +
+03.11.2020, 09:20 Uhr, online
+
+__Teilnehmer:__
+
+- Noah Brinschwitz
+- Henrik John
+- Deokgeun Kim
+- David Nicklaser
+- Lavon Śpirydonaŭ
+- Tom Uhlemann
+- Steven Schwarz (Tutor/Kunde)
+
+=== Bemerkungen
+
+* Erstellung eines Fragekatalogs aus der Ausgabenstellung
+* erstes Kundengespräch
+
+=== Aktueller Stand
+
+* Präzisierung der Aufgabenstellung durch erstes Kundengespräch
+
+{nbsp} +
+
+== Treffen am 03.11.2020
+
+Ort:      online +
+Beginn:   09:20 Uhr +
+Ende:     11:00 Uhr
+
+__Schriftführer:__ Henrik John
+
+*Nächstes Treffen:* +
+06.11.2020, 07:00 Uhr, online
+
+__Teilnehmer:__
+
+- Noah Brinschwitz
+- Henrik John
+- Deokgeun Kim
+- David Nicklaser
+- Lavon Śpirydonaŭ
+- Tom Uhlemann
+- Steven Schwarz (Tutor/Kunde)
+
+=== Bemerkungen
+
+* Aufteilen der Aufgaben für das Pflichtenheft: +
+** Noah: GUI Prototyp +
+** Henrik: Funktionale / Nichtfunktionale Anforderungen +
+** Deokgeun: Anwendungsfälle +
+** David: Datenmodell +
+** Lavon: Aufgabenstellung und Zielsetzung +
+** Tom: Produktnutzung / Interessensgruppen +
+
+* Vergabe der Aufgaben für die Videoshop-Erweiterung: +
+** Noah: Suche +
+** Henrik: Durchschnittsbewertung +
+** Deokgeun: Warenkorb leeren +
+** David: Genauere Bestellungen +
+** Lavon: Passwort ändern +
+** Tom: Warenkorb Stückzahl +
+
+=== Aktueller Stand
+
+* weiteres Einarbeiten in Spring (Boot), Salespoint, Thymeleaf, etc. anhand erster Arbeiten an Videoshop-Erweiterung
+
+{nbsp} +
+
+== Treffen am 06.11.2020
+
+Ort:      online +
+Beginn:   07:00 Uhr +
+Ende:     11:00 Uhr
+
+__Schriftführer:__ Henrik John
+
+*Nächstes Treffen:* +
+10.11.2020, 09:20 Uhr, online
+
+__Teilnehmer:__
+
+- Noah Brinschwitz
+- Henrik John
+- David Nicklaser
+- Lavon Śpirydonaŭ
+- Tom Uhlemann
+
+=== Bemerkungen
+
+* Arbeit mit CRC-Karten
+* Besprechen des Vorgehens zum Erreichen des ersten Meilensteins
+
+=== Aktueller Stand
+
+* Entwurf eines ersten Modells auf Grundlage von CRC-Karten
+* erste Arbeiten an Pflichtenheft
+
+{nbsp} +
+
+== Treffen am 10.11.2020
+
+Ort:      online +
+Beginn:   09:20 Uhr +
+Ende:     11:00 Uhr
+
+__Schriftführer:__ Henrik John
+
+*Nächstes Treffen:* +
+XX.XX.2020, XX:XX Uhr, online
+
+__Teilnehmer:__
+
+- Noah Brinschwitz
+- Henrik John
+- Deokgeun Kim
+- David Nicklaser
+- Lavon Śpirydonaŭ
+- Tom Uhlemann
+- Steven Schwarz (Tutor/Kunde)
+
+=== Bemerkungen
+
+* erste Arbeiten an Pflichtenheft vorgestellt
+* Beginn mit Arbeiten an UML-Diagrammen
+
+=== Aktueller Stand
+
+* Arbeit an Pflichtenheft fortgesetzt
+
+////
+
+== Template:
+
+Treffen am XX.XX.20XX
+
+Ort:      Ort des Treffens +
+Beginn:   xx:xx Uhr +
+Ende:     xx:xx Uhr
+
+__Schriftführer:__
+
+*Nächstes Treffen:* +
+XX.XX.20XX, xx:xx Uhr, Ort des nächsten Treffens
+
+__Teilnehmer:__
+//Tabellarisch oder Aufzählung, Kennzeichnung von Teilnehmern mit besonderer Rolle (z.B. Kunde)
+
+- Teilnehmer 1
+- Teilnehmer 2
+- ...
+
+== Bemerkungen
+Verwarnungen, besondere Vorfälle, Organisatorisches, wichtige getroffene Entscheidungen
+
+== Retrospektive des letzten Sprints
+*Issue referenziert die Issue ID von GitHub*
+// Wie ist der Status der im letzten Sprint erstellten Issues/veteilten Aufgaben?
+
+// See http://asciidoctor.org/docs/user-manual/=tables
+[option="headers"]
+|===
+|Issue |Aufgabe |Status |Bemerkung
+|…     |…       |…      |…
+|===
+
+
+== Aktueller Stand
+Anmerkungen und Kritik zum aktuellen Stand der Software, den Diagrammen und den
+Dokumenten.
+
+== Planung des nächsten Sprints
+*Issue referenziert die Issue ID von GitHub*
+
+// See http://asciidoctor.org/docs/user-manual/=tables
+[option="headers"]
+|===
+|Issue |Titel |Beschreibung |Verantwortlicher |Status
+|…     |…     |…            |…                |…
+|===
+
+////

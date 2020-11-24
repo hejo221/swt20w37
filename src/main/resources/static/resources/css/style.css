@@ -1,0 +1,14 @@
+/* CSS RESET */
+
+body {
+	padding-top: 5rem;
+}
+.starter-template {
+	padding: 3rem 1.5rem;
+	text-align: center;
+}
+
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-light { color: rgba(255, 255, 255, 1); }
+.material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
+
