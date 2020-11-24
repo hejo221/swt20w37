@@ -25,13 +25,7 @@ import org.springframework.util.Assert;
 
 import static org.salespointframework.core.Currencies.EURO;
 
-/**
- * A {@link DataInitializer} implementation that will create dummy data for the application on application startup.
- *
- * @author Paul Henke
- * @author Oliver Gierke
- * @see DataInitializer
- */
+
 @Component
 @Order(20)
 class WineDataInitializer implements DataInitializer {

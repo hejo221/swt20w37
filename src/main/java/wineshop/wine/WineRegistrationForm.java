@@ -1,14 +1,8 @@
 package wineshop.wine;
 
-import org.javamoney.moneta.Money;
-import wineshop.wine.Wine;
-
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-import java.math.BigDecimal;
-
-import static org.salespointframework.core.Currencies.EURO;
 
 public class WineRegistrationForm {
 

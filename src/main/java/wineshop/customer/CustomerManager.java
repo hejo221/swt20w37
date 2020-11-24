@@ -23,11 +23,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
-/**
- * Implementation of business logic related to {@link Customer}s.
- *
- * @author Oliver Gierke
- */
+
 @Service
 @Transactional
 public class CustomerManager {
