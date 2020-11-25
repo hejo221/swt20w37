@@ -83,7 +83,7 @@ image:models/analysis/user.svg[class design diagram - user]
 |Klasse/Enumeration |Beschreibung
 |User |Benutzerdefinierte Klasse zum Erweitern des Salespoint-UserAccount um einen Benutzernamen
 |UserController |Ein Spring MVC-Controller zur Bearbeitung von Anfragen zur Registrierung, Anzeige und Bearbeitung von Mitarbeiterdaten
-|UserDataInitializer |Eine Implementierung des DataInitializer zum Erstellen von Dummy-Kunden beim Start der Anwendung
+|UserDataInitializer |Eine Implementierung des DataInitializer zum Erstellen von Dummy-Mitarbeitern beim Start der Anwendung
 |UserManager |Serviceklasse zur Mitarbeiterverwaltung
 |UserRepository |Eine Repository-Schnittstelle zum Verwalten von Mitarbeiterinstanzen
 |UserRegistrationForm |Eine Klasse zur Validierung der Benutzereingaben des Registrierungsformulars für Mitarbeiter
