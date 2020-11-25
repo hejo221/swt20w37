@@ -1,51 +1,87 @@
-/*
- * Copyright 2013-2020 the original author or authors.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package wineshop.wine;
 
+import org.javamoney.moneta.Money;
 import org.salespointframework.catalog.Product;
-import javax.money.MonetaryAmount;
 import javax.persistence.Entity;
-
 
 @Entity
 public class Wine extends Product {
 
-	public static enum WineType {
-		WHITE, RED;
+
+	public enum WineType {RED, WHITE, ROSE, SPARKLING, FRUITWINE, OTHER}
+	private int itemNr;
+	private String pic, details;
+	private Money buyPrice;
+	private WineType wineType;
+
+	@SuppressWarnings({"unused", "deprecation"})
+	public Wine() {
 	}
 
-	private String description, image;
-	private WineType type;
-
-	@SuppressWarnings({ "unused", "deprecation" })
-	private Wine() {}
-
-	public Wine(String name, String image, MonetaryAmount price, String description, WineType type) {
-		super(name, price);
-
-		this.image = image;
-		this.description = description;
-		this.type = type;
+	public Wine(Integer itemNr, String name, WineType wineType, String pic, Money buyPrice, Money sellPrice, String details) {
+		super(name, sellPrice);
+		this.itemNr = itemNr;
+		this.pic = pic;
+		this.wineType = wineType;
+		this.buyPrice = buyPrice;
+		this.details = details;
 	}
 
-	public String getDescription() {
-		return description;
+	//GETTERS
+
+	public int getItemNr() {
+		return itemNr;
 	}
 
-	public String getImage() { return image; }
+	//super.getName()
 
-	public WineType getType() {	return type; }
+	public String getPic() {
+		return pic;
+	}
+
+	public Money getBuyPrice() {
+		return buyPrice;
+	}
+
+	//super.getPrice()
+
+	public String getDetails() {
+		return details;
+	}
+
+	public WineType getWineType(){
+		return this.wineType;
+	}
+
+
+	public String getWineTypeAufDeutsch() {
+		if (this.wineType==WineType.RED ) return "Rotwein";
+		else if (this.wineType==WineType.WHITE ) return "Weißwein";
+		else if (this.wineType==WineType.FRUITWINE ) return "Obstwein";
+		else if (this.wineType==WineType.ROSE ) return "Roséwein";
+		else if (this.wineType==WineType.SPARKLING ) return "Schaumwein";
+		else return "Anderes";
+	}
+
+	//SETTERS
+
+	public void setItemNr(int itemNr) {
+		this.itemNr = itemNr;
+	}
+
+	//super.setName()
+
+	public void setPic(String pic) {
+		this.pic = pic;
+	}
+
+	public void setBuyPrice(Money buyPrice) {
+		this.buyPrice = buyPrice;
+	}
+
+	//super.getPrice()
+
+	public void setDetails(String details) {
+		this.details = details;
+	}
 }

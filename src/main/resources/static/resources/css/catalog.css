@@ -2,6 +2,10 @@
     cursor: pointer;
 }
 
+body{
+    font-family: "Century Gothic", sans-serif;
+}
+
 .filter-radios input[type="radio"] {
     opacity: 0;
     position: fixed;
@@ -39,4 +43,10 @@
 
 .card-footer {
     font-size: small;
+}
+
+img {
+    object-fit: contain;
+    width:80px;
+    height:300px;
 }

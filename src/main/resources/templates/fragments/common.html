@@ -28,7 +28,7 @@
                             <a class="nav-link" href="#" th:href="@{/}">Home<span class="sr-only" th:if="${menu} == 'index'">(current)</span></a>
                         </li>
                         <li class="nav-item" th:classappend="${menu} == 'catalog'? 'active'">
-                            <a class="nav-link" href="#" th:href="@{/wine/catalog}">Catalog<span class="sr-only" th:if="${menu} == 'catalog'">(current)</span></a>
+                            <a class="nav-link" href="#" th:href="@{catalog}">Katalog<span class="sr-only" th:if="${menu} == 'catalog'">(current)</span></a>
                         </li>
 
                         <li class="nav-item dropdown" th:classappend="${menu} == 'empl'? 'active'" sec:authorize="isAuthenticated()">
