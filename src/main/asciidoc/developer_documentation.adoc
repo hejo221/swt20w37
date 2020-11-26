@@ -3,6 +3,7 @@
 |===
 |Version | Bearbeitungsdatum   | Autor 
 |0.1	| 25.11.2020 | Henrik
+|0.2	| 26.11.2020 | Kim
 |===
 
 = Entwicklerdokumentation
