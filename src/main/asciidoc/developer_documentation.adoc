@@ -51,6 +51,79 @@ _Client-Server-Modell der Anwendung. Der Client enthält nur HTML- und CSS-Datei
 
 HTML-Vorlagen werden clientseitig mit den entsprechenden CSS-Stylesheets gerendert. Die in den Templates angezeigten Daten werden von Thymeleaf bereitgestellt. Thymeleaf empfängt die angeforderten Daten von den Controller-Klassen, die im Backend implementiert sind. Diese Controller-Klassen verwenden dagegen Instanzen und Methoden der Modellklassen. Standardmäßig speichert eine zugrundeliegende H2-Datenbank Daten dauerhaft.
 
+
+=== Architekturentscheidungen
+==== Designmuster
+* Spring MVC
+
+==== Beharrlichkeit
+The application uses Hibernate annotation based mapping to map Java classes to database tables. As a database, H2 is used. The persistence is deactivated by default. To activate persistence storage, the following two lines in the file application.properties have to be uncommented:
+....
+# spring.datasource.url=jdbc:h2:./db/videoshop
+# spring.jpa.hibernate.ddl-auto=update
+....
+==== User Interface
+image:images/user_interface.png[]
+
+=== Verwendung externer Frameworks
+[options="header"]
+|===
+|Externes Paket |Wird verwendet von (Anwendungsklasse)
+|salespointframework.catalog a|
+* wineshop.wine.Wine
+* wineshop.wine.WineRepository
+* wineshop.order.OrderController
+|salespointframework.core a|
+* wineshop.wine.WineDataInitializer
+* wineshop.customer.CustomerDataInitializer
+* wineshop.user.UserDataInitializer
+|salespointframework.inventory a|
+* wineshop.wine.WineController
+* wineshop.inventory.InventoryController
+* wineshop.inventory.InventoryInitializer
+|salespointframework.order | wineshop.order.OrderController
+|salespointframework.payment | wineshop.order.OrderController
+|salespointframework.quantity a|
+* wineshop.wine.WineController
+* wineshop.inventory.InventoryInitializer
+* wineshop.order.OrderController
+|salespointframework.SalespointSecurityConfiguration |wineshop.wineshop.Application
+|salespointframework.time | wineshop.wine.WineController
+|salespointframework.useraccount a|
+* wineshop.customer.Customer
+* wineshop.customer.CustomerDataInitializer
+* wineshop.customer.CustomerManagement
+* wineshop.user.User
+* wineshop.user.UserDataInitializer
+* wineshop.user.UserManagement
+* wineshop.order.OrderController
+|springframework.boot |wineshop.Application
+|springframework.data a|
+* wineshop.wine.WineRepository
+* wineshop.customer.CustomerManager
+* wineshop.customer.CustomerRepository
+* wineshop.user.UserManager
+* wineshop.user.UserRepository
+|springframework.security | wineshop.wineshop.Application
+|springframework.ui a|
+* wineshop.wine.WineController
+* wineshop.customer.CustomerController
+* wineshop.user.UserController
+* wineshop.inventory.InventoryController
+* wineshop.order.OrderController
+|springframework.util a|
+* wineshop.customer.CustomerController
+* wineshop.customer.CustomerDataInitializer
+* wineshop.user.UserController
+* wineshop.user.UserDataInitializer
+* wineshop.order.OrderController
+|springframework.validation |
+* wineshop.customer.CustomerController
+* wineshop.user.UserController
+|springframework.web |wineshop.wineshop.Application
+|===
+
+
 === Entwurfsentscheidungen
 * Verwendete Muster
 * Persistenz
@@ -97,7 +170,7 @@ image:models/analysis/user.svg[class design diagram - user]
 
 
 * Entwurfsklassendiagramme der einzelnen Packages
-
+Lösungsstrategie
 [options="header"]
 |=== 
 |Klasse/Enumeration |Description
