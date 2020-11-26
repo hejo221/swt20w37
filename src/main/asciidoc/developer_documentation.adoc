@@ -44,7 +44,7 @@ _Die folgende Tabelle zeigt die zuvor definierten Qualitätsanforderungen und L�
 
 === Softwarearchitektur
 * Beschreibung der Architektur anhand der Top-Level-Architektur oder eines Client-Server-Diagramms
-
+image:images/software_architecture.png[]
 image:images/Client_Server_ Model.png[]
 
 _Client-Server-Modell der Anwendung. Der Client enthält nur HTML- und CSS-Dateien. Die Anwendungslogik ist auf dem Server implementiert._
@@ -117,7 +117,7 @@ image:images/user_interface.png[]
 * wineshop.user.UserController
 * wineshop.user.UserDataInitializer
 * wineshop.order.OrderController
-|springframework.validation |
+|springframework.validation a|
 * wineshop.customer.CustomerController
 * wineshop.user.UserController
 |springframework.web |wineshop.wineshop.Application
