@@ -45,6 +45,12 @@ _Die folgende Tabelle zeigt die zuvor definierten Qualitätsanforderungen und L�
 === Softwarearchitektur
 * Beschreibung der Architektur anhand der Top-Level-Architektur oder eines Client-Server-Diagramms
 
+image:images/Client_Server_ Model.png[]
+
+_Client-Server-Modell der Anwendung. Der Client enthält nur HTML- und CSS-Dateien. Die Anwendungslogik ist auf dem Server implementiert._
+
+HTML-Vorlagen werden clientseitig mit den entsprechenden CSS-Stylesheets gerendert. Die in den Templates angezeigten Daten werden von Thymeleaf bereitgestellt. Thymeleaf empfängt die angeforderten Daten von den Controller-Klassen, die im Backend implementiert sind. Diese Controller-Klassen verwenden dagegen Instanzen und Methoden der Modellklassen. Standardmäßig speichert eine zugrundeliegende H2-Datenbank Daten dauerhaft.
+
 === Entwurfsentscheidungen
 * Verwendete Muster
 * Persistenz
