@@ -21,14 +21,14 @@
     <main role="main" class="container">
         <div class="ui container">
             <header>
-                <h1>Lagerbestand</h1>
+                <h1 th:text="#{inventory.title}">Lagerbestand</h1>
             </header>
 
             <table class="ui celled table">
                 <thead>
                 <tr>
-                    <th>Artikel</th>
-                    <th>Anzahl</th>
+                    <th th:text="#{inventory.wineName}">Artikel</th>
+                    <th th:text="#{inventory.count}">Anzahl</th>
                 </tr>
                 </thead>
                 <tbody th:remove="all-but-first">

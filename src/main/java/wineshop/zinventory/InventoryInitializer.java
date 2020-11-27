@@ -9,7 +9,7 @@ import org.salespointframework.quantity.Quantity;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
-import wineshop.wine.WineCatalog;
+import wineshop.wine.WineRepository;
 
 @Component
 @Order(20)
@@ -18,15 +18,15 @@ class InventoryInitializer implements DataInitializer {
 	private static final Logger LOG = LoggerFactory.getLogger(InventoryInitializer.class);
 
 	private final UniqueInventory<UniqueInventoryItem> inventory;
-	private final WineCatalog wineCatalog;
+	private final WineRepository wineRepository;
 
-	InventoryInitializer(UniqueInventory<UniqueInventoryItem> inventory, WineCatalog wineCatalog) {
+	InventoryInitializer(UniqueInventory<UniqueInventoryItem> inventory, WineRepository wineRepository) {
 
 		Assert.notNull(inventory, "Inventory must not be null!");
-		Assert.notNull(wineCatalog, "WineRepository must not be null!");
+		Assert.notNull(wineRepository, "WineRepository must not be null!");
 
 		this.inventory = inventory;
-		this.wineCatalog = wineCatalog;
+		this.wineRepository = wineRepository;
 	}
 
 	@Override
@@ -34,7 +34,7 @@ class InventoryInitializer implements DataInitializer {
 
 		LOG.info("Creating inventory items.");
 
-		wineCatalog.findAll().forEach(wine -> {
+		wineRepository.findAll().forEach(wine -> {
 			// Try to find an InventoryItem for the project and create a default one with 10 items if none available
 			if (inventory.findByProduct(wine).isEmpty()) {
 				inventory.save(new UniqueInventoryItem(wine, Quantity.of(10)));
