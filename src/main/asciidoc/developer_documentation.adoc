@@ -4,6 +4,7 @@
 |Version | Bearbeitungsdatum   | Autor 
 |0.1	| 25.11.2020 | Henrik
 |0.2	| 26.11.2020 | Kim
+|0.3  | 27.11.2020 | Tom
 |===
 
 = Entwicklerdokumentation
@@ -13,9 +14,36 @@
 * Qualitätsziele
 
 == Randbedingungen
-* Hardware-Vorgaben
-* Software-Vorgaben
-* Vorgaben zum Betrieb des Software
+=== Hardware-Vorgaben
+
+Eine Liste mit benötigter Hardware, um mit der Software interagieren zu können.
+
+* Computer
+* Tastatur
+* Maus
+
+=== Software-Vorgaben
+Eine Liste mit benötigter Software, um mit der Software interagieren zu können.
+
+Diese oder eine neuere Version von Java wird benötigt:
+
+* Java 11
+
+Diese oder eine neuere Version der aufgelisteten Browser wird benötigt:
+
+* Mozilla Firefox Version 82.0.3
+* Google Chrome Version 86.0.4240.198
+
+=== Vorgaben zum Betrieb des Software
+
+Hier wird ein Überblick darüber gegen, wie die Software und in welchen Situation sie
+genutzt werden sollte. 
+
+Das Produkt (die Software) wird als Verkaufssoftware ausschließlich firmenintern (lokal auf den Computern laufend) in der Vinothek „La Bouteille“ benutzt werden. Dabei wird ein Mitarbeiter, die Software bedienend, den Kunden durch den Kaufprozess begleiten. Die Software wird dabei über einen Browser bedient, jedoch soll sie nicht für Benutzer außerhalb des lokalen Netzwerkes zugänglich sein.
+
+Die Software wird hauptsächlich von den Mitarbeitern sowie der Geschäftsführung der "La Bouteille" bedient, welche nicht zwingend mit dem technischen Hintergrund der Software vertraut sind. Die Software soll daher keine technische Wartung benötigen.
+
+Die Daten sollen dauerhaft in einer lokalen Datenbank gespeichert werden und durch die Software erreichbar sein.
 
 == Kontextabgrenzung
 * Kontextdiagramm
