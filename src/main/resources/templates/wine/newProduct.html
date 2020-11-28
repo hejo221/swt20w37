@@ -17,7 +17,7 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top"
      th:replace="fragments/common :: menu('catalog')"></nav>
 <div class="container">
-    <h3 class="h3 mb-3 font-weight-normal">Add Wine</h3>
+    <h3 class="h3 mb-3 font-weight-normal">Neues Produkt hinzufügen</h3>
     <hr>
 
     <div class="row mt-3">
@@ -52,7 +52,7 @@
                                 <div class="input-group-form">
                                     <label for="itemNr"></label>
                                     <input type="number" name="itemNr" min="0" th:field="*{itemNr}" class="form-control" id="itemNr"
-                                          placeholder="Inv.-Nr." required="required">
+                                          placeholder="Katalog-Nr." required="required">
                                 </div>
                             </td>
 
@@ -120,7 +120,7 @@
                 <div class="col-6">
                     <div class="row">
                         <div class="col-12 text-center">
-                            <img th:src="@{/resources/image/cover/no.jpg}" src="/resources/image/cover/no.jpg"
+                            <img th:src="@{/resources/image/cover/question.jpg}" src="/resources/image/cover/question.jpg"
                                  alt="image" class="img-fluid p-5">
                             <span>Dies ist nur ein Beispiel</span>
                         </div>

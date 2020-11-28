@@ -5,6 +5,17 @@
 body{
     font-family: "Century Gothic", sans-serif;
 }
+.btn.btn-primary{
+    white-space: nowrap;
+    text-align: center;
+    background: #34495e;
+    border: none;
+}
+
+.btn.btn-primary:hover{
+    background: #343a40;
+}
+
 
 .filter-radios input[type="radio"] {
     opacity: 0;
@@ -27,9 +38,6 @@ body{
 }
 
 .filter-radios input[type="radio"]:focus + label {
-    /*
-    TODO: add styles for the focused button here
-    */
 }
 
 .card-description {
@@ -49,4 +57,9 @@ img {
     object-fit: contain;
     width:80px;
     height:300px;
+}
+
+.card-body-link:hover, .card-body-link:link, .card-body-link:visited{
+    text-decoration: none;
+    color: black;
 }

@@ -2,12 +2,17 @@ package wineshop.wine;
 
 import org.javamoney.moneta.Money;
 import org.salespointframework.catalog.Product;
+import org.salespointframework.catalog.ProductIdentifier;
+
+import javax.money.format.MonetaryAmountFormat;
+import javax.money.format.MonetaryFormats;
 import javax.persistence.Entity;
+import java.util.Locale;
 
 @Entity
 public class Wine extends Product {
 
-
+	ProductIdentifier productId;
 	public enum WineType {RED, WHITE, ROSE, SPARKLING, FRUITWINE, OTHER}
 	private int itemNr;
 	private String pic, details;
@@ -25,8 +30,10 @@ public class Wine extends Product {
 		this.wineType = wineType;
 		this.buyPrice = buyPrice;
 		this.details = details;
+		productId = super.getId();
 	}
 
+	public ProductIdentifier getProductId(){return productId;}
 	//GETTERS
 
 	public int getItemNr() {
@@ -43,7 +50,33 @@ public class Wine extends Product {
 		return buyPrice;
 	}
 
-	//super.getPrice()
+
+	// Gibt den Preis im Format XX.XXX,YY € zurück
+
+	public String getBuyPrice2() {
+
+		MonetaryAmountFormat formatDEU = MonetaryFormats.getAmountFormat(Locale.GERMANY);
+
+		return formatDEU.format(buyPrice).replace(" EUR", ""). replace(",00", ",-");
+	}
+
+	public Number getBuyPriceNumber(){
+		return buyPrice.getNumber();
+	}
+	public Money getSellPrice() {
+		return (Money) super.getPrice();
+	}
+
+	public Number getSellPriceNumber(){
+		return getSellPrice().getNumber();
+	}
+
+	public String getSellPrice2() {
+
+		MonetaryAmountFormat formatDEU = MonetaryFormats.getAmountFormat(Locale.GERMANY);
+
+		return formatDEU.format(getSellPrice()).replace(" EUR", ""). replace(",00", ",-");
+	}
 
 	public String getDetails() {
 		return details;
@@ -79,7 +112,10 @@ public class Wine extends Product {
 		this.buyPrice = buyPrice;
 	}
 
-	//super.getPrice()
+	public void setSellPrice(Money sellPrice){
+		super.setPrice(sellPrice);
+	}
+
 
 	public void setDetails(String details) {
 		this.details = details;

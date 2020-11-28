@@ -35,20 +35,18 @@ class WineDataInitializer implements DataInitializer {
 		wineCatalog.deleteAll();
 		wineCatalog.save(new Wine(1, "Mas Martinet Clos Martinet", RED, "mas", Money.of(9.99, EURO), Money.of(15.99, EURO), "details"));
 		wineCatalog.save(new Wine(2, "Acentaudo Tempranillo",  RED, "acentuado", Money.of(14.95, EURO), Money.of(14.95, EURO), "details"));
+		wineCatalog.save(new Wine(3, "Hauswein Nr. 1", RED, "hauswein", Money.of(3.50, EURO), Money.of(5.50, EURO), "details" ));
+		wineCatalog.save(new Wine(4, "Baron de Ley Reserva 2015", RED, "baron", Money.of(9.95, EURO),  Money.of(11.95, EURO), "details"));
+		wineCatalog.save(new Wine(5, "MESA/4.9 Blanco", WHITE, "mesa", Money.of(6.99, EURO), Money.of(8.99, EURO), "details"));
+		wineCatalog.save(new Wine(6, "Quietus Verdejo 2019", WHITE, "quietus", Money.of(19.99, EURO), Money.of(21.99, EURO), "details"));
+		wineCatalog.save(new Wine(7, "Nembus Blanco 2019", WHITE, "nembus", Money.of(19.99, EURO), Money.of(21.99, EURO), "details"));
+		wineCatalog.save(new Wine(8, "Intuicion Sauvignon Blanc 2019", WHITE, "intuicion", Money.of(24.99, EURO), Money.of(49.99, EURO), "details"));
+		wineCatalog.save(new Wine(9, "Tutejšaje", FRUITWINE, "tut", Money.of(1.99, EURO), Money.of(2.99, EURO), "unglaublich lecker der Wein, nu!"));
+		wineCatalog.save(new Wine(10, "12 € und gerettet", RED, "gerettet", Money.of(10.00, EURO), Money.of(12.00, EURO), "Der beste Freund des Menschen: spanischer Wein"));
+		wineCatalog.save(new Wine(11, "Wine for dummies", WHITE, "dummies", Money.of(0.80, EURO), Money.of(1.23, EURO), "schar-do-nää!!!"));
+		wineCatalog.save(new Wine(12, "Just Fucking Good Wine", RED , "fuckingGood", Money.of(20.00, EURO), Money.of(54.32, EURO), "nu genau!"));
+		wineCatalog.save(new Wine(13, "Katzpiss", OTHER, "katzpiss", Money.of(0.90, EURO), Money.of(3.21, EURO), "unglaublich lecker der Wein, nu!"));
+		wineCatalog.save(new Wine(14, "Sensaciones Edición Limitada", RED, "sensaciones", Money.of(19.95, EURO), Money.of(33.33, EURO), "details"));
 
-		wineCatalog.save(new Wine(1, "Tutejšaje", FRUITWINE, "tut", Money.of(1.99, EURO), Money.of(2.99, EURO), "unglaublich lecker der Wein, nu!"));
-		wineCatalog.save(new Wine(2, "12 € und gerettet", RED, "gerettet", Money.of(10.00, EURO), Money.of(12.00, EURO), "Der beste Freund des Menschen: spanischer Wein"));
-		wineCatalog.save(new Wine(3, "Wine for dummies", WHITE, "dummies", Money.of(0.80, EURO), Money.of(1.23, EURO), "schar-do-nää!!!"));
-		wineCatalog.save(new Wine(4, "Just Fucking Good Wine", RED , "fuckingGood", Money.of(20.00, EURO), Money.of(54.32, EURO), "nu genau!"));
-		wineCatalog.save(new Wine(5, "Katzpiss", OTHER, "katzpiss", Money.of(0.90, EURO), Money.of(3.21, EURO), "unglaublich lecker der Wein, nu!"));
-
-		/*wineRepository.save(new Wine("Sensaciones Edición Limitada", Money.of(19.95, EURO), "redwine", Wine.WineType.RED));
-		wineRepository.save(new Wine("Hauswein Nr. 1", Money.of(3.50, EURO), "red", Wine.WineType.RED));
-		wineRepository.save(new Wine("Baron de Ley Reserva 2015", Money.of(9.95, EURO),"red", Wine.WineType.RED));
-
-		wineRepository.save(new Wine("MESA/4.9 Blanco", Money.of(6.99, EURO), "white", Wine.WineType.WHITE));
-		wineRepository.save(new Wine("Quietus Verdejo 2019", Money.of(19.99, EURO), "white", Wine.WineType.WHITE));
-		wineRepository.save(new Wine("Nembus Blanco 2019", Money.of(19.99, EURO), "white", Wine.WineType.WHITE));
-		wineRepository.save(new Wine("Intuicion Sauvignon Blanc 2019", "intuicion", Money.of(24.99, EURO), "white", Wine.WineType.WHITE));*/
 	}
 }

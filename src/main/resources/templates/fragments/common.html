@@ -17,18 +17,24 @@
     <body>
         <div th:fragment="menu(menu)">
             <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-                <a class="navbar-brand" href="#">Vinothek</a>
+                <a class="navbar-brand" th:href="@{/}">Vinothek</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarsExampleDefault">
                     <ul class="navbar-nav mr-auto">
+
+
+                        <!--
                         <li class="nav-item" th:classappend="${menu} == 'index'? 'active'">
                             <a class="nav-link" href="#" th:href="@{/}">Home<span class="sr-only" th:if="${menu} == 'index'">(current)</span></a>
                         </li>
+                        -->
+
+
                         <li class="nav-item" th:classappend="${menu} == 'catalog'? 'active'">
-                            <a class="nav-link" href="#" th:href="@{catalog}">Katalog<span class="sr-only" th:if="${menu} == 'catalog'">(current)</span></a>
+                            <a class="nav-link" href="#" th:href="@{/catalog}">Katalog<span class="sr-only" th:if="${menu} == 'catalog'">(current)</span></a>
                         </li>
 
                         <li class="nav-item dropdown" th:classappend="${menu} == 'empl'? 'active'" sec:authorize="isAuthenticated()">
