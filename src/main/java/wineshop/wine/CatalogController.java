@@ -1,23 +1,15 @@
 package wineshop.wine;
 
-import org.javamoney.moneta.Money;
 import org.salespointframework.catalog.ProductIdentifier;
-import org.springframework.data.util.Streamable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-
 import javax.validation.Valid;
 
-import java.util.Optional;
-
-import static org.salespointframework.core.Currencies.EURO;
 
 @Controller
 class CatalogController {

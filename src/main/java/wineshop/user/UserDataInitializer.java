@@ -58,7 +58,7 @@ class UserDataInitializer implements DataInitializer {
 		var password = "123";
 
 		List.of(
-				new UserRegistrationForm("hans", password, "Max", "knoblauch"),
+				new UserRegistrationForm("hans", password, "Max", "Knoblauch"),
 				new UserRegistrationForm("dextermorgan", password, "Mann", "Herrmann"),
 				new UserRegistrationForm("earlhickey", password, "Lala", "Land"),
 				new UserRegistrationForm("mclovinfogell", password, "He", "She")//

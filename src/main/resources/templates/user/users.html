@@ -10,7 +10,7 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="../static/resources/css/style.css" th:href="@{/resources/css/style.css}" rel="stylesheet">
 
-        <title>User List</title>
+        <title>Unsere Mitarbeiter:innen</title>
     </head>
 
     <body>
@@ -18,21 +18,21 @@
 
         <main role="main" class="container">
             <header class="text-center">
-                <h1 th:text="#{user.list}">User List</h1>
+                <h1>Unsere Mitarbeiter:innen</h1>
             </header>
 
             <form sec:authorize="hasRole('ADMIN')" class="form mb-3" method="get" th:action="@{/user/register}">
-                <button type="submit" class="btn btn-success">Add Employee</button>
+                <button type="submit" class="btn btn-success">Neue Benutzer:in erstellen</button>
             </form>
 
             <table class="ui celled table text-center">
                 <thead>
                 <tr>
-                    <th scope="col" th:text="#{username}">Username</th>
-                    <th scope="col" th:text="#{firstName}">First Name</th>
-                    <th scope="col" th:text="#{lastName}">Last Name</th>
-                    <th scope="col" th:text="#{edit}">Edit</th>
-                    <th scope="col" th:text="#{delete}">Delete</th>
+                    <th scope="col">Angestellte</th>
+                    <th scope="col">Vorname</th>
+                    <th scope="col">Zuname</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
                 </tr>
                 </thead>
                 <tbody th:remove="all-but-first">
@@ -42,12 +42,12 @@
                     <td th:text="${user.userAccount.lastname}">Max</td>
                     <td>
                         <form th:action="@{/user/edit/__${user.getId()}__}" method="get">
-                            <button type="submit" class="btn btn-info" th:text="#{edit}">Edit</button>
+                            <button type="submit" class="btn btn-info">Bearbeiten</button>
                         </form>
                     </td>
                     <td>
                         <form th:action="@{/user/delete}" class="ui form" role="form" method="post">
-                            <button type="submit" class="btn btn-danger" th:text="#{delete}">Delete</button>
+                            <button type="submit" class="btn btn-danger">Entfernen</button>
                             <input type="number"  name="id" th:value="${user.id}" hidden/>
                         </form>
                     </td>

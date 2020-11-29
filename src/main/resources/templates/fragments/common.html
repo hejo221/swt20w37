@@ -36,22 +36,27 @@
                 -->
 
 
-                <li class="nav-item" sec:authorize="hasAnyRole('ADMIN','USER')" th:classappend="${menu} == 'catalog'? 'active'">
+                <li class="nav-item" sec:authorize="hasAnyRole('ADMIN','EMPLOYEE')" th:classappend="${menu} == 'catalog'? 'active'">
                     <a class="nav-link" href="#" th:href="@{/catalog}">Katalog<span class="sr-only"
                                                                                     th:if="${menu} == 'catalog'">(current)</span></a>
                 </li>
 
-                <li class="nav-item" sec:authorize="hasAnyRole('ADMIN','USER')" th:classappend="${menu} == 'users'? 'active'">
-                    <a class="nav-link" href="#" th:href="@{/user/list}">Kund:innen<span class="sr-only"
-                                                                                    th:if="${menu} == 'users'">(current)</span></a>
+                <li class="nav-item" sec:authorize="hasAnyRole('ADMIN', 'EMPLOYEE')" th:classappend="${menu} == 'customers'? 'active'">
+                    <a class="nav-link" href="#" th:href="@{/customer/list}">Kund:innen<span class="sr-only"
+                                                                                           th:if="${menu} == 'customers'">(current)</span></a>
 
-                <li class="nav-item" sec:authorize="hasRole('ADMIN')" th:classappend="${menu} == 'inventory'? 'active'">
+
+                <li class="nav-item" sec:authorize="hasAnyRole('ADMIN', 'EMPOYEE')" th:classappend="${menu} == 'inventory'? 'active'">
                     <a class="nav-link" href="#" th:href="@{/inventory}">Lager<span class="sr-only"
                                                                                     th:if="${menu} == 'inventory'">(current)</span></a>
 
-                <li class="nav-item" sec:authorize="hasAnyRole('ADMIN','USER')" th:classappend="${menu} == 'orders'? 'active'">
+                <li class="nav-item" sec:authorize="hasAnyRole('ADMIN','EMPLOYEE')" th:classappend="${menu} == 'orders'? 'active'">
                     <a class="nav-link" href="#" th:href="@{/orders}">Rechnungen<span class="sr-only"
                                                                                     th:if="${menu} == 'orders'">(current)</span></a>
+
+                <li class="nav-item" sec:authorize="hasRole('ADMIN')" th:classappend="${menu} == 'users'? 'active'">
+                    <a class="nav-link" href="#" th:href="@{/user/list}">Angestellten<span class="sr-only"
+                                                                                           th:if="${menu} == 'users'">(current)</span></a>
 
                 <li class="nav-item" sec:authorize="hasRole('ADMIN')" th:classappend="${menu} == 'inventory'? 'active'">
                     <a class="nav-link" href="#" th:href="@{/inventory}">Bilanzierung<span class="sr-only"
