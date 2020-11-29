@@ -123,4 +123,13 @@ class CatalogController {
 		if (catalogManager.editProductInCatalog(wine.productId, form)) return "redirect:/catalog";
 		else return "index";//FAILURE HINZUFÜGEN!
 	}
+
+
+	/*@GetMapping("/addToBasket/{id}/{quantity}")
+	public String addToBasket(@PathVariable ProductIdentifier id, @PathVariable Number quantity) {
+		Wine wine = catalogManager.findById(id);
+		System.out.println("Der Wein " + wine.getName() + " " + quantity + " wurde erfolgreich zum Warenkorb hinzugefügt.");
+		return "redirect:/catalog";
+	}*/
+
 }

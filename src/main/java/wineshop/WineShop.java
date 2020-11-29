@@ -20,7 +20,7 @@ public class WineShop {
 			http.csrf().disable();  // for lab purposes, that's ok!
 			http
 					.authorizeRequests()
-						.antMatchers("/", "/user/login", "/catalog", "/resource/css/**").permitAll()
+						.antMatchers("/", "/user/login", "/resource/css/**").permitAll()
 						.anyRequest().authenticated()
 						.and()
 					.formLogin()

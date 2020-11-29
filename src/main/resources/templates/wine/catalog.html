@@ -68,22 +68,27 @@
                              class="card-img-top" alt="image">
 
 
-                    <div class="card-body">
-                        <h5 class="card-title" th:href="index" th:text="${wine.name}"></h5>
-                        <p class="card-text text-secondary card-description"
-                           th:text="${wine.getWineTypeAufDeutsch()}"></p>
-                        <div>
-                            <span>€</span>
-                            <span class="card-text" th:text="${wine.getBuyPrice2()}"></span>
-                        </div>
-                    </div>
+                        <div class="card-body">
+                            <h5 class="card-title" th:href="index" th:text="${wine.name}"></h5>
+                            <p class="card-text text-secondary card-description"
+                               th:text="${wine.getWineTypeAufDeutsch()}"></p>
+                            <div>
+                                <span>€</span>
+                                <span class="card-text" th:text="${wine.getBuyPrice2()}"></span>
 
+                            </div>
+                        </div>
                     </a>
 
 
                     <div class="card-footer text-muted font-weight-light">
-                        <span> Auf Lager:</span>
-                        <span th:text="8"></span>
+                        <span>Auf Lager: </span><span th:text="8" style="margin-right: 20px"></span>
+                        <span class="rating" style="text-align: right">
+                            <a class="rating" th:each="i : ${#numbers.sequence(10, 1)}" th:value="${i}"
+                               style="font-size: large; margin-left: -2px"
+                               th:href="@{/order/addToBasket/{productId}/{quantity} (productId=${wine.getProductId()}, quantity=${i})}">🍷&#xFE0E</a>
+                         </span>
+
                     </div>
 
 
