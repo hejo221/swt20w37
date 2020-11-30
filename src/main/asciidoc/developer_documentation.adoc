@@ -6,6 +6,7 @@
 |0.2	| 26.11.2020 | Kim
 |0.3  | 27.11.2020 | Tom
 |0.4  | 28.11.2020 | Henrik
+|0.5   | 30.11.2020 | Noah
 |===
 
 = Entwicklerdokumentation
@@ -15,7 +16,7 @@
 * Qualitätsziele
 
 == Randbedingungen
-=== Hardware-Vorgaben
+=== 2.1 Hardware-Vorgaben
 
 Eine Liste mit benötigter Hardware, um mit der Software interagieren zu können.
 
@@ -23,7 +24,7 @@ Eine Liste mit benötigter Hardware, um mit der Software interagieren zu können
 * Tastatur
 * Maus
 
-=== Software-Vorgaben
+=== 2.2 Software-Vorgaben
 Eine Liste mit benötigter Software, um mit der Software interagieren zu können.
 
 Diese oder eine neuere Version von Java wird benötigt:
@@ -35,7 +36,8 @@ Diese oder eine neuere Version der aufgelisteten Browser wird benötigt:
 * Mozilla Firefox Version 82.0.3
 * Google Chrome Version 86.0.4240.198
 
-=== Vorgaben zum Betrieb des Software
+=== 2.3 Vorgaben zum Betrieb des Software
+
 
 Hier wird ein Überblick darüber gegen, wie die Software und in welchen Situation sie
 genutzt werden sollte. 
@@ -50,7 +52,8 @@ Die Daten sollen dauerhaft in einer lokalen Datenbank gespeichert werden und dur
 * Kontextdiagramm
 
 == Lösungsstrategie
-=== Erfüllung der Qualitätsziele
+
+=== 4.0 Erfüllung der Qualitätsziele
 _Die folgende Tabelle zeigt die zuvor definierten Qualitätsanforderungen und Lösungsansätze, um diese zu erfüllen._
 
 [options="header"]
@@ -72,7 +75,7 @@ _Die folgende Tabelle zeigt die zuvor definierten Qualitätsanforderungen und L�
 |===
 
 
-=== Softwarearchitektur
+=== 4.2 Softwarearchitektur
 image:images/software_architecture.png[]
 
 _Top-Level-Architektur der Anwendung_
@@ -84,20 +87,20 @@ _Client-Server-Modell der Anwendung. Der Client enthält nur HTML- und CSS-Datei
 HTML-Vorlagen werden clientseitig mit den entsprechenden CSS-Stylesheets gerendert. Die in den Templates angezeigten Daten werden von Thymeleaf bereitgestellt. Thymeleaf empfängt die angeforderten Daten von den Controller-Klassen, die im Backend implementiert sind. Diese Controller-Klassen verwenden dagegen Instanzen und Methoden der Modellklassen. Standardmäßig speichert eine zugrundeliegende H2-Datenbank Daten dauerhaft.
 
 
-=== Architekturentscheidungen
-==== Designmuster
+=== 4.3 Architekturentscheidungen
+==== 4.3.1 Designmuster
 * Spring MVC
 
-==== Persistenz
+==== 4.3.2 Persistenz
 The application uses Hibernate annotation based mapping to map Java classes to database tables. As a database, H2 is used. The persistence is deactivated by default. To activate persistence storage, the following two lines in the file application.properties have to be uncommented:
 ....
 # spring.datasource.url=jdbc:h2:./db/videoshop
 # spring.jpa.hibernate.ddl-auto=update
 ....
-==== User Interface
+==== 4.3.3 User Interface
 image:images/user_interface.png[]
 
-=== Verwendung externer Frameworks
+=== 4.4 Verwendung externer Frameworks
 [options="header"]
 |===
 |Externes Paket |Wird verwendet von (Anwendungsklasse)
@@ -168,9 +171,26 @@ image:images/user_interface.png[]
 |... |... 
 |===
 
-== Bausteinsicht
+== 5 Bausteinsicht
 
-=== Customer
+=== 5.1 Wineshop
+
+=== 5.2 Katalog
+image:models/analysis/catalog_architecture.svg[class design diagram - catalog]
+
+[options="header"]
+|===
+|Klasse/Enumeration |Beschreibung
+|Wine |Benutzerdefinierte Klasse um Wein genauer zu definieren
+|Winetype|Enumeration um dem Wein den passenden typen zu verteilen
+|CatalogController |Eine Spring MVC Contoller Anwendung um Anfragen vom Wein zu bearbeiten und schließlich zu zeigen
+|WineDataInitializer |Eine Methode um dummys zu erstellen
+|CatalogManager |Den Manager benötigen wir um unsere Produkte zu bearbeiten
+|WineCatalog |Eine Schnittstelle um den Dummys die benötigte Information zu geben
+|NewProductForm |Eine Klasse die die Form angibt was der Wein alles für Informationen braucht um sie schließlich wiederzugeben
+|===
+
+=== 5.3 Customer
 
 image:models/analysis/customer.svg[class design diagram - customer]
 
@@ -185,7 +205,11 @@ image:models/analysis/customer.svg[class design diagram - customer]
 |CustomerRegistrationForm |Eine Klasse zur Validierung der Benutzereingaben des Registrierungsformulars für Kunden
 |===
 
-=== User
+=== 5.4 Inventory
+
+=== 5.5 Order
+
+=== 5.6 User
 
 image:models/analysis/user.svg[class design diagram - user]
 
@@ -209,7 +233,7 @@ Lösungsstrategie
 |...|...
 |===
 
-=== Rückverfolgbarkeit zwischen Analyse- und Entwurfsmodell
+=== 5.7 Rückverfolgbarkeit zwischen Analyse- und Entwurfsmodell
 _Die folgende Tabelle zeigt die Rückverfolgbarkeit zwischen Entwurfs- und Analysemodell. Falls eine Klasse aus einem externen Framework im Entwurfsmodell eine Klasse des Analysemodells ersetzt,
 wird die Art der Verwendung dieser externen Klasse in der Spalte *Art der Verwendung* mithilfe der folgenden Begriffe definiert:_
 
@@ -223,17 +247,22 @@ wird die Art der Verwendung dieser externen Klasse in der Spalte *Art der Verwen
 |...|...|...
 |===
 
-== Laufzeitsicht
+== 6 Laufzeitsicht
 * Darstellung der Komponenteninteraktion anhand eines Sequenzdiagramms, welches die relevantesten Interaktionen darstellt.
 
-=== Customer
+=== 6.1 Catalog
+image:models/design/catalog_seq.svg[]
 
+=== 6.2 Customer
 image:models/design/seq_customer.svg[]
 
-=== User
+=== 6.3 Inventory
+=== 6.4 Order
+
+=== 6.5 User
 
 image:models/design/seq_user.svg[]
 
-== Technische Schulden
+== 7 Technische Schulden
 * Auflistung der nicht erreichten Quality Gates und der zugehörigen SonarQube Issues zum Zeitpunkt der Abgabe
 
