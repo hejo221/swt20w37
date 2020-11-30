@@ -233,13 +233,7 @@ image:models/analysis/user.svg[class design diagram - user]
 |===
 
 
-* Entwurfsklassendiagramme der einzelnen Packages
-Lösungsstrategie
-[options="header"]
-|=== 
-|Klasse/Enumeration |Description
-|...|...
-|===
+
 
 === 5.7 Rückverfolgbarkeit zwischen Analyse- und Entwurfsmodell
 _Die folgende Tabelle zeigt die Rückverfolgbarkeit zwischen Entwurfs- und Analysemodell. Falls eine Klasse aus einem externen Framework im Entwurfsmodell eine Klasse des Analysemodells ersetzt,
