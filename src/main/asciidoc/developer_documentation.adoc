@@ -4,8 +4,8 @@
 |Version | Bearbeitungsdatum   | Autor 
 |0.1	| 25.11.2020 | Henrik
 |0.2	| 26.11.2020 | Kim
-|0.3  | 27.11.2020 | Tom
-|0.4  | 28.11.2020 | Henrik
+|0.3  | 28.11.2020 | Henrik
+|0.4  | 30.11.2020 | Tom
 |===
 
 = Entwicklerdokumentation
@@ -200,6 +200,17 @@ image:models/analysis/user.svg[class design diagram - user]
 |UserRegistrationForm |Eine Klasse zur Validierung der Benutzereingaben des Registrierungsformulars für Mitarbeiter
 |===
 
+=== Inventory
+
+image:models/analysis/inventory.svg[class design diagram - inventory]
+
+[options="header"]
+|===
+|Klasse/Enumeration |Beschreibung
+|InventoryController |Spring MVC Controller, welcher die Anfrage zum Anzeigen des Lagerbestandes bearbeitet.
+|InventoryInitializer |Eine Implementierung des DataInitializer zum Erstellen von Dummy-Lagergegenständen beim Start der Anwendung
+|===
+
 
 * Entwurfsklassendiagramme der einzelnen Packages
 Lösungsstrategie
@@ -233,6 +244,10 @@ image:models/design/seq_customer.svg[]
 === User
 
 image:models/design/seq_user.svg[]
+
+=== Inventory
+
+image:models/design/seq_inventory.svg[]
 
 == Technische Schulden
 * Auflistung der nicht erreichten Quality Gates und der zugehörigen SonarQube Issues zum Zeitpunkt der Abgabe
