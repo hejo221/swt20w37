@@ -7,6 +7,7 @@
 |0.3  | 27.11.2020 | Tom
 |0.4  | 28.11.2020 | Henrik
 |0.5   | 30.11.2020 | Noah
+|0.5687v1|30.11.2020|Lavon
 |===
 
 = Entwicklerdokumentation
