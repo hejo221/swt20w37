@@ -22,7 +22,7 @@ Nach welchem Schema sind die Tests benannt?
 == Test Gegenstände
 |===
 |Controller a|
-CustomerController, UserController, CatalogController, IndexController
+CustomerController, UserController, CatalogController, IndexController, OrderController
 |Entitäten a|
 Customer, User, Wine
 |Repostitory a|
@@ -40,6 +40,7 @@ CustomerRegistrationForm, UserRegistrationForm, NewProductForm
 * UserController
 * CatalogController
 * IndexController
+* OrderController
 * WineCatalog
 * CustomerManager
 * UserManager 
