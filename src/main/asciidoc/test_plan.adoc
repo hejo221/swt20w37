@@ -20,6 +20,7 @@ Nach welchem Schema sind die Tests benannt?
 *U-1, U-2, I-1*
 
 == Test Gegenstände
+|===
 |Controller a|
 	*CustomerController
 	*UserController
@@ -46,6 +47,7 @@ Nach welchem Schema sind die Tests benannt?
 	*CustomerRegistrationForm
 	*UserRegistrationForm
 	*NewProductForm	
+|===
 == Zu testende Funktionalitäten
 
 == Nicht zu testende Funktionalitäten
