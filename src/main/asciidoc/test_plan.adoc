@@ -35,10 +35,21 @@ z.B. Bibliotheken von Drittanbietern (eigene Tests beschränken sich auf Schnitt
 *Integrationstest nach Bottom-Up Prinzip*
 
 == Umgebungsvoraussetzungen
-* Wird spezielle Hardware benötigt?
-* Welche Daten müssen bereitgestellt werden? Wie werden die Daten bereitgestellt?
-* Wird zusätzliche Software für das Testen benötigt?
-* Wie kommuniziert die Software während des Testens? Internet? Netzwerk?
+=== 2.1 Hardware-Vorgaben
+
+Eine Liste mit benötigter Hardware, um mit der Software interagieren zu können.
+
+* Computer
+* Tastatur
+* Maus
+
+=== 2.2 Software-Vorgaben
+Eine Liste mit benötigter Software, um mit der Software interagieren zu können.
+
+Diese oder eine neuere Version von Java wird benötigt:
+
+* Java 11
+
 
 == Testfälle und Verantwortlichkeit
 Jede testbezogene Aufgabe muss einem Ansprechpartner zugeordnet werden.
