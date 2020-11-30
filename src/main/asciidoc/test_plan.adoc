@@ -91,5 +91,20 @@ Jede testbezogene Aufgabe muss einem Ansprechpartner zugeordnet werden.
 [options="headers"]
 |===
 |ID |Anwendungsfall |Vorbedingungen |Eingabe |Ausgabe
-|…  |…              |…              |…       |…
+|AT0010  |UC0101     |Benutzer nicht eingeloggt        |Nutzername, Passwort       |Erfolg(Startseite) bei Fehler bleibt man auf der login Seite
+|AT0011|UC0101| Benutzer ist angemeldet |Benutzer drückt auf ausloggen|Startseite (ausgeloggt)
+|AT0020|UC0402|Admin ist angemeldet|Name, Vorname, Username, Passwort|Neuer Mitarbeiter Acc wurde erstellt
+|AT0030|UC0102|Mitarbeiter nimmt Kunden auf der noch nicht registriert ist|Vorname, Nachname, Email, Adresse|Kundendaten werden angelegt
+|AT0040|UC0103|Mitarbeiter verwendet das System|Mitarbeiter drückt auf Katalogverwaltung|Katalog seite wid aufgerufen
+|AT0050|UC0104|Auf der Katalog Seite sein |Auf den gewünschten Wein klicken|Details des Weines
+|AT0060|UC0201|Auf der Katalog Seite|Den gwünschten Wein suchen und dann die Anzahl der Weine anklicken|Die gewünschte Anazhl wurde dem Warenkorb hinzugefügt
+|AT0070|UC0203|Im System Angemeldet sein|Auf Warenkorb klicken|Warenkorb Ansicht
+|AT0071|UC0202|Auf der Warenkorb Seite|auf bearbeiten klicken und die Anzahl verändern|Die Anzahl wurde verändert
+|AT0072|UC0204|Auf der Warenkorb Seite, mindestens 1 Produkt im Warenkorb|"Kaufen" Knopf drücken|Rechnung wird erstellt und der Kunde hat den gewünschten Wein gekauft
+|AT0080|UC0301|Mitarbeiter ist angemeldet|Klickt auf Kunden|Die Kunden Seite wird aufgerufen
+|AT0090|UC0302|Admin verwendet das System|Auf Inventar klicken|Es werden alle Items des Inventares angezeigt
+|AT0100|UC0303|Mitarbeiter verwendet das System|klickt auf Rechnungen|Es werden alle Rechnungen aufgelistet
+|AT0110|UC0402|Admin verwendet das System und klickt auf der Mitarbeiter Seite auf neuen Mitarbeiter hinzufügen| Vorname, Nachname, Username, Passwort |Ein Mitarbeiter Acc wurde erstellt
+|AT0120|UC0403|Admin verwendet das System und ist auf der Inventar Seite|Auf den Knopf Nachbestellen klicken und die gewünschte Anzahl nachbestellen |Produkt wird nachbestellt
+|AT0130|UC0404|Admin verwendet das System|auf Mitarbeiter klicken|Alle Mitarbeiter werden angezeigt
 |===
