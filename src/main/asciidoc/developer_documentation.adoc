@@ -92,9 +92,9 @@ HTML-Vorlagen werden clientseitig mit den entsprechenden CSS-Stylesheets gerende
 * Spring MVC
 
 ==== 4.3.2 Persistenz
-The application uses Hibernate annotation based mapping to map Java classes to database tables. As a database, H2 is used. The persistence is deactivated by default. To activate persistence storage, the following two lines in the file application.properties have to be uncommented:
+Die Anwendung verwendet die auf Annotationen basierende Zuordnung im Ruhezustand, um Java-Klassen Datenbanktabellen zuzuordnen. Als Datenbank wird H2 verwendet. Die Persistenz ist standardmäßig deaktiviert. Um den Persistenzspeicher zu aktivieren, müssen die folgenden zwei Zeilen in der Datei application.properties nicht kommentiert werden:
 ....
-# spring.datasource.url=jdbc:h2:./db/videoshop
+# spring.datasource.url=jdbc:h2:./db/wineshop
 # spring.jpa.hibernate.ddl-auto=update
 ....
 ==== 4.3.3 User Interface
