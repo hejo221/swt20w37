@@ -262,7 +262,7 @@ image:models/design/seq_customer.svg[]
 image:models/design/seq_inventory.svg[]
 
 === 6.4 Order
-image:models/design/orders.png[]
+image:images/orders.png[]
 
 === 6.5 User
 
