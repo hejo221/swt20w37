@@ -26,7 +26,7 @@ CustomerController, UserController, CatalogController, IndexController
 |Entitäten a|
 Customer, User, Wine
 |Repostitory a|
-CustomerRepository, UserRepository, WineCatalog, 
+CustomerRepository, UserRepository, WineCatalog
 |Daten Erstbesitzer a|
 CustomerDataInitializer, UserDataInitializer, WineDataInitializer
 |Management a|
