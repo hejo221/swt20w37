@@ -36,8 +36,34 @@ CustomerRegistrationForm, UserRegistrationForm, NewProductForm
 |===
 == Zu testende Funktionalitäten
 
+* CustomerController 
+* UserController
+* CatalogController
+* IndexController
+* WineCatalog
+* CustomerManager
+* UserManager 
+* CatalogManager
+* WineCatalog
+
 == Nicht zu testende Funktionalitäten
-z.B. Bibliotheken von Drittanbietern (eigene Tests beschränken sich auf Schnittstelle, bzw. Zusammenspiel).
+
+* CustomerController
+* UserController 
+* CatalogController 
+* IndexController
+* CustomerDataInitializer 
+* UserDataInitializer
+* WineDataInitializer
+* CustomerRepository
+* UserRepository
+* CustomerRegistrationForm
+* UserRegistrationForm
+* NewProductForm
+* Customer
+* User
+* Wine
+* Bibliotheken von Drittanbietern (eigene Tests beschränken sich auf Schnittstelle, bzw. Zusammenspiel).
 
 == Herangehensweise
 
