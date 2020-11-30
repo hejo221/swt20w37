@@ -3,7 +3,13 @@
 Dieser Testplan stellt eine vereinfachte Version der IEEE 829-1998 Vorlage dar.
 
 == Einführung
-Wozu dient das Dokument? Zielgruppe?
+Das Produkt (die Software) wird als Verkaufssoftware ausschließlich firmenintern (lokal auf den Computern laufend) in der Vinothek „La Bouteille“ benutzt werden. Dabei wird ein Mitarbeiter, die Software bedienend, den Kunden durch den Kaufprozess begleiten. Dadurch soll der Verkaufsprozess sowohl für die Kunden als auch für die Mitarbeiter übersichtlicher und effizienter gestaltet werden. Ermöglicht wird dies durch die zentrale Verwaltung verschiedener Prozesse (die im Zusammenhang mit dem Verkauf stehen) innerhalb der Software (Lagerverwaltung, Bestellungsübersicht, Warenkatalog, Kundeninformationen).
+
+Die Software wird über einen Browser bedient, soll jedoch nicht für Benutzer außerhalb des lokalen Netzwerkes zugänglich sein. Trotzdem sollte sichergestellt werden, dass die Software visuell korrekt auf gängigen Browsern (Google Chrome (Version 86.0.4240.198), Mozilla Firefox (Version 82.0.3)) läuft.
+
+Primär wird die Software von den Mitarbeitern der „La Bouteille“ bedient, welche nicht zwingend mit dem technischen Hintergrund der Software vertraut sind. Deshalb sollte die gesamte Benutzeroberfläche übersichtlich und möglichst intuitiv gestaltet werden, und die Software an sich keine technische Wartung benötigen.
+
+Die Daten sollen dauerhaft in einer lokalen Datenbank gespeichert werden und durch die Software erreichbar sein.
 
 == Aufbau der Testbezeichner
 Nach welchem Schema sind die Tests benannt?
