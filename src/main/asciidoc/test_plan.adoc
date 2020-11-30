@@ -14,7 +14,6 @@ Die Daten sollen dauerhaft in einer lokalen Datenbank gespeichert werden und dur
 == Aufbau der Testbezeichner
 Nach welchem Schema sind die Tests benannt?
 
-*Bsp.*
 
 *U - Unit Test, I - Integrationstest*
 
@@ -28,10 +27,8 @@ Nach welchem Schema sind die Tests benannt?
 z.B. Bibliotheken von Drittanbietern (eigene Tests beschränken sich auf Schnittstelle, bzw. Zusammenspiel).
 
 == Herangehensweise
-*Bsp.:*
 
 *Klassen werden mit JUnit getestet.*
-
 *Integrationstest nach Bottom-Up Prinzip*
 
 == Umgebungsvoraussetzungen
