@@ -63,8 +63,8 @@ CustomerRegistrationForm, UserRegistrationForm, NewProductForm
 
 == Herangehensweise
 
-*Klassen werden mit JUnit getestet.*
-*Integrationstest nach Bottom-Up Prinzip*
+* Klassen werden mit JUnit getestet
+* Integrationstest nach Bottom-Up Prinzip
 
 == Umgebungsvoraussetzungen
 === 2.1 Hardware-Vorgaben
