@@ -12,7 +12,25 @@
 = Entwicklerdokumentation
 
 == Einführung und Ziele
-* Aufgabenstellung
+
+Unsere Vinothek (_WineShop_) hat zwei Typen von Benutzer:innen (_User_): Angestellte (_EMPLOYEE_) und Chef (_ADMIN_) mit unterschiedlichen Verantwortlichkeiten.
+
+Jede Benutzer:in darf auf den Katalog (_WineCatalog_) zugreifen, allerdings dürfen Angestellten keine Änderungen daran vornehmen (_editProductInCatalog_). Der Katalog beinhaltet Informationen über alle Produkte (_Wine_) des Weingeschäfts. Jeder Weinsorte wird ein Bild (_pic_) zugeordnet mit zahlreichen Informationen, wie z.B. Produkt-ID (_productId_), Artikelnummer (_itemNr_), Name (_name_), Sorte (_type_), Einkaufspreis (_buyPrice_), Verkaufspreis (_sellPrice_) und Beschreibung (_details_).
+
+Jede Kund:in  (_Customer_) besitzt genau ein Konto in unserem System. Unter diesem Konto werden folgende Kundedaten gespeichert: Kunden-ID (_customerID_), Vorname (_forename_), Zuname (_surname_), Geburtsdatum (_dob_), E-Mail-Adresse (_email_). Kund:in darf zum Zeitpunkt der Kontoerstellung nicht minderjährig (_notUnderage_) sein.
+
+Unsere Kund:innen werden in der nächsten Zukunft keinen Zugang zu unserem Shop haben, Einkäufe werden von Angestellten erfasst, sowie die Registrierung wird auch von Angestellten durchgeführt. Im Shopping-Modus bei jeder Ware im Katalog erscheinen 10 Weingläser, mit deren Hilfe man 1 bis 10 Weinflaschen zum Warenkorb hinzufügen kann (_addToBasket_). Jede Ware kann zum Warenkorb hinzugefügt werden, egal ob sie vorhanden ist oder nicht.
+
+Im Warenkorb-Modus kann die Anzahl jeder Ware geändert werden (_edit_), jede einzelne Ware (_remove_) bzw. der gesamte Warenkorb (_empty_) können gelöscht werden. Der Warenkorb besteht aus zwei Teilen, links sind die Artikel, die vorhanden sind und als Bestellung (_Order_) erfasst werden, rechts sind die nicht vorhandenen Waren, die als Vorbestellung (_Preorder_) interpretiert werden. 
+
+Wenn die Kund:in fertig mit dem Einkaufen ist, klickt die Verkäufer:in auf "Zur Kasse gehen"(_buy_). Im neuen Fenster wird die Kund:in in der Kundenliste ausgewählt(_listOfCustomers_). Falls die Kund:in nicht in der Datenbank ist, wird sie/er in die Datenbank eingetragen (_addCustomer_). Die möglichen Zahlungsarten (_paymentMethod_) sind Bargeld (_cash_) oder Kreditkarte (_creditCard_). Danach klickt man auf "Bezahlt" (_Orders.add_). 
+
+Falls eine Bestellung aus nicht vorhandenen Waren besteht (_Order.status: opened_), ist die fehlende Ware nachzubestellen (_reorder_). Die Kund:in wird per E-Mail informiert, sobald die Ware eingetroffen ist (_Order.status: CLOSED_).
+
+Unsere Produkte werden im Weinlager (_Inventory_) aufbewahrt. Jeder Weinsorte (_InventoryItem_) wird die Anzahl (_quantity_) und der Status (_reordering_) zugespeichert. Jede Weinsorte kann nachbestellt (_reorder_) werden. Es darf pro Weinsorte gleichzeitig maximal eine Nachbestellung laufen.
+
+Admin, außer allen oben aufgeführten Verantwortlichkeiten, kann Produkte im Katalog erstellen, bearbeiten und löschen. Er hat den Zugang zur Bilanzierung und kann die Angestelltenliste bearbeiten.
+
 * Qualitätsziele
 
 == Randbedingungen
