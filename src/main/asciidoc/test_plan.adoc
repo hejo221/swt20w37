@@ -22,31 +22,30 @@ Nach welchem Schema sind die Tests benannt?
 == Test Gegenstände
 |===
 |Controller a|
-CustomerController
-UserController
-CatalogController
-IndexController
+*CustomerController
+*UserController
+*CatalogController
+*IndexController
 |Entitäten a|
-Customer
-User
-Wine
+*Customer
+*User
+*Wine
 |Repostitory a|
-CustomerRepository
-UserRepository
-WineCatalog
-
+*CustomerRepository
+*UserRepository
+*WineCatalog
 |Daten Erstbesitzer a|
-CustomerDataInitializer
-UserDataInitializer
-WineDataInitializer
+*CustomerDataInitializer
+*UserDataInitializer
+*WineDataInitializer
 |Management a|
-CustomerManager
-UserManager
-CatalogManager
+*CustomerManager
+*UserManager
+*CatalogManager
 |Sonstige a|
-CustomerRegistrationForm
-UserRegistrationForm
-NewProductForm	
+*CustomerRegistrationForm
+*UserRegistrationForm
+*NewProductForm	
 |===
 == Zu testende Funktionalitäten
 
