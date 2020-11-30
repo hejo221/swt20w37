@@ -48,10 +48,6 @@ CustomerRegistrationForm, UserRegistrationForm, NewProductForm
 
 == Nicht zu testende Funktionalitäten
 
-* CustomerController
-* UserController 
-* CatalogController 
-* IndexController
 * CustomerDataInitializer 
 * UserDataInitializer
 * WineDataInitializer
