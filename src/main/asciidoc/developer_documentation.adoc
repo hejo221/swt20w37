@@ -13,6 +13,8 @@
 
 == Einführung und Ziele
 
+=== Aufgabestellung
+
 Unsere Vinothek (_WineShop_) hat zwei Typen von Benutzer:innen (_User_): Angestellte (_EMPLOYEE_) und Chef (_ADMIN_) mit unterschiedlichen Verantwortlichkeiten.
 
 Jede Benutzer:in darf auf den Katalog (_WineCatalog_) zugreifen, allerdings dürfen Angestellten keine Änderungen daran vornehmen (_editProductInCatalog_). Der Katalog beinhaltet Informationen über alle Produkte (_Wine_) des Weingeschäfts. Jeder Weinsorte wird ein Bild (_pic_) zugeordnet mit zahlreichen Informationen, wie z.B. Produkt-ID (_productId_), Artikelnummer (_itemNr_), Name (_name_), Sorte (_type_), Einkaufspreis (_buyPrice_), Verkaufspreis (_sellPrice_) und Beschreibung (_details_).
@@ -31,7 +33,7 @@ Unsere Produkte werden im Weinlager (_Inventory_) aufbewahrt. Jeder Weinsorte (_
 
 Admin, außer allen oben aufgeführten Verantwortlichkeiten, kann Produkte im Katalog erstellen, bearbeiten und löschen. Er hat den Zugang zur Bilanzierung und kann die Angestelltenliste bearbeiten.
 
-* Qualitätsziele
+=== Qualitätsziele
 
 == Randbedingungen
 === 2.1 Hardware-Vorgaben
