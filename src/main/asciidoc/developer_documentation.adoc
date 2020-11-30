@@ -206,6 +206,14 @@ image:models/analysis/customer.svg[class design diagram - customer]
 |===
 
 === 5.4 Inventory
+image:models/analysis/inventory.svg[class design diagram - inventory]
+
+[options="header"]
+|===
+|Klasse/Enumeration |Beschreibung
+|InventoryController |Spring MVC Controller, welcher die Anfrage zum Anzeigen des Lagerbestandes bearbeitet.
+|InventoryInitializer |Eine Implementierung des DataInitializer zum Erstellen von Dummy-Lagergegenständen beim Start der Anwendung
+|===
 
 === 5.5 Order
 
@@ -257,12 +265,15 @@ image:models/design/catalog_seq.svg[]
 image:models/design/seq_customer.svg[]
 
 === 6.3 Inventory
+image:models/design/seq_inventory.svg[]
+
 === 6.4 Order
 
 === 6.5 User
 
 image:models/design/seq_user.svg[]
 
+== Technische Schulden
 == 7 Technische Schulden
 * Auflistung der nicht erreichten Quality Gates und der zugehörigen SonarQube Issues zum Zeitpunkt der Abgabe
 
