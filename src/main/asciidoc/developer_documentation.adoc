@@ -254,8 +254,30 @@ wird die Art der Verwendung dieser externen Klasse in der Spalte *Art der Verwen
 
 [options="header"]
 |===
-|Klasse/Enumeration (Analysemodell) |Klasse/Enumeration (Entwurfsmodell) |Art der Verwendung
-|...|...|...
+|Class/Enumeration (Analysis Model) |Class/Enumeration (Design Model) |Usage
+|Wine                 |
+						 wine.Wine |
+|Cart                   |Salespoint.Cart | Method Parameter 
+|CartItem               |Salespoint.CartItem (via Salespoint.Cart) | Method Parameter (via Salespoint.Cart)
+|Inventory              |Salespoint.UniqueInventory a|
+						* Class Attribute
+						* Method Parameter
+|InventoryItem          |Salespoint.UniqueInventoryItem | Method Parameter
+|Order, PreOrder                  |Salespoint.Order | Method Parameter
+|OrderLine              |Salespoint.Orderline (via Salespoint.Order) | Method Parameter (via Salespoint.Order)
+|OrderManager           |Salespoint.OrderManager<Order> a|
+						* Class Attribute
+						* Method Parameter
+|OrderStatus            |Salespoint.OrderStatus | Method Parameter
+|ROLE/Role              |Salespoint.Role | Method Parameter
+|User                   |Salespoint.UserAccount 
+						a|
+						* Class Attribute
+						* Method Parameter
+|Accounting             |Salespoint.Accountancy  |
+|Customer             |customer.Customer  |    
+|CustomerManager             |customer.CustomerManager  |   
+|wineshop              |wineshop (whole package)  |
 |===
 
 == 6 Laufzeitsicht
