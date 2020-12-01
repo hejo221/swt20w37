@@ -12,6 +12,7 @@
 
 = Entwicklerdokumentation
 
+
 == 1 Einführung und Ziele
 
 === 1.1 Aufgabestellung
@@ -35,6 +36,7 @@ Unsere Produkte werden im Weinlager (_Inventory_) aufbewahrt. Jeder Weinsorte (_
 Admin, außer allen oben aufgeführten Verantwortlichkeiten, kann Produkte im Katalog erstellen, bearbeiten und löschen. Er hat den Zugang zur Bilanzierung und kann die Angestelltenliste bearbeiten.
 
 === Qualitätsziele
+
 
 == 2 Randbedingungen
 === 2.1 Hardware-Vorgaben
@@ -69,13 +71,15 @@ Die Software wird hauptsächlich von den Mitarbeitern sowie der Geschäftsführu
 
 Die Daten sollen dauerhaft in einer lokalen Datenbank gespeichert werden und durch die Software erreichbar sein.
 
+
 == 3 Kontextabgrenzung
 === 3.1 Kontextdiagramm
 image:./images/Vinothek_Context.png[context diagram]
 
+
 == 4 Lösungsstrategie
 
-=== 4.0 Erfüllung der Qualitätsziele
+=== 4.1 Erfüllung der Qualitätsziele
 _Die folgende Tabelle zeigt die zuvor definierten Qualitätsanforderungen und Lösungsansätze, um diese zu erfüllen._
 
 [options="header"]
@@ -280,6 +284,7 @@ wird die Art der Verwendung dieser externen Klasse in der Spalte *Art der Verwen
 |CustomerManager             |customer.CustomerManager  |   
 |wineshop              |wineshop (whole package)  |
 |===
+
 
 == 6 Laufzeitsicht
 * Darstellung der Komponenteninteraktion anhand eines Sequenzdiagramms, welches die relevantesten Interaktionen darstellt.
