@@ -51,7 +51,7 @@
                                                                                     th:if="${menu} == 'inventory'">(current)</span></a>
 
                 <li class="nav-item" sec:authorize="hasAnyRole('ADMIN','EMPLOYEE')" th:classappend="${menu} == 'orders'? 'active'">
-                    <a class="nav-link" href="#" th:href="@{/orders}">Rechnungen<span class="sr-only"
+                    <a class="nav-link" href="#" th:href="@{/order/orders}">Rechnungen<span class="sr-only"
                                                                                     th:if="${menu} == 'orders'">(current)</span></a>
 
                 <li class="nav-item" sec:authorize="hasRole('ADMIN')" th:classappend="${menu} == 'users'? 'active'">

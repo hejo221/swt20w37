@@ -2,15 +2,13 @@ package wineshop.order;
 
 import org.salespointframework.catalog.ProductIdentifier;
 import org.salespointframework.inventory.*;
-import org.salespointframework.order.Cart;
-import org.salespointframework.order.CartItem;
-import org.salespointframework.order.Order;
-import org.salespointframework.order.OrderManagement;
+import org.salespointframework.order.*;
 import org.salespointframework.payment.Cash;
 import org.salespointframework.quantity.Quantity;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.web.LoggedIn;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import wineshop.wine.CatalogManager;
 import wineshop.wine.Wine;
@@ -118,15 +116,10 @@ public class OrderController {
 	}
 
 
+	@GetMapping("/orders")
+	String orders(Model model) {
+		model.addAttribute("orders", orderManagement.findBy(OrderStatus.COMPLETED));
 
-
-
-
-
-//	@GetMapping("/orders")
-//	@PreAuthorize("hasRole('BOSS')")
-//	String orders(Model model) {
-//		model.addAttribute("ordersCompleted", orderManagement.findBy(OrderStatus.COMPLETED));
-//		return "orders";
-//	}
+		return "/order/orders";
+	}
 }
