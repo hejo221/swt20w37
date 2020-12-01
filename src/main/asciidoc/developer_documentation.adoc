@@ -70,7 +70,8 @@ Die Software wird hauptsächlich von den Mitarbeitern sowie der Geschäftsführu
 Die Daten sollen dauerhaft in einer lokalen Datenbank gespeichert werden und durch die Software erreichbar sein.
 
 == Kontextabgrenzung
-* Kontextdiagramm
+=== 3.1 Kontextdiagramm
+image:./images/Vinothek_Context.png[context diagram]
 
 == Lösungsstrategie
 
