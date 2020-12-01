@@ -51,7 +51,6 @@ public class OrderController {
 	public String addToBasket(@PathVariable ProductIdentifier id, @PathVariable int quantity, @ModelAttribute Cart cart) {
 		Wine wine = catalogManager.findById(id);
 		cart.addOrUpdateItem(wine, Quantity.of(quantity));
-		System.out.println("Der Wein " + wine.getName() + " " + quantity + " wurde erfolgreich zum Warenkorb hinzugefügt.");
 		return "redirect:/catalog";}
 
 	// is called, when someone is inside '(wine) details' and presses 'put inside cart'. $quantity must be stated inside shopping
