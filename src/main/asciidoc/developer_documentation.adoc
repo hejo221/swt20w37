@@ -230,6 +230,13 @@ image:models/analysis/inventory.svg[class design diagram - inventory]
 |===
 
 === 5.5 Order
+image:models/analysis/order.svg[class design diagram - order]
+
+[options="header"]
+|=== 
+|Class/Enumeration |Description
+|OrderController|Spring MVC Controller, welcher Anfragen für die Bestellungen und das Kart bearbeitet.
+|===
 
 === 5.6 User
 
