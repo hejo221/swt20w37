@@ -68,7 +68,7 @@ CustomerRegistrationForm, UserRegistrationForm, NewProductForm
 * Integrationstest nach Bottom-Up Prinzip
 
 == Umgebungsvoraussetzungen
-=== 2.1 Hardware-Vorgaben
+=== Hardware-Vorgaben
 
 Eine Liste mit benötigter Hardware, um mit der Software interagieren zu können.
 
@@ -76,7 +76,7 @@ Eine Liste mit benötigter Hardware, um mit der Software interagieren zu können
 * Tastatur
 * Maus
 
-=== 2.2 Software-Vorgaben
+=== Software-Vorgaben
 Eine Liste mit benötigter Software, um mit der Software interagieren zu können.
 
 Diese oder eine neuere Version von Java wird benötigt:
