@@ -144,7 +144,7 @@ Ende:     11:00 Uhr
 __Schriftführer:__ Henrik John
 
 *Nächstes Treffen:* +
-XX.XX.2020, XX:XX Uhr, online
+17.11.2020, 09:20 Uhr, online
 
 __Teilnehmer:__
 
@@ -164,6 +164,107 @@ __Teilnehmer:__
 === Aktueller Stand
 
 * Arbeit an Pflichtenheft fortgesetzt
+
+== Treffen am 17.11.2020
+
+Ort:      online +
+Beginn:   09:20 Uhr +
+Ende:     11:00 Uhr
+
+__Schriftführer:__ Henrik John
+
+*Nächstes Treffen:* +
+24.11.2020, 09:20 Uhr, online
+
+__Teilnehmer:__
+
+- Noah Brinschwitz
+- Henrik John
+- Deokgeun Kim
+- David Nicklaser
+- Lavon Śpirydonaŭ
+- Tom Uhlemann
+- Steven Schwarz (Tutor/Kunde)
+
+=== Bemerkungen
+
+* Verteilung der Komponenten an die Teammitglieder: 
+** Lavon, Noah: Weinkatalog
+** David: Bestellung/Warenkorb
+** Henrik: Kunden/Mitarbeiter
+** Tom: Lager/Nachbestellung
+** Deokgeun: Rechnung
+
+=== Aktueller Stand
+
+* Pflichtenheft fertiggestellt
+* Videoshop-Erweiterung jeweils fertiggestellt
+
+== Treffen am 24.11.2020
+
+Ort:      online +
+Beginn:   09:20 Uhr +
+Ende:     11:00 Uhr
+
+__Schriftführer:__ Henrik John
+
+*Nächstes Treffen:* +
+01.12.2020, 09:20 Uhr, online
+
+__Teilnehmer:__
+
+- Noah Brinschwitz
+- Henrik John
+- Deokgeun Kim
+- David Nicklaser
+- Lavon Śpirydonaŭ
+- Tom Uhlemann
+- Steven Schwarz (Tutor/Kunde)
+
+=== Bemerkungen
+
+* Vergabe der Aufgaben für die Entwicklerdokumentation:
+** Lavon: Einführung und Ziele
+** Tom: Randbedingungen
+** David: Kontextabgrenzung, Rückverfolgbarkeit zwischen Analyse- und Entwurfsmodell
+** Henrik: Erfüllung der Qualitätsziele, Softwarearchitektur
+** Deokgeun: Architekturentscheidungen, Verwendung externer Frameworks
+** Baustein- und Laufzeitsicht jeder für seine Komponente
+
+=== Aktueller Stand
+
+* Komponenten verteilt
+* mit Arbeit an Entwicklerdokumentation begonnen
+
+== Treffen am 08.12.2020
+
+Ort:      online +
+Beginn:   09:20 Uhr +
+Ende:     11:00 Uhr
+
+__Schriftführer:__ Henrik John
+
+*Nächstes Treffen:* +
+15.12.2020, 09:20 Uhr, online
+
+__Teilnehmer:__
+
+- Noah Brinschwitz
+- Henrik John
+- Deokgeun Kim
+- David Nicklaser
+- Lavon Śpirydonaŭ
+- Tom Uhlemann
+- Steven Schwarz (Tutor/Kunde)
+
+=== Bemerkungen
+
+* Vorbereitungen für Zwischenpräsentation
+
+=== Aktueller Stand
+
+* Entwicklerdokumentation und Testplan vorläufig fertig- und vorgestellt
+* Anwendungsprototyp fertig- und vorgestellt
 
 ////
 
