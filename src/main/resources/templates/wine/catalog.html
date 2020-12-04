@@ -1,6 +1,6 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
-       lang="de">
+      lang="de">
 <head>
     <meta charset="UTF-8">
 
@@ -69,7 +69,7 @@
 
 
                         <div class="card-body">
-                            <h5 class="card-title" th:href="index" th:text="${wine.name}"></h5>
+                            <h5 class="card-title" th:text="${wine.name}"></h5>
                             <p class="card-text text-secondary card-description"
                                th:text="${wine.getWineTypeAufDeutsch()}"></p>
                             <div>
@@ -82,13 +82,14 @@
 
 
                     <div class="card-footer text-muted font-weight-light">
-                        <span>Auf Lager: </span><span th:text="8" style="margin-right: 20px"></span>
+                        <span>Auf Lager: </span>
+                        <span th:text="8" style="margin-right: 40px"></span>
+
                         <span class="rating" style="text-align: right">
                             <a class="rating" th:each="i : ${#numbers.sequence(10, 1)}" th:value="${i}"
-                               style="font-size: large; margin-left: -2px"
+                               style="font-size: large; margin-left: -4px"
                                th:href="@{/order/addToBasket/{productId}/{quantity} (productId=${wine.getProductId()}, quantity=${i})}">🍷&#xFE0E</a>
-                         </span>
-
+                        </span>
                     </div>
 
 

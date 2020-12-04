@@ -18,15 +18,15 @@ class InventoryInitializer implements DataInitializer {
 	private static final Logger LOG = LoggerFactory.getLogger(InventoryInitializer.class);
 
 	private final UniqueInventory<UniqueInventoryItem> inventory;
-	private final WineCatalog wineRepository;
+	private final WineCatalog wineCatalog;
 
-	InventoryInitializer(UniqueInventory<UniqueInventoryItem> inventory, WineCatalog wineRepository) {
+	InventoryInitializer(UniqueInventory<UniqueInventoryItem> inventory, WineCatalog wineCatalog) {
 
 		Assert.notNull(inventory, "Inventory must not be null!");
-		Assert.notNull(wineRepository, "WineRepository must not be null!");
+		Assert.notNull(wineCatalog, "WineRepository must not be null!");
 
 		this.inventory = inventory;
-		this.wineRepository = wineRepository;
+		this.wineCatalog = wineCatalog;
 	}
 
 	@Override
@@ -34,7 +34,7 @@ class InventoryInitializer implements DataInitializer {
 
 		LOG.info("Creating inventory items.");
 
-		wineRepository.findAll().forEach(wine -> {
+		wineCatalog.findAll().forEach(wine -> {
 			// Try to find an InventoryItem for the project and create a default one with 10 items if none available
 			if (inventory.findByProduct(wine).isEmpty()) {
 				inventory.save(new UniqueInventoryItem(wine, Quantity.of(10)));

@@ -63,26 +63,26 @@ public class CatalogManager {
 		return wineCatalog.findAll();
 	}
 
-	public Boolean createNewProduct(NewProductForm form) {
+	public void createNewProduct(NewProductForm form) {
 		int itemNr;
 		Money buyPrice, sellPrice;
-		try {
-			itemNr = Integer.parseInt(form.getItemNr());
-			buyPrice = Money.of(Double.parseDouble(form.getBuyPrice()), EURO);
-			sellPrice = Money.of(Double.parseDouble(form.getSellPrice()), EURO);
-		} catch (Exception exception) {
-			return false; //FAILURE HINZUFÜGEN
-		}
 
+		itemNr = Integer.parseInt(form.getItemNr());
+		buyPrice = Money.of(Double.parseDouble(form.getBuyPrice()), EURO);
+		sellPrice = Money.of(Double.parseDouble(form.getSellPrice()), EURO);
 
 		wineCatalog.save(new Wine(itemNr, form.getName(), form.getWineType(), form.getPic(), buyPrice, sellPrice, form.getDetails()));
-		return true;
+
 	}
 
-	public Wine findById(ProductIdentifier id){
+	public Wine findById(ProductIdentifier id) {
 		return wineCatalog.findById(id).get();
 	}
 
+	public void deleteById(ProductIdentifier id) {
 
+		wineCatalog.deleteById(id);
+	}
 
 }
+
