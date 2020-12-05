@@ -4,6 +4,7 @@ import org.salespointframework.catalog.ProductIdentifier;
 import org.salespointframework.inventory.InventoryItem;
 import org.salespointframework.inventory.UniqueInventory;
 import org.salespointframework.inventory.UniqueInventoryItem;
+import org.salespointframework.quantity.Quantity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -58,7 +59,9 @@ class CatalogController {
 		}
 
 
-		catalogManager.createNewProduct(form);
+		Wine savedWine = catalogManager.createNewProduct(form);
+		inventory.save(new UniqueInventoryItem(savedWine, Quantity.of(0)));
+		System.out.println(savedWine);
 		//TODO Produkt zur Inventory hinzufügen
 		return "redirect:/catalog";
 

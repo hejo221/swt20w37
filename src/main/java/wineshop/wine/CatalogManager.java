@@ -67,7 +67,7 @@ public class CatalogManager {
 		return wineCatalog.findAll();
 	}
 
-	public void createNewProduct(NewProductForm form) {
+	public Wine createNewProduct(NewProductForm form) {
 		int itemNr;
 		Money buyPrice, sellPrice;
 
@@ -75,7 +75,7 @@ public class CatalogManager {
 		buyPrice = Money.of(Double.parseDouble(form.getBuyPrice()), EURO);
 		sellPrice = Money.of(Double.parseDouble(form.getSellPrice()), EURO);
 
-		wineCatalog.save(new Wine(itemNr, form.getName(), form.getWineType(), form.getPic(), buyPrice, sellPrice, form.getDetails()));
+		return wineCatalog.save(new Wine(itemNr, form.getName(), form.getWineType(), form.getPic(), buyPrice, sellPrice, form.getDetails()));
 
 	}
 
