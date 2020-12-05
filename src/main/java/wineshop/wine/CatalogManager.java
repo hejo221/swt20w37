@@ -10,7 +10,11 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.Optional;
+import java.util.Set;
+import java.util.function.Predicate;
 
 import static org.salespointframework.core.Currencies.EURO;
 
@@ -83,6 +87,8 @@ public class CatalogManager {
 
 		wineCatalog.deleteById(id);
 	}
+
+
 
 }
 

@@ -30,7 +30,7 @@ class CatalogController {
 
 	@GetMapping("/catalog")
 	String showCatalog(Model model) {
-		model.addAttribute("wineCatalog", catalogManager.getAllWines());
+			model.addAttribute("wineCatalog", catalogManager.getAllWines());
 
 		return "/wine/catalog";
 	}
