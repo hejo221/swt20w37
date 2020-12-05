@@ -1,16 +1,16 @@
 package wineshop.order;
 
+import org.salespointframework.catalog.ProductIdentifier;
 import org.salespointframework.inventory.*;
-import org.salespointframework.order.Cart;
-import org.salespointframework.order.CartItem;
-import org.salespointframework.order.Order;
-import org.salespointframework.order.OrderManagement;
+import org.salespointframework.order.*;
 import org.salespointframework.payment.Cash;
 import org.salespointframework.quantity.Quantity;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.web.LoggedIn;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import wineshop.wine.CatalogManager;
 import wineshop.wine.Wine;
 
 import org.salespointframework.inventory.InventoryItem;
@@ -30,11 +30,13 @@ public class OrderController {
 	private final OrderManagement<Order> orderManagement;
 	//private final OrderManagement<Preorder> preorderManagement;
 	private final UniqueInventory<UniqueInventoryItem> inventory;
+	private final CatalogManager catalogManager;
 
-	public OrderController(OrderManagement<Order> orderManagement,/*OrderManagement<Preorder> preorderManagement,*/ UniqueInventory<UniqueInventoryItem> inventory) {
+	public OrderController(OrderManagement<Order> orderManagement,/*OrderManagement<Preorder> preorderManagement,*/ UniqueInventory<UniqueInventoryItem> inventory, CatalogManager catalogManager) {
 		this.orderManagement = orderManagement;
 		//this.preorderManagement = preorderManagement;
 		this.inventory = inventory;
+		this.catalogManager=catalogManager;
 	}
 
 
@@ -45,19 +47,20 @@ public class OrderController {
 	}
 
 
+	@GetMapping("/addToBasket/{id}/{quantity}")
+	public String addToBasket(@PathVariable ProductIdentifier id, @PathVariable int quantity, @ModelAttribute Cart cart) {
+		Wine wine = catalogManager.findById(id);
+		cart.addOrUpdateItem(wine, Quantity.of(quantity));
+		return "redirect:/catalog";}
+
 	// is called, when someone is inside '(wine) details' and presses 'put inside cart'. $quantity must be stated inside shopping
 	// cart. quantity and other informations are stored in cart object. user is redirected to wine catalog.
-	@PostMapping("/cart")
-	String addWine(@RequestParam("pid") Wine wine, @RequestParam("number") int number, @ModelAttribute Cart cart) {
-		// Weine hinzufügen
-		cart.addOrUpdateItem(wine, Quantity.of(number));
-		return "redirect:/wine/catalog";
-	}
+
 
 
 	// shopping cart is shown on website
 	@GetMapping("/cart")
-	String basket() {
+	String basket(){
 		return "order/cart";
 	}
 
@@ -91,7 +94,7 @@ public class OrderController {
 				order.addOrderLine(wine, cartItem.getQuantity());;
 			}
 		}
-		while (item.hasNext() == true);
+		while (item.hasNext());
 		//TODO:	Falls eine Order leer sein sollte, wird diese gelöscht.
 		//		Ansonsten wird sie bezahlt und anschließend geschlossen.
 		if (preorder.getOrderLines().get().count() == 0) {
@@ -112,15 +115,10 @@ public class OrderController {
 	}
 
 
+	@GetMapping("/orders")
+	String orders(Model model) {
+		model.addAttribute("orders", orderManagement.findBy(OrderStatus.COMPLETED));
 
-
-
-
-
-//	@GetMapping("/orders")
-//	@PreAuthorize("hasRole('BOSS')")
-//	String orders(Model model) {
-//		model.addAttribute("ordersCompleted", orderManagement.findBy(OrderStatus.COMPLETED));
-//		return "orders";
-//	}
+		return "/order/orders";
+	}
 }
