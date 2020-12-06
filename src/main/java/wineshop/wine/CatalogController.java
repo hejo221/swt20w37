@@ -1,7 +1,6 @@
 package wineshop.wine;
 
 import org.salespointframework.catalog.ProductIdentifier;
-import org.salespointframework.inventory.InventoryItem;
 import org.salespointframework.inventory.UniqueInventory;
 import org.salespointframework.inventory.UniqueInventoryItem;
 import org.salespointframework.quantity.Quantity;
@@ -12,9 +11,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
 import javax.validation.Valid;
-import java.util.Optional;
 
 
 @Controller
@@ -24,23 +21,23 @@ class CatalogController {
 	private final CatalogManager catalogManager;
 	private final UniqueInventory<UniqueInventoryItem> inventory;
 
+
 	CatalogController(CatalogManager catalogManager, UniqueInventory<UniqueInventoryItem> inventory) {
 		this.catalogManager = catalogManager;
 		this.inventory = inventory;
+
 	}
 
 	@GetMapping("/catalog")
 	String showCatalog(Model model) {
-			model.addAttribute("wineCatalog", catalogManager.getAllWines());
+		model.addAttribute("wineCatalog", catalogManager.getAvailableWines());
+		for (Wine w : catalogManager.getAllWines()){
+			System.out.println(w.getDetails());
+			if (! catalogManager.isAvailable(w)) System.out.println("NOT AVAILABLE");
+		}
+		System.out.println();
 
 		return "/wine/catalog";
-	}
-
-
-	//PROVISORISCH ERSTELLTER CART-CONTROLLER
-	@GetMapping("/cart")
-	String getCart() {
-		return "cart";
 	}
 
 
@@ -54,23 +51,18 @@ class CatalogController {
 	@PostMapping("/newProduct")
 	String registerNew(@Valid NewProductForm form, Errors result) {
 
-		if (result.hasErrors()) {
-			return "index";//FAILURE HINZUFÜGEN!
-		}
-
+		if (result.hasErrors()) return "index";//FAILURE HINZUFÜGEN!
 
 		Wine savedWine = catalogManager.createNewProduct(form);
 		inventory.save(new UniqueInventoryItem(savedWine, Quantity.of(0)));
-		System.out.println(savedWine);
-		//TODO Produkt zur Inventory hinzufügen
-		return "redirect:/catalog";
 
+		return "redirect:/catalog";
 	}
 
-	@GetMapping("/wine/{productId}")
-	String showProduct(@PathVariable ProductIdentifier productId, Model model, NewProductForm form) {
-		Wine wine = catalogManager.findById(productId);
+	@GetMapping("/wine/{wine}")
+	String showProduct(@PathVariable Wine wine, Model model, NewProductForm form) {
 
+		System.out.println("Details: " + wine.getDetails() + "\n");
 
 		model.addAttribute("form", form);
 		model.addAttribute("wine", wine);
@@ -78,10 +70,9 @@ class CatalogController {
 	}
 
 	@PreAuthorize("hasRole('ADMIN')")
-	@PostMapping("/wine/{productId}")
-	String productEdit(@PathVariable ProductIdentifier productId, @Valid NewProductForm form, Errors result) {
+	@PostMapping("/wine/{wine}")
+	String productEdit(@PathVariable Wine wine, @Valid NewProductForm form, Errors result) {
 
-		Wine wine = catalogManager.findById(productId);
 
 		if (result.hasErrors()) {
 			System.out.println("Es gab Fehler");
@@ -89,19 +80,40 @@ class CatalogController {
 		}
 
 
-		if (catalogManager.editProductInCatalog(wine.productId, form)) return "redirect:/catalog";
-		else return "index";//TODO FAILURE HINZUFÜGEN!
+		if (catalogManager.editProductInCatalog(wine, form)) {
+			return "redirect:/catalog";
+		} else return "index";//TODO FAILURE HINZUFÜGEN!
 	}
 
 	@PreAuthorize("hasRole('ADMIN')")
-	@GetMapping("/wine/delete/{id}")
-	String deleteItem(@PathVariable ProductIdentifier id) {
+	@GetMapping("/wine/delete/{wine}")
+	String deleteConfirm(@PathVariable Wine wine, Model model) {
+		model.addAttribute("wine", wine);
+		return "wine/deleteConfirmation";
+	}
 
-		if (inventory.findByProductIdentifier(id).isPresent()) {
-			inventory.delete(inventory.findByProductIdentifier(id).get());
+
+	@PreAuthorize("hasRole('ADMIN')")
+	@GetMapping("/wine/delete/confirmed/{wine}")
+	String deleteItem(@PathVariable Wine wine) {
+
+		if (inventory.findByProduct(wine).isPresent()) {
+			inventory.delete(inventory.findByProduct(wine).get());
 		}
 
-		catalogManager.deleteById(id);
+		catalogManager.deleteById(wine.productId);
+		return "redirect:/catalog";
+	}
+
+	@PreAuthorize("hasRole('ADMIN')")
+	@GetMapping("/wine/deleteFromCatalog/{wine}")
+	String makeItemUnavailable(@PathVariable Wine wine) {
+
+		wine.removeCategory("available");
+
+		for (Wine w : catalogManager.getAllWines()){
+			if (w.getId() == wine.getId())	wine.removeCategory("available");
+		}
 		return "redirect:/catalog";
 	}
 }

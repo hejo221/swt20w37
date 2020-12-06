@@ -3,6 +3,7 @@ package wineshop.wine;
 import org.javamoney.moneta.Money;
 import org.salespointframework.catalog.Product;
 import org.salespointframework.catalog.ProductIdentifier;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.money.format.MonetaryAmountFormat;
 import javax.money.format.MonetaryFormats;

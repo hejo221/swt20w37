@@ -1,22 +1,14 @@
 package wineshop.wine;
 
 import com.mysema.commons.lang.Assert;
-import org.hibernate.metamodel.model.domain.IdentifiableDomainType;
 import org.javamoney.moneta.Money;
-import org.salespointframework.catalog.Product;
 import org.salespointframework.catalog.ProductIdentifier;
 import org.springframework.data.util.Streamable;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.Optional;
-import java.util.Set;
-import java.util.function.Predicate;
-
 import static org.salespointframework.core.Currencies.EURO;
+
 
 @Service
 @Transactional
@@ -30,11 +22,8 @@ public class CatalogManager {
 	}
 
 
-	@Transactional
-	Boolean editProductInCatalog(ProductIdentifier productId, NewProductForm form) {
+	Boolean editProductInCatalog(Wine wine, NewProductForm form) {
 		Money buyPrice, sellPrice;
-		Wine wine;
-
 		int itemNr;
 
 		try {
@@ -46,12 +35,6 @@ public class CatalogManager {
 			return false; //FAILURE HINZUFÜGEN
 		}
 
-		Optional<Wine> wines = wineCatalog.findById(productId);
-		if (wines.isPresent()) {
-			wine = wines.get();
-		} else return false;
-
-		System.out.println("In CatalogManager" + wine.getProductId());
 		wine.setItemNr(itemNr);
 		wine.setName(form.getName());
 		wine.setBuyPrice(buyPrice);
@@ -65,6 +48,10 @@ public class CatalogManager {
 
 	public Streamable<Wine> getAllWines() {
 		return wineCatalog.findAll();
+	}
+
+	public Streamable<Wine> getAvailableWines() {
+		return wineCatalog.findByCategory("available");
 	}
 
 	public Wine createNewProduct(NewProductForm form) {
@@ -88,7 +75,12 @@ public class CatalogManager {
 		wineCatalog.deleteById(id);
 	}
 
-
-
+	public Boolean isAvailable(Wine wine){
+		Streamable<Wine> wines = getAvailableWines();
+		for (Wine w : wines){
+			if (wine.productId == w.productId) return true;
+		}
+		return false;
+	}
 }
 

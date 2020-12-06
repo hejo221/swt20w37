@@ -32,7 +32,7 @@ class WineDataInitializer implements DataInitializer {
 		}
 
 		LOG.info("The default Wine Catalog is being created");
-		wineCatalog.deleteAll();
+		//wineCatalog.deleteAll();
 		wineCatalog.save(new Wine(1, "Mas Martinet Clos Martinet", RED, "mas", Money.of(9.99, EURO), Money.of(15.99, EURO), "details"));
 		wineCatalog.save(new Wine(2, "Acentaudo Tempranillo",  RED, "acentuado", Money.of(14.95, EURO), Money.of(14.95, EURO), "details"));
 		wineCatalog.save(new Wine(3, "Hauswein Nr. 1", RED, "hauswein", Money.of(3.50, EURO), Money.of(5.50, EURO), "details" ));
@@ -48,5 +48,8 @@ class WineDataInitializer implements DataInitializer {
 		wineCatalog.save(new Wine(13, "Katzpiss", OTHER, "katzpiss", Money.of(0.90, EURO), Money.of(3.21, EURO), "unglaublich lecker der Wein, nu!"));
 		wineCatalog.save(new Wine(14, "Sensaciones Edición Limitada", RED, "sensaciones", Money.of(19.95, EURO), Money.of(33.33, EURO), "details"));
 
+		for (Wine wine : wineCatalog.findAll()){
+			wine.addCategory("available");
+		}
 	}
 }
