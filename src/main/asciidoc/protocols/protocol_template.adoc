@@ -236,7 +236,7 @@ __Teilnehmer:__
 * Komponenten verteilt
 * mit Arbeit an Entwicklerdokumentation begonnen
 
-== Treffen am 08.12.2020
+== Treffen am 01.12.2020
 
 Ort:      online +
 Beginn:   09:20 Uhr +
@@ -245,7 +245,7 @@ Ende:     11:00 Uhr
 __Schriftführer:__ Henrik John
 
 *Nächstes Treffen:* +
-15.12.2020, 09:20 Uhr, online
+08.12.2020, 09:20 Uhr, online
 
 __Teilnehmer:__
 
