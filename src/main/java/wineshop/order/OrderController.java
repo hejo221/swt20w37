@@ -144,12 +144,11 @@ public class OrderController {
 	String balancing(Model model) {
 		Streamable<Order> orders = orderManagement.findBy(OrderStatus.COMPLETED);
 		List<Order> list = orders.toList();
-		MonetaryAmount totalPrice =  Money.of(0, EURO);
+
+		double totalPrice = 0;
 
 		for(int i = 0; i < list.size(); i++) {
-			totalPrice.add(list.get(i).getTotal());
-			System.out.println(totalPrice);
-			System.out.println(list.get(i).getTotal());
+			totalPrice += list.get(i).getTotal().getNumber().doubleValue();
 		}
 
 		model.addAttribute("orders", orders);
