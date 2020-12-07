@@ -49,7 +49,7 @@
             </td>
             <td>
                 <form th:action="@{/customer/delete}" class="ui form" role="form" method="post">
-                    <button type="submit" class="btn btn-danger">Entfernen</button>
+                    <button type="submit" class="btn btn-danger" onclick="return confirm('Wollen Sie diesen Kunden wirklich löschen?')">Entfernen</button>
                     <input type="number"  name="id" th:value="${customer.id}" hidden/>
                 </form>
             </td>

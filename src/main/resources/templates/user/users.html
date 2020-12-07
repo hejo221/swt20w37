@@ -30,7 +30,7 @@
                 <tr>
                     <th scope="col">Angestellte</th>
                     <th scope="col">Vorname</th>
-                    <th scope="col">Zuname</th>
+                    <th scope="col">Nachname</th>
                     <th scope="col"></th>
                     <th scope="col"></th>
                 </tr>
@@ -47,7 +47,7 @@
                     </td>
                     <td>
                         <form th:action="@{/user/delete}" class="ui form" role="form" method="post">
-                            <button type="submit" class="btn btn-danger">Entfernen</button>
+                            <button type="submit" class="btn btn-danger" onclick="return confirm('Wollen Sie diesen Mitarbeiter wirklich löschen?')">Entfernen</button>
                             <input type="number"  name="id" th:value="${user.id}" hidden/>
                         </form>
                     </td>

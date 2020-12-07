@@ -37,7 +37,11 @@ public class CustomerController {
 	}
 
 	@PostMapping("/register")
-	public String registerNew(@Valid CustomerRegistrationForm form) {
+	public String registerNew(@Valid CustomerRegistrationForm form, Errors result) {
+
+		if (result.hasErrors()) {
+			return "/customer/register";
+		}
 		customerManager.createCustomer(form);
 
 		return "redirect:/customer/list";
