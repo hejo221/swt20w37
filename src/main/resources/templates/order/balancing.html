@@ -37,7 +37,7 @@
             <td th:text="${order.userAccount.id}">hans</td>
             <td th:text="${order.total}">20€</td>
             <td>
-                <form th:action="@{/order/balancing}" method="get">
+                <form th:action="@{/order/detail/{id}}" method="get">
                     <button type="submit" class="btn btn-info">anzeigen</button>
                     <input type="hidden" name="id" th:value="${order.id}"/>
                 </form>
@@ -48,7 +48,7 @@
     <br/>
     <div>
         <h3>Summe</h3>
-        <span th:text="${totalPrice}">20</span>
+        <span th:text="'EUR ' + ${totalPrice}">20</span>
     </div>
 </main>
 
