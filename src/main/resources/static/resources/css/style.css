@@ -2,6 +2,7 @@
 
 body {
 	padding-top: 5rem;
+	font-family: "Century Gothic", sans-serif;
 }
 .starter-template {
 	padding: 3rem 1.5rem;
@@ -12,3 +13,23 @@ body {
 .material-icons.md-light { color: rgba(255, 255, 255, 1); }
 .material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
 
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+	-moz-appearance: textfield;
+}
+
+
+.btn.btn-success.btn-lg.btn-block{
+	background: #34495e; !important;
+}
+
+i{
+	font-style: normal;
+}

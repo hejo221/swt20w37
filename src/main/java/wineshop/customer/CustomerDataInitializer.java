@@ -46,10 +46,10 @@ class CustomerDataInitializer implements DataInitializer {
 		LOG.info("Creating default users and customers.");
 
 		List.of(//
-				new CustomerRegistrationForm("hans","max", "max@gmail.com", "dresden"),
-				new CustomerRegistrationForm("dextermorgan","herrmann", "herrmann@gmail.com", "leipzig"),
-				new CustomerRegistrationForm("earlhickey","knoblauch", "knoblauch@gmail.com", "mannheim"),
-				new CustomerRegistrationForm("mclovinfogell","max", "max2@gmail.com", "berlin")
+				new CustomerRegistrationForm("Hans","Max", "max@dmail.com", "Zur Schönen Gelegenheit 5, 92224 Amberg"),
+				new CustomerRegistrationForm("Herrmann","Kritzschke", "herrmann@dmail.com", "Zur Hölle 666, 31785 Hameln"),
+				new CustomerRegistrationForm("Martina","Knoblauch", "knoblauch@dmail.com", "Im Paradies 2, 47800 Krefeld"),
+				new CustomerRegistrationForm("Bärbel","Zuck", "zuck@dmail.com", "Beamtenlaufbahn 123, 22850 Norderstedt")
 		).forEach(customerManager::createCustomer);
 	}
 }
