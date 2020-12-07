@@ -1,5 +1,6 @@
 package wineshop.order;
 
+import org.javamoney.moneta.Money;
 import org.salespointframework.catalog.ProductIdentifier;
 import org.salespointframework.inventory.*;
 import org.salespointframework.order.*;
@@ -7,6 +8,7 @@ import org.salespointframework.payment.Cash;
 import org.salespointframework.quantity.Quantity;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.web.LoggedIn;
+import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +21,12 @@ import org.salespointframework.inventory.UniqueInventoryItem;
 import org.salespointframework.quantity.Quantity;
 
 import javax.lang.model.element.QualifiedNameable;
+import javax.money.MonetaryAmount;
+import javax.money.NumberValue;
 import java.util.Iterator;
+import java.util.List;
+
+import static org.salespointframework.core.Currencies.EURO;
 
 
 @Controller
@@ -120,5 +127,34 @@ public class OrderController {
 		model.addAttribute("orders", orderManagement.findBy(OrderStatus.COMPLETED));
 
 		return "/order/orders";
+	}
+
+
+	@GetMapping("/detail/{id}")
+	String ordersDetail(Model model, @RequestParam("id") OrderIdentifier id) {
+		Order order = orderManagement.get(id).get();
+
+		model.addAttribute("order", order);
+		model.addAttribute("orderLines", order.getOrderLines().toList());
+
+		return "/order/detail";
+	}
+
+	@GetMapping("/balancing")
+	String balancing(Model model) {
+		Streamable<Order> orders = orderManagement.findBy(OrderStatus.COMPLETED);
+		List<Order> list = orders.toList();
+		MonetaryAmount totalPrice =  Money.of(0, EURO);
+
+		for(int i = 0; i < list.size(); i++) {
+			totalPrice.add(list.get(i).getTotal());
+			System.out.println(totalPrice);
+			System.out.println(list.get(i).getTotal());
+		}
+
+		model.addAttribute("orders", orders);
+		model.addAttribute("totalPrice", totalPrice);
+
+		return "/order/balancing";
 	}
 }

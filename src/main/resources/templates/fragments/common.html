@@ -58,8 +58,8 @@
                     <a class="nav-link" href="#" th:href="@{/user/list}">Angestellten<span class="sr-only"
                                                                                            th:if="${menu} == 'users'">(current)</span></a>
 
-                <li class="nav-item" sec:authorize="hasRole('ADMIN')" th:classappend="${menu} == 'inventory'? 'active'">
-                    <a class="nav-link" href="#" th:href="@{/inventory}">Bilanzierung<span class="sr-only"
+                <li class="nav-item" sec:authorize="hasRole('ADMIN')" th:classappend="${menu} == 'balancing'? 'active'">
+                    <a class="nav-link" href="#" th:href="@{/order/balancing}">Bilanzierung<span class="sr-only"
                                                                                     th:if="${menu} == 'inventory'">(current)</span></a>
 
 <!--

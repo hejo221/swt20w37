@@ -10,41 +10,39 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="../static/resources/css/style.css" th:href="@{/resources/css/style.css}" rel="stylesheet">
 
-    <title>Rechnungen</title>
+    <title>Detail</title>
 </head>
 
 <body>
-<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" th:replace="fragments/common :: menu('orders')" />
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" th:replace="fragments/common :: menu('empl')" />
 
 <main role="main" class="container">
     <header class="text-center">
-        <h1>Rechnungen</h1>
-        <br>
+        <h1 th:text="${order.userAccount.id}"}>Hans</h1>
+        <span th:text="${#temporals.format(order.dateCreated, 'dd.MM.yyyy HH:mm')}">2020.11.27</span>
     </header>
-
+    <br>
     <table class="ui celled table text-center">
         <thead>
-        <tr>
-            <th scope="col">Datum</th>
-            <th scope="col">Kunde</th>
-            <th scope="col">Bezahlt</th>
-            <th scope="col">Detail</th>
-        </tr>
+            <tr>
+                <th scope="col">Wein Name</th>
+                <th scope="col">Menge</th>
+                <th scope="col">Preis</th>
+            </tr>
         </thead>
         <tbody th:remove="all-but-first">
-        <tr th:each=" order : ${orders}">
-            <td th:text="${#temporals.format(order.dateCreated, 'dd.MM.yyyy HH:mm')}">2020.11.27</td>
-            <td th:text="${order.userAccount.id}">hans</td>
-            <td th:text="${order.total}">20€</td>
-            <td>
-                <form th:action="@{/order/detail/{id}}" method="get">
-                    <button type="submit" class="btn btn-info">anzeigen</button>
-                    <input type="hidden" name="id" th:value="${order.id}"/>
-                </form>
-            </td>
-        </tr>
+            <tr th:each=" orderLine : ${orderLines}">
+                <td th:text="${orderLine.productName}">Mas Martinet Clos Martinet</td>
+                <td th:text="${orderLine.quantity}">2020.11.27</td>
+                <td th:text="${orderLine.price}">2020.11.27</td>
+            </tr>
         </tbody>
     </table>
+    <br/>
+    <div>
+        <h3>Summe</h3>
+        <span th:text="${order.total}">20</span>
+    </div>
 </main>
 
 <!-- Optional JavaScript; choose one of the two! -->

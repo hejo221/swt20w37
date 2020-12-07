@@ -10,15 +10,15 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="../static/resources/css/style.css" th:href="@{/resources/css/style.css}" rel="stylesheet">
 
-    <title>Rechnungen</title>
+    <title>Bilanzierung</title>
 </head>
 
 <body>
-<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" th:replace="fragments/common :: menu('orders')" />
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" th:replace="fragments/common :: menu('balancing')" />
 
 <main role="main" class="container">
     <header class="text-center">
-        <h1>Rechnungen</h1>
+        <h1>Bilanzierung</h1>
         <br>
     </header>
 
@@ -37,7 +37,7 @@
             <td th:text="${order.userAccount.id}">hans</td>
             <td th:text="${order.total}">20€</td>
             <td>
-                <form th:action="@{/order/detail/{id}}" method="get">
+                <form th:action="@{/order/balancing}" method="get">
                     <button type="submit" class="btn btn-info">anzeigen</button>
                     <input type="hidden" name="id" th:value="${order.id}"/>
                 </form>
@@ -45,6 +45,11 @@
         </tr>
         </tbody>
     </table>
+    <br/>
+    <div>
+        <h3>Summe</h3>
+        <span th:text="${totalPrice}">20</span>
+    </div>
 </main>
 
 <!-- Optional JavaScript; choose one of the two! -->
