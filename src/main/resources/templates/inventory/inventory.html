@@ -29,20 +29,24 @@
                 <tr>
                     <th>Artikel</th>
                     <th>Anzahl</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody th:remove="all-but-first">
                 <tr th:each="item : ${stock}">
-                    <td th:text="${item.product.name}">Last Action Hero</td>
-                    <td th:text="${{item.quantity}}">9000</td>
-                </tr>
-                <tr>
-                    <td>Last Action Hero</td>
-                    <td>9000</td>
-                </tr>
-                <tr>
-                    <td>Last Action Hero</td>
-                    <td>9000</td>
+                    <td th:text="${item.product.name}">Wein</td>
+                    <td th:text="${{item.quantity}}">10</td>
+                    <td>
+                        <form class="ui form" method="post" th:action="@{/inventory/update}">
+                            <input type="hidden" name="item" value="0" th:value="${item.product.getId()}"/>
+                            <div class="field">
+                                <input id="number" type="number" name="number" min="0" max="100" step="1" th:value="${item.quantity}"/>
+                            </div>
+                            <button type="submit" class="ui button">
+                                <span> Aktualisieren</span>
+                            </button>
+                        </form>
+                    </td>
                 </tr>
                 </tbody>
             </table>
