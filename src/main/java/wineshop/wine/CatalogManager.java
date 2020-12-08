@@ -35,6 +35,7 @@ public class CatalogManager {
 
 		wine.setItemNr(itemNr);
 		wine.setWineName(form.getName());
+		wine.setWineType(form.getWineType());
 		wine.setBuyPrice(buyPrice);
 		wine.setSellPrice(sellPrice);
 		wine.setPic(form.getPic());

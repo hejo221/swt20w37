@@ -107,6 +107,10 @@ public class Wine extends Product {
 		super.setName(name);
 	}
 
+	public void setWineType(WineType wineType) {
+		this.wineType = wineType;
+	}
+
 	public void setPic(String pic) {
 		this.pic = pic;
 	}
@@ -118,7 +122,6 @@ public class Wine extends Product {
 	public void setSellPrice(Money sellPrice){
 		super.setPrice(sellPrice);
 	}
-
 
 	public void setDetails(String details) {
 		this.details = details;
