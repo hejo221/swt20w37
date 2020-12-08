@@ -26,14 +26,14 @@ import java.util.List;
 @RequestMapping("/order")
 @SessionAttributes("cart")
 public class OrderController {
-	private final OrderManagement<Order> orderManagement;
+	private final OrderManagement<OrderWithCustomer> orderManagement;
 	//private final OrderManagement<Preorder> preorderManagement;
 	private final UniqueInventory<UniqueInventoryItem> inventory;
 	private final CatalogManager catalogManager;
 	private final CustomerManager customerManager;
 
 
-	public OrderController(OrderManagement<Order> orderManagement,/*OrderManagement<Preorder> preorderManagement,*/ UniqueInventory<UniqueInventoryItem> inventory, CatalogManager catalogManager, CustomerManager customerManager) {
+	public OrderController(OrderManagement<OrderWithCustomer> orderManagement,/*OrderManagement<Preorder> preorderManagement,*/ UniqueInventory<UniqueInventoryItem> inventory, CatalogManager catalogManager, CustomerManager customerManager) {
 		this.orderManagement = orderManagement;
 		//this.preorderManagement = preorderManagement;
 		this.inventory = inventory;
@@ -53,8 +53,6 @@ public class OrderController {
 	public String addToCart(@PathVariable ProductIdentifier id, @PathVariable int quantity, @ModelAttribute("cart")  CartWithCustomer cart) {
 		Wine wine = catalogManager.findById(id);
 		cart.addOrUpdateItem(wine, Quantity.of(quantity));
-
-		System.out.println("haaaloooooooooooooooooooo");
 		return "redirect:/catalog";}
 		
 
@@ -109,6 +107,12 @@ public class OrderController {
 		if (order.getOrderLines().get().count() == 0) {
 			orderManagement.delete(order);
 		} else {
+			System.out.println("order.getCustomer().getFirstName():");
+			System.out.println(order.getCustomer().getFirstName());
+			System.out.println("order.getCustomer()");
+			System.out.println(order.getCustomer());
+
+
 			orderManagement.payOrder(order);
 			orderManagement.completeOrder(order);
 		}
@@ -138,8 +142,8 @@ public class OrderController {
 
 	@GetMapping("/balancing")
 	String balancing(Model model) {
-		Streamable<Order> orders = orderManagement.findBy(OrderStatus.COMPLETED);
-		List<Order> list = orders.toList();
+		Streamable<OrderWithCustomer> orders = orderManagement.findBy(OrderStatus.COMPLETED);
+		List<OrderWithCustomer> list = orders.toList();
 
 		double totalPrice = 0;
 

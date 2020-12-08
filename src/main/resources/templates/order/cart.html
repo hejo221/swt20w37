@@ -57,14 +57,14 @@
             <br>
 
             <div class="four column centered row">
-                <form sec:authorize="hasAnyRole('EMPLOYEE', 'ADMIN')" class="ui form" method="post" th:action="@{/order/checkout}">
+                <form sec:authorize="hasAnyRole('EMPLOYEE', 'ADMIN')" class="ui form" method="post" th:object="${cart}" th:action="@{/order/checkout}">
 
                     <div class="input-group" style="margin-bottom: 20px">
                         <div class="input-group-prepend">
                             <label class="input-group-text" for="customer">Kunde</label>
                         </div>
-                        <select class="custom-select" id="customer" name="type" th:field="${cart.customer}">
-                            <option th:each="i : ${customers}" th:value="${i}" th:text="${i.getFirstName()+' '+i.getFamilyName()}"></option>
+                        <select class="custom-select" id="customer" name="type" th:field="*{customer.id}">
+                            <option th:each="customer : ${customers}" th:value="${customer.id}" th:text="${customer.getFirstName()+' '+customer.getFamilyName()}"></option>
                         </select>
                     </div>
                     <button type="submit" class="ui button">Kaufen</button>
