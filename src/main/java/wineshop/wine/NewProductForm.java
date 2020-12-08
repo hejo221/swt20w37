@@ -20,8 +20,6 @@ class NewProductForm {
 	@NotEmpty(message = "{NewProductForm.sellPrice.NotEmpty}")
 	private final String sellPrice;
 
-
-
 	@NotEmpty(message = "{NewProductForm.name.NotEmpty}")
 	private final String details;
 
@@ -51,7 +49,6 @@ class NewProductForm {
 	public String getPic() {
 		return pic;
 	}
-
 
 	public String getDetails(){
 		return details;

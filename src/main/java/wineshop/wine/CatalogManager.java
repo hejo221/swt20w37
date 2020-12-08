@@ -11,7 +11,6 @@ import static org.salespointframework.core.Currencies.EURO;
 
 
 @Service
-@Transactional
 public class CatalogManager {
 	private final WineCatalog wineCatalog;
 
@@ -22,6 +21,7 @@ public class CatalogManager {
 
 
 	Boolean editProductInCatalog(Wine wine, NewProductForm form) {
+
 		Money buyPrice, sellPrice;
 		int itemNr;
 
@@ -30,34 +30,19 @@ public class CatalogManager {
 			buyPrice = Money.of(Double.parseDouble(form.getBuyPrice()), EURO);
 			sellPrice = Money.of(Double.parseDouble(form.getSellPrice()), EURO);
 		} catch (Exception exception) {
-			System.out.println("EXCEPTION!");
 			return false; //FAILURE HINZUFÜGEN
 		}
 
 		wine.setItemNr(itemNr);
-		wine.setName(form.getName());
+		wine.setWineName(form.getName());
 		wine.setBuyPrice(buyPrice);
 		wine.setSellPrice(sellPrice);
 		wine.setPic(form.getPic());
 		wine.setDetails(form.getDetails());
-
-		System.out.println(form.getName() + form.getDetails());
-		for (Wine w : getAllWines()){
-			if (wine.productId == w.productId){
-				wine.setItemNr(itemNr);
-				wine.setName(form.getName());
-				wine.setBuyPrice(buyPrice);
-				wine.setSellPrice(sellPrice);
-				wine.setPic(form.getPic());
-				wine.setDetails(form.getDetails());
-
-				System.out.println(w.getName() + w.getDetails());
-			}
-		}
+		wineCatalog.save(wine);
 
 		return true;
 	}
-
 
 	public Streamable<Wine> getAllWines() {
 		return wineCatalog.findAll();
@@ -67,41 +52,54 @@ public class CatalogManager {
 		return wineCatalog.findByCategory("available");
 	}
 
+	public Streamable<Wine> getUnavailableWines() {
+		return wineCatalog.findByCategory("unavailable");
+	}
+
 	public Wine createNewProduct(NewProductForm form) {
 		int itemNr;
 		Money buyPrice, sellPrice;
-
 		itemNr = Integer.parseInt(form.getItemNr());
 		buyPrice = Money.of(Double.parseDouble(form.getBuyPrice()), EURO);
 		sellPrice = Money.of(Double.parseDouble(form.getSellPrice()), EURO);
 
-		return wineCatalog.save(new Wine(itemNr, form.getName(), form.getWineType(), form.getPic(), buyPrice, sellPrice, form.getDetails()));
+		Wine savedWine = wineCatalog.save(new Wine(itemNr, form.getName(), form.getWineType(), form.getPic(), buyPrice, sellPrice, form.getDetails()));
+		savedWine.addCategory("available");
 
+		return savedWine;
 	}
 
 	public Wine findById(ProductIdentifier id) {
-		return wineCatalog.findById(id).get();
+		if (wineCatalog.findById(id).isPresent()) return wineCatalog.findById(id).get();
+		else return null;
 	}
 
+	@Transactional
 	public void deleteById(ProductIdentifier id) {
 
 		wineCatalog.deleteById(id);
 	}
-
-	public void makeItemUnavailable(Wine wine){
+	@Transactional
+	public void makeItemUnavailable(Wine wine) {
 		wine.removeCategory("available");
+		wine.addCategory("unavailable");
 
-		for (Wine w : getAllWines()){
-			if (w.getId() == wine.getId())	wine.removeCategory("available");
-		}
 	}
 
-	public Boolean isAvailable(Wine wine){
+	public Boolean isAvailable(Wine wine) {
 		Streamable<Wine> wines = getAvailableWines();
-		for (Wine w : wines){
-			if (wine.productId == w.productId) return true;
+		for (Wine w : wines) {
+			if (wine == w) return true;
 		}
 		return false;
+	}
+
+	public Boolean isUnavailable(Wine wine) {
+		Streamable<Wine> wines = getAvailableWines();
+		for (Wine w : wines) {
+			if (wine == w) return false;
+		}
+		return true;
 	}
 }
 

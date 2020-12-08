@@ -13,7 +13,7 @@ import java.util.Locale;
 @Entity
 public class Wine extends Product {
 
-	ProductIdentifier productId;
+	public ProductIdentifier productId;
 	public enum WineType {RED, WHITE, ROSE, SPARKLING, FRUITWINE, OTHER}
 	private int itemNr;
 	private String pic, details;
@@ -103,7 +103,9 @@ public class Wine extends Product {
 		this.itemNr = itemNr;
 	}
 
-	//super.setName()
+	public void setWineName (String name){
+		super.setName(name);
+	}
 
 	public void setPic(String pic) {
 		this.pic = pic;
