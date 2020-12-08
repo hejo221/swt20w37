@@ -42,6 +42,10 @@
     </table>
 
     <div class="ui two column centered grid">
+
+
+
+
         <div class="four column centered row">
             <div class="column">
                 <div class="ui horizontal statistic">
@@ -51,6 +55,17 @@
             </div>
             <div class="column">
                 <form sec:authorize="hasAnyRole('EMPLOYEE', 'ADMIN')" class="ui form" method="post" th:action="@{/order/checkout}">
+
+                    <div class="input-group" style="margin-bottom: 20px">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="customer">Kunde</label>
+                        </div>
+                        <select class="custom-select" id="customer" name="type" th:field="${cart.customer}">
+                            <option th:each="i : ${customers}" th:value="${i}" th:text="${i.getFirstName()+' '+i.getFamilyName()}"></option>
+                        </select>
+                    </div>
+
+
                     <button type="submit" class="ui button">Kaufen</button>
                 </form>
             </div>

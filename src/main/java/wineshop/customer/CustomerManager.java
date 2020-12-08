@@ -1,8 +1,10 @@
 package wineshop.customer;
 
+import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
+import wineshop.user.User;
 
 
 @Service
@@ -27,6 +29,11 @@ public class CustomerManager {
 
 
 		return customerRepository.save(new Customer(firstName, familyName, email, address));
+	}
+
+
+	public Streamable<Customer> findAll() {
+		return customerRepository.findAll();
 	}
 
 }

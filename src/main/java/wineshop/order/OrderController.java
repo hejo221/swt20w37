@@ -1,8 +1,6 @@
 package wineshop.order;
 
-import org.javamoney.moneta.Money;
 import org.salespointframework.catalog.ProductIdentifier;
-import org.salespointframework.inventory.*;
 import org.salespointframework.order.*;
 import org.salespointframework.payment.Cash;
 import org.salespointframework.quantity.Quantity;
@@ -12,21 +10,16 @@ import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import wineshop.customer.CustomerManager;
 import wineshop.wine.CatalogManager;
 import wineshop.wine.Wine;
 
 import org.salespointframework.inventory.InventoryItem;
 import org.salespointframework.inventory.UniqueInventory;
 import org.salespointframework.inventory.UniqueInventoryItem;
-import org.salespointframework.quantity.Quantity;
 
-import javax.lang.model.element.QualifiedNameable;
-import javax.money.MonetaryAmount;
-import javax.money.NumberValue;
 import java.util.Iterator;
 import java.util.List;
-
-import static org.salespointframework.core.Currencies.EURO;
 
 
 @Controller
@@ -38,19 +31,21 @@ public class OrderController {
 	//private final OrderManagement<Preorder> preorderManagement;
 	private final UniqueInventory<UniqueInventoryItem> inventory;
 	private final CatalogManager catalogManager;
+	private final CustomerManager customerManager;
 
-	public OrderController(OrderManagement<Order> orderManagement,/*OrderManagement<Preorder> preorderManagement,*/ UniqueInventory<UniqueInventoryItem> inventory, CatalogManager catalogManager) {
+	public OrderController(OrderManagement<Order> orderManagement,/*OrderManagement<Preorder> preorderManagement,*/ UniqueInventory<UniqueInventoryItem> inventory, CatalogManager catalogManager, CustomerManager customerManager) {
 		this.orderManagement = orderManagement;
 		//this.preorderManagement = preorderManagement;
 		this.inventory = inventory;
 		this.catalogManager=catalogManager;
+		this.customerManager = customerManager;
 	}
 
 
 	// for session attribute cart
 	@ModelAttribute("cart")
-	Cart initializeCart() {
-		return new Cart();
+	CartWithCustomer initializeCart() {
+		return new CartWithCustomer();
 	}
 
 
@@ -58,26 +53,27 @@ public class OrderController {
 	public String addToCart(@PathVariable ProductIdentifier id, @PathVariable int quantity, @ModelAttribute Cart cart) {
 		Wine wine = catalogManager.findById(id);
 		cart.addOrUpdateItem(wine, Quantity.of(quantity));
-		//cart.addOrUpdate(wine, Quantity.of(quantity), customer)
 		return "redirect:/catalog";}
+		
 
 
 
 	// shopping cart is shown on website
 	@GetMapping("/cart")
-	String cart(){
+	String cart(Model model){
+		model.addAttribute("customers", customerManager.findAll());
 		return "order/cart";
 	}
 
 
 	// is called when someone is inside shopping cart and presses 'buy'. you get redirected to index page.
 	@PostMapping("/checkout")
-	String buy(@ModelAttribute Cart cart, @LoggedIn UserAccount userAccount) {
+	String buy(@ModelAttribute CartWithCustomer cart, @LoggedIn UserAccount userAccount) {
 		// Mit completeOrder(…) wird der Warenkorb in die Order überführt, diese wird dann bezahlt und abgeschlossen.
 		// Orders können nur abgeschlossen werden, wenn diese vorher bezahlt wurden.
-		var order = new Order(userAccount, Cash.CASH);
+		var order = new OrderWithCustomer(userAccount, Cash.CASH, cart.getCustomer());
 		//TODO: NEU
-		var preorder = new Order(userAccount, Cash.CASH);
+		var preorder = new OrderWithCustomer(userAccount, Cash.CASH, cart.getCustomer());
 		//TODO: ---
 		//cart.addItemsTo(order);
 		//TODO: NEU
