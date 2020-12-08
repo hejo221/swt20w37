@@ -11,6 +11,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
 import javax.validation.Valid;
 
 
@@ -29,11 +30,11 @@ class CatalogController {
 	}
 
 	@GetMapping("/catalog")
-	String showCatalog(Model model) {
+	String showAvailableWines(Model model) {
 		model.addAttribute("wineCatalog", catalogManager.getAvailableWines());
-		for (Wine w : catalogManager.getAllWines()){
+		for (Wine w : catalogManager.getAllWines()) {
 			System.out.println(w.getDetails());
-			if (! catalogManager.isAvailable(w)) System.out.println("NOT AVAILABLE");
+			if (!catalogManager.isAvailable(w)) System.out.println("NOT AVAILABLE");
 		}
 		System.out.println();
 
@@ -55,6 +56,11 @@ class CatalogController {
 
 		Wine savedWine = catalogManager.createNewProduct(form);
 		inventory.save(new UniqueInventoryItem(savedWine, Quantity.of(0)));
+
+		savedWine.addCategory("available");
+		for (Wine w : catalogManager.getAllWines()) {
+			if (w.getId() == savedWine.getId()) savedWine.addCategory("available");
+		}
 
 		return "redirect:/catalog";
 	}
@@ -109,11 +115,7 @@ class CatalogController {
 	@GetMapping("/wine/deleteFromCatalog/{wine}")
 	String makeItemUnavailable(@PathVariable Wine wine) {
 
-		wine.removeCategory("available");
-
-		for (Wine w : catalogManager.getAllWines()){
-			if (w.getId() == wine.getId())	wine.removeCategory("available");
-		}
+		catalogManager.makeItemUnavailable(wine);
 		return "redirect:/catalog";
 	}
 }

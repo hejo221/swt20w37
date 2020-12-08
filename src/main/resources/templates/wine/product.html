@@ -1,5 +1,5 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="de">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:th="http://www.thymeleaf.org" lang="de">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -126,7 +126,7 @@
                     </div>
 
 
-                    <div class="row mt-4">
+                    <div class="row mt-4" sec:authorize="hasRole('ADMIN')">
                         <div class="col-6 offset-3">
                             <button type="submit" class="btn btn-success btn-lg btn-block">
                                 <i class="fas fa-plus pr-2">Änderungen speichern</i>

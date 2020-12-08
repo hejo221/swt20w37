@@ -13,7 +13,6 @@ import static org.salespointframework.core.Currencies.EURO;
 @Service
 @Transactional
 public class CatalogManager {
-
 	private final WineCatalog wineCatalog;
 
 	CatalogManager(WineCatalog wineCatalog) {
@@ -41,6 +40,20 @@ public class CatalogManager {
 		wine.setSellPrice(sellPrice);
 		wine.setPic(form.getPic());
 		wine.setDetails(form.getDetails());
+
+		System.out.println(form.getName() + form.getDetails());
+		for (Wine w : getAllWines()){
+			if (wine.productId == w.productId){
+				wine.setItemNr(itemNr);
+				wine.setName(form.getName());
+				wine.setBuyPrice(buyPrice);
+				wine.setSellPrice(sellPrice);
+				wine.setPic(form.getPic());
+				wine.setDetails(form.getDetails());
+
+				System.out.println(w.getName() + w.getDetails());
+			}
+		}
 
 		return true;
 	}
@@ -73,6 +86,14 @@ public class CatalogManager {
 	public void deleteById(ProductIdentifier id) {
 
 		wineCatalog.deleteById(id);
+	}
+
+	public void makeItemUnavailable(Wine wine){
+		wine.removeCategory("available");
+
+		for (Wine w : getAllWines()){
+			if (w.getId() == wine.getId())	wine.removeCategory("available");
+		}
 	}
 
 	public Boolean isAvailable(Wine wine){
