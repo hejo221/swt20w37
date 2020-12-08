@@ -1,58 +1,63 @@
-/*
- * Copyright 2013-2019 the original author or authors.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package wineshop.customer;
-
-import org.salespointframework.useraccount.UserAccount;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 
 @Entity
 public class Customer {
 
 	private @Id @GeneratedValue long id;
 
+	private String firstName;
+	private String familyName;
+	private String email;
 	private String address;
 
-	@OneToOne
-	private UserAccount userAccount;
-
 	@SuppressWarnings("unused")
-	private Customer() {}
+	public Customer() {}
 
-	public Customer(UserAccount userAccount, String address) {
-		this.userAccount = userAccount;
+	public Customer(String firstName, String familyName, String email, String address) {
+		this.firstName = firstName;
+		this.familyName = familyName;
+		this.email = email;
 		this.address = address;
 	}
 
+
 	public long getId() {
 		return id;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public String getFamilyName() {
+		return familyName;
+	}
+
+	public String getEmail() {
+		return email;
 	}
 
 	public String getAddress() {
 		return address;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
-	public UserAccount getUserAccount() {
-		return userAccount;
+	public void setFamilyName(String familyName) {
+		this.familyName = familyName;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 }
