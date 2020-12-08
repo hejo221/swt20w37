@@ -54,20 +54,18 @@ public class OrderController {
 	}
 
 
-	@GetMapping("/addToBasket/{id}/{quantity}")
-	public String addToBasket(@PathVariable ProductIdentifier id, @PathVariable int quantity, @ModelAttribute Cart cart) {
+	@GetMapping("/addToCart/{id}/{quantity}")
+	public String addToCart(@PathVariable ProductIdentifier id, @PathVariable int quantity, @ModelAttribute Cart cart) {
 		Wine wine = catalogManager.findById(id);
 		cart.addOrUpdateItem(wine, Quantity.of(quantity));
+		//cart.addOrUpdate(wine, Quantity.of(quantity), customer)
 		return "redirect:/catalog";}
-
-	// is called, when someone is inside '(wine) details' and presses 'put inside cart'. $quantity must be stated inside shopping
-	// cart. quantity and other informations are stored in cart object. user is redirected to wine catalog.
 
 
 
 	// shopping cart is shown on website
 	@GetMapping("/cart")
-	String basket(){
+	String cart(){
 		return "order/cart";
 	}
 
