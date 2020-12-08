@@ -26,12 +26,12 @@ import java.util.List;
 @RequestMapping("/order")
 @SessionAttributes("cart")
 public class OrderController {
-
 	private final OrderManagement<Order> orderManagement;
 	//private final OrderManagement<Preorder> preorderManagement;
 	private final UniqueInventory<UniqueInventoryItem> inventory;
 	private final CatalogManager catalogManager;
 	private final CustomerManager customerManager;
+
 
 	public OrderController(OrderManagement<Order> orderManagement,/*OrderManagement<Preorder> preorderManagement,*/ UniqueInventory<UniqueInventoryItem> inventory, CatalogManager catalogManager, CustomerManager customerManager) {
 		this.orderManagement = orderManagement;
@@ -50,9 +50,11 @@ public class OrderController {
 
 
 	@GetMapping("/addToCart/{id}/{quantity}")
-	public String addToCart(@PathVariable ProductIdentifier id, @PathVariable int quantity, @ModelAttribute Cart cart) {
+	public String addToCart(@PathVariable ProductIdentifier id, @PathVariable int quantity, @ModelAttribute("cart")  CartWithCustomer cart) {
 		Wine wine = catalogManager.findById(id);
 		cart.addOrUpdateItem(wine, Quantity.of(quantity));
+
+		System.out.println("haaaloooooooooooooooooooo");
 		return "redirect:/catalog";}
 		
 
@@ -68,7 +70,7 @@ public class OrderController {
 
 	// is called when someone is inside shopping cart and presses 'buy'. you get redirected to index page.
 	@PostMapping("/checkout")
-	String buy(@ModelAttribute CartWithCustomer cart, @LoggedIn UserAccount userAccount) {
+	String buy(@ModelAttribute("cart") CartWithCustomer cart, @LoggedIn UserAccount userAccount) {
 		// Mit completeOrder(…) wird der Warenkorb in die Order überführt, diese wird dann bezahlt und abgeschlossen.
 		// Orders können nur abgeschlossen werden, wenn diese vorher bezahlt wurden.
 		var order = new OrderWithCustomer(userAccount, Cash.CASH, cart.getCustomer());
