@@ -76,7 +76,6 @@ public class OrderCustManager{
 			} else {
 				orderManagement.payOrder(order);
 				orderManagement.completeOrder(order);
-				System.out.println("\nBe cautious. Alcohol may cause devastating harm to your body. For risks and side effects ask your doctor.\nThank you for your visit and have fun with your wine. See you later, " + order.getCustomer().getFirstName()+' '+order.getCustomer().getFamilyName()+"!\n");
 			}
 		}
 	}
