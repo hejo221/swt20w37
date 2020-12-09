@@ -20,10 +20,8 @@
     <header class="text-center">
         <h1>Warenkorb</h1>
     </header>
-
     <br>
     <br>
-
     <table class="ui celled table text-center">
         <thead>
         <tr>
@@ -40,23 +38,32 @@
         </tr>
         </tbody>
     </table>
-
     <div class="ui two column centered grid">
-        <div class="four column centered row">
-            <div class="column">
+            <br>
+            <div class="four column centered row">
                 <div class="ui horizontal statistic">
                     <div class="label">Summe</div>
                     <div class="value"><span th:text="${{cart.price}}">5</span></div>
                 </div>
             </div>
-            <div class="column">
-                <form sec:authorize="hasAnyRole('EMPLOYEE', 'ADMIN')" class="ui form" method="post" th:action="@{/order/checkout}">
+            <br>
+            <div class="four column centered row">
+
+                <form sec:authorize="hasAnyRole('EMPLOYEE', 'ADMIN')" class="ui form" method="post" th:object="${cartCustForm}" th:action="@{/order/checkout}">
+
+                    <div class="input-group" style="margin-bottom: 20px">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="customerId">Kunde</label>
+                        </div>
+                        <select class="custom-select" id="customerId" name="type" th:field="*{customerId}">
+                            <option th:each="c : ${customers}" th:value="${c.id}" th:text="${c.getFirstName()+' '+c.getFamilyName()}"></option>
+                        </select>
+                    </div>
                     <button type="submit" class="ui button">Kaufen</button>
                 </form>
-            </div>
-        </div>
-    </div>
 
+            </div>
+    </div>
 </main>
 
 <!-- Optional JavaScript; choose one of the two! -->
