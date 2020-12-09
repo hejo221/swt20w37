@@ -36,4 +36,9 @@ public class CustomerManager {
 		return customerRepository.findAll();
 	}
 
+
+	public Customer findCustomerById(Long id){
+		return customerRepository.findById(id).get();
+	}
+
 }
