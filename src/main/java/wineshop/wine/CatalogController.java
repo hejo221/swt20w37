@@ -10,27 +10,39 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 
 @Controller
 class CatalogController {
 
+
 	private final CatalogManager catalogManager;
 	private final UniqueInventory<UniqueInventoryItem> inventory;
+	private final WineCatalog catalog;
 
-	CatalogController(CatalogManager catalogManager, UniqueInventory<UniqueInventoryItem> inventory) {
+	CatalogController(CatalogManager catalogManager, UniqueInventory<UniqueInventoryItem> inventory, WineCatalog catalog) {
 		this.catalogManager = catalogManager;
 		this.inventory = inventory;
-
+		this.catalog = catalog;
 	}
 
 	@GetMapping("/catalog")
-	String showAvailableWines(Model model) {
-
-		model.addAttribute("wineCatalog", catalogManager.getAvailableWines());
+	String showCatalog(Model model, @RequestParam Optional<String> search) {
+		if (search.isEmpty()){
+			model.addAttribute("wineCatalog", catalogManager.getAllWines());
+		}
+		else {
+			var result = catalog.findAll().filter((e) -> {
+				return e.getName().toLowerCase().contains(search.get().toLowerCase());
+			}).iterator();
+			model.addAttribute("wineCatalog", result);
+		}
 		return "/wine/catalog";
+
 	}
 
 
