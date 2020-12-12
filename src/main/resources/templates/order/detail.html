@@ -18,7 +18,7 @@
 
 <main role="main" class="container">
     <header class="text-center">
-        <h1 th:text="${order.userAccount.id}"}>Hans</h1>
+        <h1 th:text="${order.customer.firstName} + ' ' + ${order.customer.familyName}"}>Hans</h1>
         <span th:text="${#temporals.format(order.dateCreated, 'dd.MM.yyyy HH:mm')}">2020.11.27</span>
     </header>
     <br>

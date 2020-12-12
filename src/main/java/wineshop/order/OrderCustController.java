@@ -19,6 +19,8 @@ import org.salespointframework.inventory.UniqueInventoryItem;
 import javax.validation.Valid;
 import java.util.List;
 
+import static java.lang.Math.round;
+
 
 @Controller
 @RequestMapping("/order")
@@ -81,7 +83,7 @@ public class OrderCustController {
 
 	@GetMapping("/detail/{id}")
 	String ordersDetail(Model model, @RequestParam("id") OrderIdentifier id) {
-		Order order = orderManagement.get(id).get();
+		OrderCust order = orderManagement.get(id).get();
 
 		model.addAttribute("order", order);
 		model.addAttribute("orderLines", order.getOrderLines().toList());
@@ -99,6 +101,10 @@ public class OrderCustController {
 		for(int i = 0; i < list.size(); i++) {
 			totalPrice += list.get(i).getTotal().getNumber().doubleValue();
 		}
+
+		totalPrice *= 100;
+		totalPrice = round(totalPrice);
+		totalPrice /= 100;
 
 		model.addAttribute("orders", orders);
 		model.addAttribute("totalPrice", totalPrice);
