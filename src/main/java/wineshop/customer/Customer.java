@@ -4,10 +4,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import org.springframework.util.Assert;
+
+
 @Entity
 public class Customer {
 
 	private @Id @GeneratedValue long id;
+
 
 	private String firstName;
 	private String familyName;
@@ -18,12 +22,17 @@ public class Customer {
 	public Customer() {}
 
 	public Customer(String firstName, String familyName, String email, String address) {
+
+		Assert.hasText(firstName, "FirstName must not be null or empty!");
+		Assert.hasText(familyName, "FamilyName must not be null or empty!");
+		Assert.hasText(email, "Email must not be null or empty!");
+		Assert.hasText(address, "Address must not be null or empty!");
+
 		this.firstName = firstName;
 		this.familyName = familyName;
 		this.email = email;
 		this.address = address;
 	}
-
 
 	public long getId() {
 		return id;
