@@ -61,7 +61,40 @@ public class OrderCustController {
 	String cart(Model model, CartCustForm cartCustForm){
 		model.addAttribute("customers", customerManager.findAll());
 		model.addAttribute("cartForm", cartCustForm);
+		model.addAttribute("stock", inventory);
 		return "order/cart";
+	}
+
+	// updates the Quantity of given CartItem through its id when pressing the refresh button
+	@PostMapping("cart/refresh")
+	String refresh(@RequestParam("iid") String itemId, @RequestParam("number") int number, @ModelAttribute Cart cart) {
+		orderCustManager.refresh(itemId, number, cart);
+
+		return "redirect:/order/cart";
+	}
+
+	// deletes the given CartItem through its id when pressing the delete button
+	@PostMapping("cart/deleteItem/{itemId}")
+	String deleteItem(@PathVariable String itemId, @ModelAttribute Cart cart) {
+		orderCustManager.deleteItem(itemId, cart);
+
+		return  "redirect:/order/cart";
+	}
+
+	// is called when you press "Bestellung abschließen" inside the shopping cart
+	@PostMapping("cart/order/checkout")
+	String orderCheckout(@LoggedIn UserAccount userAccount, @ModelAttribute Cart cart, @Valid CartCustForm cartCustForm) {
+		orderCustManager.orderCheckout(userAccount, cart, cartCustForm);
+
+		return "redirect:/order/cart";
+	}
+
+	//is called when you press "Vorbestellung aufgeben" inside the shopping cart
+	@PostMapping("cart/preorder/checkout")
+	String preorderCheckout(@LoggedIn UserAccount userAccount, @ModelAttribute Cart cart, @Valid CartCustForm cartCustForm) {
+		orderCustManager.preorderCheckout(userAccount, cart, cartCustForm);
+
+		return "redirect:/order/cart";
 	}
 
 	// is called when someone is inside shopping cart and presses 'buy'. you get redirected to index page.
