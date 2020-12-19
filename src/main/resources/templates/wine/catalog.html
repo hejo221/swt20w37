@@ -83,7 +83,7 @@
 
                     <div class="card-footer text-muted font-weight-light">
                         <span>Auf Lager: </span>
-                        <span th:text="8" style="margin-right: 40px"></span>
+                        <span th:text="${inventory.findByProductIdentifier(wine.getProductId()).get().getQuantity()}" style="margin-right: 40px"></span>
 
                         <span class="rating" style="text-align: right">
                             <a class="rating" th:each="i : ${#numbers.sequence(10, 1)}" th:value="${i}"

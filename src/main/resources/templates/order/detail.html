@@ -18,7 +18,8 @@
 
 <main role="main" class="container">
     <header class="text-center">
-        <h1 th:text="${order.userAccount.id}"}>Hans</h1>
+            <h1 th:if="${!order.isReorder()}" th:text="${order.customer.firstName} + ' ' + ${order.customer.familyName}"}>Hans</h1>
+            <h1 th:if="${order.isReorder()}" th:text="${order.getUserAccount().getUsername()}"}>Hans</h1>
         <span th:text="${#temporals.format(order.dateCreated, 'dd.MM.yyyy HH:mm')}">2020.11.27</span>
     </header>
     <br>
@@ -42,6 +43,24 @@
     <div>
         <h3>Summe</h3>
         <span th:text="${order.total}">20</span>
+    </div>
+    <div th:if="${order.isReorder()}">
+        <div th:if="${order.isOpen()}">
+            <form method="post" th:action="@{/reorders/close}">
+                <button type="submit" class="btn btn-info">Ankunft bestätigen</button>
+                <input type="hidden" name="id" th:value="${order.id}"/>
+            </form>
+        </div>
+    </div>
+    <div th:if="${order.isPreorder()}">
+        <div th:if="${order.isOpen()}">
+            <div th:if="${order.isCloseable(inventory)}">
+                <form method="post" th:action="@{/preorders/close}">
+                    <button type="submit" class="btn btn-info">Vorbestellung abschließen</button>
+                    <input type="hidden" name="id" th:value="${order.id}"/>
+                </form>
+            </div>
+        </div>
     </div>
 </main>
 

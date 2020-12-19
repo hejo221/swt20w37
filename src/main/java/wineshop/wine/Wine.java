@@ -13,7 +13,7 @@ import java.util.Locale;
 @Entity
 public class Wine extends Product {
 
-	ProductIdentifier productId;
+	public ProductIdentifier productId;
 	public enum WineType {RED, WHITE, ROSE, SPARKLING, FRUITWINE, OTHER}
 	private int itemNr;
 	private String pic, details;
@@ -58,7 +58,7 @@ public class Wine extends Product {
 
 		MonetaryAmountFormat formatDEU = MonetaryFormats.getAmountFormat(Locale.GERMANY);
 
-		return formatDEU.format(buyPrice).replace(" EUR", ""). replace(",00", ",-");
+		return formatDEU.format(getPrice()).replace(" EUR", ""). replace(",00", ",-");
 	}
 
 	public Number getBuyPriceNumber(){
@@ -103,7 +103,13 @@ public class Wine extends Product {
 		this.itemNr = itemNr;
 	}
 
-	//super.setName()
+	public void setWineName (String name){
+		super.setName(name);
+	}
+
+	public void setWineType(WineType wineType) {
+		this.wineType = wineType;
+	}
 
 	public void setPic(String pic) {
 		this.pic = pic;
@@ -116,7 +122,6 @@ public class Wine extends Product {
 	public void setSellPrice(Money sellPrice){
 		super.setPrice(sellPrice);
 	}
-
 
 	public void setDetails(String details) {
 		this.details = details;
