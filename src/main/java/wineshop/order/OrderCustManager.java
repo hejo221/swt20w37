@@ -25,7 +25,6 @@ import java.util.Iterator;
 @Service
 @Transactional
 public class OrderCustManager{
-	private final OrderCustRepository orderCustRepository;
 	private final OrderManagement<OrderCust> orderManagement;
 	private final CustomerManager customerManager;
 	private final UniqueInventory<UniqueInventoryItem> inventory;
@@ -33,13 +32,10 @@ public class OrderCustManager{
 	private static final Logger LOG = LoggerFactory.getLogger(OrderCustManager.class);
 
 
-	OrderCustManager(OrderCustRepository orderCustRepository, OrderManagement<OrderCust> orderManagement, CustomerManager customerManager, UniqueInventory<UniqueInventoryItem> inventory) {
+	OrderCustManager(OrderManagement<OrderCust> orderManagement, CustomerManager customerManager, UniqueInventory<UniqueInventoryItem> inventory) {
 		this.orderManagement = orderManagement;
 		this.customerManager = customerManager;
 		this.inventory = inventory;
-		Assert.notNull(orderCustRepository, "OrderCustRepository must not be null!");
-
-		this.orderCustRepository = orderCustRepository;
 	}
 
 	
@@ -174,11 +170,4 @@ public class OrderCustManager{
 		cart.removeItem(itemId);
 	}
 
-	public Streamable<OrderCust> findAll() {
-		return orderCustRepository.findAll();
-	}
-
-	public OrderCust findOrderCustById(Long id){
-		return orderCustRepository.findById(id).get();
-	}
 }

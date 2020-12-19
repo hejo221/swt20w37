@@ -15,6 +15,7 @@ import org.salespointframework.useraccount.web.LoggedIn;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,7 +42,7 @@ public class PreorderController {
 	}
 
 	@GetMapping("/preorders")
-	String preorders(Model model) {
+	public String preorders(Model model) {
 		model.addAttribute("preorders", orderManagement.findBy(OrderStatus.OPEN));
 		model.addAttribute("inventory", inventory);
 
@@ -49,7 +50,7 @@ public class PreorderController {
 	}
 
 	@GetMapping("/preorders/detail/{id}")
-	String preorderDetail(Model model, @RequestParam("id") OrderIdentifier id) {
+	public String preorderDetail(Model model, @RequestParam("id") OrderIdentifier id) {
 		OrderCust preorder = orderManagement.get(id).get();
 
 		model.addAttribute("order", preorder);
@@ -60,12 +61,20 @@ public class PreorderController {
 	}
 
 	@PostMapping("preorders/close")
-	String closePreorder(@RequestParam("id") OrderIdentifier id) {
+	public String closePreorder(@RequestParam("id") OrderIdentifier id) {
 		OrderCust preorder = orderManagement.get(id).get();
 
 		orderManagement.payOrder(preorder);
 		orderManagement.completeOrder(preorder);
 
-		return "redirect:/reorders";
+		return "redirect:/preorders";
+	}
+
+	@Transactional
+	@PostMapping("preorders/delete")
+	public String deletePreorder(@RequestParam("id") OrderIdentifier id) {
+		OrderCust preorder = orderManagement.get(id).get();
+		orderManagement.delete(preorder);
+		return "/order/preorders";
 	}
 }

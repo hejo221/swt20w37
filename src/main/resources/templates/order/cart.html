@@ -20,6 +20,12 @@
     <header class="text-center">
         <h1>Warenkorb</h1>
     </header>
+
+
+
+
+    <br>
+    <br>
     <br>
     <br>
     <h3 class="text-center">Bestellung</h3>
@@ -78,19 +84,27 @@
         </tr>
         </tbody>
     </table>
-    <form sec:authorize="hasAnyRole('EMPLOYEE', 'ADMIN')" th:object="${cartCustForm}" class="ui form" method="post" th:action="@{cart/order/checkout}">
-        <div class="input-group" style="margin-bottom: 20px">
-            <div class="input-group-prepend">
-                <label class="input-group-text" for="customerId">Kunde</label>
-            </div>
-            <select class="custom-select" id="customerId" name="type" th:field="*{customerId}">
-                <option th:each="c : ${customers}" th:value="${c.id}" th:text="${c.getFirstName()+' '+c.getFamilyName()}"></option>
-            </select>
-        </div>
-        <button type="submit" class="ui button">
-            <span>Bestellung abschließen</span>
-        </button>
-    </form>
+
+<!--    <form sec:authorize="hasAnyRole('EMPLOYEE', 'ADMIN')" th:object="${cartCustForm}" class="ui form" method="post" th:action="@{cart/order/checkout}">-->
+<!--        <div class="input-group" style="margin-bottom: 20px">-->
+<!--            <div class="input-group-prepend">-->
+<!--                <label class="input-group-text" for="customerId">Kunde</label>-->
+<!--            </div>-->
+<!--            <select class="custom-select" id="customerId" name="type" th:field="*{customerId}">-->
+<!--                <option th:each="c : ${customers}" th:value="${c.id}" th:text="${c.getFirstName()+' '+c.getFamilyName()}"></option>-->
+<!--            </select>-->
+<!--        </div>-->
+<!--        <button type="submit" class="ui button">-->
+<!--            <span>Bestellung abschließen</span>-->
+<!--        </button>-->
+<!--    </form>-->
+
+
+
+
+
+    <br>
+    <br>
     <br>
     <h3 class="text-center">Vorbestellung</h3>
     <table class="ui celled table text-center">
@@ -148,19 +162,24 @@
         </tr>
         </tbody>
     </table>
-    <form sec:authorize="hasAnyRole('EMPLOYEE', 'ADMIN')" th:object="${cartCustForm}" class="ui form" method="post" th:action="@{cart/preorder/checkout}">
-        <div class="input-group" style="margin-bottom: 20px">
-            <div class="input-group-prepend">
-                <label class="input-group-text" for="customerId">Kunde</label>
-            </div>
-            <select class="custom-select" id="customerId" name="type" th:field="*{customerId}">
-                <option th:each="c : ${customers}" th:value="${c.id}" th:text="${c.getFirstName()+' '+c.getFamilyName()}"></option>
-            </select>
-        </div>
-        <button type="submit" class="ui button">
-            <span>Vorbestellung aufgeben</span>
-        </button>
-    </form>
+
+<!--    <form sec:authorize="hasAnyRole('EMPLOYEE', 'ADMIN')" th:object="${cartCustForm}" class="ui form" method="post" th:action="@{cart/preorder/checkout}">-->
+<!--        <div class="input-group" style="margin-bottom: 20px">-->
+<!--            <div class="input-group-prepend">-->
+<!--                <label class="input-group-text" for="customerId">Kunde</label>-->
+<!--            </div>-->
+<!--            <select class="custom-select" id="customerId" name="type" th:field="*{customerId}">-->
+<!--                <option th:each="c : ${customers}" th:value="${c.id}" th:text="${c.getFirstName()+' '+c.getFamilyName()}"></option>-->
+<!--            </select>-->
+<!--        </div>-->
+<!--        <button type="submit" class="ui button">-->
+<!--            <span>Vorbestellung aufgeben</span>-->
+<!--        </button>-->
+<!--    </form>-->
+
+
+
+
     <br>
     <div class="ui two column centered grid">
             <br>
@@ -188,6 +207,9 @@
 
             </div>
     </div>
+    <br>
+    <br>
+    <br>
 </main>
 
 <!-- Optional JavaScript; choose one of the two! -->
