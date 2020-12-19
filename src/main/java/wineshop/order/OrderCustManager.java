@@ -60,20 +60,19 @@ public class OrderCustManager{
 
 		cart.clear();
 
-		if (order.getOrderLines().stream().count() != 0) {
-			Iterator<OrderLine> orderLineIterator = order.getOrderLines().get().iterator();
-			do {
-				OrderLine orderLine = orderLineIterator.next();
-				Wine wine = (Wine) inventory.findByProductIdentifier(orderLine.getProductIdentifier()).get().getProduct();
-				Quantity quantity = orderLine.getQuantity();
-
-				cart.addOrUpdateItem(wine, quantity);
-			} while (orderLineIterator.hasNext());
+		if(order.getOrderLines().isEmpty()){
+			orderManagement.delete(order);
 		}
-
-		orderManagement.payOrder(order);
-		orderManagement.completeOrder(order);
-		orderManagement.save(preorder);
+		else{
+			orderManagement.payOrder(order);
+			orderManagement.completeOrder(order);
+		}
+		if(preorder.getOrderLines().isEmpty()){
+			orderManagement.delete(preorder);
+		}
+		else{
+			orderManagement.save(preorder);
+		}
 	}
 
 

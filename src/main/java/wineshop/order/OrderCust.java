@@ -17,7 +17,7 @@ import java.util.Iterator;
 		name = "ORDERCUST"
 )
 public class OrderCust extends Order {
-	@OneToOne(cascade = {CascadeType.ALL})
+	@OneToOne
 	private Customer customer;
 
 	private OrderType orderType;
