@@ -30,6 +30,7 @@ class CatalogController {
 	String showAvailableWines(Model model) {
 
 		model.addAttribute("wineCatalog", catalogManager.getAvailableWines());
+		model.addAttribute("inventory", inventory);
 		return "/wine/catalog";
 	}
 

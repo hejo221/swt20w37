@@ -120,7 +120,7 @@ public class OrderCustController {
 
 		model.addAttribute("order", order);
 		model.addAttribute("orderLines", order.getOrderLines().toList());
-
+		model.addAttribute("inventory", inventory);
 		return "/order/detail";
 	}
 

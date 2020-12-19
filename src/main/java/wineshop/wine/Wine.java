@@ -58,7 +58,7 @@ public class Wine extends Product {
 
 		MonetaryAmountFormat formatDEU = MonetaryFormats.getAmountFormat(Locale.GERMANY);
 
-		return formatDEU.format(buyPrice).replace(" EUR", ""). replace(",00", ",-");
+		return formatDEU.format(getPrice()).replace(" EUR", ""). replace(",00", ",-");
 	}
 
 	public Number getBuyPriceNumber(){

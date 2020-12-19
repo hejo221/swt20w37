@@ -46,8 +46,8 @@ public class OrderCustManager{
 	public void cartToOrderAndPreOrder(UserAccount userAccount, Cart cart, CartCustForm cartCustForm){
 		if(!cart.isEmpty()){
 			Customer customer = customerManager.findCustomerById((Long) cartCustForm.getCustomerId());
-			var order = new OrderCust(userAccount, Cash.CASH, customer);
-			var preorder = new OrderCust(userAccount, Cash.CASH, customer);
+			var order = new OrderCust(userAccount, Cash.CASH, customer, OrderType.ORDER);
+			var preorder = new OrderCust(userAccount, Cash.CASH, customer, OrderType.PREORDER);
 			//TODO: NEU
 			// 		Nachbestellungen: 	die Quantity von CartItem und IventoryItem wird verglichen,
 			//							ist die Quantity kleiner, wird das CartItem in die Preorder
@@ -88,8 +88,8 @@ public class OrderCustManager{
 
 	public void orderCheckout(UserAccount userAccount, Cart cart, CartCustForm cartCustForm) {
 		Customer customer = customerManager.findCustomerById((Long) cartCustForm.getCustomerId());
-		var order = new OrderCust(userAccount, Cash.CASH, customer);
-		var preorder = new OrderCust(userAccount, Cash.CASH, customer);
+		var order = new OrderCust(userAccount, Cash.CASH, customer, OrderType.ORDER);
+		var preorder = new OrderCust(userAccount, Cash.CASH, customer, OrderType.PREORDER);
 
 		Iterator<CartItem> item = cart.iterator();
 		do {
@@ -126,8 +126,8 @@ public class OrderCustManager{
 
 	public void preorderCheckout(UserAccount userAccount, Cart cart, CartCustForm cartCustForm) {
 		Customer customer = customerManager.findCustomerById((Long) cartCustForm.getCustomerId());
-		var preorder = new OrderCust(userAccount, Cash.CASH, customer);
-		var order = new OrderCust(userAccount, Cash.CASH, customer);
+		var preorder = new OrderCust(userAccount, Cash.CASH, customer, OrderType.PREORDER);
+		var order = new OrderCust(userAccount, Cash.CASH, customer, OrderType.ORDER);
 
 		Iterator<CartItem> item = cart.iterator();
 		do {
@@ -137,7 +137,7 @@ public class OrderCustManager{
 
 			if (cartItem.getQuantity().isGreaterThan(inventoryItem.getQuantity())) {
 				preorder.addOrderLine(wine, cartItem.getQuantity());
-				inventoryItem.increaseQuantity((Quantity.of(10).subtract(inventoryItem.getQuantity())).add(cartItem.getQuantity()));
+				//inventoryItem.increaseQuantity((Quantity.of(10).subtract(inventoryItem.getQuantity())).add(cartItem.getQuantity()));
 			} else {
 				order.addOrderLine(wine, cartItem.getQuantity());
 			}
@@ -157,8 +157,7 @@ public class OrderCustManager{
 		}
 
 		orderManagement.delete(order);
-		orderManagement.payOrder(preorder);
-		orderManagement.completeOrder(preorder);
+		orderManagement.save(preorder);
 
 	}
 

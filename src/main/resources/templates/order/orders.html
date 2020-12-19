@@ -32,7 +32,7 @@
         </tr>
         </thead>
         <tbody th:remove="all-but-first">
-        <tr th:each=" order : ${orders}">
+        <tr th:each=" order : ${orders}" th:if="${!order.isReorder()}">
             <td th:text="${#temporals.format(order.dateCreated, 'dd.MM.yyyy HH:mm')}">2020.11.27</td>
             <td th:text="${order.customer.firstName} + ' ' + ${order.customer.familyName}">hans</td>
             <td th:text="${order.total}">20€</td>

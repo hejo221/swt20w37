@@ -29,21 +29,6 @@
           width: 25%;
         }
 
-        .c1 {
-        background: green;
-
-        }
-
-        .c2 {
-        background: yellow;
-        }
-
-        .c3 {
-        background: blue;
-        }
-
-
-
         </style>
 
 
@@ -75,14 +60,29 @@
                                     <form class="ui form" method="post" th:action="@{/inventory/{productId}(productId=${item.product.productId})}">
                                         <div class="column">
                                             <div class="field">
-                                                <input id="number" type="number" name="number" min="0" max="100" step="1" th:value="${item.quantity}"/>
+                                                <input size="20px" id="number" type="number" name="number" min="0" max="100" step="1" th:value="${item.quantity}"/>
                                             </div>
                                         </div>
                                         <div class="column">
-                                            <button type="submit" class="button">
+                                            <button style="padding: 1px 8px" type="submit" class="button">
                                                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-clockwise" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                     <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
                                                     <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </form>
+                                    <form class="ui form" method="post" th:action="@{/reorders/{productId}(productId=${item.product.productId})}">
+                                        <div class="column">
+                                            <div class="field">
+                                                <input size="20px" id="number" type="number" name="number" min="1" max="100" step="1" th:value="1"/>
+                                            </div>
+                                        </div>
+                                        <div class="column">
+                                            <button style="padding: 1px 8px" type="submit" class="button">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
+                                                    <path fill-rule="evenodd" d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                                                    <path fill-rule="evenodd" d="M8.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0V8H6.5a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 .5-.5z"/>
                                                 </svg>
                                             </button>
                                         </div>
