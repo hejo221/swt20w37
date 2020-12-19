@@ -40,87 +40,6 @@ public class OrderCustManager{
 
 	
 	public void cartToOrderAndPreOrder(UserAccount userAccount, Cart cart, CartCustForm cartCustForm){
-		if(!cart.isEmpty()){
-			Customer customer = customerManager.findCustomerById((Long) cartCustForm.getCustomerId());
-			var order = new OrderCust(userAccount, Cash.CASH, customer, OrderType.ORDER);
-			var preorder = new OrderCust(userAccount, Cash.CASH, customer, OrderType.PREORDER);
-			//TODO: NEU
-			// 		Nachbestellungen: 	die Quantity von CartItem und IventoryItem wird verglichen,
-			//							ist die Quantity kleiner, wird das CartItem in die Preorder
-			//							überführt, ansonsten in die Order
-			Iterator<CartItem> item = cart.iterator();
-			do {
-				CartItem cartItem = item.next();
-				Wine wine = (Wine) cartItem.getProduct();
-				InventoryItem inventoryItem = inventory.findByProductIdentifier(wine.getId()).get();
-
-				if (cartItem.getQuantity().isGreaterThan(inventoryItem.getQuantity())) {
-					preorder.addOrderLine(wine, cartItem.getQuantity());
-					//TODO: Hier findet das "Nachbestellen" statt
-					inventoryItem.increaseQuantity((Quantity.of(10).subtract(inventoryItem.getQuantity())).add(cartItem.getQuantity()));
-					//preorder.reorder(inventoryItem);
-				} else {
-					order.addOrderLine(wine, cartItem.getQuantity());;
-				}
-			}
-			while (item.hasNext());
-			//TODO:	Falls eine Order leer sein sollte, wird diese gelöscht.
-			//		Ansonsten wird sie bezahlt und anschließend geschlossen.
-
-			if (preorder.getOrderLines().get().count() == 0) {
-				orderManagement.delete(preorder);
-			} else {
-				orderManagement.payOrder(preorder);
-				orderManagement.completeOrder(preorder);
-			}
-			if (order.getOrderLines().get().count() == 0) {
-				orderManagement.delete(order);
-			} else {
-				orderManagement.payOrder(order);
-				orderManagement.completeOrder(order);
-			}
-		}
-	}
-
-	public void orderCheckout(UserAccount userAccount, Cart cart, CartCustForm cartCustForm) {
-		Customer customer = customerManager.findCustomerById((Long) cartCustForm.getCustomerId());
-		var order = new OrderCust(userAccount, Cash.CASH, customer, OrderType.ORDER);
-		var preorder = new OrderCust(userAccount, Cash.CASH, customer, OrderType.PREORDER);
-
-		Iterator<CartItem> item = cart.iterator();
-		do {
-			CartItem cartItem = item.next();
-			Wine wine = (Wine) cartItem.getProduct();
-			InventoryItem inventoryItem = inventory.findByProductIdentifier(wine.getId()).get();
-
-			if (!cartItem.getQuantity().isGreaterThan(inventoryItem.getQuantity())) {
-				order.addOrderLine(wine, cartItem.getQuantity());
-			} else {
-				preorder.addOrderLine(wine, cartItem.getQuantity());
-			}
-		} while (item.hasNext());
-
-		cart.clear();
-
-		if (preorder.getOrderLines().stream().count() != 0) {
-			Iterator<OrderLine> orderLineIterator = preorder.getOrderLines().get().iterator();
-			do {
-				OrderLine orderLine = orderLineIterator.next();
-				Wine wine = (Wine) inventory.findByProductIdentifier(orderLine.getProductIdentifier()).get().getProduct();
-				Quantity quantity = orderLine.getQuantity();
-
-				cart.addOrUpdateItem(wine, quantity);
-			} while (orderLineIterator.hasNext());
-		}
-
-		orderManagement.delete(preorder);
-		orderManagement.payOrder(order);
-		orderManagement.completeOrder(order);
-
-
-	}
-
-	public void preorderCheckout(UserAccount userAccount, Cart cart, CartCustForm cartCustForm) {
 		Customer customer = customerManager.findCustomerById((Long) cartCustForm.getCustomerId());
 		var preorder = new OrderCust(userAccount, Cash.CASH, customer, OrderType.PREORDER);
 		var order = new OrderCust(userAccount, Cash.CASH, customer, OrderType.ORDER);
@@ -152,10 +71,12 @@ public class OrderCustManager{
 			} while (orderLineIterator.hasNext());
 		}
 
-		orderManagement.delete(order);
+		orderManagement.payOrder(order);
+		orderManagement.completeOrder(order);
 		orderManagement.save(preorder);
-
 	}
+
+
 
 	public void refresh(String itemId, int number, Cart cart) {
 
