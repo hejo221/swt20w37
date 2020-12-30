@@ -74,7 +74,7 @@ public class ReorderManager {
 	}
 
 	int oldSendEmail(UniqueInventoryItem curItem) {
-		int email_flag = 0; // if a mail is send, then it is 1
+		int email_flag = 0; // if a mail is send, then it is 1.
 		Quantity addedQuantity = curItem.getQuantity();
 
 		List<OrderCust> preorders = orderManagement.findBy(OrderStatus.OPEN).toList();
