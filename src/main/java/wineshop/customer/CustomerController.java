@@ -78,4 +78,6 @@ public class CustomerController {
 		this.customerRepository.deleteCustomerById(id);
 		return "redirect:/customer/list";
 	}
+
+
 }

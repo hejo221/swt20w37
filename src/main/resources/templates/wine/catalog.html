@@ -12,11 +12,13 @@
     <!-- END BASIC STYLING IMPORTS -->
 
     <!-- Bootstrap CSS -->
+    <link href="resources/css/style_dropdown.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
           integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="resources/css/style.css" th:href="@{/resources/css/style.css}" rel="stylesheet">
     <link href="resources/css/catalog.css" th:href="@{/resources/css/catalog.css}" rel="stylesheet">
+
 
     <title>Katalog</title>
 </head>
@@ -95,9 +97,20 @@
                         </span>
                     </div>
 
-
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div class="dropdown">
+        <div class="projects">
+            <button>Projects</button>
+            <ul>
+                <li><a href="#">Weather App</a></li>
+                <li><a href="#">Music App</a></li>
+                <li><a href="#">React App</a></li>
+                <li><a href="#">Youtube App</a></li>
+            </ul>
         </div>
     </div>
 </main>
@@ -108,6 +121,5 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
         crossorigin="anonymous"></script>
-
 </body>
 </html>
