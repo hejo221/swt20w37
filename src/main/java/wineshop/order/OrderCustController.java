@@ -19,6 +19,8 @@ import org.salespointframework.inventory.UniqueInventoryItem;
 import javax.validation.Valid;
 import java.util.List;
 
+import static java.lang.Math.round;
+
 
 @Controller
 @RequestMapping("/order")
@@ -59,17 +61,35 @@ public class OrderCustController {
 	String cart(Model model, CartCustForm cartCustForm){
 		model.addAttribute("customers", customerManager.findAll());
 		model.addAttribute("cartForm", cartCustForm);
+		model.addAttribute("stock", inventory);
 		return "order/cart";
 	}
 
+	// updates the Quantity of given CartItem through its id when pressing the refresh button
+	@PostMapping("cart/refresh")
+	String refresh(@RequestParam("iid") String itemId, @RequestParam("number") int number, @ModelAttribute Cart cart) {
+		orderCustManager.refresh(itemId, number, cart);
+
+		return "redirect:/order/cart";
+	}
+
+	// deletes the given CartItem through its id when pressing the delete button
+	@PostMapping("cart/deleteItem/{itemId}")
+	String deleteItem(@PathVariable String itemId, @ModelAttribute Cart cart) {
+		orderCustManager.deleteItem(itemId, cart);
+
+		return  "redirect:/order/cart";
+	}
+
+
 	// is called when someone is inside shopping cart and presses 'buy'. you get redirected to index page.
 	@PostMapping("/checkout")
-	String buy(@ModelAttribute("cart") Cart cart, @LoggedIn UserAccount userAccount, @Valid CartCustForm cartCustForm, Errors result) {
+	String buy(@LoggedIn UserAccount userAccount, @ModelAttribute Cart cart, @Valid CartCustForm cartCustForm, Errors result) {
 		if (result.hasErrors()) return "index";//TODO FAILURE HINZUFÜGEN!)
 		orderCustManager.cartToOrderAndPreOrder(userAccount, cart, cartCustForm);
 		//TODO: ---
 		cart.clear();
-		return "redirect:/";
+		return "redirect:/order/cart";
 	}
 
 	@GetMapping("/orders")
@@ -81,11 +101,11 @@ public class OrderCustController {
 
 	@GetMapping("/detail/{id}")
 	String ordersDetail(Model model, @RequestParam("id") OrderIdentifier id) {
-		Order order = orderManagement.get(id).get();
+		OrderCust order = orderManagement.get(id).get();
 
 		model.addAttribute("order", order);
 		model.addAttribute("orderLines", order.getOrderLines().toList());
-
+		model.addAttribute("inventory", inventory);
 		return "/order/detail";
 	}
 
@@ -99,6 +119,10 @@ public class OrderCustController {
 		for(int i = 0; i < list.size(); i++) {
 			totalPrice += list.get(i).getTotal().getNumber().doubleValue();
 		}
+
+		totalPrice *= 100;
+		totalPrice = round(totalPrice);
+		totalPrice /= 100;
 
 		model.addAttribute("orders", orders);
 		model.addAttribute("totalPrice", totalPrice);

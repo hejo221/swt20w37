@@ -31,7 +31,7 @@ class CatalogController {
 	}
 
 	@GetMapping("/catalog")
-	String showCatalog(Model model, @RequestParam Optional<String> search) {
+	String showAvailableWines(Model model, @RequestParam Optional<String> search) {
 		if (search.isEmpty()){
 			model.addAttribute("wineCatalog", catalogManager.getAllWines());
 		}
@@ -41,8 +41,8 @@ class CatalogController {
 			}).iterator();
 			model.addAttribute("wineCatalog", result);
 		}
+		model.addAttribute("inventory", inventory);
 		return "/wine/catalog";
-
 	}
 
 

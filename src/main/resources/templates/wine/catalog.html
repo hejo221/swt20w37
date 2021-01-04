@@ -30,6 +30,17 @@
     <hr>
 </header>
 <main role="main" class="container">
+
+    <div class="dropdown">
+        <div class="projects">
+            <button>Filter</button>
+            <ul>
+                <li><a href="#">A-Z</a></li>
+                <li><a href="#">Preis</a></li>
+            </ul>
+        </div>
+    </div>
+
     <div class="container">
         <div class="row pt-4">
             <div class="col-4">
@@ -88,7 +99,7 @@
 
                     <div class="card-footer text-muted font-weight-light">
                         <span>Auf Lager: </span>
-                        <span th:text="8" style="margin-right: 40px"></span>
+                        <span th:text="${inventory.findByProductIdentifier(wine.getProductId()).get().getQuantity()}" style="margin-right: 40px"></span>
 
                         <span class="rating" style="text-align: right">
                             <a class="rating" th:each="i : ${#numbers.sequence(10, 1)}" th:value="${i}"
@@ -102,17 +113,6 @@
         </div>
     </div>
 
-    <div class="dropdown">
-        <div class="projects">
-            <button>Projects</button>
-            <ul>
-                <li><a href="#">Weather App</a></li>
-                <li><a href="#">Music App</a></li>
-                <li><a href="#">React App</a></li>
-                <li><a href="#">Youtube App</a></li>
-            </ul>
-        </div>
-    </div>
 </main>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
