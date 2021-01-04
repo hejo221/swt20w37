@@ -31,15 +31,7 @@
 </header>
 <main role="main" class="container">
 
-    <div class="dropdown">
-        <div class="projects">
-            <button>Filter</button>
-            <ul>
-                <li><a href="#">A-Z</a></li>
-                <li><a href="#">Preis</a></li>
-            </ul>
-        </div>
-    </div>
+
 
     <div class="container">
         <div class="row pt-4">
@@ -51,6 +43,16 @@
             </div>
 
             <div class="col-4"></div>
+
+            <div class="dropdown ">
+                <div class="projects">
+                    <button class="btn btn-outline-secondary">Sotieren</button>
+                    <ul>
+                        <li ><a th:href="@{/catalog(sort = 'A-Z')}">A-Z</a></li>
+                        <li><a th:href="@{/catalog(sort = 'Preis')}">Preis aufsteigend</a></li>
+                    </ul>
+                </div>
+            </div>
 
             <form class="col-4" th:action="@{/catalog}" method="get" id="form">
                 <div class="row float-right">
@@ -66,9 +68,6 @@
 
                     </div>
                 </div>
-                <!-- to write search
-                <input id="filter" name="filterType" th:value="${type}" type="text" hidden>
-                -->
             </form>
         </div>
 

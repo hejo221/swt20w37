@@ -1,8 +1,10 @@
 package wineshop.wine;
 
+import org.salespointframework.catalog.Product;
 import org.salespointframework.inventory.UniqueInventory;
 import org.salespointframework.inventory.UniqueInventoryItem;
 import org.salespointframework.quantity.Quantity;
+import org.springframework.data.util.Streamable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +15,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @Controller
@@ -31,16 +36,23 @@ class CatalogController {
 	}
 
 	@GetMapping("/catalog")
-	String showAvailableWines(Model model, @RequestParam Optional<String> search) {
-		if (search.isEmpty()){
-			model.addAttribute("wineCatalog", catalogManager.getAllWines());
-		}
-		else {
-			var result = catalog.findAll().filter((e) -> {
+	String showAvailableWines(Model model, @RequestParam Optional<String> search, @RequestParam Optional<String> sort) {
+		List<Wine> items = catalogManager.getAllWines().toList();
+		if (search.isPresent()){
+			items =items.stream().filter((e) -> {
 				return e.getName().toLowerCase().contains(search.get().toLowerCase());
-			}).iterator();
-			model.addAttribute("wineCatalog", result);
+			}).collect(Collectors.toList());
 		}
+		if (sort.isPresent()){
+			if (sort.get().equalsIgnoreCase("A-Z"))
+			items =items.stream().sorted(Comparator.comparing(Product::getName)).collect(Collectors.toList());
+			if (sort.get().equalsIgnoreCase("Preis"))
+				items =items.stream().sorted(Comparator.comparing(Product::getPrice)).collect(Collectors.toList());
+		}
+
+
+
+		model.addAttribute("wineCatalog", items);
 		model.addAttribute("inventory", inventory);
 		return "/wine/catalog";
 	}
