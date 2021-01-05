@@ -1,4 +1,19 @@
-/* CSS RESET */
+.btn.btn-primary{
+	white-space: nowrap;
+	text-align: center;
+	background: #34495e;
+	border: none;
+}
+
+.btn.btn-primary:hover, .btn.btn-info:hover{
+	background: #343a40;
+
+}
+.btn.btn-info{
+	background: #6c757d;
+	border: none;
+}
+
 
 body {
 	padding-top: 5rem;
