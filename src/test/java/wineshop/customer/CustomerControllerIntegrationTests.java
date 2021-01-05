@@ -1,5 +1,5 @@
 package wineshop.customer;
-
+/*
 import static org.assertj.core.api.Assertions.*;
 
 import wineshop.AbstractIntegrationTests;
