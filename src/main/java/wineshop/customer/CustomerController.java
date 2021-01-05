@@ -1,13 +1,20 @@
 package wineshop.customer;
 
+import org.salespointframework.catalog.Product;
+import org.springframework.data.util.Streamable;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.Assert;
 import org.springframework.validation.Errors;
+import wineshop.wine.Wine;
 
 import javax.validation.Valid;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/customer")
@@ -24,8 +31,25 @@ public class CustomerController {
 	}
 
 	@GetMapping("/list")
-	public String customers(Model model) {
-		model.addAttribute("customers", customerRepository.findAll());
+	public String customers(Model model, @RequestParam Optional<String> search, @RequestParam Optional<String> sort) {
+
+
+		List<Customer> items = customerRepository.findAll().toList();
+		if (search.isPresent()){
+			items =items.stream().filter((e) -> {
+				return e.getFamilyName().toLowerCase().contains(search.get().toLowerCase());
+			}).collect(Collectors.toList());
+		}
+		if (sort.isPresent()){
+			if (sort.get().equalsIgnoreCase("Nachnamen A-Z"))
+				items =items.stream().sorted(Comparator.comparing(Customer::getFamilyName)).collect(Collectors.toList());
+			if (sort.get().equalsIgnoreCase("Vornamen A-Z"))
+				items =items.stream().sorted(Comparator.comparing(Customer::getFirstName)).collect(Collectors.toList());
+		}
+
+
+
+		model.addAttribute("customers", items);
 
 		return "/customer/customers";
 	}
@@ -78,4 +102,6 @@ public class CustomerController {
 		this.customerRepository.deleteCustomerById(id);
 		return "redirect:/customer/list";
 	}
+
+
 }

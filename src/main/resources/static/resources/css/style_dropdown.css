@@ -1,0 +1,66 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a,
+button {
+    font-family: "Century Gothic", sans-serif;
+}
+
+.dropdown {
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 100;
+}
+
+.projects {
+    position: relative;
+}
+
+.projects ul{
+    margin-top: 10px;
+    position: absolute;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+    width: 200px;
+    height: 200px;
+    background: #34495e;
+    left: 0px;
+    list-style: none;
+    border-radius: 5px;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.4s ease;
+}
+.projects li{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.projects li:hover {
+    background-color: #343a40;
+}
+
+.projects a {
+    color: white;
+    text-decoration: none;
+}
+
+.dropdown button{
+    border: none;
+
+}
+
+.projects button:focus + ul {
+    opacity: 1;
+    transform: translateY(0px);
+}
