@@ -32,7 +32,6 @@
 <main role="main" class="container">
 
 
-
     <div class="container">
         <div class="row pt-4">
             <div class="col-4">
@@ -44,23 +43,26 @@
 
             <div class="col-4"></div>
 
-            <div class="dropdown ">
-                <div class="projects">
-                    <button class="btn btn-outline-secondary">Sotieren</button>
-                    <ul>
-                        <li ><a th:href="@{/catalog(sort = 'A-Z')}">A-Z</a></li>
-                        <li><a th:href="@{/catalog(sort = 'Preis')}">Preis aufsteigend</a></li>
-                    </ul>
+            <div class="col-1">
+                <div class="dropdown ">
+                    <div class="projects">
+                        <button class="btn btn-outline-secondary">Sotieren</button>
+                        <ul>
+                            <li><a th:href="@{/catalog(sort = 'A-Z')}">A-Z</a></li>
+                            <li><a th:href="@{/catalog(sort = 'Preis')}">Preis aufsteigend</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
-            <form class="col-4" th:action="@{/catalog}" method="get" id="form">
+            <form class="col-3" th:action="@{/catalog}" method="get" id="form">
                 <div class="row float-right">
                     <div class="col-12 input-group">
 
                         <form th:action="@{/catalog/suche}">
                             <div class="input-group-prepend">
-                                <button class="btn btn-outline-secondary" type="submit" id="button-addon">Suchen</button>
+                                <button class="btn btn-outline-secondary" type="submit" id="button-addon">Suchen
+                                </button>
                             </div>
                             <input type="text" class="form-control" placeholder="Sucheingabe" name="search"
                                    aria-label="Example text with button addon" aria-describedby="button-addon">
@@ -98,7 +100,8 @@
 
                     <div class="card-footer text-muted font-weight-light">
                         <span>Auf Lager: </span>
-                        <span th:text="${inventory.findByProductIdentifier(wine.getProductId()).get().getQuantity()}" style="margin-right: 40px"></span>
+                        <span th:text="${inventory.findByProductIdentifier(wine.getProductId()).get().getQuantity()}"
+                              style="margin-right: 40px"></span>
 
                         <span class="rating" style="text-align: right">
                             <a class="rating" th:each="i : ${#numbers.sequence(10, 1)}" th:value="${i}"
