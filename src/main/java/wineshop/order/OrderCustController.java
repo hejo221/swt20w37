@@ -89,7 +89,7 @@ public class OrderCustController {
 		orderCustManager.cartToOrderAndPreOrder(userAccount, cart, cartCustForm);
 		//TODO: ---
 		cart.clear();
-		return "redirect:/order/cart";
+		return "redirect:/catalog";
 	}
 
 	@GetMapping("/orders")
@@ -128,5 +128,11 @@ public class OrderCustController {
 		model.addAttribute("totalPrice", totalPrice);
 
 		return "/order/balancing";
+	}
+
+	@GetMapping("/empty")
+	String emptyBasket(@ModelAttribute Cart cart){
+		cart.clear();
+		return "redirect:/order/cart";
 	}
 }

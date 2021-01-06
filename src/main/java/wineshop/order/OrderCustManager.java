@@ -1,4 +1,5 @@
 package wineshop.order;
+
 import org.javamoney.moneta.Money;
 import org.salespointframework.inventory.InventoryItem;
 import org.salespointframework.inventory.UniqueInventory;
@@ -29,7 +30,7 @@ import java.util.Iterator;
 
 @Service
 @Transactional
-public class OrderCustManager{
+public class OrderCustManager {
 	private final OrderManagement<OrderCust> orderManagement;
 	private final CustomerManager customerManager;
 	private final UniqueInventory<UniqueInventoryItem> inventory;
@@ -43,15 +44,15 @@ public class OrderCustManager{
 		this.inventory = inventory;
 	}
 
-	
-	public void cartToOrderAndPreOrder(UserAccount userAccount, Cart cart, CartCustForm cartCustForm){
+
+	public void cartToOrderAndPreOrder(UserAccount userAccount, Cart cart, CartCustForm cartCustForm) {
 		Customer customer = customerManager.findCustomerById((Long) cartCustForm.getCustomerId());
 		CreditCard creditCard = new CreditCard("a", "b", "c", "d", "e", LocalDateTime.of(2020, 12, 31, 22, 33), LocalDateTime.of(2020, 12, 31, 22, 33), "9", Money.of(500, "EUR"), Money.of(500, "EUR"));
 		var preorder = new OrderCust(userAccount, Cash.CASH, customer, OrderType.PREORDER);
 		OrderCust order;
 		if (cartCustForm.getPaymentMethod().equals("Bargeld")) {
 			order = new OrderCust(userAccount, Cash.CASH, customer, OrderType.ORDER);
-		}else{
+		} else {
 			order = new OrderCust(userAccount, creditCard, customer, OrderType.ORDER);
 		}
 
@@ -71,22 +72,23 @@ public class OrderCustManager{
 
 		cart.clear();
 
-		if(order.getOrderLines().isEmpty()){
+		if (order.getOrderLines().isEmpty()) {
 			orderManagement.delete(order);
-		}
-		else{
+		} else {
 			orderManagement.payOrder(order);
 			orderManagement.completeOrder(order);
 		}
-		if(preorder.getOrderLines().isEmpty()){
+		if (preorder.getOrderLines().isEmpty()) {
 			orderManagement.delete(preorder);
-		}
-		else{
+		} else {
 			orderManagement.save(preorder);
 		}
 	}
 
 
+	public void emptyBasket(Cart cart) {
+		cart.clear();
+	}
 
 	public void refresh(String itemId, int number, Cart cart) {
 

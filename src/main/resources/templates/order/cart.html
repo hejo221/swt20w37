@@ -198,7 +198,14 @@
 
 
         <div class="col">
-            <button type="submit" class="btn btn-primary">Kaufen</button>
+            <button type="submit" class="btn btn-primary btn-lg btn-block">Kaufen</button>
+        </div>
+
+        <div class="col">
+            <a class="btn btn-danger btn-lg btn-block"
+               th:href="@{/order/empty}">
+                <i class="fas fa-plus pr-2">Warenkorb leeren</i>
+            </a>
         </div>
 
     </form>
