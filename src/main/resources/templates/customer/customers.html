@@ -34,7 +34,8 @@
 
             <div class="col-4">
                 <div class="input-group">
-                    <a class="btn btn-primary" th:href="@{/customer/register}" role="button"><i class="fas fa-plus pr-2"></i>Neue Kund:in registrieren</a>
+                    <a class="btn btn-primary" th:href="@{/customer/register}" role="button"><i
+                            class="fas fa-plus pr-2"></i>Neue Kund:in registrieren</a>
                 </div>
             </div>
 
@@ -44,15 +45,16 @@
 
             <div class="col-1">
                 <div class="dropdown">
-                    <div class="projects">
-                        <button class="btn btn-outline-secondary">Sortieren</button>
-                        <ul>
-                            <li><a class="sort" th:href="@{/customer/list(sort = 'Vornamen A-Z')}">Vornamen A-Z</a></li>
-                            <li><a class="sort" th:href="@{/customer/list(sort = 'Nachnamen A-Z')}">Nachnamen A-Z</a></li>
-                        </ul>
+                    <button class="btn btn-outline-secondary" type="button" id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sortieren
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" th:href="@{/customer/list(sort = 'Vornamen A-Z')}">Vornamen A-Z</a>
+                        <a class="dropdown-item" th:href="@{/customer/list(sort = 'Nachnamen A-Z')}">Nachnamen A-Z</a>
                     </div>
                 </div>
             </div>
+
 
 
             <form class="col-3" th:action="@{/customer/list}" method="get" id="form">

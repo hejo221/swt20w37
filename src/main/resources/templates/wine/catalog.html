@@ -44,14 +44,14 @@
             <div class="col-4"></div>
 
             <div class="col-1">
-                <div class="dropdown ">
-                    <div class="projects">
-                        <button class="btn btn-outline-secondary">Sortieren</button>
-                        <ul>
-                            <li><a class="sort" th:href="@{/catalog(sort = 'A-Z')}">A-Z</a></li>
-                            <li><a class="sort" th:href="@{/catalog(sort = 'PreisAufsteigend')}">Preis aufsteigend</a></li>
-                            <li><a class="sort" th:href="@{/catalog(sort = 'PreisAbsteigend')}">Preis absteigend</a></li>
-                        </ul>
+                <div class="dropdown">
+                    <button class="btn btn-outline-secondary" type="button" id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sortieren
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" th:href="@{/catalog(sort = 'A-Z')}">A-Z</a>
+                        <a class="dropdown-item" th:href="@{/catalog(sort = 'PreisAufsteigend')}">Preis aufsteigend</a>
+                        <a class="dropdown-item" th:href="@{/catalog(sort = 'PreisAbsteigend')}">Preis absteigend</a>
                     </div>
                 </div>
             </div>
