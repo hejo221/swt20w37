@@ -1,5 +1,6 @@
 package wineshop.wine;
 
+import com.google.common.collect.Lists;
 import org.salespointframework.catalog.Product;
 import org.salespointframework.inventory.UniqueInventory;
 import org.salespointframework.inventory.UniqueInventoryItem;
@@ -46,8 +47,10 @@ class CatalogController {
 		if (sort.isPresent()){
 			if (sort.get().equalsIgnoreCase("A-Z"))
 			items =items.stream().sorted(Comparator.comparing(Product::getName)).collect(Collectors.toList());
-			if (sort.get().equalsIgnoreCase("Preis"))
+			if (sort.get().equalsIgnoreCase("PreisAufsteigend"))
 				items =items.stream().sorted(Comparator.comparing(Product::getPrice)).collect(Collectors.toList());
+			if (sort.get().equalsIgnoreCase("PreisAbsteigend"))
+				items = Lists.reverse( items.stream().sorted(Comparator.comparing(Product::getPrice)).collect(Collectors.toList()));
 		}
 
 

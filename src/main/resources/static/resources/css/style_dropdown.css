@@ -33,7 +33,7 @@ button {
     background: #34495e;
     left: 0px;
     list-style: none;
-    border-radius: 5px;
+    border-radius: 10px;
     opacity: 0;
     transform: translateY(-10px);
     transition: all 0.4s ease;
@@ -47,6 +47,7 @@ button {
 }
 
 .projects li:hover {
+    border-radius: 10px;
     background-color: #343a40;
 }
 
