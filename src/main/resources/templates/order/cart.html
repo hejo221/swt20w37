@@ -22,6 +22,17 @@
         <h1>Warenkorb</h1>
     </header>
 
+    <td>
+        <span th:if="${cart.isEmpty()}">
+            <div style="text-align: center; padding-top: 150px">
+                <p>🍷&#xFE0E 🍷&#xFE0E 🍷&#xFE0E</p>
+                <p>Einsam ist es hier im Warenkorb</p>
+                <p>🍷&#xFE0E 🍷&#xFE0E 🍷&#xFE0E</p>
+            </div>
+        </span>
+        <span th:unless="${cart.isEmpty()}">
+
+
 
     <br>
     <br>
@@ -163,7 +174,8 @@
 
 
     <br>
-    <form class="row" method="post" style="padding-top: 50px" th:object="${cartCustForm}" th:action="@{/order/checkout}">
+    <form class="row" method="post" style="padding-top: 50px" th:object="${cartCustForm}"
+          th:action="@{/order/checkout}">
 
 
         <div class="col">
@@ -175,7 +187,7 @@
 
 
         <div class="col">
-            <div sec:authorize="hasAnyRole('EMPLOYEE', 'ADMIN')" class="ui form" >
+            <div sec:authorize="hasAnyRole('EMPLOYEE', 'ADMIN')" class="ui form">
                 <div class="input-group" style="margin-bottom: 20px">
                     <div class="input-group-prepend">
                         <label class="input-group-text" for="customerId">Kunde</label>
@@ -208,10 +220,13 @@
             </a>
         </div>
 
+
     </form>
     <br>
     <br>
     <br>
+        </span>
+    </td>
 </main>
 
 <!-- Optional JavaScript; choose one of the two! -->
