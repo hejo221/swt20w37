@@ -1,5 +1,5 @@
 package wineshop.customer;
-/*
+
 import static org.assertj.core.api.Assertions.*;
 
 import wineshop.AbstractIntegrationTests;
@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.ui.ExtendedModelMap;
 
-/* public class CustomerControllerIntegrationTests extends AbstractIntegrationTests {
+import java.util.Optional;
+
+public class CustomerControllerIntegrationTests extends AbstractIntegrationTests {
 
 	@Autowired
 	CustomerController customerController;
@@ -20,10 +22,9 @@ import org.springframework.ui.ExtendedModelMap;
 
 		ExtendedModelMap model = new ExtendedModelMap();
 
-		customerController.customers(model);
+		customerController.customers(model, Optional.of(""), Optional.of(""));
 
 		assertThat(model.get("customers")).isNotNull();
 	}
 
 }
-*/
