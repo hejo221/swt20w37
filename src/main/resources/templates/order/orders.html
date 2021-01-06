@@ -28,6 +28,7 @@
             <th scope="col">Datum</th>
             <th scope="col">Kunde</th>
             <th scope="col">Bezahlt</th>
+            <th scope="col">Zahlungsmittel</th>
             <th scope="col">Aktion</th>
         </tr>
         </thead>
@@ -36,6 +37,7 @@
             <td th:text="${#temporals.format(order.dateCreated, 'dd.MM.yyyy HH:mm')}">2020.11.27</td>
             <td th:text="${order.customer.firstName} + ' ' + ${order.customer.familyName}">hans</td>
             <td th:text="${order.total}">20€</td>
+            <td th:text="${order.getPaymentMethodString()}">abc</td>
             <td>
                 <form th:action="@{/order/detail/{id}}" method="get">
                     <button type="submit" class="btn btn-info">anzeigen</button>

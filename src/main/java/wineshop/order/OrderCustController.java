@@ -60,7 +60,7 @@ public class OrderCustController {
 	@GetMapping("/cart")
 	String cart(Model model, CartCustForm cartCustForm){
 		model.addAttribute("customers", customerManager.findAll());
-		model.addAttribute("cartForm", cartCustForm);
+		model.addAttribute("cartCustForm", cartCustForm);
 		model.addAttribute("stock", inventory);
 		return "order/cart";
 	}

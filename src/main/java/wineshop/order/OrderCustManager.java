@@ -1,4 +1,5 @@
 package wineshop.order;
+import org.javamoney.moneta.Money;
 import org.salespointframework.inventory.InventoryItem;
 import org.salespointframework.inventory.UniqueInventory;
 import org.salespointframework.inventory.UniqueInventoryItem;
@@ -7,6 +8,7 @@ import org.salespointframework.order.CartItem;
 import org.salespointframework.order.OrderLine;
 import org.salespointframework.order.OrderManagement;
 import org.salespointframework.payment.Cash;
+import org.salespointframework.payment.CreditCard;
 import org.salespointframework.quantity.Quantity;
 import org.salespointframework.useraccount.UserAccount;
 import org.slf4j.Logger;
@@ -19,6 +21,9 @@ import wineshop.customer.Customer;
 import wineshop.customer.CustomerManager;
 import wineshop.wine.Wine;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Iterator;
 
 
@@ -41,8 +46,14 @@ public class OrderCustManager{
 	
 	public void cartToOrderAndPreOrder(UserAccount userAccount, Cart cart, CartCustForm cartCustForm){
 		Customer customer = customerManager.findCustomerById((Long) cartCustForm.getCustomerId());
+		CreditCard creditCard = new CreditCard("a", "b", "c", "d", "e", LocalDateTime.of(2020, 12, 31, 22, 33), LocalDateTime.of(2020, 12, 31, 22, 33), "9", Money.of(500, "EUR"), Money.of(500, "EUR"));
 		var preorder = new OrderCust(userAccount, Cash.CASH, customer, OrderType.PREORDER);
-		var order = new OrderCust(userAccount, Cash.CASH, customer, OrderType.ORDER);
+		OrderCust order;
+		if (cartCustForm.getPaymentMethod().equals("Bargeld")) {
+			order = new OrderCust(userAccount, Cash.CASH, customer, OrderType.ORDER);
+		}else{
+			order = new OrderCust(userAccount, creditCard, customer, OrderType.ORDER);
+		}
 
 		Iterator<CartItem> item = cart.iterator();
 		do {

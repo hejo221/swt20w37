@@ -16,7 +16,7 @@
     <link href="../static/resources/css/style.css" th:href="@{/resources/css/style.css}" rel="stylesheet">
     <link href="../static/resources/css/catalog.css" th:href="@{/resources/css/catalog.css}" rel="stylesheet">
 
-    <title>Catalog</title>
+    <title>Katalog</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" th:replace="fragments/common :: menu('catalog')" />
@@ -24,12 +24,9 @@
     <h1 class="text-center">Weininformationen</h1>
     <hr>
 </header>
+
 <main role="main" class="container">
 
-
-
-
-    <!--TODO rework design-->
     <form class="ui form" method="post" th:action="@{/order/cart/}">
         <input type="hidden" name="pid" value="0" th:value="${wine.id}"/>
         <div class="field">
@@ -40,7 +37,6 @@
             <i class="add to cart icon"></i><span> Hinzufügen</span>
         </button>
     </form>
-    <!--TODO rework design-->
 
 </main>
 

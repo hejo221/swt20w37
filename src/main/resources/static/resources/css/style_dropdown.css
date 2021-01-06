@@ -64,3 +64,8 @@ button {
     opacity: 1;
     transform: translateY(0px);
 }
+
+.sort:hover, .sort:link, .sort:visited{
+    text-decoration: none;
+    color: white;
+}
