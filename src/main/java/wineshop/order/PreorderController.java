@@ -24,6 +24,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import wineshop.wine.Wine;
 import wineshop.zinventory.InventoryManager;
 
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 import static org.salespointframework.core.Currencies.EURO;
 
 @Controller
@@ -42,8 +46,30 @@ public class PreorderController {
 	}
 
 	@GetMapping("/preorders")
-	public String preorders(Model model) {
-		model.addAttribute("preorders", orderManagement.findBy(OrderStatus.OPEN));
+	public String preorders(Model model, @RequestParam("search") Optional<String> search) {
+		List<OrderCust> preorders = orderManagement.findBy(OrderStatus.OPEN).toList();
+		List<OrderCust> filtered_preorders = preorders;
+
+		if (search.isPresent()){
+			filtered_preorders = preorders.stream().filter((e) -> {
+				if(e.isPreorder()) {
+					return  e.getCustomer().getFamilyName().toLowerCase().contains(search.get().toLowerCase());
+				} else {
+					return  e.getUserAccount().getUsername().toLowerCase().contains(search.get().toLowerCase());
+				}
+			}).collect(Collectors.toList());
+			if(filtered_preorders.isEmpty()) {
+				filtered_preorders = preorders.stream().filter((e) -> {
+					if(e.isPreorder()) {
+						return e.getCustomer().getFirstName().toLowerCase().contains(search.get().toLowerCase());
+					}else {
+						return  e.getUserAccount().getUsername().toLowerCase().contains(search.get().toLowerCase());
+					}
+				}).collect(Collectors.toList());
+			}
+		}
+
+		model.addAttribute("preorders", filtered_preorders);
 		model.addAttribute("inventory", inventory);
 
 		return "/order/preorders";

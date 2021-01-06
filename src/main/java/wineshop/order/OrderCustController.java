@@ -18,6 +18,9 @@ import org.salespointframework.inventory.UniqueInventoryItem;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import static java.lang.Math.round;
 
@@ -93,8 +96,31 @@ public class OrderCustController {
 	}
 
 	@GetMapping("/orders")
-	String orders(Model model) {
-		model.addAttribute("orders", orderManagement.findBy(OrderStatus.COMPLETED));
+	String orders(Model model, @RequestParam("search") Optional<String> search) {
+
+		List<OrderCust> orders = orderManagement.findBy(OrderStatus.COMPLETED).toList();
+		List<OrderCust> filtered_orders = orders;
+
+		if (search.isPresent()){
+			filtered_orders = orders.stream().filter((e) -> {
+				if(e.isOrder()) {
+					return  e.getCustomer().getFamilyName().toLowerCase().contains(search.get().toLowerCase());
+				} else {
+					return  e.getUserAccount().getUsername().toLowerCase().contains(search.get().toLowerCase());
+				}
+			}).collect(Collectors.toList());
+			if(filtered_orders.isEmpty()) {
+				filtered_orders = orders.stream().filter((e) -> {
+					if(e.isOrder()) {
+						return e.getCustomer().getFirstName().toLowerCase().contains(search.get().toLowerCase());
+					}else {
+						return  e.getUserAccount().getUsername().toLowerCase().contains(search.get().toLowerCase());
+					}
+				}).collect(Collectors.toList());
+			}
+		}
+
+		model.addAttribute("orders", filtered_orders);
 
 		return "/order/orders";
 	}
@@ -110,21 +136,42 @@ public class OrderCustController {
 	}
 
 	@GetMapping("/balancing")
-	String balancing(Model model) {
-		Streamable<OrderCust> orders = orderManagement.findBy(OrderStatus.COMPLETED);
-		List<OrderCust> list = orders.toList();
+	String balancing(Model model,  @RequestParam("search") Optional<String> search) {
+		List<OrderCust> orders = orderManagement.findBy(OrderStatus.COMPLETED).toList();
+
+		List<OrderCust> filtered_orders = orders;
+
+		if (search.isPresent()){
+			filtered_orders = orders.stream().filter((e) -> {
+				if(e.isOrder()) {
+					return  e.getCustomer().getFamilyName().toLowerCase().contains(search.get().toLowerCase());
+				} else {
+					return  e.getUserAccount().getUsername().toLowerCase().contains(search.get().toLowerCase());
+				}
+			}).collect(Collectors.toList());
+			if(filtered_orders.isEmpty()) {
+				filtered_orders = orders.stream().filter((e) -> {
+					if(e.isOrder()) {
+						return e.getCustomer().getFirstName().toLowerCase().contains(search.get().toLowerCase());
+					}else {
+						return  e.getUserAccount().getUsername().toLowerCase().contains(search.get().toLowerCase());
+					}
+				}).collect(Collectors.toList());
+			}
+		}
+
 
 		double totalPrice = 0;
 
-		for(int i = 0; i < list.size(); i++) {
-			totalPrice += list.get(i).getTotal().getNumber().doubleValue();
+		for(int i = 0; i < filtered_orders.size(); i++) {
+			totalPrice += filtered_orders.get(i).getTotal().getNumber().doubleValue();
 		}
 
 		totalPrice *= 100;
 		totalPrice = round(totalPrice);
 		totalPrice /= 100;
 
-		model.addAttribute("orders", orders);
+		model.addAttribute("orders", filtered_orders);
 		model.addAttribute("totalPrice", totalPrice);
 
 		return "/order/balancing";

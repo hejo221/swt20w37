@@ -22,29 +22,44 @@
         <br>
     </header>
 
-    <table class="ui celled table text-center">
-        <thead>
-        <tr>
-            <th scope="col">Datum</th>
-            <th scope="col">Mitarbeiter</th>
-            <th scope="col">Preis</th>
-            <th scope="col">Aktion</th>
-        </tr>
-        </thead>
-        <tbody th:remove="all-but-first">
-        <tr th:each=" reorder : ${reorders}" th:if="${reorder.isReorder()}">
-            <td th:text="${#temporals.format(reorder.dateCreated, 'dd.MM.yyyy HH:mm')}">2020.11.27</td>
-            <td th:text="${reorder.getUserAccount().getUsername()}">hans</td>
-            <td th:text="${reorder.total}">20€</td>
-            <td>
-                <form th:action="@{/reorders/detail/{id}(id=${reorder.id})}" method="get">
-                    <button type="submit" class="btn btn-info">anzeigen</button>
-                    <input type="hidden" name="id" th:value="${reorder.id}"/>
-                </form>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+    <form class="col-3" th:action="@{/reorders}" method="get" id="form">
+        <div class="row float-right">
+            <div class="col-14 input-group">
+                <div class="input-group-prepend">
+                    <button class="btn btn-outline-secondary" type="submit" id="button-addon">Suchen
+                    </button>
+                </div>
+                <input type="text" class="form-control" placeholder="Sucheingabe" name="search"
+                       aria-label="Example text with button addon" aria-describedby="button-addon">
+            </div>
+        </div>
+    </form>
+
+    <div class="row mt-5">
+        <table class="ui celled table text-center">
+            <thead>
+            <tr>
+                <th scope="col">Datum</th>
+                <th scope="col">Mitarbeiter</th>
+                <th scope="col">Preis</th>
+                <th scope="col">Aktion</th>
+            </tr>
+            </thead>
+            <tbody th:remove="all-but-first">
+            <tr th:each=" reorder : ${reorders}" th:if="${reorder.isReorder()}">
+                <td th:text="${#temporals.format(reorder.dateCreated, 'dd.MM.yyyy HH:mm')}">2020.11.27</td>
+                <td th:text="${reorder.getUserAccount().getUsername()}">hans</td>
+                <td th:text="${reorder.total}">20€</td>
+                <td>
+                    <form th:action="@{/reorders/detail/{id}(id=${reorder.id})}" method="get">
+                        <button type="submit" class="btn btn-info">anzeigen</button>
+                        <input type="hidden" name="id" th:value="${reorder.id}"/>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </main>
 
 <!-- Optional JavaScript; choose one of the two! -->

@@ -23,6 +23,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import wineshop.wine.Wine;
 import wineshop.zinventory.InventoryManager;
 
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 import static org.salespointframework.core.Currencies.EURO;
 
 @Controller
@@ -41,8 +45,30 @@ public class ReorderController {
 	}
 
 	@GetMapping("/reorders")
-	String reorders(Model model) {
-		model.addAttribute("reorders", orderManagement.findBy(OrderStatus.OPEN));
+	String reorders(Model model, @RequestParam("search") Optional<String> search) {
+		List<OrderCust> reorders = orderManagement.findBy(OrderStatus.OPEN).toList();
+		List<OrderCust> filtered_reorders = reorders;
+
+		if (search.isPresent()){
+			filtered_reorders = reorders.stream().filter((e) -> {
+				if(e.isOrder()) {
+					return  e.getCustomer().getFamilyName().toLowerCase().contains(search.get().toLowerCase());
+				} else {
+					return  e.getUserAccount().getUsername().toLowerCase().contains(search.get().toLowerCase());
+				}
+			}).collect(Collectors.toList());
+			if(filtered_reorders.isEmpty()) {
+				filtered_reorders = reorders.stream().filter((e) -> {
+					if(e.isOrder()) {
+						return e.getCustomer().getFirstName().toLowerCase().contains(search.get().toLowerCase());
+					}else {
+						return  e.getUserAccount().getUsername().toLowerCase().contains(search.get().toLowerCase());
+					}
+				}).collect(Collectors.toList());
+			}
+		}
+
+		model.addAttribute("reorders", filtered_reorders);
 
 		return "/order/reorders";
 	}
