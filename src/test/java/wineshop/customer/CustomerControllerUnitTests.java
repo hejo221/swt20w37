@@ -11,7 +11,9 @@ import org.springframework.data.util.Streamable;
 import org.springframework.ui.ExtendedModelMap;
 import org.springframework.ui.Model;
 
-/* @ExtendWith(MockitoExtension.class)
+import java.util.Optional;
+
+@ExtendWith(MockitoExtension.class)
 public class CustomerControllerUnitTests {
 
 	@Mock
@@ -30,7 +32,7 @@ public class CustomerControllerUnitTests {
 
 		CustomerController customerController = new CustomerController(customerManager, customerRepository);
 
-		String customersViewName = customerController.customers(customerModel);
+		String customersViewName = customerController.customers(customerModel, Optional.of(""), Optional.of(""));
 
 		assertThat(customersViewName).isEqualTo("/customer/customers");
 		assertThat(customerModel.asMap().get("customers")).isInstanceOf(Iterable.class);
@@ -45,4 +47,3 @@ public class CustomerControllerUnitTests {
 
 
 }
-*/
