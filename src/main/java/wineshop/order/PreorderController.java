@@ -101,6 +101,6 @@ public class PreorderController {
 	public String deletePreorder(@RequestParam("id") OrderIdentifier id) {
 		OrderCust preorder = orderManagement.get(id).get();
 		orderManagement.delete(preorder);
-		return "/order/preorders";
+		return "redirect:/preorders";
 	}
 }
