@@ -1,4 +1,6 @@
 package wineshop.order;
+import com.google.common.collect.Lists;
+import org.salespointframework.catalog.Product;
 import org.salespointframework.catalog.ProductIdentifier;
 import org.salespointframework.order.*;
 import org.salespointframework.quantity.Quantity;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+import wineshop.customer.Customer;
 import wineshop.customer.CustomerManager;
 import wineshop.wine.CatalogManager;
 import wineshop.wine.Wine;
@@ -17,6 +20,8 @@ import org.salespointframework.inventory.UniqueInventory;
 import org.salespointframework.inventory.UniqueInventoryItem;
 
 import javax.validation.Valid;
+import java.time.Month;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -96,7 +101,7 @@ public class OrderCustController {
 	}
 
 	@GetMapping("/orders")
-	String orders(Model model, @RequestParam("search") Optional<String> search) {
+	String orders(Model model, @RequestParam("search") Optional<String> search, @RequestParam Optional<String> monat) {
 
 		List<OrderCust> orders = orderManagement.findBy(OrderStatus.COMPLETED).toList();
 		List<OrderCust> filtered_orders = orders;
@@ -118,6 +123,12 @@ public class OrderCustController {
 					}
 				}).collect(Collectors.toList());
 			}
+		}
+
+		if (monat.isPresent()){
+				filtered_orders = orders.stream().filter((e) -> {
+					return  e.getDateCreated().getMonth().toString().contains(monat.get());
+				}).collect(Collectors.toList());
 		}
 
 		model.addAttribute("orders", filtered_orders);
@@ -136,7 +147,7 @@ public class OrderCustController {
 	}
 
 	@GetMapping("/balancing")
-	String balancing(Model model,  @RequestParam("search") Optional<String> search) {
+	String balancing(Model model,  @RequestParam("search") Optional<String> search, @RequestParam Optional<String> monat) {
 		List<OrderCust> orders = orderManagement.findBy(OrderStatus.COMPLETED).toList();
 
 		List<OrderCust> filtered_orders = orders;
@@ -160,6 +171,11 @@ public class OrderCustController {
 			}
 		}
 
+		if (monat.isPresent()){
+			filtered_orders = orders.stream().filter((e) -> {
+				return  e.getDateCreated().getMonth().toString().contains(monat.get());
+			}).collect(Collectors.toList());
+		}
 
 		double totalPrice = 0;
 

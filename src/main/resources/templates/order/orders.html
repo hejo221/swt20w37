@@ -24,18 +24,41 @@
         <br>
     </header>
 
-    <form class="col-3" th:action="@{/order/orders}" method="get" id="form">
-        <div class="row float-right">
-            <div class="col-14 input-group">
-                    <div class="input-group-prepend">
-                        <button class="btn btn-outline-secondary" type="submit" id="button-addon">Suchen
-                        </button>
-                    </div>
-                    <input type="text" class="form-control" placeholder="Sucheingabe" name="search"
-                           aria-label="Example text with button addon" aria-describedby="button-addon">
+    <div class="row pt-4">
+        <form class="col-3" th:action="@{/order/orders}" method="get" id="form">
+            <div class="row float-right">
+                <div class="col-14 input-group">
+                        <div class="input-group-prepend">
+                            <button class="btn btn-outline-secondary" type="submit" id="button-addon">Suchen
+                            </button>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Sucheingabe" name="search"
+                               aria-label="Example text with button addon" aria-describedby="button-addon">
+                </div>
+            </div>
+        </form>
+        <div class="col-1">
+            <div class="dropdown">
+                <button class="btn btn-outline-secondary" type="button" id="dropdownMenuButton"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Monat
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" th:href="@{/order/orders(monat = 'JANUARY')}">JANUARY</a>
+                    <a class="dropdown-item" th:href="@{/order/orders(monat = 'FEBRUARY')}">FEBRUARY</a>
+                    <a class="dropdown-item" th:href="@{/order/orders(monat = 'MARCH')}">MARCH</a>
+                    <a class="dropdown-item" th:href="@{/order/orders(monat = 'APRIL')}">APRIL</a>
+                    <a class="dropdown-item" th:href="@{/order/orders(monat = 'MAY')}">MAY</a>
+                    <a class="dropdown-item" th:href="@{/order/orders(monat = 'JUNE')}">JUNE</a>
+                    <a class="dropdown-item" th:href="@{/order/orders(monat = 'JULY')}">JULY</a>
+                    <a class="dropdown-item" th:href="@{/order/orders(monat = 'AUGUST')}">AUGUST</a>
+                    <a class="dropdown-item" th:href="@{/order/orders(monat = 'SEPTEMBER')}">SEPTEMBER</a>
+                    <a class="dropdown-item" th:href="@{/order/orders(monat = 'OCTOBER')}">OCTOBER</a>
+                    <a class="dropdown-item" th:href="@{/order/orders(monat = 'NOVEMBER')}">NOVEMBER</a>
+                    <a class="dropdown-item" th:href="@{/order/orders(monat = 'DECEMBER')}">DECEMBER</a>
+                </div>
             </div>
         </div>
-    </form>
+    </div>
 
     <div class="row mt-5">
         <table class="ui celled table text-center">
