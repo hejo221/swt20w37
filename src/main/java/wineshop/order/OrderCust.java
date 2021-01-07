@@ -25,25 +25,19 @@ public class OrderCust extends Order {
 	public OrderCust(){}
 
 
-	public OrderCust(UserAccount userAccount, Customer customer){
-		super(userAccount);
-		this.customer = customer;
-	}
-
-	/*
-	public OrderCust(UserAccount userAccount, PaymentMethod paymentMethod) {
-		super(userAccount, paymentMethod);
-		this.orderType = OrderType.ORDER;
-	}
-	 */
-
 	public OrderCust(UserAccount userAccount, PaymentMethod paymentMethod, OrderType orderType) {
 		super(userAccount, paymentMethod);
+		if(orderType == null){
+			throw new NullPointerException();
+		}
 		this.orderType = orderType;
 	}
 
 	public OrderCust(UserAccount userAccount, PaymentMethod paymentMethod, Customer customer, OrderType orderType) {
 		super(userAccount, paymentMethod);
+		if(customer == null || orderType == null){
+			throw new NullPointerException();
+		}
 		this.customer = customer;
 		this.orderType = orderType;
 	}
