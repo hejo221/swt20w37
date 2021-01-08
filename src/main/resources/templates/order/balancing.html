@@ -22,18 +22,41 @@
         <br>
     </header>
 
-    <form class="col-3" th:action="@{/order/balancing}" method="get" id="form">
-        <div class="row float-right">
-            <div class="col-14 input-group">
-                <div class="input-group-prepend">
-                    <button class="btn btn-outline-secondary" type="submit" id="button-addon">Suchen
-                    </button>
+    <div class="row pt-4">
+        <form class="col-3" th:action="@{/order/balancing}" method="get" id="form">
+            <div class="row float-right">
+                <div class="col-14 input-group">
+                    <div class="input-group-prepend">
+                        <button class="btn btn-outline-secondary" type="submit" id="button-addon">Suchen
+                        </button>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Sucheingabe" name="search"
+                           aria-label="Example text with button addon" aria-describedby="button-addon">
                 </div>
-                <input type="text" class="form-control" placeholder="Sucheingabe" name="search"
-                       aria-label="Example text with button addon" aria-describedby="button-addon">
+            </div>
+        </form>
+        <div class="col-1">
+            <div class="dropdown">
+                <button class="btn btn-outline-secondary" type="button" id="dropdownMenuButton"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Monat
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" th:href="@{/order/balancing(monat = 'JANUARY')}">JANUARY</a>
+                    <a class="dropdown-item" th:href="@{/order/balancing(monat = 'FEBRUARY')}">FEBRUARY</a>
+                    <a class="dropdown-item" th:href="@{/order/balancing(monat = 'MARCH')}">MARCH</a>
+                    <a class="dropdown-item" th:href="@{/order/balancing(monat = 'APRIL')}">APRIL</a>
+                    <a class="dropdown-item" th:href="@{/order/balancing(monat = 'MAY')}">MAY</a>
+                    <a class="dropdown-item" th:href="@{/order/balancing(monat = 'JUNE')}">JUNE</a>
+                    <a class="dropdown-item" th:href="@{/order/balancing(monat = 'JULY')}">JULY</a>
+                    <a class="dropdown-item" th:href="@{/order/balancing(monat = 'AUGUST')}">AUGUST</a>
+                    <a class="dropdown-item" th:href="@{/order/balancing(monat = 'SEPTEMBER')}">SEPTEMBER</a>
+                    <a class="dropdown-item" th:href="@{/order/balancing(monat = 'OCTOBER')}">OCTOBER</a>
+                    <a class="dropdown-item" th:href="@{/order/balancing(monat = 'NOVEMBER')}">NOVEMBER</a>
+                    <a class="dropdown-item" th:href="@{/order/balancing(monat = 'DECEMBER')}">DECEMBER</a>
+                </div>
             </div>
         </div>
-    </form>
+    </div>
 
     <div class="row mt-5">
         <table class="ui celled table text-center">
