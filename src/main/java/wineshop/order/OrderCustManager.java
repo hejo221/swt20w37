@@ -60,14 +60,26 @@ public class OrderCustManager {
 		do {
 			CartItem cartItem = item.next();
 			Wine wine = (Wine) cartItem.getProduct();
-			InventoryItem inventoryItem = inventory.findByProductIdentifier(wine.getId()).get();
+			UniqueInventoryItem inventoryItem = inventory.findByProductIdentifier(wine.getId()).get();
+			Wine inventoryWine = (Wine) inventory.findByProductIdentifier(wine.getId()).get().getProduct();
 
 			if (cartItem.getQuantity().isGreaterThan(inventoryItem.getQuantity())) {
 				preorder.addOrderLine(wine, cartItem.getQuantity());
 				//inventoryItem.increaseQuantity((Quantity.of(10).subtract(inventoryItem.getQuantity())).add(cartItem.getQuantity()));
 			} else {
 				order.addOrderLine(wine, cartItem.getQuantity());
+				if (inventoryItem.getQuantity().subtract(cartItem.getQuantity()).isLessThan(inventoryWine.getMinAmount())) {
+					Money savePrice = wine.getSellPrice();
+					var reorder = new OrderCust(userAccount, Cash.CASH, OrderType.REORDER);
+
+					wine.setPrice(wine.getBuyPrice().negate());
+					reorder.addOrderLine(wine, Quantity.of(30).subtract(inventoryItem.getQuantity().subtract(cartItem.getQuantity())));
+					orderManagement.save(reorder);
+					wine.setPrice(savePrice);
+					inventory.save(inventoryItem);
+				}
 			}
+
 		} while (item.hasNext());
 
 		cart.clear();

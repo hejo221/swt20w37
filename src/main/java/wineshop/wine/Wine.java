@@ -3,6 +3,7 @@ package wineshop.wine;
 import org.javamoney.moneta.Money;
 import org.salespointframework.catalog.Product;
 import org.salespointframework.catalog.ProductIdentifier;
+import org.salespointframework.quantity.Quantity;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.money.format.MonetaryAmountFormat;
@@ -19,6 +20,7 @@ public class Wine extends Product {
 	private String pic, details;
 	private Money buyPrice;
 	private WineType wineType;
+	private Quantity minAmount;
 
 	@SuppressWarnings({"unused", "deprecation"})
 	public Wine() {
@@ -31,6 +33,7 @@ public class Wine extends Product {
 		this.wineType = wineType;
 		this.buyPrice = buyPrice;
 		this.details = details;
+		this.minAmount = Quantity.of(10);
 		productId = super.getId();
 	}
 
@@ -40,6 +43,8 @@ public class Wine extends Product {
 	public int getItemNr() {
 		return itemNr;
 	}
+
+	public Quantity getMinAmount() { return minAmount; }
 
 	//super.getName()
 
@@ -126,4 +131,6 @@ public class Wine extends Product {
 	public void setDetails(String details) {
 		this.details = details;
 	}
+
+	public  void setMinAmount(Quantity quantity) {this.minAmount = quantity; }
 }
