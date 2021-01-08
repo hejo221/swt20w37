@@ -21,9 +21,46 @@
                 <h1>Unsere Mitarbeiter:innen</h1>
             </header>
 
-            <form sec:authorize="hasRole('ADMIN')" class="form mb-3" method="get" th:action="@{/user/register}">
-                <button type="submit" class="btn btn-success">Neue Benutzer:in erstellen</button>
-            </form>
+            <div class="container">
+                <div class="row pt-4">
+
+                    <form sec:authorize="hasRole('ADMIN')" class="form mb-3" method="get" th:action="@{/user/register}">
+                        <button type="submit" class="btn btn-success">Neue Benutzer:in erstellen</button>
+                    </form>
+
+                    <div class="col-1">
+                        <div class="dropdown">
+                            <button class="btn btn-outline-secondary" type="button" id="dropdownMenuButton"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sortieren
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" th:href="@{/user/list(sort = 'A-Z Angestellte')}">A-Z Username</a>
+                                <a class="dropdown-item" th:href="@{/user/list(sort = 'A-Z Vorname')}">A-Z Vorname</a>
+                                <a class="dropdown-item" th:href="@{/user/list(sort = 'A-Z Nachname')}">A-Z Nachname</a>
+                            </div>
+                        </div>
+                    </div>
+
+                        <form class="col-3" th:action="@{/user/list}" method="get" id="form">
+                            <div class="row float-right">
+                                <div class="col-12 input-group">
+
+                                    <form>
+                                        <div class="input-group-prepend">
+                                            <button class="btn btn-outline-secondary" type="submit" id="button-addon">Suchen
+                                            </button>
+                                        </div>
+                                        <input type="text" class="form-control" placeholder="Sucheingabe" name="search"
+                                               aria-label="Example text with button addon" aria-describedby="button-addon">
+                                    </form>
+
+                                </div>
+                            </div>
+                        </form>
+                </div>
+            </div>
+
+
 
             <table class="ui celled table text-center">
                 <thead>

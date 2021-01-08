@@ -1,5 +1,7 @@
 package wineshop.user;
 
+import com.google.common.collect.Lists;
+import org.salespointframework.catalog.Product;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -7,8 +9,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.Assert;
 import org.springframework.validation.Errors;
+import wineshop.wine.Wine;
 
 import javax.validation.Valid;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/user")
@@ -51,8 +58,25 @@ class UserController {
 
 	@GetMapping("/list")
 	@PreAuthorize("hasRole('ADMIN')")
-	String users(Model model) {
-		model.addAttribute("users", userManager.findAll());
+	String users(Model model, @RequestParam Optional<String> search, @RequestParam Optional<String> sort) {
+
+		List<User> items = userRepository.findAll().toList();
+		if (search.isPresent()){
+			items =items.stream().filter((e) -> {
+				return e.getUserAccount().getUsername().toLowerCase().contains(search.get().toLowerCase());
+			}).collect(Collectors.toList());
+		}
+		if (sort.isPresent()){
+			if (sort.get().equalsIgnoreCase("A-Z Angestellte"))
+				items =items.stream().sorted(Comparator.comparing(e -> e.getUserAccount().getUsername())).collect(Collectors.toList());
+
+			if (sort.get().equalsIgnoreCase("A-Z Vorname"))
+				items =items.stream().sorted(Comparator.comparing(e -> e.getUserAccount().getFirstname())).collect(Collectors.toList());
+			if (sort.get().equalsIgnoreCase("A-Z Nachname"))
+				items =items.stream().sorted(Comparator.comparing(e -> e.getUserAccount().getLastname())).collect(Collectors.toList());
+		}
+
+		model.addAttribute("users", items);
 
 		return "/user/users";
 	}
