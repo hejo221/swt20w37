@@ -236,7 +236,12 @@ image:models/analysis/order.svg[class design diagram - order]
 [options="header"]
 |=== 
 |Class/Enumeration |Description
-|OrderController|Spring MVC Controller, welcher Anfragen für die Bestellungen und das Cart bearbeitet.
+|OrderCustController|Spring MVC Controller, welcher Anfragen für die Bestellungen und das Cart bearbeitet.
+|PreorderController|Spring MVC Controller, welcher Anfragen für die Vorbestellungen bearbeitet.
+|ReorderController|Spring MVC Controller, welcher Anfragen für die Nachbestellungen bearbeitet.
+|OrderCust|Klasse, welche von Order erbt, aber auch den Kunden als Attribut beinhaltet.
+|OrderType|Ordertyp für die Klasse OrderCust.
+|OrderCustManager|Beinhaltet die Logik für die Klasse OrderCustController.
 |===
 
 === 5.6 User
