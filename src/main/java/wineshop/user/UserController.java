@@ -41,14 +41,14 @@ class UserController {
 	@GetMapping("/register")
 	String register(Model model, UserRegistrationForm form) {
 		model.addAttribute("form", form);
-		return "/user/register";
+		return "user/register";
 	}
 
 	@PostMapping("/register")
 	String registerNew(@Valid UserRegistrationForm form, Errors result) {
 
 		if (result.hasErrors()) {
-			return "/user/register";
+			return "user/register";
 		}
 
 		userManager.createAccount(form);
@@ -78,7 +78,7 @@ class UserController {
 
 		model.addAttribute("users", items);
 
-		return "/user/users";
+		return "user/users";
 	}
 
 	@GetMapping("/edit/{id}")
@@ -89,7 +89,7 @@ class UserController {
 		model.addAttribute("username", user.getUsername());
 		model.addAttribute("firstName", user.getUserAccount().getFirstname());
 		model.addAttribute("lastName", user.getUserAccount().getLastname());
-		return "/user/edit";
+		return "user/edit";
 	}
 
 	@PostMapping("/save")

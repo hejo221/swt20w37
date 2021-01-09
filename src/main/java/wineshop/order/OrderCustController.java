@@ -133,7 +133,7 @@ public class OrderCustController {
 
 		model.addAttribute("orders", filtered_orders);
 
-		return "/order/orders";
+		return "order/orders";
 	}
 
 	@GetMapping("/detail/{id}")
@@ -143,7 +143,7 @@ public class OrderCustController {
 		model.addAttribute("order", order);
 		model.addAttribute("orderLines", order.getOrderLines().toList());
 		model.addAttribute("inventory", inventory);
-		return "/order/detail";
+		return "order/detail";
 	}
 
 	@GetMapping("/balancing")
@@ -190,7 +190,7 @@ public class OrderCustController {
 		model.addAttribute("orders", filtered_orders);
 		model.addAttribute("totalPrice", totalPrice);
 
-		return "/order/balancing";
+		return "order/balancing";
 	}
 
 	@GetMapping("/empty")
