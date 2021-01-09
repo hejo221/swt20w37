@@ -22,33 +22,71 @@
         <br>
     </header>
 
-    <table class="ui celled table text-center">
-        <thead>
-        <tr>
-            <th scope="col">Datum</th>
-            <th scope="col">Typ</th>
-            <th scope="col">Kunde/Mitarbeiter</th>
-            <th scope="col">Bezahlt</th>
-            <th scope="col">Detail</th>
-        </tr>
-        </thead>
-        <tbody th:remove="all-but-first">
-        <tr th:each=" order : ${orders}">
-            <td th:text="${#temporals.format(order.dateCreated, 'dd.MM.yyyy HH:mm')}">2020.11.27</td>
-            <td th:if="${!order.isReorder()}">B</td>
-            <td th:if="${order.isReorder()}">NB</td>
-            <td th:if="${order.isReorder()}" th:text="${order.getUserAccount().getUsername()}">hans</td>
-            <td th:if="${!order.isReorder()}" th:text="${order.customer.firstName} + ' ' + ${order.customer.familyName}">hans</td>
-            <td th:text="${order.total}">20€</td>
-            <td>
-                <form th:action="@{/order/detail/{id}}" method="get">
-                    <button type="submit" class="btn btn-info">anzeigen</button>
-                    <input type="hidden" name="id" th:value="${order.id}"/>
-                </form>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+    <div class="row pt-4">
+        <form class="col-3" th:action="@{/order/balancing}" method="get" id="form">
+            <div class="row float-right">
+                <div class="col-14 input-group">
+                    <div class="input-group-prepend">
+                        <button class="btn btn-outline-secondary" type="submit" id="button-addon">Suchen
+                        </button>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Sucheingabe" name="search"
+                           aria-label="Example text with button addon" aria-describedby="button-addon">
+                </div>
+            </div>
+        </form>
+        <div class="col-1">
+            <div class="dropdown">
+                <button class="btn btn-outline-secondary" type="button" id="dropdownMenuButton"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Monat
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" th:href="@{/order/balancing(monat = 'JANUARY')}">JANUARY</a>
+                    <a class="dropdown-item" th:href="@{/order/balancing(monat = 'FEBRUARY')}">FEBRUARY</a>
+                    <a class="dropdown-item" th:href="@{/order/balancing(monat = 'MARCH')}">MARCH</a>
+                    <a class="dropdown-item" th:href="@{/order/balancing(monat = 'APRIL')}">APRIL</a>
+                    <a class="dropdown-item" th:href="@{/order/balancing(monat = 'MAY')}">MAY</a>
+                    <a class="dropdown-item" th:href="@{/order/balancing(monat = 'JUNE')}">JUNE</a>
+                    <a class="dropdown-item" th:href="@{/order/balancing(monat = 'JULY')}">JULY</a>
+                    <a class="dropdown-item" th:href="@{/order/balancing(monat = 'AUGUST')}">AUGUST</a>
+                    <a class="dropdown-item" th:href="@{/order/balancing(monat = 'SEPTEMBER')}">SEPTEMBER</a>
+                    <a class="dropdown-item" th:href="@{/order/balancing(monat = 'OCTOBER')}">OCTOBER</a>
+                    <a class="dropdown-item" th:href="@{/order/balancing(monat = 'NOVEMBER')}">NOVEMBER</a>
+                    <a class="dropdown-item" th:href="@{/order/balancing(monat = 'DECEMBER')}">DECEMBER</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <table class="ui celled table text-center">
+            <thead>
+            <tr>
+                <th scope="col">Datum</th>
+                <th scope="col">Typ</th>
+                <th scope="col">Kunde/Mitarbeiter</th>
+                <th scope="col">Bezahlt</th>
+                <th scope="col">Detail</th>
+            </tr>
+            </thead>
+            <tbody th:remove="all-but-first">
+            <tr th:each=" order : ${orders}">
+                <td th:text="${#temporals.format(order.dateCreated, 'dd.MM.yyyy HH:mm')}">2020.11.27</td>
+                <td th:if="${!order.isReorder()}">B</td>
+                <td th:if="${order.isReorder()}">NB</td>
+                <td th:if="${order.isReorder()}" th:text="${order.getUserAccount().getUsername()}">hans</td>
+                <td th:if="${!order.isReorder()}" th:text="${order.customer.firstName} + ' ' + ${order.customer.familyName}">hans</td>
+                <td th:text="${order.total}">20€</td>
+                <td>
+                    <form th:action="@{/order/detail/{id}}" method="get">
+                        <button type="submit" class="btn btn-info">anzeigen</button>
+                        <input type="hidden" name="id" th:value="${order.id}"/>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
     <br/>
     <div>
         <h3>Summe</h3>

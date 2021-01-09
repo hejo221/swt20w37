@@ -7,6 +7,7 @@ import org.salespointframework.inventory.UniqueInventoryItem;
 import org.salespointframework.quantity.Quantity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
+import wineshop.wine.Wine;
 
 import javax.transaction.Transactional;
 
@@ -26,6 +27,14 @@ public class InventoryManager {
 		UniqueInventoryItem item = inventory.findByProductIdentifier(productId).get();
 		item.decreaseQuantity(item.getQuantity());
 		item.increaseQuantity(Quantity.of(number));
+		inventory.save(item);
+	}
+
+	@Transactional
+	void updateMinAmount(ProductIdentifier productId, int number) {
+		UniqueInventoryItem item = inventory.findByProductIdentifier(productId).get();
+		Wine wine = (Wine) item.getProduct();
+		wine.setMinAmount(Quantity.of(number));
 		inventory.save(item);
 	}
 

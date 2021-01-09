@@ -1,4 +1,6 @@
 package wineshop.order;
+
+import org.javamoney.moneta.Money;
 import org.salespointframework.inventory.InventoryItem;
 import org.salespointframework.inventory.UniqueInventory;
 import org.salespointframework.inventory.UniqueInventoryItem;
@@ -7,6 +9,7 @@ import org.salespointframework.order.CartItem;
 import org.salespointframework.order.OrderLine;
 import org.salespointframework.order.OrderManagement;
 import org.salespointframework.payment.Cash;
+import org.salespointframework.payment.CreditCard;
 import org.salespointframework.quantity.Quantity;
 import org.salespointframework.useraccount.UserAccount;
 import org.slf4j.Logger;
@@ -19,12 +22,15 @@ import wineshop.customer.Customer;
 import wineshop.customer.CustomerManager;
 import wineshop.wine.Wine;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Iterator;
 
 
 @Service
 @Transactional
-public class OrderCustManager{
+public class OrderCustManager {
 	private final OrderManagement<OrderCust> orderManagement;
 	private final CustomerManager customerManager;
 	private final UniqueInventory<UniqueInventoryItem> inventory;
@@ -38,44 +44,63 @@ public class OrderCustManager{
 		this.inventory = inventory;
 	}
 
-	
-	public void cartToOrderAndPreOrder(UserAccount userAccount, Cart cart, CartCustForm cartCustForm){
+
+	public void cartToOrderAndPreOrder(UserAccount userAccount, Cart cart, CartCustForm cartCustForm) {
 		Customer customer = customerManager.findCustomerById((Long) cartCustForm.getCustomerId());
+		CreditCard creditCard = new CreditCard("a", "b", "c", "d", "e", LocalDateTime.of(2020, 12, 31, 22, 33), LocalDateTime.of(2020, 12, 31, 22, 33), "9", Money.of(500, "EUR"), Money.of(500, "EUR"));
 		var preorder = new OrderCust(userAccount, Cash.CASH, customer, OrderType.PREORDER);
-		var order = new OrderCust(userAccount, Cash.CASH, customer, OrderType.ORDER);
+		OrderCust order;
+		if (cartCustForm.getPaymentMethod().equals("Bargeld")) {
+			order = new OrderCust(userAccount, Cash.CASH, customer, OrderType.ORDER);
+		} else {
+			order = new OrderCust(userAccount, creditCard, customer, OrderType.ORDER);
+		}
 
 		Iterator<CartItem> item = cart.iterator();
 		do {
 			CartItem cartItem = item.next();
 			Wine wine = (Wine) cartItem.getProduct();
-			InventoryItem inventoryItem = inventory.findByProductIdentifier(wine.getId()).get();
+			UniqueInventoryItem inventoryItem = inventory.findByProductIdentifier(wine.getId()).get();
+			Wine inventoryWine = (Wine) inventory.findByProductIdentifier(wine.getId()).get().getProduct();
 
 			if (cartItem.getQuantity().isGreaterThan(inventoryItem.getQuantity())) {
 				preorder.addOrderLine(wine, cartItem.getQuantity());
 				//inventoryItem.increaseQuantity((Quantity.of(10).subtract(inventoryItem.getQuantity())).add(cartItem.getQuantity()));
 			} else {
 				order.addOrderLine(wine, cartItem.getQuantity());
+				if (inventoryItem.getQuantity().subtract(cartItem.getQuantity()).isLessThan(inventoryWine.getMinAmount())) {
+					Money savePrice = wine.getSellPrice();
+					var reorder = new OrderCust(userAccount, Cash.CASH, OrderType.REORDER);
+
+					wine.setPrice(wine.getBuyPrice().negate());
+					reorder.addOrderLine(wine, Quantity.of(30).subtract(inventoryItem.getQuantity().subtract(cartItem.getQuantity())));
+					orderManagement.save(reorder);
+					wine.setPrice(savePrice);
+					inventory.save(inventoryItem);
+				}
 			}
+
 		} while (item.hasNext());
 
 		cart.clear();
 
-		if(order.getOrderLines().isEmpty()){
+		if (order.getOrderLines().isEmpty()) {
 			orderManagement.delete(order);
-		}
-		else{
+		} else {
 			orderManagement.payOrder(order);
 			orderManagement.completeOrder(order);
 		}
-		if(preorder.getOrderLines().isEmpty()){
+		if (preorder.getOrderLines().isEmpty()) {
 			orderManagement.delete(preorder);
-		}
-		else{
+		} else {
 			orderManagement.save(preorder);
 		}
 	}
 
 
+	public void emptyBasket(Cart cart) {
+		cart.clear();
+	}
 
 	public void refresh(String itemId, int number, Cart cart) {
 

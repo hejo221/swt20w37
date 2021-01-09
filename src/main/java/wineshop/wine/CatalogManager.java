@@ -84,7 +84,12 @@ public class CatalogManager {
 	public void makeItemUnavailable(Wine wine) {
 		wine.removeCategory("available");
 		wine.addCategory("unavailable");
+	}
 
+	@Transactional
+	public void makeItemAvailable(Wine wine) {
+		wine.removeCategory("unavailable");
+		wine.addCategory("available");
 	}
 
 	public Boolean isAvailable(Wine wine) {

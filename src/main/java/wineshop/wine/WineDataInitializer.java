@@ -41,15 +41,16 @@ class WineDataInitializer implements DataInitializer {
 		wineCatalog.save(new Wine(6, "Quietus Verdejo 2019", WHITE, "quietus", Money.of(19.99, EURO), Money.of(21.99, EURO), "details"));
 		wineCatalog.save(new Wine(7, "Nembus Blanco 2019", WHITE, "nembus", Money.of(19.99, EURO), Money.of(21.99, EURO), "details"));
 		wineCatalog.save(new Wine(8, "Intuicion Sauvignon Blanc 2019", WHITE, "intuicion", Money.of(24.99, EURO), Money.of(49.99, EURO), "details"));
-		wineCatalog.save(new Wine(9, "Tutejšaje", FRUITWINE, "tut", Money.of(1.99, EURO), Money.of(2.99, EURO), "unglaublich lecker der Wein, nu!"));
-		wineCatalog.save(new Wine(10, "12 € und gerettet", RED, "gerettet", Money.of(10.00, EURO), Money.of(12.00, EURO), "Der beste Freund des Menschen: spanischer Wein"));
-		wineCatalog.save(new Wine(11, "Wine for dummies", WHITE, "dummies", Money.of(0.80, EURO), Money.of(1.23, EURO), "schar-do-nää!!!"));
-		wineCatalog.save(new Wine(12, "Just Fucking Good Wine", RED , "fuckingGood", Money.of(20.00, EURO), Money.of(54.32, EURO), "nu genau!"));
-		wineCatalog.save(new Wine(13, "Katzpiss", OTHER, "katzpiss", Money.of(0.90, EURO), Money.of(3.21, EURO), "unglaublich lecker der Wein, nu!"));
-		wineCatalog.save(new Wine(14, "Sensaciones Edición Limitada", RED, "sensaciones", Money.of(19.95, EURO), Money.of(33.33, EURO), "details"));
+		wineCatalog.save(new Wine(9, "Sensaciones Edición Limitada", RED, "sensaciones", Money.of(19.95, EURO), Money.of(33.33, EURO), "details"));
+		wineCatalog.save(new Wine(10, "Tutejšaje", FRUITWINE, "tut", Money.of(1.99, EURO), Money.of(2.99, EURO), "unglaublich lecker der Wein, nu!"));
+		wineCatalog.save(new Wine(11, "12 € und gerettet", RED, "gerettet", Money.of(10.00, EURO), Money.of(12.00, EURO), "Der beste Freund des Menschen: spanischer Wein"));
+		wineCatalog.save(new Wine(12, "Wine for dummies", WHITE, "dummies", Money.of(0.80, EURO), Money.of(1.23, EURO), "schar-do-nää!!!"));
+		wineCatalog.save(new Wine(13, "Just Fucking Good Wine", RED , "fuckingGood", Money.of(20.00, EURO), Money.of(54.32, EURO), "nu genau!"));
+		wineCatalog.save(new Wine(14, "Katzpiss", OTHER, "katzpiss", Money.of(0.90, EURO), Money.of(3.21, EURO), "unglaublich lecker der Wein, nu!"));
 
 		for (Wine wine : wineCatalog.findAll()){
-			wine.addCategory("available");
+			if(wine.getItemNr()<10)	wine.addCategory("available");
+			else wine.addCategory("unavailable");
 		}
 	}
 }

@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.ui.ExtendedModelMap;
 
+import java.util.Optional;
+
 public class CustomerControllerIntegrationTests extends AbstractIntegrationTests {
 
 	@Autowired
@@ -20,7 +22,7 @@ public class CustomerControllerIntegrationTests extends AbstractIntegrationTests
 
 		ExtendedModelMap model = new ExtendedModelMap();
 
-		customerController.customers(model);
+		customerController.customers(model, Optional.of(""), Optional.of(""));
 
 		assertThat(model.get("customers")).isNotNull();
 	}

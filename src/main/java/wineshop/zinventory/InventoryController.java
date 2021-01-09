@@ -58,4 +58,11 @@ class InventoryController {
 
 		return  "redirect:/inventory";
 	}
+
+	@PostMapping("/inventory/updateMinAmount/{productId}")
+		String updateMinAmount(@PathVariable ProductIdentifier productId, @RequestParam("number") int number) {
+		inventoryManager.updateMinAmount(productId, number);
+
+		return  "redirect:/inventory";
+	}
 }

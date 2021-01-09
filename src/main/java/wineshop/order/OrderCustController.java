@@ -1,4 +1,6 @@
 package wineshop.order;
+import com.google.common.collect.Lists;
+import org.salespointframework.catalog.Product;
 import org.salespointframework.catalog.ProductIdentifier;
 import org.salespointframework.order.*;
 import org.salespointframework.quantity.Quantity;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+import wineshop.customer.Customer;
 import wineshop.customer.CustomerManager;
 import wineshop.wine.CatalogManager;
 import wineshop.wine.Wine;
@@ -17,7 +20,12 @@ import org.salespointframework.inventory.UniqueInventory;
 import org.salespointframework.inventory.UniqueInventoryItem;
 
 import javax.validation.Valid;
+import java.time.Month;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import static java.lang.Math.round;
 
@@ -60,7 +68,7 @@ public class OrderCustController {
 	@GetMapping("/cart")
 	String cart(Model model, CartCustForm cartCustForm){
 		model.addAttribute("customers", customerManager.findAll());
-		model.addAttribute("cartForm", cartCustForm);
+		model.addAttribute("cartCustForm", cartCustForm);
 		model.addAttribute("stock", inventory);
 		return "order/cart";
 	}
@@ -89,12 +97,41 @@ public class OrderCustController {
 		orderCustManager.cartToOrderAndPreOrder(userAccount, cart, cartCustForm);
 		//TODO: ---
 		cart.clear();
-		return "redirect:/order/cart";
+		return "redirect:/catalog";
 	}
 
 	@GetMapping("/orders")
-	String orders(Model model) {
-		model.addAttribute("orders", orderManagement.findBy(OrderStatus.COMPLETED));
+	String orders(Model model, @RequestParam("search") Optional<String> search, @RequestParam Optional<String> monat) {
+
+		List<OrderCust> orders = orderManagement.findBy(OrderStatus.COMPLETED).toList();
+		List<OrderCust> filtered_orders = orders;
+
+		if (search.isPresent()){
+			filtered_orders = orders.stream().filter((e) -> {
+				if(e.isOrder()) {
+					return  e.getCustomer().getFamilyName().toLowerCase().contains(search.get().toLowerCase());
+				} else {
+					return  e.getUserAccount().getUsername().toLowerCase().contains(search.get().toLowerCase());
+				}
+			}).collect(Collectors.toList());
+			if(filtered_orders.isEmpty()) {
+				filtered_orders = orders.stream().filter((e) -> {
+					if(e.isOrder()) {
+						return e.getCustomer().getFirstName().toLowerCase().contains(search.get().toLowerCase());
+					}else {
+						return  e.getUserAccount().getUsername().toLowerCase().contains(search.get().toLowerCase());
+					}
+				}).collect(Collectors.toList());
+			}
+		}
+
+		if (monat.isPresent()){
+				filtered_orders = orders.stream().filter((e) -> {
+					return  e.getDateCreated().getMonth().toString().contains(monat.get());
+				}).collect(Collectors.toList());
+		}
+
+		model.addAttribute("orders", filtered_orders);
 
 		return "/order/orders";
 	}
@@ -110,23 +147,55 @@ public class OrderCustController {
 	}
 
 	@GetMapping("/balancing")
-	String balancing(Model model) {
-		Streamable<OrderCust> orders = orderManagement.findBy(OrderStatus.COMPLETED);
-		List<OrderCust> list = orders.toList();
+	String balancing(Model model,  @RequestParam("search") Optional<String> search, @RequestParam Optional<String> monat) {
+		List<OrderCust> orders = orderManagement.findBy(OrderStatus.COMPLETED).toList();
+
+		List<OrderCust> filtered_orders = orders;
+
+		if (search.isPresent()){
+			filtered_orders = orders.stream().filter((e) -> {
+				if(e.isOrder()) {
+					return  e.getCustomer().getFamilyName().toLowerCase().contains(search.get().toLowerCase());
+				} else {
+					return  e.getUserAccount().getUsername().toLowerCase().contains(search.get().toLowerCase());
+				}
+			}).collect(Collectors.toList());
+			if(filtered_orders.isEmpty()) {
+				filtered_orders = orders.stream().filter((e) -> {
+					if(e.isOrder()) {
+						return e.getCustomer().getFirstName().toLowerCase().contains(search.get().toLowerCase());
+					}else {
+						return  e.getUserAccount().getUsername().toLowerCase().contains(search.get().toLowerCase());
+					}
+				}).collect(Collectors.toList());
+			}
+		}
+
+		if (monat.isPresent()){
+			filtered_orders = orders.stream().filter((e) -> {
+				return  e.getDateCreated().getMonth().toString().contains(monat.get());
+			}).collect(Collectors.toList());
+		}
 
 		double totalPrice = 0;
 
-		for(int i = 0; i < list.size(); i++) {
-			totalPrice += list.get(i).getTotal().getNumber().doubleValue();
+		for(int i = 0; i < filtered_orders.size(); i++) {
+			totalPrice += filtered_orders.get(i).getTotal().getNumber().doubleValue();
 		}
 
 		totalPrice *= 100;
 		totalPrice = round(totalPrice);
 		totalPrice /= 100;
 
-		model.addAttribute("orders", orders);
+		model.addAttribute("orders", filtered_orders);
 		model.addAttribute("totalPrice", totalPrice);
 
 		return "/order/balancing";
+	}
+
+	@GetMapping("/empty")
+	String emptyBasket(@ModelAttribute Cart cart){
+		cart.clear();
+		return "redirect:/order/cart";
 	}
 }

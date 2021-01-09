@@ -1,4 +1,19 @@
-/* CSS RESET */
+.btn.btn-primary{
+	white-space: nowrap;
+	text-align: center;
+	background: #34495e;
+	border: none;
+}
+
+.btn.btn-primary:hover, .btn.btn-info:hover{
+	background: #343a40;
+
+}
+.btn.btn-info{
+	background: #6c757d;
+	border: none;
+}
+
 
 body {
 	padding-top: 5rem;
@@ -10,8 +25,11 @@ body {
 }
 
 .material-icons.md-24 { font-size: 24px; }
-.material-icons.md-light { color: rgba(255, 255, 255, 1); }
-.material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
+.material-icons.md-light { color: rgba(255,255,255,.5); }
+.material-icons:hover {
+	color: rgba(255,255,255,.75);
+	text-decoration: none;
+}
 
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
@@ -32,4 +50,10 @@ input[type=number] {
 
 i{
 	font-style: normal;
+}
+
+.text {
+	font-style: italic;
+	color: rgba(255,255,255,.5);
+
 }

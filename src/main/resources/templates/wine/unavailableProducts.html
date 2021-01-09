@@ -26,8 +26,7 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top"
      th:replace="fragments/common :: menu('catalog')"></nav>
 <header class="text-center">
-    <h1 class="text-center" th:if="${currentCatalog == 'available'}">Katalog</h1>
-    <h1 class="text-center" th:unless="${currentCatalog == 'available'}">Nicht verfügbare Produkte</h1>
+    <h1 class="text-center">Nicht verfügbare Produkte</h1>
     <hr>
 </header>
 <main role="main" class="container">
@@ -35,25 +34,12 @@
 
     <div class="container">
         <div class="row pt-4">
-            <div class="col-4">
-                <div class="input-group" sec:authorize="hasRole('ADMIN')">
-                    <a class="btn btn-primary" th:href="@{newProduct}" role="button"><i class="fas fa-plus pr-2"></i>Neues
-                        Produkt hinzufügen</a>
-                </div>
-            </div>
+            <div class="col-4"></div>
 
             <div class="col-4">
                 <div class="input-group" sec:authorize="hasRole('ADMIN')">
-                    <div th:if="${currentCatalog == 'available'}">
-                        <a class="btn btn-outline-secondary" th:href="@{catalogOfUnavailableProducts}" role="button">nicht
-                            verfügbare Produkte anzeigen</a>
-                    </div>
-
-                    <div th:unless="${currentCatalog == 'available'}">
                         <a class="btn btn-outline-secondary" th:href="@{catalog}" role="button"> verfügbare Produkte
                             anzeigen</a>
-                    </div>
-
                 </div>
 
             </div>
@@ -64,18 +50,18 @@
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sortieren
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" th:href="@{/catalog(sort = 'A-Z')}">A-Z</a>
-                        <a class="dropdown-item" th:href="@{/catalog(sort = 'PreisAufsteigend')}">Preis aufsteigend</a>
-                        <a class="dropdown-item" th:href="@{/catalog(sort = 'PreisAbsteigend')}">Preis absteigend</a>
+                        <a class="dropdown-item" th:href="@{/catalogOfUnavailableProducts(sort = 'A-Z')}">A-Z</a>
+                        <a class="dropdown-item" th:href="@{/catalogOfUnavailableProducts(sort = 'PreisAufsteigend')}">Preis aufsteigend</a>
+                        <a class="dropdown-item" th:href="@{/catalogOfUnavailableProducts(sort = 'PreisAbsteigend')}">Preis absteigend</a>
                     </div>
                 </div>
             </div>
 
-            <form class="col-3" th:action="@{/catalog}" method="get" id="form">
+            <form class="col-3" th:action="@{/catalogOfUnavailableProducts}" method="get" id="form">
                 <div class="row float-right">
                     <div class="col-12 input-group">
 
-                        <form th:action="@{/catalog/suche}">
+                        <form th:action="@{/catalogOfUnavailableProducts/suche}">
                             <div class="input-group-prepend">
                                 <button class="btn btn-outline-secondary" type="submit" id="button-addon">Suchen
                                 </button>
@@ -119,11 +105,6 @@
                         <span th:text="${inventory.findByProductIdentifier(wine.getProductId()).get().getQuantity()}"
                               style="margin-right: 40px"></span>
 
-                        <span class="rating" style="text-align: right">
-                            <a class="rating" th:each="i : ${#numbers.sequence(10, 1)}" th:value="${i}"
-                               style="font-size: large; margin-left: -4px"
-                               th:href="@{/order/addToCart/{productId}/{quantity} (productId=${wine.getProductId()}, quantity=${i})}">🍷&#xFE0E</a>
-                        </span>
                     </div>
 
                 </div>

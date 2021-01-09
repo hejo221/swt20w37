@@ -1,0 +1,23 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a,
+button {
+    font-family: "Century Gothic", sans-serif;
+}
+
+.dropdown {
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 80;
+}
+
+.dropdown.button{
+    border: #6c757d;
+
+}
