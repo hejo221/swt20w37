@@ -38,7 +38,7 @@ class CatalogController {
 
 	@GetMapping("/catalog")
 	String showAvailableWines(Model model, @RequestParam Optional<String> search, @RequestParam Optional<String> sort) {
-		List<Wine> items = catalogManager.getAllWines().toList();
+		List<Wine> items = catalogManager.getAvailableWines().toList();
 		if (search.isPresent()){
 			items =items.stream().filter((e) -> {
 				return e.getName().toLowerCase().contains(search.get().toLowerCase());
@@ -53,19 +53,32 @@ class CatalogController {
 				items = Lists.reverse( items.stream().sorted(Comparator.comparing(Product::getPrice)).collect(Collectors.toList()));
 		}
 
-
-
 		model.addAttribute("wineCatalog", items);
 		model.addAttribute("inventory", inventory);
+		model.addAttribute("currentCatalog", "available");
 		return "/wine/catalog";
 	}
 
+	@GetMapping("/catalogOfUnavailableProducts")
+	String showUnavailableWines(Model model, @RequestParam Optional<String> search, @RequestParam Optional<String> sort) {
+		List<Wine> items = catalogManager.getUnavailableWines().toList();
+		if (search.isPresent()){
+			items =items.stream().filter((e) -> {
+				return e.getName().toLowerCase().contains(search.get().toLowerCase());
+			}).collect(Collectors.toList());
+		}
+		if (sort.isPresent()){
+			if (sort.get().equalsIgnoreCase("A-Z"))
+				items =items.stream().sorted(Comparator.comparing(Product::getName)).collect(Collectors.toList());
+			if (sort.get().equalsIgnoreCase("PreisAufsteigend"))
+				items =items.stream().sorted(Comparator.comparing(Product::getPrice)).collect(Collectors.toList());
+			if (sort.get().equalsIgnoreCase("PreisAbsteigend"))
+				items = Lists.reverse( items.stream().sorted(Comparator.comparing(Product::getPrice)).collect(Collectors.toList()));
+		}
 
-	@GetMapping("/catalogOfUnavailableWines")
-	String showUnavailableWines(Model model) {
-
-		model.addAttribute("wineCatalog", catalogManager.getUnavailableWines());
-		return "/wine/catalog";
+		model.addAttribute("wineCatalog", items);
+		model.addAttribute("inventory", inventory);
+		return "/wine/unavailableProducts";
 	}
 
 
@@ -94,6 +107,7 @@ class CatalogController {
 
 		model.addAttribute("form", form);
 		model.addAttribute("wine", wine);
+		if (catalogManager.isAvailable(wine)) model.addAttribute("currentWine", "available");
 		return "wine/product";
 	}
 
@@ -136,4 +150,15 @@ class CatalogController {
 		catalogManager.makeItemUnavailable(wine);
 		return "redirect:/catalog";
 	}
+
+	@PreAuthorize("hasRole('ADMIN')")
+	@GetMapping("/wine/recover/{wine}")
+	String recoverItem(@PathVariable Wine wine) {
+
+
+		catalogManager.makeItemAvailable(wine);
+		return "redirect:/catalog";
+	}
+
+
 }

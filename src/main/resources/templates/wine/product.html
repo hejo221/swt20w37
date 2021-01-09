@@ -1,5 +1,6 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:th="http://www.thymeleaf.org" lang="de">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:th="http://www.thymeleaf.org" lang="de">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -136,9 +137,14 @@
                                 <i class="fas fa-plus pr-2">Änderungen verwerfen</i>
                             </button>
 
-                            <a class="btn btn-danger btn-lg btn-block"
+                            <a class="btn btn-danger btn-lg btn-block" th:if="${currentWine == 'available'}"
                                th:href="@{/wine/delete/{productId}(productId=${wine.productId})}">
                                 <i class="fas fa-plus pr-2">Produkt löschen</i>
+                            </a>
+
+                            <a class="btn btn-info btn-lg btn-block" th:unless="${currentWine == 'available'}"
+                               th:href="@{/wine/recover/{productId}(productId=${wine.productId})}">
+                                <i class="fas fa-plus pr-2">Produkt wiederherstellen</i>
                             </a>
 
                         </div>
@@ -154,7 +160,6 @@
                             <img th:src="@{/resources/image/cover/{img}.jpg(img=${wine.pic})}"
                                  src="/resources/image/cover/no.jpg"
                                  alt="image" class="img-fluid p-5">
-                            <span>Dies ist nur ein Beispiel</span>
                         </div>
                     </div>
                 </div>
