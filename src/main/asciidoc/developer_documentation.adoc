@@ -221,12 +221,13 @@ image:models/analysis/customer.svg[class design diagram - customer]
 |===
 
 === 5.4 Inventory
-image:models/analysis/inventory.svg[class design diagram - inventory]
+image:models/analysis/inventory.xml[class design diagram - inventory]
 
 [options="header"]
 |===
 |Klasse/Enumeration |Beschreibung
-|InventoryController |Spring MVC Controller, welcher die Anfrage zum Anzeigen des Lagerbestandes bearbeitet.
+|InventoryController |Spring MVC Controller, welcher die Anfrage zum Anzeigen des Lagerbestandes bearbeitet
+|InventoryManager |Serviceklasse zur Lagerverwaltung
 |InventoryInitializer |Eine Implementierung des DataInitializer zum Erstellen von Dummy-Lagergegenständen beim Start der Anwendung
 |===
 
@@ -309,7 +310,7 @@ image:models/design/catalog_seq.svg[]
 image:models/design/seq_customer.svg[]
 
 === 6.3 Inventory
-image:models/design/seq_inventory.svg[]
+image:models/analysis/seq_inventory.xml[]
 
 === 6.4 Order
 image:images/orders.png[]
