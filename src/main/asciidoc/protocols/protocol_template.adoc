@@ -266,6 +266,95 @@ __Teilnehmer:__
 * Entwicklerdokumentation und Testplan vorläufig fertig- und vorgestellt
 * Anwendungsprototyp fertig- und vorgestellt
 
+== Treffen am 08.12.2020
+
+Ort:      online +
+Beginn:   09:20 Uhr +
+Ende:     11:00 Uhr
+
+__Schriftführer:__ Henrik John
+
+*Nächstes Treffen:* +
+15.12.2020, 09:20 Uhr, online
+
+__Teilnehmer:__
+
+- Noah Brinschwitz
+- Henrik John
+- Deokgeun Kim
+- David Nicklaser
+- Lavon Śpirydonaŭ
+- Tom Uhlemann
+- Steven Schwarz (Tutor/Kunde)
+
+=== Bemerkungen
+
+* Zwischenpräsentation abgehalten
+
+=== Aktueller Stand
+
+* Arbeit an Basisfunktionalitäten wird fortgesetzt
+
+== Treffen am 15.12.2020
+
+Ort:      online +
+Beginn:   09:20 Uhr +
+Ende:     11:00 Uhr
+
+__Schriftführer:__ Henrik John
+
+*Nächstes Treffen:* +
+05.01.2021, 09:20 Uhr, online
+
+__Teilnehmer:__
+
+- Noah Brinschwitz
+- Henrik John
+- Deokgeun Kim
+- David Nicklaser
+- Lavon Śpirydonaŭ
+- Tom Uhlemann
+- Steven Schwarz (Tutor/Kunde)
+
+=== Bemerkungen
+
+* Besprechung des Projektfortschritts
+
+=== Aktueller Stand
+
+* Arbeit an Basisfunktionalitäten fast fertiggestellt
+
+== Treffen am 05.01.2020
+
+Ort:      online +
+Beginn:   09:20 Uhr +
+Ende:     11:00 Uhr
+
+__Schriftführer:__ Henrik John
+
+*Nächstes Treffen:* +
+12.01.2021, 09:20 Uhr, online
+
+__Teilnehmer:__
+
+- Noah Brinschwitz
+- Henrik John
+- Deokgeun Kim
+- David Nicklaser
+- Lavon Śpirydonaŭ
+- Tom Uhlemann
+- Steven Schwarz (Tutor/Kunde)
+
+=== Bemerkungen
+
+* Vorstellung der Basisfunktionalitäten
+* Erörtertung von weiteren fertigzustellenden Funktionalitäten  
+
+=== Aktueller Stand
+
+* Basisfunktinalität fertiggestellt
+* Vorbereitungen für Cross-Testing
+
 ////
 
 == Template:
