@@ -39,7 +39,7 @@ class InventoryController {
 
 		model.addAttribute("stock", inventory.findAll());
 
-		return "/inventory/inventory";
+		return "inventory/inventory";
 	}
 
 	@PostMapping("/inventory/{productId}")

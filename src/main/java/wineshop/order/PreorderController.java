@@ -72,7 +72,7 @@ public class PreorderController {
 		model.addAttribute("preorders", filtered_preorders);
 		model.addAttribute("inventory", inventory);
 
-		return "/order/preorders";
+		return "order/preorders";
 	}
 
 	@GetMapping("/preorders/detail/{id}")
@@ -83,7 +83,7 @@ public class PreorderController {
 		model.addAttribute("orderLines", preorder.getOrderLines().toList());
 		model.addAttribute("inventory", inventory);
 
-		return "/order/detail";
+		return "order/detail";
 	}
 
 	@PostMapping("preorders/close")

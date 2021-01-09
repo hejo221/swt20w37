@@ -70,7 +70,7 @@ public class ReorderController {
 
 		model.addAttribute("reorders", filtered_reorders);
 
-		return "/order/reorders";
+		return "order/reorders";
 	}
 
 	@PostMapping("/reorders/{productId}")
@@ -97,7 +97,7 @@ public class ReorderController {
 		model.addAttribute("orderLines", reorder.getOrderLines().toList());
 		model.addAttribute("inventory", inventory);
 
-		return "/order/detail";
+		return "order/detail";
 	}
 
 	@PostMapping("reorders/close")
