@@ -56,19 +56,16 @@
             </div>
 
 
-
             <form class="col-3" th:action="@{/customer/list}" method="get" id="form">
                 <div class="row float-right">
                     <div class="col-12 input-group">
+                        <div class="input-group-prepend">
+                            <button class="btn btn-outline-secondary" type="submit" id="button-addon">Suchen
+                            </button>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Sucheingabe" name="search"
+                               aria-label="Example text with button addon" aria-describedby="button-addon">
 
-                        <form th:action="@{/customer/list}">
-                            <div class="input-group-prepend">
-                                <button class="btn btn-outline-secondary" type="submit" id="button-addon">Suchen
-                                </button>
-                            </div>
-                            <input type="text" class="form-control" placeholder="Sucheingabe" name="search"
-                                   aria-label="Example text with button addon" aria-describedby="button-addon">
-                        </form>
 
                     </div>
                 </div>
