@@ -221,7 +221,7 @@ image:models/analysis/customer.svg[class design diagram - customer]
 |===
 
 === 5.4 Inventory
-image:models/analysis/inventory.xml[class design diagram - inventory]
+image:models/analysis/inventory.svg[class design diagram - inventory]
 
 [options="header"]
 |===
@@ -310,7 +310,7 @@ image:models/design/catalog_seq.svg[]
 image:models/design/seq_customer.svg[]
 
 === 6.3 Inventory
-image:models/analysis/seq_inventory.xml[]
+image:models/analysis/seq_inventory.svg[]
 
 === 6.4 Order
 image:images/orders.png[]
