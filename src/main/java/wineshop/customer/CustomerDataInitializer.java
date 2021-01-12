@@ -23,6 +23,11 @@ public class CustomerDataInitializer implements DataInitializer {
 
 	@Override
 	public void initialize() {
+
+		if (customerManager.findAll().stream().count() > 0) {
+			return;
+		}
+
 		LOG.info("Creating default customers.");
 
 		List.of(
