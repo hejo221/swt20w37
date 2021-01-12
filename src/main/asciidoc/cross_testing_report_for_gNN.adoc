@@ -1,17 +1,25 @@
 = Cross-Testing Feedback
 
-__Durchführende Gruppe:__
-__Anwendung von Gruppe:__
+__Durchführende Gruppe:__ 37
+
+__Anwendung von Gruppe:__ 38
 
 == Getestetes System
-Welche Aufgabe/Problemstellung löst die Anwendung.
+
+Die Anwendung ist ein IT-System für die Vinothek „La Bouteille“, das für Katalogverwaltung, Lager und Nachbestellwesen, 
+Kundenstammverwaltung, Auftragserfassung und Rechnungsstellung, Bestellung derzeit nicht vorrätiger Weine und
+Bilanzierung verwendet werden soll.
 
 == Fehler-Report
 // See http://asciidoctor.org/docs/user-manual/#tables
-[options="header"]
+
+[frame="all"]
 |===
-|Pfad |Parameter |Beschreibung |Rückgabe
-| … | … | … | … |
+|*Pfad* |*Parameter* |*Beschreibung* |*Rückgabe* |*Anhang*
+|Kundenverwaltung / Kundenübersicht |keine |Die "Default Customer" werden mit jedem Start der Anwendung dupliziert |Duplikate der der "Default Customer" |1
+|Controlling / Finanzübersicht |Click auf "Show me some statistics" oder "Show me my cash"  |Diagramme werden mit jedem Click ein weiteres Mal angezeigt |So viele Diagramme wie Clicks |2
+|Controlling / Finanzübersicht |Click auf "Show me some statistics" oder "Show me my cash" |Bei abwechselnden Clicks auf "Show me some statistics" oder "Show me my Cash" überlappen sich die Diagramme |Überlappende Diagramme |3
+|Bestellung / offene bzw. abgeschlossene Nachbestellungen / Info |angelegte bzw. abgeschlossene Nachbestellung |In der Spalte "Info" wird Kauderwelsch angezeigt |Nicht aufbereitete Daten der Nachbestellung |4
 |===
 
 == Sonstiges
