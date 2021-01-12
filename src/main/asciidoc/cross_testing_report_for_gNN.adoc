@@ -22,6 +22,14 @@ Bilanzierung verwendet werden soll.
 |Bestellung / offene bzw. abgeschlossene Nachbestellungen / Info |angelegte bzw. abgeschlossene Nachbestellung |In der Spalte "Info" wird Kauderwelsch angezeigt |Nicht aufbereitete Daten der Nachbestellung |4
 |===
 
+
+=== Anhang
+
+Anhang 1: image:images/crosstesting_1.png[]
+Anhang 2: image:images/crosstesting_2.png[]
+Anhang 3: image:images/crosstesting_3.png[]
+Anhang 4: image:images/crosstesting_4.png[]
+
 == Sonstiges
 * Optik der Anwendung
 * Fehlende Features
