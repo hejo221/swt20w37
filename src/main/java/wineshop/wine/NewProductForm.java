@@ -1,14 +1,15 @@
 package wineshop.wine;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 class NewProductForm {
-	//@NotEmpty(message = "{NewProductForm.itemNr.NotEmpty}") //
+	@NotNull(message = "{NewProductForm.itemNr.NotEmpty}") //
 	private final String itemNr;
 
 	@NotEmpty(message = "{NewProductForm.name.NotEmpty}")
 	private final String name;
 
-	//@NotEmpty(message = "{NewProductForm.wineType.NotEmpty}")
+	@NotNull(message = "{NewProductForm.wineType.NotEmpty}")
 	private final Wine.WineType wineType;
 
 	@NotEmpty(message = "{NewProductForm.pic.NotEmpty}")
@@ -25,6 +26,11 @@ class NewProductForm {
 
 
 	public NewProductForm(String itemNr, String name, Wine.WineType wineType, String pic, String buyPrice, String sellPrice, String details) {
+
+
+
+
+
 		this.itemNr = itemNr;
 		this.name = name;
 		this.wineType = wineType;

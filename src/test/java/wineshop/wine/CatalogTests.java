@@ -16,7 +16,7 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.*;
 
 
-public class CatalogIntegrationTests extends AbstractIntegrationTests {
+public class CatalogTests extends AbstractIntegrationTests {
 
 	@Autowired
 	CatalogManager catalogManager;

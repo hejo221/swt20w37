@@ -30,6 +30,11 @@ public class Wine extends Product {
 	public Wine(Integer itemNr, String name, WineType wineType, String pic, Money buyPrice, Money sellPrice, String details) {
 
 		super(name, sellPrice);
+		Assert.notNull(itemNr, "Item Number must not be null!");
+		Assert.notNull(pic, "Picture must not be null!");
+		Assert.notNull(wineType, "Wine Type must not be null!");
+		Assert.notNull(buyPrice, "Buy Price must not be null!");
+		Assert.notNull(details, "Details must not be null!");
 
 		this.itemNr = itemNr;
 		this.pic = pic;
