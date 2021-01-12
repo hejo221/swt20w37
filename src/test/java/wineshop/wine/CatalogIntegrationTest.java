@@ -37,6 +37,23 @@ public class CatalogIntegrationTest extends AbstractIntegrationTests {
 		assertThat(unavailableWines).hasSize(5);
 	}
 
+	// Prüft die Methode isAvailable() und isUnavailable
+	@Test
+	public void testsIsAvailableOrNot(){
+		int availableCounter = 0;
+		int unavailableCounter = 0;
+		int errorCounter = 0;
+		for (Wine wine : catalogManager.getAllWines()){
+			if(catalogManager.isAvailable(wine)) availableCounter ++;
+			else if (catalogManager.isUnavailable(wine)) unavailableCounter ++;
+			else errorCounter++;
+		}
+		assertThat(availableCounter).isEqualTo(9);
+		assertThat(unavailableCounter).isEqualTo(5);
+		assertThat(errorCounter).isEqualTo(0);
+
+	}
+
 	// Macht alle verfügbare Weine nicht verfügbar
 	@Test
 	public void doesFromAllAvailableUnavailable() {
@@ -71,7 +88,9 @@ public class CatalogIntegrationTest extends AbstractIntegrationTests {
 		}
 
 		assertThat(catalogManager.getAllWines()).hasSize(5);
-		//assertThat(catalogManager.getAvailableWines()).hasSize(0);
+		assertThat(catalogManager.getAvailableWines()).hasSize(0);
 		assertThat(catalogManager.getUnavailableWines()).hasSize(5);
 	}
+
+	// Hinzufügen von neuen Weinen
 }
