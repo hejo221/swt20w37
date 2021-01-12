@@ -51,20 +51,20 @@ public class CustomerController {
 
 		model.addAttribute("customers", items);
 
-		return "/customer/customers";
+		return "customer/customers";
 	}
 
 	@GetMapping("/register")
 	public String registerCustomer(Model model, CustomerRegistrationForm form) {
 		model.addAttribute("form", form);
-		return "/customer/register";
+		return "customer/register";
 	}
 
 	@PostMapping("/register")
 	public String registerNew(@Valid CustomerRegistrationForm form, Errors result) {
 
 		if (result.hasErrors()) {
-			return "/customer/register";
+			return "customer/register";
 		}
 		customerManager.createCustomer(form);
 
@@ -79,7 +79,7 @@ public class CustomerController {
 		model.addAttribute("familyName", customer.getFamilyName());
 		model.addAttribute("mail", customer.getEmail());
 		model.addAttribute("address", customer.getAddress());
-		return "/customer/edit";
+		return "customer/edit";
 	}
 
 	@PostMapping("/save")

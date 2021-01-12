@@ -5,6 +5,7 @@ import org.salespointframework.catalog.Product;
 import org.salespointframework.catalog.ProductIdentifier;
 import org.salespointframework.quantity.Quantity;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 
 import javax.money.format.MonetaryAmountFormat;
 import javax.money.format.MonetaryFormats;
@@ -27,7 +28,9 @@ public class Wine extends Product {
 	}
 
 	public Wine(Integer itemNr, String name, WineType wineType, String pic, Money buyPrice, Money sellPrice, String details) {
+
 		super(name, sellPrice);
+
 		this.itemNr = itemNr;
 		this.pic = pic;
 		this.wineType = wineType;

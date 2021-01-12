@@ -34,12 +34,12 @@ public class CustomerControllerUnitTests {
 
 		String customersViewName = customerController.customers(customerModel, Optional.of(""), Optional.of(""));
 
-		assertThat(customersViewName).isEqualTo("/customer/customers");
+		assertThat(customersViewName).isEqualTo("customer/customers");
 		assertThat(customerModel.asMap().get("customers")).isInstanceOf(Iterable.class);
 
 		String registerViewName = customerController.registerCustomer(customerModel, new CustomerRegistrationForm(null, null, null, null));
 
-		assertThat(registerViewName).isEqualTo("/customer/register");
+		assertThat(registerViewName).isEqualTo("customer/register");
 		assertThat(customerModel.asMap().get("form")).isNotNull();
 
 		verify(customerRepository, times(1)).findAll();

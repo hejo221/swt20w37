@@ -56,7 +56,7 @@ class CatalogController {
 		model.addAttribute("wineCatalog", items);
 		model.addAttribute("inventory", inventory);
 		model.addAttribute("currentCatalog", "available");
-		return "/wine/catalog";
+		return "wine/catalog";
 	}
 
 	@GetMapping("/catalogOfUnavailableProducts")
@@ -78,7 +78,7 @@ class CatalogController {
 
 		model.addAttribute("wineCatalog", items);
 		model.addAttribute("inventory", inventory);
-		return "/wine/unavailableProducts";
+		return "wine/unavailableProducts";
 	}
 
 
