@@ -21,13 +21,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import wineshop.wine.Wine;
-import wineshop.zinventory.InventoryManager;
+import wineshop.inventory.InventoryManager;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
-import static org.salespointframework.core.Currencies.EURO;
 
 @Controller
 public class ReorderController {

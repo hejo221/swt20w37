@@ -1,34 +1,23 @@
 package wineshop.order;
 
-import org.javamoney.moneta.Money;
-import org.salespointframework.catalog.ProductIdentifier;
 import org.salespointframework.inventory.UniqueInventory;
 import org.salespointframework.inventory.UniqueInventoryItem;
 import org.salespointframework.order.OrderIdentifier;
-import org.salespointframework.order.OrderLine;
 import org.salespointframework.order.OrderManagement;
 import org.salespointframework.order.OrderStatus;
-import org.salespointframework.payment.Cash;
-import org.salespointframework.quantity.Quantity;
-import org.salespointframework.useraccount.UserAccount;
-import org.salespointframework.useraccount.web.LoggedIn;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import wineshop.wine.Wine;
-import wineshop.zinventory.InventoryManager;
+import wineshop.inventory.InventoryManager;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
-import static org.salespointframework.core.Currencies.EURO;
 
 @Controller
 public class PreorderController {

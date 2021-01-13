@@ -1,25 +1,14 @@
-package wineshop.zinventory;
+package wineshop.inventory;
 
-import org.apache.juli.logging.Log;
 import org.salespointframework.catalog.ProductIdentifier;
-import org.salespointframework.inventory.InventoryItem;
-import org.salespointframework.inventory.InventoryItemIdentifier;
 import org.salespointframework.inventory.UniqueInventory;
 import org.salespointframework.inventory.UniqueInventoryItem;
-import org.salespointframework.order.Cart;
-import org.salespointframework.quantity.Quantity;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import wineshop.wine.*;
-
-import java.util.Optional;
 
 @Controller
 class InventoryController {

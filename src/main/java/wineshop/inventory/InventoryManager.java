@@ -1,4 +1,4 @@
-package wineshop.zinventory;
+package wineshop.inventory;
 
 
 import org.salespointframework.catalog.ProductIdentifier;
