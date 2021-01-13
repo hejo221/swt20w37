@@ -33,12 +33,8 @@ class InventoryController {
 
 	@PostMapping("/inventory/{productId}")
 	String updateAmount(@PathVariable ProductIdentifier productId, @RequestParam("number") int number) {
-
 		inventoryManager.updateAmount(productId, number);
-
 		return "redirect:/inventory";
-
-
 	}
 
 	@PostMapping("/inventory/delete/{productId}")
