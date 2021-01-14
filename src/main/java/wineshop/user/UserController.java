@@ -85,7 +85,13 @@ class UserController {
 	@PreAuthorize("hasAnyRole('ADMIN')")
 	public String edit(Model model, @PathVariable Long id) {
 		User user;
-		model.addAttribute("user", user = this.userRepository.findById(id).get());
+		if (userRepository.findById(id).isEmpty()){
+			return "index";
+		} //TODO Failure hinzufügen
+
+		model.addAttribute("user", user = userRepository.findById(id).get());
+		System.out.println(id);
+
 		model.addAttribute("username", user.getUsername());
 		model.addAttribute("firstName", user.getUserAccount().getFirstname());
 		model.addAttribute("lastName", user.getUserAccount().getLastname());
@@ -95,6 +101,11 @@ class UserController {
 	@PostMapping("/save")
 	public String save(@RequestParam("username") String username, @RequestParam("firstName") String firstname,
 					   @RequestParam("lastName") String lastname, @RequestParam("id") Long id) {
+
+		if (userRepository.findById(id).isEmpty()){
+			return "index"; //TODO Failure hinzufügen
+		}
+
 		User user = userRepository.findById(id).get();
 
 		user.setUsername(username);

@@ -11,9 +11,7 @@ import org.springframework.ui.Model;
 import wineshop.AbstractIntegrationTests;
 import wineshop.wine.CatalogManager;
 import wineshop.wine.Wine;
-
 import java.util.Optional;
-
 import static org.assertj.core.api.Assertions.*;
 
 
@@ -27,6 +25,7 @@ public class InventoryTests extends AbstractIntegrationTests {
 	InventoryController controller;
 	@Autowired
 	CatalogManager catalogManager;
+
 
 	// Hier werden alle Methoden der Klasse InventoryController getestet
 	@Test
