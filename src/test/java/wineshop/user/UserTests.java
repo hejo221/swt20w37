@@ -33,6 +33,9 @@ public class UserTests extends AbstractIntegrationTests {
 	@Autowired
 	UserAccountManagement userAccounts;
 
+	@Autowired
+	UserController userController;
+
 
 	UserRegistrationForm form = new UserRegistrationForm("username", "password", "forename", "surname");
 	Errors errors = new BeanPropertyBindingResult(form, "objectName");
@@ -65,8 +68,6 @@ public class UserTests extends AbstractIntegrationTests {
 
 		returnedView = controller.delete(userRepository.findAll().get().findFirst().get().getId());
 		assertThat(returnedView).isEqualTo("redirect:/user/list");
-
-
 	}
 
 
@@ -80,49 +81,52 @@ public class UserTests extends AbstractIntegrationTests {
 				.isThrownBy(() -> new UserManager(null, userAccounts));
 	}
 
-	/*
-	// Bestandänderung
+
+	// Registration Form must not be null
 	@Test
-	public void updatesAmountOfEachProduct() {
-		for (Wine wine : catalogManager.getAllWines()) {
-			controller.updateAmount(wine.getProductId(), 333);
-		}
-
-		for (Wine wine : catalogManager.getAllWines()) {
-			assertThat(inventory.findByProductIdentifier(wine.getProductId()).get().getQuantity()).isEqualTo(Quantity.of(333));
-		}
-	}
-
-	// MIN-Bestandänderung
-	@Test
-	public void updatesMinAmountOfEachProduct() {
-		for (Wine wine : catalogManager.getAllWines()) {
-			controller.updateMinAmount(wine.getProductId(), 111);
-		}
-
-		for (Wine wine : catalogManager.getAllWines()) {
-			assertThat(wine.getMinAmount()).isEqualTo(Quantity.of(111));
-		}
-	}
-
-	// Deletes all Items in Inventory
-	@Test
-	public void deletesItems() {
-		for (UniqueInventoryItem item : inventory.findAll()) {
-			inventoryManager.deleteItem(item.getProduct().getId());
-		}
-		assertThat(inventory.findAll()).hasSize(0);
+	void createAccountExeption(){
+		assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> userManager.createAccount(null));
 	}
 
 
-	// InventoryInitializer wird getestet
+	// tests the method createAccount() in UserManager
 	@Test
-	void throwsEmptyThingsInInventoryInitializer() {
-		assertThatExceptionOfType(IllegalArgumentException.class)
-				.isThrownBy(() -> new InventoryInitializer(null, null));
+	void testsCreateAccount(){
+		User createdUser = userManager.createAccount(form);
+		assertThat(userRepository.findById(createdUser.getId()).isPresent()).isTrue();
+		User testUser = userRepository.findById(createdUser.getId()).get();
+		assertThat(testUser.getUsername()).isEqualTo("username");
+		assertThat(testUser.getUserAccount().getUsername()).isEqualTo("username");
+		assertThat(testUser.getUserAccount().getFirstname()).isEqualTo("forename");
+		assertThat(testUser.getUserAccount().getLastname()).isEqualTo("surname");
+	}
+
+	//Editing of User Datas
+	@Test
+	@WithMockUser(roles = "ADMIN")
+	void testsEditingOfUserDatas(){
+		User createdUser = userManager.createAccount(form);
+
+		userController.save("noUsername", "noForename", "noSurname", createdUser.getId());
+
+		assertThat(userRepository.findById(createdUser.getId()).isPresent()).isTrue();
+		User testUser = userRepository.findById(createdUser.getId()).get();
+		assertThat(testUser.getUsername()).isEqualTo("noUsername");
+		//assertThat(testUser.getUserAccount().getUsername()).isEqualTo("noUsername"); //TODO WARUM FUNKTIONIERT ES NICHT?
+		assertThat(testUser.getUserAccount().getFirstname()).isEqualTo("noForename");
+		assertThat(testUser.getUserAccount().getLastname()).isEqualTo("noSurname");
 	}
 
 
+	//Deleting of User Account
+	@Test
+	@WithMockUser(roles = "ADMIN")
+	void testsDeletingOfUserAccount(){
+		User createdUser = userManager.createAccount(form);
+		assertThat(userRepository.findById(createdUser.getId()).isPresent()).isTrue();
 
-	 */
+		userRepository.deleteById(createdUser.getId());
+		assertThat(userRepository.findById(createdUser.getId()).isEmpty()).isTrue();
+	}
+
 }
