@@ -20,6 +20,12 @@ Bilanzierung verwendet werden soll.
 |Controlling / Finanzübersicht |Click auf "Show me some statistics" oder "Show me my cash"  |Diagramme werden mit jedem Click ein weiteres Mal angezeigt |So viele Diagramme wie Clicks |2
 |Controlling / Finanzübersicht |Click auf "Show me some statistics" oder "Show me my cash" |Bei abwechselnden Clicks auf "Show me some statistics" oder "Show me my Cash" überlappen sich die Diagramme |Überlappende Diagramme |3
 |Bestellung / offene bzw. abgeschlossene Nachbestellungen / Info |angelegte bzw. abgeschlossene Nachbestellung |In der Spalte "Info" wird Kauderwelsch angezeigt |Nicht aufbereitete Daten der Nachbestellung |4
+|Warenkorb /Kundenbestellung     |Weine 20 mal hinzufügen und dann auf Kaufen klicken     |Whitelabel Error Page     |Whitelabel Error Page      |5 & 6
+|Controlling /Inventur      |Es passiert nichts     |Es passiert nichts, also man wird nicht weitergeleitet     |-     |-
+|Weinsortiment /Suchen     |spätburgunder     |Wenn man nach einem Wein sucht und den Anfangsbuchstaben klein schreibt findet er nichts mehr   |-     |7
+|Weinsortiment     |-     |Bilder werden nicht angezeigt    |-      |8
+|Kundenverwaltung /Kunden Übersicht     |Wenn man einen neuen Kunden anlegt und in die Hausnummer extrem viele Zahlen eingibt    |Die Zahl ist so groß, dass alles andere rechts daneben nicht mehr angezeigt wird, dass Problem ist das man den Kunden dann auch nicht mehr löschen kann, weil der Lösch Knopf ganz rechts ist    |zu lange Zahl, sodass man den Rest nicht mehr erkennen kann      |9
+
 |===
 
 
@@ -29,11 +35,27 @@ Anhang 1: image:images/crosstesting_1.png[]
 Anhang 2: image:images/crosstesting_2.png[]
 Anhang 3: image:images/crosstesting_3.png[]
 Anhang 4: image:images/crosstesting_4.png[]
+Anhang 5: image:images/Crosstesting/5_Whitelabel Error.png[]
+Anhang 6: image:images/Crosstesting/6_Whitelabel Error.png[]
+Anhang 7: image:images/Crosstesting/7_Suchen.png[]
+Anhang 8: image:images/Crosstesting/8_Bilder.png[]
+Anhang 9: image:images/Crosstesting/9_Kunden Hausnummer.png[]
+
 
 == Sonstiges
 * Optik der Anwendung
+
+->Dropdown Menü etwas sehr verschoben (nicht links zentriert)
+
+->Scrollbalken nach Links und Rechts bei dem Linken Menü nicht unbedingt schön
+
+->Rechnung sieht sehr schön aus
+
 * Fehlende Features
 * Interaktion mit der Anwendung (Usability)
+
+-> Dropdown Menü etwas sehr anstrengend zum bedienen, weil sobald man mit dem Cursor zu weit rechts ist um das Menü auszuklappen und ein Unterpunkt auszuwählen, passiert
+es sehr oft, dass das Menü wieder zu geht
 
 == Verbesserungsvorschläge
 * Was kann noch weiter verbessert werden?
