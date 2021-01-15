@@ -25,6 +25,8 @@ Bilanzierung verwendet werden soll.
 |Weinsortiment /Suchen     |spätburgunder     |Wenn man nach einem Wein sucht und den Anfangsbuchstaben klein schreibt findet er nichts mehr   |-     |7
 |Weinsortiment     |-     |Bilder werden nicht angezeigt    |-      |8
 |Kundenverwaltung /Kunden Übersicht     |Wenn man einen neuen Kunden anlegt und in die Hausnummer extrem viele Zahlen eingibt    |Die Zahl ist so groß, dass alles andere rechts daneben nicht mehr angezeigt wird, dass Problem ist das man den Kunden dann auch nicht mehr löschen kann, weil der Lösch Knopf ganz rechts ist    |zu lange Zahl, sodass man den Rest nicht mehr erkennen kann      |9
+|Startseite |- |Menüleiste ragt bei höhen Bildschirmauflösungen in Baby Yoda-Bild |- |10
+
 
 |===
 
@@ -40,6 +42,7 @@ Anhang 6: image:images/Crosstesting/6_Whitelabel Error.png[]
 Anhang 7: image:images/Crosstesting/7_Suchen.png[]
 Anhang 8: image:images/Crosstesting/8_Bilder.png[]
 Anhang 9: image:images/Crosstesting/9_Kunden Hausnummer.png[]
+Anhang 10: image:images/crosstesting_10.png[]
 
 
 == Sonstiges
@@ -51,7 +54,10 @@ Anhang 9: image:images/Crosstesting/9_Kunden Hausnummer.png[]
 
 ->Rechnung sieht sehr schön aus
 
+->Überschriften der Seiten sollten etwas nach unten gesetzt werdem, damit sie nicht direkt am oberen Bildrand hängen
+
 * Fehlende Features
+
 * Interaktion mit der Anwendung (Usability)
 
 -> Dropdown Menü etwas sehr anstrengend zum bedienen, weil sobald man mit dem Cursor zu weit rechts ist um das Menü auszuklappen und ein Unterpunkt auszuwählen, passiert
