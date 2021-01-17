@@ -58,10 +58,17 @@ Anhang 10: image:images/crosstesting_10.png[]
 
 * Fehlende Features
 
+Inventur ist noch nicht zugänglich
+
+
 * Interaktion mit der Anwendung (Usability)
+
+Keine großen Beschwerden
+
+== Verbesserungsvorschläge
+* Was kann noch weiter verbessert werden?
 
 -> Dropdown Menü etwas sehr anstrengend zum bedienen, weil sobald man mit dem Cursor zu weit rechts ist um das Menü auszuklappen und ein Unterpunkt auszuwählen, passiert
 es sehr oft, dass das Menü wieder zu geht
 
-== Verbesserungsvorschläge
-* Was kann noch weiter verbessert werden?
+
