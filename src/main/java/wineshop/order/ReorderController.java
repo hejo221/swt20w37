@@ -33,13 +33,15 @@ public class ReorderController {
 	private final UniqueInventory<UniqueInventoryItem> inventory;
 	private final InventoryManager inventoryManager;
 	private final OrderManagement<OrderCust> orderManagement;
+	private final ReorderManager reorderManager;
 
 	private static final Logger LOG = LoggerFactory.getLogger(ReorderController.class);
 
-	ReorderController(UniqueInventory<UniqueInventoryItem> inventory, InventoryManager inventoryManager, OrderManagement<OrderCust> orderManagement) {
+	ReorderController(UniqueInventory<UniqueInventoryItem> inventory, InventoryManager inventoryManager, OrderManagement<OrderCust> orderManagement, ReorderManager reorderManager) {
 		this.inventory = inventory;
 		this.inventoryManager = inventoryManager;
 		this.orderManagement = orderManagement;
+		this.reorderManager = reorderManager;
 	}
 
 	@GetMapping("/reorders")
@@ -73,16 +75,7 @@ public class ReorderController {
 
 	@PostMapping("/reorders/{productId}")
 	String reorderWine(@PathVariable ProductIdentifier productId, @RequestParam("number") int amount, @LoggedIn UserAccount userAccount) {
-		Wine wine = (Wine) inventory.findByProductIdentifier(productId).get().getProduct();
-		Money savePrice = wine.getSellPrice();
-		UniqueInventoryItem item = inventory.findByProductIdentifier(productId).get();
-		var reorder = new OrderCust(userAccount, Cash.CASH, OrderType.REORDER);
-
-		wine.setPrice(wine.getBuyPrice().negate());
-		reorder.addOrderLine(wine, Quantity.of(amount));
-		orderManagement.save(reorder);
-		wine.setPrice(savePrice);
-		inventory.save(item);
+		reorderManager.reorderWine(productId, amount, userAccount);
 
 		return "redirect:/inventory";
 	}
@@ -100,14 +93,7 @@ public class ReorderController {
 
 	@PostMapping("reorders/close")
 	String closeReorder(@RequestParam("id") OrderIdentifier id) {
-		OrderCust reorder = orderManagement.get(id).get();
-		OrderLine orderLine = reorder.getOrderLines().iterator().next();
-		UniqueInventoryItem item = inventory.findByProductIdentifier(orderLine.getProductIdentifier()).get();
-
-		item.increaseQuantity(orderLine.getQuantity().times(2));
-		inventory.save(item);
-		orderManagement.payOrder(reorder);
-		orderManagement.completeOrder(reorder);
+		reorderManager.closeReorder(id);
 
 		return "redirect:/reorders";
 	}

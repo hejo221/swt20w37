@@ -34,14 +34,16 @@ public class OrderCustManager {
 	private final OrderManagement<OrderCust> orderManagement;
 	private final CustomerManager customerManager;
 	private final UniqueInventory<UniqueInventoryItem> inventory;
+	private final ReorderManager reorderManager;
 
 	private static final Logger LOG = LoggerFactory.getLogger(OrderCustManager.class);
 
 
-	OrderCustManager(OrderManagement<OrderCust> orderManagement, CustomerManager customerManager, UniqueInventory<UniqueInventoryItem> inventory) {
+	OrderCustManager(OrderManagement<OrderCust> orderManagement, CustomerManager customerManager, UniqueInventory<UniqueInventoryItem> inventory, ReorderManager reorderManager) {
 		this.orderManagement = orderManagement;
 		this.customerManager = customerManager;
 		this.inventory = inventory;
+		this.reorderManager = reorderManager;
 	}
 
 
@@ -69,14 +71,7 @@ public class OrderCustManager {
 			} else {
 				order.addOrderLine(wine, cartItem.getQuantity());
 				if (inventoryItem.getQuantity().subtract(cartItem.getQuantity()).isLessThan(inventoryWine.getMinAmount())) {
-					Money savePrice = wine.getSellPrice();
-					var reorder = new OrderCust(userAccount, Cash.CASH, OrderType.REORDER);
-
-					wine.setPrice(wine.getBuyPrice().negate());
-					reorder.addOrderLine(wine, Quantity.of(30).subtract(inventoryItem.getQuantity().subtract(cartItem.getQuantity())));
-					orderManagement.save(reorder);
-					wine.setPrice(savePrice);
-					inventory.save(inventoryItem);
+					reorderManager.reorderWine(wine.getId(), Quantity.of(30).subtract(inventoryItem.getQuantity().subtract(cartItem.getQuantity())).getAmount().intValue(), userAccount);
 				}
 			}
 
