@@ -11,12 +11,12 @@ import wineshop.customer.Customer;
 import javax.persistence.*;
 import java.util.Iterator;
 
-
 @Entity
 @Table(
 		name = "ORDERCUST"
 )
 public class OrderCust extends Order {
+
 	@OneToOne
 	private Customer customer;
 
