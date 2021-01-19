@@ -39,10 +39,10 @@ public class CatalogTests extends AbstractIntegrationTests {
 		Model model = new ExtendedModelMap();
 		Errors errors = new BeanPropertyBindingResult(form1, "objectName");
 
-		String returnedView = controller.showAvailableWines(model, none, none);
+		String returnedView = controller.showAvailableWines(model, none, none, none);
 		assertThat(returnedView).isEqualTo("wine/catalog");
 
-		returnedView = controller.showUnavailableWines(model, none, none);
+		returnedView = controller.showUnavailableWines(model);
 		assertThat(returnedView).isEqualTo("wine/unavailableProducts");
 
 		returnedView = controller.register(model, form1);

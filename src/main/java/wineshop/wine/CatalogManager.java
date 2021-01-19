@@ -7,6 +7,10 @@ import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 import static org.salespointframework.core.Currencies.EURO;
 
 
@@ -101,11 +105,26 @@ public class CatalogManager {
 	}
 
 	public Boolean isUnavailable(Wine wine) {
+
 		Streamable<Wine> wines = getAvailableWines();
 		for (Wine w : wines) {
 			if (wine == w) return false;
 		}
 		return true;
 	}
+
+    public List<Wine> getAvailableWinesAfterType(String t) {
+		if (t.equals("ALLE")){
+			return getAvailableWines().toList();
+		}
+		Wine.WineType type = Wine.WineType.valueOf(t);
+		List<Wine> allAvailableWinesOfThisType = new ArrayList<>();
+		for (Wine wine : getAvailableWines()){
+			if (wine.getWineType()==type){
+				allAvailableWinesOfThisType.add(wine);
+			}
+		}
+		return allAvailableWinesOfThisType;
+    }
 }
 

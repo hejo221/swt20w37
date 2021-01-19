@@ -45,34 +45,10 @@
             </div>
 
             <div class="col-1">
-                <div class="dropdown">
-                    <button class="btn btn-outline-secondary" type="button" id="dropdownMenuButton"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sortieren
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" th:href="@{/catalogOfUnavailableProducts(sort = 'A-Z')}">A-Z</a>
-                        <a class="dropdown-item" th:href="@{/catalogOfUnavailableProducts(sort = 'PreisAufsteigend')}">Preis aufsteigend</a>
-                        <a class="dropdown-item" th:href="@{/catalogOfUnavailableProducts(sort = 'PreisAbsteigend')}">Preis absteigend</a>
-                    </div>
-                </div>
             </div>
 
-            <form class="col-3" th:action="@{/catalogOfUnavailableProducts}" method="get" id="form">
-                <div class="row float-right">
-                    <div class="col-12 input-group">
-
-                        <form th:action="@{/catalogOfUnavailableProducts/suche}">
-                            <div class="input-group-prepend">
-                                <button class="btn btn-outline-secondary" type="submit" id="button-addon">Suchen
-                                </button>
-                            </div>
-                            <input type="text" class="form-control" placeholder="Sucheingabe" name="search"
-                                   aria-label="Example text with button addon" aria-describedby="button-addon">
-                        </form>
-
-                    </div>
-                </div>
-            </form>
+            <div class="col-3" th:action="@{/catalogOfUnavailableProducts}" method="get" id="form">
+            </div>
         </div>
 
 

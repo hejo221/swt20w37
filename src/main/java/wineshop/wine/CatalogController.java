@@ -37,13 +37,19 @@ class CatalogController {
 	}
 
 	@GetMapping("/catalog")
-	String showAvailableWines(Model model, @RequestParam Optional<String> search, @RequestParam Optional<String> sort) {
+	String showAvailableWines(Model model, @RequestParam Optional<String> search, @RequestParam Optional<String> sort, @RequestParam Optional<String> filter) {
 		List<Wine> items = catalogManager.getAvailableWines().toList();
+
 		if (search.isPresent()){
 			items =items.stream().filter((e) -> {
 				return e.getName().toLowerCase().contains(search.get().toLowerCase());
 			}).collect(Collectors.toList());
 		}
+
+		if (filter.isPresent()){
+			items = catalogManager.getAvailableWinesAfterType(filter.get());
+		}
+
 		if (sort.isPresent()){
 			if (sort.get().equalsIgnoreCase("A-Z"))
 			items =items.stream().sorted(Comparator.comparing(Product::getName)).collect(Collectors.toList());
@@ -60,8 +66,9 @@ class CatalogController {
 	}
 
 	@GetMapping("/catalogOfUnavailableProducts")
-	String showUnavailableWines(Model model, @RequestParam Optional<String> search, @RequestParam Optional<String> sort) {
+	String showUnavailableWines(Model model) {
 		List<Wine> items = catalogManager.getUnavailableWines().toList();
+		/*
 		if (search.isPresent()){
 			items =items.stream().filter((e) -> {
 				return e.getName().toLowerCase().contains(search.get().toLowerCase());
@@ -75,7 +82,7 @@ class CatalogController {
 			if (sort.get().equalsIgnoreCase("PreisAbsteigend"))
 				items = Lists.reverse( items.stream().sorted(Comparator.comparing(Product::getPrice)).collect(Collectors.toList()));
 		}
-
+*/
 		model.addAttribute("wineCatalog", items);
 		model.addAttribute("inventory", inventory);
 		return "wine/unavailableProducts";

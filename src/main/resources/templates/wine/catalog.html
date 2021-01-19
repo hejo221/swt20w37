@@ -59,9 +59,13 @@
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filtern
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" th:href="@{/catalog(sort = 'A-Z')}">A-Z</a>
-                        <a class="dropdown-item" th:href="@{/catalog(sort = 'PreisAufsteigend')}">Preis aufsteigend</a>
-                        <a class="dropdown-item" th:href="@{/catalog(sort = 'PreisAbsteigend')}">Preis absteigend</a>
+                        <a class="dropdown-item" th:href="@{/catalog(filter = 'ALLE')}">Alle Weine</a>
+                        <a class="dropdown-item" th:href="@{/catalog(filter = 'RED')}">Rotweine</a>
+                        <a class="dropdown-item" th:href="@{/catalog(filter = 'WHITE')}">Weißweine</a>
+                        <a class="dropdown-item" th:href="@{/catalog(filter = 'ROSE')}">Roséweine</a>
+                        <a class="dropdown-item" th:href="@{/catalog(filter = 'SPARKLING')}">Schaumweine</a>
+                        <a class="dropdown-item" th:href="@{/catalog(filter = 'FRUITWINE')}">Obstweine</a>
+                        <a class="dropdown-item" th:href="@{/catalog(filter = 'OTHER')}">Anderes</a>
                     </div>
                 </div>
             </div>
