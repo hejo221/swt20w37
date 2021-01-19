@@ -41,20 +41,18 @@
                                 <i class="fas fa-plus pr-2">Produkt behalten</i>
                             </a>
 
-                            <a class="btn btn-warning btn-lg btn-block"
+                            <a class="btn btn-danger btn-lg btn-block"
                                th:href="@{/wine/deleteFromCatalog/{productId}(productId=${wine.productId})}">
                                 <i class="fas fa-plus pr-2">Produkt aus dem Katalog entfernen</i>
                             </a>
-
+<!--
                             <a class="btn btn-danger btn-lg btn-block"
                                th:href="@{/wine/delete/confirmed/{productId}(productId=${wine.productId})}">
                                 <i class="fas fa-plus pr-2">Produkt dauerhaft löschen</i>
                             </a>
-
+-->
                         </div>
                     </div>
-
-
                 </div>
 
 
@@ -64,7 +62,6 @@
                             <img th:src="@{/resources/image/cover/{img}.jpg(img=${wine.pic})}"
                                  src="/resources/image/cover/no.jpg"
                                  alt="image" class="img-fluid p-5">
-                            <span>Dies ist nur ein Beispiel</span>
                         </div>
                     </div>
                 </div>

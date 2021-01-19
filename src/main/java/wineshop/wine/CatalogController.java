@@ -5,7 +5,6 @@ import org.salespointframework.catalog.Product;
 import org.salespointframework.inventory.UniqueInventory;
 import org.salespointframework.inventory.UniqueInventoryItem;
 import org.salespointframework.quantity.Quantity;
-import org.springframework.data.util.Streamable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import javax.validation.Valid;
 import java.util.Comparator;
 import java.util.List;
@@ -24,7 +22,6 @@ import java.util.stream.Collectors;
 
 @Controller
 class CatalogController {
-
 
 	private final CatalogManager catalogManager;
 	private final UniqueInventory<UniqueInventoryItem> inventory;
@@ -38,6 +35,7 @@ class CatalogController {
 
 	@GetMapping("/catalog")
 	String showAvailableWines(Model model, @RequestParam Optional<String> search, @RequestParam Optional<String> sort, @RequestParam Optional<String> filter) {
+
 		List<Wine> items = catalogManager.getAvailableWines().toList();
 
 		if (search.isPresent()){
@@ -67,6 +65,7 @@ class CatalogController {
 
 	@GetMapping("/catalogOfUnavailableProducts")
 	String showUnavailableWines(Model model) {
+
 		List<Wine> items = catalogManager.getUnavailableWines().toList();
 		/*
 		if (search.isPresent()){
@@ -161,7 +160,6 @@ class CatalogController {
 	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("/wine/recover/{wine}")
 	String recoverItem(@PathVariable Wine wine) {
-
 
 		catalogManager.makeItemAvailable(wine);
 		return "redirect:/catalog";
