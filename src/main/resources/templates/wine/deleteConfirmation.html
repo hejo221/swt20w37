@@ -33,11 +33,10 @@
                     </div>
 
 
-
-
                     <div class="row mt-4">
                         <div class="col-6 offset-3">
-                            <a class="btn btn-success btn-lg btn-block" th:href="@{/wine/{productId}(productId=${wine.productId})}">
+                            <a class="btn btn-success btn-lg btn-block"
+                               th:href="@{/wine/{productId}(productId=${wine.productId})}">
                                 <i class="fas fa-plus pr-2">Produkt behalten</i>
                             </a>
 
@@ -45,12 +44,12 @@
                                th:href="@{/wine/deleteFromCatalog/{productId}(productId=${wine.productId})}">
                                 <i class="fas fa-plus pr-2">Produkt aus dem Katalog entfernen</i>
                             </a>
-<!--
-                            <a class="btn btn-danger btn-lg btn-block"
-                               th:href="@{/wine/delete/confirmed/{productId}(productId=${wine.productId})}">
-                                <i class="fas fa-plus pr-2">Produkt dauerhaft löschen</i>
-                            </a>
--->
+                            <!--
+                                                        <a class="btn btn-danger btn-lg btn-block"
+                                                           th:href="@{/wine/delete/confirmed/{productId}(productId=${wine.productId})}">
+                                                            <i class="fas fa-plus pr-2">Produkt dauerhaft löschen</i>
+                                                        </a>
+                            -->
                         </div>
                     </div>
                 </div>
