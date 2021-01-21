@@ -66,7 +66,8 @@ public class OrderCustManager {
 			Wine inventoryWine = (Wine) inventory.findByProductIdentifier(wine.getId()).get().getProduct();
 
 			if (cartItem.getQuantity().isGreaterThan(inventoryItem.getQuantity())) {
-				preorder.addOrderLine(wine, cartItem.getQuantity());
+				preorder.addOrderLine(wine, cartItem.getQuantity().subtract(inventoryItem.getQuantity()));
+				order.addOrderLine(wine, inventoryItem.getQuantity());
 				//inventoryItem.increaseQuantity((Quantity.of(10).subtract(inventoryItem.getQuantity())).add(cartItem.getQuantity()));
 			} else {
 				order.addOrderLine(wine, cartItem.getQuantity());

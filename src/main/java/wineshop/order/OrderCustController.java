@@ -85,7 +85,7 @@ public class OrderCustController {
 	@PostMapping("cart/deleteItem/{itemId}")
 	String deleteItem(@PathVariable String itemId, @ModelAttribute Cart cart) {
 		orderCustManager.deleteItem(itemId, cart);
-
+System.out.println("Ich bin hier" + itemId);
 		return  "redirect:/order/cart";
 	}
 
