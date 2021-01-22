@@ -37,6 +37,7 @@ public class ReorderManager {
 	private final OrderManagement<OrderCust> orderManagement;
 	@Autowired
 	private EmailService emailService;
+	private static final Logger LOGGER = LoggerFactory.getLogger(ReorderController.class);
 
 	ReorderManager(UniqueInventory<UniqueInventoryItem> inventory, InventoryManager inventoryManager, OrderManagement<OrderCust> orderManagement) {
 		this.inventory = inventory;
@@ -89,7 +90,13 @@ public class ReorderManager {
 							+ "\nWeinname : " + productLine.getProductName()
 							+ "\nMenge : " + productLine.getQuantity();
 
-					emailService.sendMail(preorder.getCustomer().getEmail(), title, text);
+					try{
+						emailService.sendMail(preorder.getCustomer().getEmail(), title, text);
+					}catch (Exception e) {
+						LOGGER.error("Email kann nicht gesenden werden.", e);
+						email_flag = 2;
+					}
+
 				}
 			}
 		}

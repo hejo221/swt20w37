@@ -62,6 +62,11 @@
         <div th:if="${email_flag} == 1">
             <span>E-Mail ist gesendet.</span>
         </div>
+        <div th:if="${email_flag} == 2">
+            <span>Email kann nicht gesenden werden.</span>
+            <br />
+            <span>Schreiben Sie sein Email Account in "application.properties".</span>
+        </div>
     </div>
 </main>
 
