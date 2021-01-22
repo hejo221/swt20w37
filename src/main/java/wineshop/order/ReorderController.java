@@ -37,6 +37,8 @@ public class ReorderController {
 
 	private static final Logger LOG = LoggerFactory.getLogger(ReorderController.class);
 
+	private int email_flag = 0;
+
 	ReorderController(UniqueInventory<UniqueInventoryItem> inventory, InventoryManager inventoryManager, OrderManagement<OrderCust> orderManagement, ReorderManager reorderManager) {
 		this.inventory = inventory;
 		this.inventoryManager = inventoryManager;
@@ -69,6 +71,8 @@ public class ReorderController {
 		}
 
 		model.addAttribute("reorders", filtered_reorders);
+		model.addAttribute("email_flag", email_flag);
+		email_flag = 0;
 
 		return "order/reorders";
 	}
@@ -93,7 +97,7 @@ public class ReorderController {
 
 	@PostMapping("reorders/close")
 	String closeReorder(@RequestParam("id") OrderIdentifier id) {
-		reorderManager.closeReorder(id);
+		email_flag = reorderManager.closeReorder(id);
 
 		return "redirect:/reorders";
 	}
