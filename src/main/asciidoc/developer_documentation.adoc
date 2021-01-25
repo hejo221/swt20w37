@@ -9,6 +9,7 @@
 |0.5   		| 30.11.2020 		| Noah
 |0.5687v1	| 30.11.2020		| Lavon
 |0.6		| 01.12.2020		| David
+|0.7        | 25.01.2021        | Noah
 |===
 
 = Entwicklerdokumentation
