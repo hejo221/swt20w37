@@ -1,14 +1,12 @@
 package wineshop.customer;
 
-import org.salespointframework.catalog.Product;
-import org.springframework.data.util.Streamable;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.Assert;
 import org.springframework.validation.Errors;
-import wineshop.wine.Wine;
 
 import javax.validation.Valid;
 import java.util.Comparator;
@@ -33,21 +31,22 @@ public class CustomerController {
 	@GetMapping("/list")
 	public String customers(Model model, @RequestParam Optional<String> search, @RequestParam Optional<String> sort) {
 
-
 		List<Customer> items = customerRepository.findAll().toList();
+
 		if (search.isPresent()){
 			items =items.stream().filter((e) -> {
 				return e.getFamilyName().toLowerCase().contains(search.get().toLowerCase());
 			}).collect(Collectors.toList());
 		}
+
 		if (sort.isPresent()){
-			if (sort.get().equalsIgnoreCase("Nachnamen A-Z"))
+			if (sort.get().equalsIgnoreCase("Nachnamen A-Z")) {
 				items =items.stream().sorted(Comparator.comparing(Customer::getFamilyName)).collect(Collectors.toList());
-			if (sort.get().equalsIgnoreCase("Vornamen A-Z"))
+			}
+			if (sort.get().equalsIgnoreCase("Vornamen A-Z")) {
 				items =items.stream().sorted(Comparator.comparing(Customer::getFirstName)).collect(Collectors.toList());
+			}
 		}
-
-
 
 		model.addAttribute("customers", items);
 
@@ -78,19 +77,25 @@ public class CustomerController {
 		model.addAttribute("firstName", customer.getFirstName());
 		model.addAttribute("familyName", customer.getFamilyName());
 		model.addAttribute("mail", customer.getEmail());
-		model.addAttribute("address", customer.getAddress());
+		model.addAttribute("street", customer.getStreet());
+		model.addAttribute("zipCode", customer.getZipCode());
+		model.addAttribute("city", customer.getStreet());
 		return "customer/edit";
 	}
 
 	@PostMapping("/save")
 	public String saveCustomer(@RequestParam("firstName") String firstName, @RequestParam("familyName") String familyName,
-							   @RequestParam("email") String email, @RequestParam("address") String address, @RequestParam("id") Long id) {
+							   @RequestParam("email") String email, @RequestParam("street") String street,
+							   @RequestParam("zipCode") String zipCode, @RequestParam("city") String city,
+							   @RequestParam("id") Long id) {
 		Customer customer = customerRepository.findById(id).get();
 
 		customer.setFirstName(firstName);
 		customer.setFamilyName(familyName);
 		customer.setEmail(email);
-		customer.setAddress(address);
+		customer.setStreet(street);
+		customer.setZipCode(zipCode);
+		customer.setCity(city);
 		this.customerRepository.save(customer);
 
 		return "redirect:/customer/list";
@@ -99,7 +104,7 @@ public class CustomerController {
 	@Transactional
 	@PostMapping("/delete")
 	public String deleteCustomer(@RequestParam("id") Long id) {
-		this.customerRepository.deleteCustomerById(id);
+		customerRepository.deleteCustomerById(id);
 		return "redirect:/customer/list";
 	}
 

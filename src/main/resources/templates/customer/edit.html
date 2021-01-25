@@ -33,8 +33,16 @@
         <input class="form-control" type="email" id="email" name="email" required="required" th:value="${customer.email}"/>
     </div>
     <div class="mt-1">
-        <label for="address">Addresse</label>
-        <input class="form-control" type="text" id="address" name="address" required="required" th:value="${customer.address}"/>
+        <label for="street">Straße</label>
+        <input class="form-control" type="text" id="street" name="street" required="required" th:value="${customer.street}"/>
+    </div>
+    <div class="mt-1">
+        <label for="zipCode">PLZ</label>
+        <input class="form-control" type="text" id="zipCode" name="zipCode" required="required" maxlength = "5" th:value="${customer.zipCode}"/>
+    </div>
+    <div class="mt-1">
+        <label for="city">Stadt</label>
+        <input class="form-control" type="text" id="city" name="city" required="required" th:value="${customer.city}"/>
     </div>
 
     <input hidden type="text" id="id" name="id" th:value="${customer.id}" />

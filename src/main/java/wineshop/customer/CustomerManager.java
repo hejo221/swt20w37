@@ -4,8 +4,6 @@ import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
-import wineshop.user.User;
-
 
 @Service
 @Transactional
@@ -24,13 +22,13 @@ public class CustomerManager {
 
 		String firstName = form.getFirstName();
 		String familyName = form.getFamilyName();
-		String address = form.getAddress();
 		String email = form.getEmail();
+		String street = form.getStreet();
+		String zipCode = form.getZipCode();
+		String city = form.getCity();
 
-
-		return customerRepository.save(new Customer(firstName, familyName, email, address));
+		return customerRepository.save(new Customer(firstName, familyName, email, street, zipCode, city));
 	}
-
 
 	public Streamable<Customer> findAll() {
 		return customerRepository.findAll();

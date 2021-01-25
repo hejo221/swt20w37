@@ -14,14 +14,22 @@ public class CustomerRegistrationForm {
 	private final String email;
 
 	@NotEmpty
-	private final String address;
+	private final String street;
+
+	@NotEmpty
+	private final String zipCode;
+
+	@NotEmpty
+	private final String city;
 
 
-	public CustomerRegistrationForm(String firstName, String familyName, String email, String address) {
+	public CustomerRegistrationForm(String firstName, String familyName, String email, String street, String zipCode, String city) {
 		this.firstName = firstName;
 		this.familyName = familyName;
 		this.email = email;
-		this.address = address;
+		this.street = street;
+		this.zipCode = zipCode;
+		this.city = city;
 	}
 
 	public String getFirstName() {
@@ -36,5 +44,15 @@ public class CustomerRegistrationForm {
 		return email;
 	}
 
-	public String getAddress() {return address;}
+	public String getStreet() {
+		return street;
+	}
+
+	public String getZipCode() {
+		return zipCode;
+	}
+
+	public String getCity() {
+		return city;
+	}
 }

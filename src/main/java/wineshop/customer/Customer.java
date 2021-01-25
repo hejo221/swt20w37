@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.util.Assert;
 
 
@@ -16,22 +18,29 @@ public class Customer {
 	private String firstName;
 	private String familyName;
 	private String email;
-	private String address;
+	private String street;
+	private String zipCode;
+	private String city;
 
 	@SuppressWarnings("unused")
 	public Customer() {}
 
-	public Customer(String firstName, String familyName, String email, String address) {
+	public Customer(String firstName, String familyName, String email, String street, String zipCode, String city) {
 
 		Assert.hasText(firstName, "FirstName must not be null or empty!");
 		Assert.hasText(familyName, "FamilyName must not be null or empty!");
 		Assert.hasText(email, "Email must not be null or empty!");
-		Assert.hasText(address, "Address must not be null or empty!");
+		Assert.hasText(street, "Street must not be null or empty!");
+		Assert.hasText(zipCode, "ZipCode must not be null or empty!");
+		Assert.hasText(city, "City must not be null or empty!");
+
 
 		this.firstName = firstName;
 		this.familyName = familyName;
 		this.email = email;
-		this.address = address;
+		this.street = street;
+		this.zipCode = zipCode;
+		this.city = city;
 	}
 
 	public long getId() {
@@ -50,8 +59,16 @@ public class Customer {
 		return email;
 	}
 
-	public String getAddress() {
-		return address;
+	public String getStreet() {
+		return street;
+	}
+
+	public String getZipCode() {
+		return zipCode;
+	}
+
+	public String getCity() {
+		return city;
 	}
 
 	public void setFirstName(String firstName) {
@@ -66,7 +83,15 @@ public class Customer {
 		this.email = email;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setStreet(String street) {
+		this.street = street;
+	}
+
+	public void setZipCode(String zipCode) {
+		this.zipCode = zipCode;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
 	}
 }

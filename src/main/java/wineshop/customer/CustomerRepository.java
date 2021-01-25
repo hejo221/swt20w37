@@ -12,5 +12,6 @@ public interface CustomerRepository extends CrudRepository<Customer, Long> {
 
 	@Transactional
 	void deleteCustomerById(Long id);
+
 }
 

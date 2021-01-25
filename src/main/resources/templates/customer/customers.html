@@ -79,7 +79,9 @@
         <tr>
             <th scope="col">Vorname</th>
             <th scope="col">Nachname</th>
-            <th scope="col">Adresse</th>
+            <th scope="col">Straße</th>
+            <th scope="col">PLZ</th>
+            <th scope="col">Stadt</th>
             <th scope="col">E-Mail</th>
             <th scope="col"></th>
             <th scope="col"></th>
@@ -89,7 +91,9 @@
         <tr th:each=" customer : ${customers}">
             <td th:text="${customer.firstName}">Paul</td>
             <td th:text="${customer.familyName}">Max</td>
-            <td th:text="${customer.address}">Nöthnitzer Straße 46</td>
+            <td th:text="${customer.street}">Nöthnitzer Straße 46</td>
+            <td th:text="${customer.zipCode}">01069</td>
+            <td th:text="${customer.city}">Dresden</td>
             <td th:text="${customer.email}">paul@gmail.com</td>
             <td>
                 <form th:action="@{/customer/edit/__${customer.getId()}__}" method="get">

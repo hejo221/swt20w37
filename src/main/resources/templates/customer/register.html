@@ -33,8 +33,16 @@
                th:field="*{email}" required="required" autofocus>
     </div>
     <div class="mt-1">
-        <input class="form-control" type="text" name="address" placeholder="Addresse"
-               th:field="*{address}" required="required" autofocus>
+        <input class="form-control" type="text" name="street" placeholder="Straße"
+               th:field="*{street}" required="required" autofocus>
+    </div>
+    <div class="mt-1">
+        <input class="form-control" type="text" name="address" placeholder="PLZ" maxlength = "5"
+               th:field="*{zipCode}" required="required" autofocus>
+    </div>
+    <div class="mt-1">
+        <input class="form-control" type="text" name="address" placeholder="Stadt"
+               th:field="*{city}" required="required" autofocus>
     </div>
     <button class="btn btn-lg btn-primary btn-block mt-3" type="submit">Speichern</button>
 </form>

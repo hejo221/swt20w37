@@ -25,7 +25,7 @@ public class CustomerControllerUnitTests {
 	@Test
 	public void addsToModelForCustomer() {
 
-		Customer customer = new Customer("firstName", "familyName", "email", "address");
+		Customer customer = new Customer("firstName", "familyName", "email", "street", "zipCode", "city");
 		doReturn(Streamable.of(customer)).when(customerRepository).findAll();
 
 		Model customerModel = new ExtendedModelMap();
@@ -37,7 +37,7 @@ public class CustomerControllerUnitTests {
 		assertThat(customersViewName).isEqualTo("customer/customers");
 		assertThat(customerModel.asMap().get("customers")).isInstanceOf(Iterable.class);
 
-		String registerViewName = customerController.registerCustomer(customerModel, new CustomerRegistrationForm(null, null, null, null));
+		String registerViewName = customerController.registerCustomer(customerModel, new CustomerRegistrationForm(null, null, null, null, null, null));
 
 		assertThat(registerViewName).isEqualTo("customer/register");
 		assertThat(customerModel.asMap().get("form")).isNotNull();

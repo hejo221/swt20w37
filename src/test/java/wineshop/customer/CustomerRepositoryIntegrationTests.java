@@ -15,7 +15,7 @@ public class CustomerRepositoryIntegrationTests extends AbstractIntegrationTests
 	@Test
 	public void persistsCustomer() {
 
-		Customer customer = new Customer("firstName", "familyName", "email", "address");
+		Customer customer = new Customer("firstName", "familyName", "email", "street", "zipCode", "city");
 
 		customerRepository.save(customer);
 
@@ -25,7 +25,7 @@ public class CustomerRepositoryIntegrationTests extends AbstractIntegrationTests
 	@Test
 	public void findsCustomerById() {
 
-		Customer customer = new Customer("firstName", "familyName", "email", "address");
+		Customer customer = new Customer("firstName", "familyName", "email", "street", "zipCode", "city");
 
 		customerRepository.save(customer);
 
