@@ -22,6 +22,8 @@ public class OrderCust extends Order {
 
 	private OrderType orderType;
 
+	private boolean receivedEmail;
+
 	public OrderCust(){}
 
 
@@ -40,6 +42,7 @@ public class OrderCust extends Order {
 		}
 		this.customer = customer;
 		this.orderType = orderType;
+		this.receivedEmail = false;
 	}
 
 	public Customer getCustomer() {
@@ -54,8 +57,10 @@ public class OrderCust extends Order {
 		else return "Kreditkarte";
 	}
 	public OrderType getOrderType() {return this.orderType;}
+	public boolean getEmailStatus() {return this.receivedEmail;}
 
 	public void setOrderType(OrderType orderType) {this.orderType = orderType;}
+	public void setEmailStatus(boolean emailStatus) {this.receivedEmail = emailStatus;}
 
 	public boolean isOrder() {
 		if (orderType == OrderType.ORDER) {
@@ -79,6 +84,10 @@ public class OrderCust extends Order {
 		} else {
 			return false;
 		}
+	}
+
+	public boolean receivedEmail() {
+		return this.receivedEmail;
 	}
 
 	public boolean isCloseable(UniqueInventory<UniqueInventoryItem> inventory) {

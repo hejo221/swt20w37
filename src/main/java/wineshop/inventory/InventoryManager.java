@@ -38,6 +38,14 @@ public class InventoryManager {
 		inventory.save(item);
 	}
 
+	@Transactional
+	void updateMaxAmount(ProductIdentifier productId, int number) {
+		UniqueInventoryItem item = inventory.findByProductIdentifier(productId).get();
+		Wine wine = (Wine) item.getProduct();
+		wine.setMaxAmount(number);
+		inventory.save(item);
+	}
+
 	void deleteItem(ProductIdentifier productId) {
 		inventory.delete(inventory.findByProductIdentifier(productId).get());
 	}

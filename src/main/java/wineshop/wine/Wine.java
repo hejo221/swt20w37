@@ -22,6 +22,7 @@ public class Wine extends Product {
 	private Money buyPrice;
 	private WineType wineType;
 	private Quantity minAmount;
+	private Integer maxAmount;
 
 	@SuppressWarnings({"unused", "deprecation"})
 	public Wine() {
@@ -42,6 +43,7 @@ public class Wine extends Product {
 		this.buyPrice = buyPrice;
 		this.details = details;
 		this.minAmount = Quantity.of(10);
+		this.maxAmount = 50;
 		productId = super.getId();
 	}
 
@@ -53,6 +55,8 @@ public class Wine extends Product {
 	}
 
 	public Quantity getMinAmount() { return minAmount; }
+
+	public Integer getMaxAmount() { return maxAmount; }
 
 	//super.getName()
 
@@ -140,5 +144,7 @@ public class Wine extends Product {
 		this.details = details;
 	}
 
-	public  void setMinAmount(Quantity quantity) {this.minAmount = quantity; }
+	public  void setMinAmount(Quantity quantity) { this.minAmount = quantity; }
+
+	public void setMaxAmount(Integer integer) { this.maxAmount = integer; }
 }

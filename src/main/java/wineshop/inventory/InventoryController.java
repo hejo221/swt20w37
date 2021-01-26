@@ -50,4 +50,11 @@ class InventoryController {
 
 		return  "redirect:/inventory";
 	}
+
+	@PostMapping("/inventory/updateMaxAmount/{productId}")
+	String updateMaxAmount(@PathVariable ProductIdentifier productId, @RequestParam("number") int number) {
+		inventoryManager.updateMaxAmount(productId, number);
+
+		return  "redirect:/inventory";
+	}
 }
