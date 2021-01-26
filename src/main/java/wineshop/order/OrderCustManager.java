@@ -68,11 +68,14 @@ public class OrderCustManager {
 			if (cartItem.getQuantity().isGreaterThan(inventoryItem.getQuantity())) {
 				preorder.addOrderLine(wine, cartItem.getQuantity().subtract(inventoryItem.getQuantity()));
 				order.addOrderLine(wine, inventoryItem.getQuantity());
+				if (inventoryItem.getQuantity().subtract(cartItem.getQuantity()).isLessThan(inventoryWine.getMinAmount())) {
+					reorderManager.reorderWine(wine.getId(), Quantity.of(inventoryWine.getMaxAmount()).subtract(inventoryItem.getQuantity().subtract(cartItem.getQuantity())).getAmount().intValue(), userAccount);
+				}
 				//inventoryItem.increaseQuantity((Quantity.of(10).subtract(inventoryItem.getQuantity())).add(cartItem.getQuantity()));
 			} else {
 				order.addOrderLine(wine, cartItem.getQuantity());
 				if (inventoryItem.getQuantity().subtract(cartItem.getQuantity()).isLessThan(inventoryWine.getMinAmount())) {
-					reorderManager.reorderWine(wine.getId(), Quantity.of(30).subtract(inventoryItem.getQuantity().subtract(cartItem.getQuantity())).getAmount().intValue(), userAccount);
+					reorderManager.reorderWine(wine.getId(), Quantity.of(inventoryWine.getMaxAmount()).subtract(inventoryItem.getQuantity().subtract(cartItem.getQuantity())).getAmount().intValue(), userAccount);
 				}
 			}
 

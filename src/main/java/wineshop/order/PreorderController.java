@@ -95,7 +95,7 @@ public class PreorderController {
 			Quantity inventoryQuantity = inventory.findByProductIdentifier(productId).get().getQuantity();
 			Wine wine = (Wine) inventory.findByProductIdentifier(productId).get().getProduct();
 			if (inventoryQuantity.subtract(orderLineQuantity).isLessThan(wine.getMinAmount())) {
-				reorderManager.reorderWine(wine.getId(), Quantity.of(30).subtract(inventoryQuantity.subtract(orderLineQuantity)).getAmount().intValue(), preorder.getUserAccount());
+				reorderManager.reorderWine(wine.getId(), Quantity.of(wine.getMaxAmount()).subtract(inventoryQuantity.subtract(orderLineQuantity)).getAmount().intValue(), preorder.getUserAccount());
 			}
 		} while (preorderIterator.hasNext());
 		orderManagement.payOrder(preorder);
