@@ -137,15 +137,16 @@ public class ReorderManager {
 
 		Iterator<OrderCust> openPreorderIterator = orderManagement.findBy(OrderStatus.OPEN).iterator();
 		do {
-			OrderCust openPreorder = openPreorderIterator.next();
-			if (openPreorder.isPreorder()) {
-				if (openPreorder.isCloseable(inventory)) {
-					reserveOrder(openPreorder.getId());
+			if (openPreorderIterator.hasNext()) {
+				OrderCust openPreorder = openPreorderIterator.next();
+				if (openPreorder.isPreorder()) {
+					if (openPreorder.isCloseable(inventory)) {
+						reserveOrder(openPreorder.getId());
+					}
+				} else {
+					continue;
 				}
-			} else {
-				continue;
 			}
-
 		} while (openPreorderIterator.hasNext());
 		// to send mail
 		return sendEmail(item);
