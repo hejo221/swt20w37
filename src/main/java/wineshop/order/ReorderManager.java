@@ -2,6 +2,7 @@ package wineshop.order;
 
 
 import com.google.common.collect.Lists;
+import org.aspectj.weaver.ast.Or;
 import org.javamoney.moneta.Money;
 import org.salespointframework.catalog.Product;
 import org.salespointframework.catalog.ProductIdentifier;
@@ -25,6 +26,7 @@ import wineshop.wine.Wine;
 
 import javax.transaction.Transactional;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -103,6 +105,24 @@ public class ReorderManager {
 		return email_flag;
 	}
 
+
+	void reserveOrder(OrderIdentifier orderId) {
+		OrderCust order = orderManagement.get(orderId).get();
+
+		Iterator<OrderLine> orderLineIterator= order.getOrderLines().iterator();
+		do {
+			OrderLine orderLine = orderLineIterator.next();
+			UniqueInventoryItem item = inventory.findByProductIdentifier(orderLine.getProductIdentifier()).get();
+			ProductIdentifier productId = item.getProduct().getId();
+
+			inventoryManager.decreaseAmount(productId, orderLine.getQuantity());
+		} while (orderLineIterator.hasNext());
+
+		order.reserve();
+		orderManagement.save(order);
+	}
+
+
 	@Transactional
 	int closeReorder(OrderIdentifier id) {
 
@@ -115,6 +135,18 @@ public class ReorderManager {
 		orderManagement.payOrder(reorder);
 		orderManagement.completeOrder(reorder);
 
+		Iterator<OrderCust> openPreorderIterator = orderManagement.findBy(OrderStatus.OPEN).iterator();
+		do {
+			OrderCust openPreorder = openPreorderIterator.next();
+			if (openPreorder.isPreorder()) {
+				if (openPreorder.isCloseable(inventory)) {
+					reserveOrder(openPreorder.getId());
+				}
+			} else {
+				continue;
+			}
+
+		} while (openPreorderIterator.hasNext());
 		// to send mail
 		return sendEmail(item);
 	}
