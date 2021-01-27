@@ -8,6 +8,7 @@ import org.salespointframework.order.OrderLine;
 import org.salespointframework.order.OrderManagement;
 import org.salespointframework.order.OrderStatus;
 import org.salespointframework.quantity.Quantity;
+import org.salespointframework.useraccount.UserAccount;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -85,18 +86,35 @@ public class PreorderController {
 	}
 
 	@PostMapping("preorders/close")
-	public String closePreorder(@RequestParam("id") OrderIdentifier id) {
+	public String closePreorder(@RequestParam("id") OrderIdentifier id, UserAccount userAccount) {
 		OrderCust preorder = orderManagement.get(id).get();
 		Iterator<OrderLine> preorderIterator = preorder.getOrderLines().iterator();
 		do {
 			OrderLine orderLine = preorderIterator.next();
 			ProductIdentifier productId = orderLine.getProductIdentifier();
 			Quantity orderLineQuantity = orderLine.getQuantity();
+			UniqueInventoryItem inventoryItem = inventory.findByProductIdentifier(productId).get();
 			Quantity inventoryQuantity = inventory.findByProductIdentifier(productId).get().getQuantity();
 			Wine wine = (Wine) inventory.findByProductIdentifier(productId).get().getProduct();
-			if (inventoryQuantity.subtract(orderLineQuantity).isLessThan(wine.getMinAmount())) {
-				reorderManager.reorderWine(wine.getId(), Quantity.of(wine.getMaxAmount()).subtract(inventoryQuantity.subtract(orderLineQuantity)).getAmount().intValue(), preorder.getUserAccount());
-			}
+
+			Iterator<OrderCust> reorderIterator = orderManagement.findBy(OrderStatus.OPEN).iterator();
+			do {
+				if (reorderIterator.hasNext()) {
+					OrderCust reorder = reorderIterator.next();
+					if (reorder.isReorder() && !reorder.getOrderLines().iterator().next().getProductName().equals(orderLine.getProductName())) {
+						if (reorder.isReorder() && reorder.getOrderLines().iterator().next().getProductName().equals(orderLine.getProductName())) {
+							break;
+						} else if (reorder.isReorder() && !reorder.getOrderLines().iterator().next().getProductName().equals(orderLine.getProductName()) && !reorderIterator.hasNext()) {
+							reorderManager.reorderWine(wine.getId(), Quantity.of(wine.getMaxAmount()).subtract(inventoryItem.getQuantity().subtract(orderLine.getQuantity())).getAmount().intValue(), userAccount);
+						} else if (!reorder.isReorder() && !reorderIterator.hasNext()) {
+							reorderManager.reorderWine(wine.getId(), Quantity.of(wine.getMaxAmount()).subtract(inventoryItem.getQuantity().subtract(orderLine.getQuantity())).getAmount().intValue(), userAccount);
+						}
+					}
+				}
+			} while (reorderIterator.hasNext());
+
+			inventoryManager.increaseAmount(productId, orderLineQuantity);
+
 		} while (preorderIterator.hasNext());
 		orderManagement.payOrder(preorder);
 		orderManagement.completeOrder(preorder);
@@ -108,6 +126,13 @@ public class PreorderController {
 	@PostMapping("preorders/delete")
 	public String deletePreorder(@RequestParam("id") OrderIdentifier id) {
 		OrderCust preorder = orderManagement.get(id).get();
+		if (preorder.isReserved()) {
+			Iterator<OrderLine> orderLineIterator = preorder.getOrderLines().iterator();
+			do {
+				OrderLine orderLine = orderLineIterator.next();
+				inventoryManager.increaseAmount(orderLine.getProductIdentifier(), orderLine.getQuantity());
+			} while (orderLineIterator.hasNext());
+		}
 		orderManagement.delete(preorder);
 		return "redirect:/preorders";
 	}
