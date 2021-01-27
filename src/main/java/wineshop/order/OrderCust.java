@@ -50,7 +50,6 @@ public class OrderCust extends Order {
 	}
 
 	public String getPaymentMethodString(){
-		System.out.println(this.getPaymentMethod().toString());
 		if (this.getPaymentMethod().toString().equals("Cash()")) {
 			return "Bargeld";
 		}

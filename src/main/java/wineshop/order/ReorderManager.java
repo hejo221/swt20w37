@@ -59,9 +59,9 @@ public class ReorderManager {
 		inventory.save(item);
 	}
 
-	int sendEmail(UniqueInventoryItem item) {
+	int sendEmail(UniqueInventoryItem curItem) {
 		int email_flag = 0; // if a mail is send, then it is 1
-		Quantity item_quantity = item.getQuantity();
+		Quantity addedQuantity = curItem.getQuantity();
 
 		List<OrderCust> preorders = orderManagement.findBy(OrderStatus.OPEN).toList();
 		preorders = preorders.stream().filter((e) -> {
@@ -72,31 +72,48 @@ public class ReorderManager {
 		for(int i = 0; i < preorders.size(); i++) {
 			OrderCust preorder = preorders.get(i);
 			List<OrderLine> productList = preorder.getOrderLines().toList();
+			int flag = 0;
 
 			for(int j = 0; j < productList.size(); j++) {
 				OrderLine productLine = productList.get(j);
+				UniqueInventoryItem item = inventory.findByProductIdentifier(productLine.getProductIdentifier()).get();
 
-				if(item.getProduct().getName() == productLine.getProductName()
-						&& productLine.getQuantity().isLessThan(item_quantity)) {
+				if(productLine.getQuantity().isGreaterThan(item.getQuantity())) {
+					flag = -1;
+				}
+				if(productLine.getQuantity().isGreaterThan(addedQuantity)) {
+					flag = -1;
+				}
+			}
 
-					item_quantity = item_quantity.subtract(productLine.getQuantity());
-					System.out.println(item_quantity);
-					email_flag = 1;
-
-					String title = "Der von Ihnen bestellte Wein ist angekommen.";
-					String text = "Der von Ihnen bestellte Wein ist angekommen. \nBitte kontaktieren Sie uns, wenn Sie Ihre Bestellung abschließen möchten.\n"
-							+ "\nKundenname : " + preorder.getCustomer().getFirstName() + " " + preorder.getCustomer().getFamilyName()
-							+ "\nBestellungsdatum : " + preorder.getDateCreated().getDayOfMonth() + "." + preorder.getDateCreated().getMonthValue() + "." + preorder.getDateCreated().getYear()
-							+ "\nWeinname : " + productLine.getProductName()
-							+ "\nMenge : " + productLine.getQuantity();
-
-					try{
-						emailService.sendMail(preorder.getCustomer().getEmail(), title, text);
-					}catch (Exception e) {
-						LOGGER.error("Email kann nicht gesenden werden.", e);
-						email_flag = 2;
+			if(flag == 0)  {
+				for(int j = 0; j < productList.size(); j++) {
+					if(productList.get(j).getProductName() == curItem.getProduct().getName()) {
+						addedQuantity =	addedQuantity.subtract(productList.get(j).getQuantity());
 					}
+				}
 
+				String text_product = "";
+				for (int j = 0; j < productList.size(); j++) {
+					text_product = text_product + " - " + productList.get(j).getProductName() + ": " + productList.get(j).getQuantity() + "\n";
+				}
+
+				String title = "Der von Ihnen bestellte Wein ist angekommen.";
+				String text = "Der von Ihnen bestellte Wein ist angekommen. \nBitte kontaktieren Sie uns, wenn Sie Ihre Bestellung abschließen möchten.\n"
+						+ "\nKundenname : " + preorder.getCustomer().getFirstName() + " " + preorder.getCustomer().getFamilyName()
+						+ "\nBestellungsdatum : " + preorder.getDateCreated().getDayOfMonth() + "." + preorder.getDateCreated().getMonthValue() + "." + preorder.getDateCreated().getYear()
+						+ "\n\nBestellliste\n" + text_product;
+
+				try{
+					if(preorder.getEmailStatus() == false) {
+						emailService.sendMail(preorder.getCustomer().getEmail(), title, text);
+						preorder.setEmailStatus(true);
+						orderManagement.save(preorder);
+						email_flag = 1;
+					}
+				}catch (Exception e) {
+					LOGGER.error("Email kann nicht gesenden werden.", e);
+					email_flag = 2;
 				}
 			}
 		}
