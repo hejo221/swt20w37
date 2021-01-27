@@ -1,13 +1,11 @@
 package wineshop.order;
 
 import org.javamoney.moneta.Money;
+import org.salespointframework.catalog.ProductIdentifier;
 import org.salespointframework.inventory.InventoryItem;
 import org.salespointframework.inventory.UniqueInventory;
 import org.salespointframework.inventory.UniqueInventoryItem;
-import org.salespointframework.order.Cart;
-import org.salespointframework.order.CartItem;
-import org.salespointframework.order.OrderLine;
-import org.salespointframework.order.OrderManagement;
+import org.salespointframework.order.*;
 import org.salespointframework.payment.Cash;
 import org.salespointframework.payment.CreditCard;
 import org.salespointframework.quantity.Quantity;
@@ -20,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import wineshop.customer.Customer;
 import wineshop.customer.CustomerManager;
+import wineshop.inventory.InventoryManager;
 import wineshop.wine.Wine;
 
 import java.time.Instant;
@@ -34,16 +33,18 @@ public class OrderCustManager {
 	private final OrderManagement<OrderCust> orderManagement;
 	private final CustomerManager customerManager;
 	private final UniqueInventory<UniqueInventoryItem> inventory;
+	private final InventoryManager inventoryManager;
 	private final ReorderManager reorderManager;
 
 	private static final Logger LOG = LoggerFactory.getLogger(OrderCustManager.class);
 
 
-	OrderCustManager(OrderManagement<OrderCust> orderManagement, CustomerManager customerManager, UniqueInventory<UniqueInventoryItem> inventory, ReorderManager reorderManager) {
+	OrderCustManager(OrderManagement<OrderCust> orderManagement, CustomerManager customerManager, UniqueInventory<UniqueInventoryItem> inventory, ReorderManager reorderManager, InventoryManager inventoryManager) {
 		this.orderManagement = orderManagement;
 		this.customerManager = customerManager;
 		this.inventory = inventory;
 		this.reorderManager = reorderManager;
+		this.inventoryManager = inventoryManager;
 	}
 
 
@@ -64,18 +65,52 @@ public class OrderCustManager {
 			Wine wine = (Wine) cartItem.getProduct();
 			UniqueInventoryItem inventoryItem = inventory.findByProductIdentifier(wine.getId()).get();
 			Wine inventoryWine = (Wine) inventory.findByProductIdentifier(wine.getId()).get().getProduct();
+			Quantity inventoryQuantity = inventory.findByProductIdentifier(wine.getId()).get().getQuantity();
 
 			if (cartItem.getQuantity().isGreaterThan(inventoryItem.getQuantity())) {
-				preorder.addOrderLine(wine, cartItem.getQuantity().subtract(inventoryItem.getQuantity()));
-				order.addOrderLine(wine, inventoryItem.getQuantity());
 				if (inventoryItem.getQuantity().subtract(cartItem.getQuantity()).isLessThan(inventoryWine.getMinAmount())) {
-					reorderManager.reorderWine(wine.getId(), Quantity.of(inventoryWine.getMaxAmount()).subtract(inventoryItem.getQuantity().subtract(cartItem.getQuantity())).getAmount().intValue(), userAccount);
+					Iterator<OrderCust> reorderIterator = orderManagement.findBy(OrderStatus.OPEN).iterator();
+					if (reorderIterator.hasNext()) {
+						do {
+							OrderCust reorder = reorderIterator.next();
+							if (reorder.isReorder() && reorder.getOrderLines().iterator().next().getProductName().equals(cartItem.getProductName())) {
+								break;
+							} else if (reorder.isReorder() && !reorder.getOrderLines().iterator().next().getProductName().equals(cartItem.getProductName()) && !reorderIterator.hasNext()) {
+								reorderManager.reorderWine(wine.getId(), Quantity.of(inventoryWine.getMaxAmount()).subtract(inventoryItem.getQuantity().subtract(cartItem.getQuantity())).getAmount().intValue(), userAccount);
+							} else if (!reorder.isReorder() && !reorderIterator.hasNext()) {
+								reorderManager.reorderWine(wine.getId(), Quantity.of(inventoryWine.getMaxAmount()).subtract(inventoryItem.getQuantity().subtract(cartItem.getQuantity())).getAmount().intValue(), userAccount);
+							}
+						} while (reorderIterator.hasNext());
+					} else {
+						reorderManager.reorderWine(wine.getId(), Quantity.of(inventoryWine.getMaxAmount()).subtract(inventoryItem.getQuantity().subtract(cartItem.getQuantity())).getAmount().intValue(), userAccount);
+					}
 				}
+
+
+				preorder.addOrderLine(wine, cartItem.getQuantity().subtract(inventoryItem.getQuantity()));
+				if (!inventoryItem.getQuantity().isZeroOrNegative()) {
+					order.addOrderLine(wine, inventoryItem.getQuantity());
+				}
+
 				//inventoryItem.increaseQuantity((Quantity.of(10).subtract(inventoryItem.getQuantity())).add(cartItem.getQuantity()));
 			} else {
 				order.addOrderLine(wine, cartItem.getQuantity());
 				if (inventoryItem.getQuantity().subtract(cartItem.getQuantity()).isLessThan(inventoryWine.getMinAmount())) {
-					reorderManager.reorderWine(wine.getId(), Quantity.of(inventoryWine.getMaxAmount()).subtract(inventoryItem.getQuantity().subtract(cartItem.getQuantity())).getAmount().intValue(), userAccount);
+					Iterator<OrderCust> reorderIterator = orderManagement.findBy(OrderStatus.OPEN).iterator();
+					if (reorderIterator.hasNext()) {
+						do {
+							OrderCust reorder = reorderIterator.next();
+							if (reorder.isReorder() && reorder.getOrderLines().iterator().next().getProductName().equals(cartItem.getProductName())) {
+								break;
+							} else if (reorder.isReorder() && !reorder.getOrderLines().iterator().next().getProductName().equals(cartItem.getProductName()) && !reorderIterator.hasNext()) {
+								reorderManager.reorderWine(wine.getId(), Quantity.of(inventoryWine.getMaxAmount()).subtract(inventoryItem.getQuantity().subtract(cartItem.getQuantity())).getAmount().intValue(), userAccount);
+							} else if (!reorder.isReorder() && !reorderIterator.hasNext()) {
+								reorderManager.reorderWine(wine.getId(), Quantity.of(inventoryWine.getMaxAmount()).subtract(inventoryItem.getQuantity().subtract(cartItem.getQuantity())).getAmount().intValue(), userAccount);
+							}
+						} while (reorderIterator.hasNext());
+					} else {
+						reorderManager.reorderWine(wine.getId(), Quantity.of(inventoryWine.getMaxAmount()).subtract(inventoryItem.getQuantity().subtract(cartItem.getQuantity())).getAmount().intValue(), userAccount);
+					}
 				}
 			}
 

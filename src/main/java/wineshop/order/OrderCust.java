@@ -24,6 +24,8 @@ public class OrderCust extends Order {
 
 	private boolean receivedEmail;
 
+	private boolean isReserved;
+
 	public OrderCust(){}
 
 
@@ -43,6 +45,7 @@ public class OrderCust extends Order {
 		this.customer = customer;
 		this.orderType = orderType;
 		this.receivedEmail = false;
+		this.isReserved = false;
 	}
 
 	public Customer getCustomer() {
@@ -58,9 +61,11 @@ public class OrderCust extends Order {
 	}
 	public OrderType getOrderType() {return this.orderType;}
 	public boolean getEmailStatus() {return this.receivedEmail;}
+	public boolean getIsReserved() {return this.isReserved;}
 
 	public void setOrderType(OrderType orderType) {this.orderType = orderType;}
 	public void setEmailStatus(boolean emailStatus) {this.receivedEmail = emailStatus;}
+	public void setIsReserved(boolean reservationStatus) {this.isReserved = reservationStatus;}
 
 	public boolean isOrder() {
 		if (orderType == OrderType.ORDER) {
@@ -86,6 +91,10 @@ public class OrderCust extends Order {
 		}
 	}
 
+	public boolean isReserved() {
+		return isReserved;
+	}
+
 	public boolean receivedEmail() {
 		return this.receivedEmail;
 	}
@@ -104,5 +113,9 @@ public class OrderCust extends Order {
 		} while (orderLineIterator.hasNext());
 
 		return true;
+	}
+
+	public void reserve() {
+		setIsReserved(true);
 	}
 }

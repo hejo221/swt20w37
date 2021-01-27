@@ -43,6 +43,8 @@
                 <th scope="col">Mitarbeiter</th>
                 <th scope="col">Preis</th>
                 <th scope="col">Aktion</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
             </tr>
             </thead>
             <tbody th:remove="all-but-first">
@@ -54,6 +56,18 @@
                     <form th:action="@{/reorders/detail/{id}(id=${reorder.id})}" method="get">
                         <button type="submit" class="btn btn-info">anzeigen</button>
                         <input type="hidden" name="id" th:value="${reorder.id}"/>
+                    </form>
+                </td>
+                <td>
+                    <form method="post" th:action="@{/reorders/close}">
+                        <button type="submit" class="btn btn-info">Ankunft bestätigen</button>
+                        <input type="hidden" name="id" th:value="${reorder.id}"/>
+                    </form>
+                </td>
+                <td>
+                    <form th:action="@{/reorders/delete}" method="post">
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Wollen Sie diese Nachbestellung wirklich löschen?')">stornieren</button>
+                        <input type="hidden"  name="id" th:value="${reorder.id}"/>
                     </form>
                 </td>
             </tr>

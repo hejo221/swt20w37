@@ -30,6 +30,18 @@ public class InventoryManager {
 		inventory.save(item);
 	}
 
+	public void increaseAmount(ProductIdentifier productId, Quantity quantity) {
+		UniqueInventoryItem item = inventory.findByProductIdentifier(productId).get();
+		item.increaseQuantity(quantity);
+		inventory.save(item);
+	}
+
+	public void decreaseAmount(ProductIdentifier productId, Quantity quantity) {
+		UniqueInventoryItem item = inventory.findByProductIdentifier(productId).get();
+		item.decreaseQuantity(quantity);
+		inventory.save(item);
+	}
+
 	@Transactional
 	void updateMinAmount(ProductIdentifier productId, int number) {
 		UniqueInventoryItem item = inventory.findByProductIdentifier(productId).get();

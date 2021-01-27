@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import wineshop.wine.Wine;
 import wineshop.inventory.InventoryManager;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -99,6 +100,13 @@ public class ReorderController {
 	String closeReorder(@RequestParam("id") OrderIdentifier id) {
 		email_flag = reorderManager.closeReorder(id);
 
+		return "redirect:/reorders";
+	}
+
+	@PostMapping("reorders/delete")
+	public String deleteReorder(@RequestParam("id") OrderIdentifier id) {
+		OrderCust reorder = orderManagement.get(id).get();
+		orderManagement.delete(reorder);
 		return "redirect:/reorders";
 	}
 
