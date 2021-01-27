@@ -99,14 +99,16 @@ public class PreorderController {
 
 			Iterator<OrderCust> reorderIterator = orderManagement.findBy(OrderStatus.OPEN).iterator();
 			do {
-				OrderCust reorder = reorderIterator.next();
-				if (reorder.isReorder() && !reorder.getOrderLines().iterator().next().getProductName().equals(orderLine.getProductName())) {
-					if (reorder.isReorder() && reorder.getOrderLines().iterator().next().getProductName().equals(orderLine.getProductName())) {
-						break;
-					} else if (reorder.isReorder() && !reorder.getOrderLines().iterator().next().getProductName().equals(orderLine.getProductName()) && !reorderIterator.hasNext()) {
-						reorderManager.reorderWine(wine.getId(), Quantity.of(wine.getMaxAmount()).subtract(inventoryItem.getQuantity().subtract(orderLine.getQuantity())).getAmount().intValue(), userAccount);
-					} else if (!reorder.isReorder() && !reorderIterator.hasNext()) {
-						reorderManager.reorderWine(wine.getId(), Quantity.of(wine.getMaxAmount()).subtract(inventoryItem.getQuantity().subtract(orderLine.getQuantity())).getAmount().intValue(), userAccount);
+				if (reorderIterator.hasNext()) {
+					OrderCust reorder = reorderIterator.next();
+					if (reorder.isReorder() && !reorder.getOrderLines().iterator().next().getProductName().equals(orderLine.getProductName())) {
+						if (reorder.isReorder() && reorder.getOrderLines().iterator().next().getProductName().equals(orderLine.getProductName())) {
+							break;
+						} else if (reorder.isReorder() && !reorder.getOrderLines().iterator().next().getProductName().equals(orderLine.getProductName()) && !reorderIterator.hasNext()) {
+							reorderManager.reorderWine(wine.getId(), Quantity.of(wine.getMaxAmount()).subtract(inventoryItem.getQuantity().subtract(orderLine.getQuantity())).getAmount().intValue(), userAccount);
+						} else if (!reorder.isReorder() && !reorderIterator.hasNext()) {
+							reorderManager.reorderWine(wine.getId(), Quantity.of(wine.getMaxAmount()).subtract(inventoryItem.getQuantity().subtract(orderLine.getQuantity())).getAmount().intValue(), userAccount);
+						}
 					}
 				}
 			} while (reorderIterator.hasNext());
