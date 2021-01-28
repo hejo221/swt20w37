@@ -9,6 +9,7 @@ import org.salespointframework.order.OrderManagement;
 import org.salespointframework.order.OrderStatus;
 import org.salespointframework.quantity.Quantity;
 import org.salespointframework.useraccount.UserAccount;
+import org.salespointframework.useraccount.web.LoggedIn;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -35,6 +36,8 @@ public class PreorderController {
 	private final ReorderManager reorderManager;
 
 	private static final Logger LOG = LoggerFactory.getLogger(ReorderController.class);
+
+	private int email_flag = 0;
 
 	PreorderController(UniqueInventory<UniqueInventoryItem> inventory, InventoryManager inventoryManager, OrderManagement<OrderCust> orderManagement,PreorderManager preorderManager,ReorderManager reorderManager) {
 		this.inventory = inventory;
@@ -85,11 +88,19 @@ public class PreorderController {
 		return "order/detail";
 	}
 
+	@PostMapping("preorders/reserve")
+	public String reservePreorder(@RequestParam("id") OrderIdentifier id,@LoggedIn UserAccount userAccount) {
+		email_flag = preorderManager.reservePreorder(id, userAccount);
+
+		return "redirect:/preorders";
+	}
+
 	@PostMapping("preorders/close")
-	public String closePreorder(@RequestParam("id") OrderIdentifier id, UserAccount userAccount) {
+	public String closePreorder(@RequestParam("id") OrderIdentifier id,@LoggedIn UserAccount userAccount) {
 		OrderCust preorder = orderManagement.get(id).get();
 		Iterator<OrderLine> preorderIterator = preorder.getOrderLines().iterator();
 		do {
+			LOG.info("richtig");
 			OrderLine orderLine = preorderIterator.next();
 			ProductIdentifier productId = orderLine.getProductIdentifier();
 			Quantity orderLineQuantity = orderLine.getQuantity();
@@ -100,16 +111,25 @@ public class PreorderController {
 			Iterator<OrderCust> reorderIterator = orderManagement.findBy(OrderStatus.OPEN).iterator();
 			do {
 				if (reorderIterator.hasNext()) {
+					LOG.info("if");
 					OrderCust reorder = reorderIterator.next();
 					if (reorder.isReorder() && !reorder.getOrderLines().iterator().next().getProductName().equals(orderLine.getProductName())) {
 						if (reorder.isReorder() && reorder.getOrderLines().iterator().next().getProductName().equals(orderLine.getProductName())) {
+							LOG.info("if1");
 							break;
 						} else if (reorder.isReorder() && !reorder.getOrderLines().iterator().next().getProductName().equals(orderLine.getProductName()) && !reorderIterator.hasNext()) {
-							reorderManager.reorderWine(wine.getId(), Quantity.of(wine.getMaxAmount()).subtract(inventoryItem.getQuantity().subtract(orderLine.getQuantity())).getAmount().intValue(), userAccount);
+							LOG.info("if2");
+							reorderManager.reorderWine(productId, wine.getMaxAmount(), userAccount);
 						} else if (!reorder.isReorder() && !reorderIterator.hasNext()) {
-							reorderManager.reorderWine(wine.getId(), Quantity.of(wine.getMaxAmount()).subtract(inventoryItem.getQuantity().subtract(orderLine.getQuantity())).getAmount().intValue(), userAccount);
+							LOG.info("if3");
+							reorderManager.reorderWine(productId, wine.getMaxAmount(), userAccount);
 						}
+					} else {
+						reorderManager.reorderWine(productId, wine.getMaxAmount(), userAccount);
 					}
+				} else {
+					LOG.info("else");
+					reorderManager.reorderWine(productId, wine.getMaxAmount(), userAccount);
 				}
 			} while (reorderIterator.hasNext());
 

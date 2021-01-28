@@ -66,7 +66,7 @@
                                                                                              th:if="${menu} == 'customers'">(current)</span></a>
 -->
                 <li class="nav-item" sec:authorize="hasRole('ADMIN')" th:classappend="${menu} == 'users'? 'active'">
-                    <a class="nav-link" href="#" th:href="@{/user/list}">Angestellten<span class="sr-only"
+                    <a class="nav-link" href="#" th:href="@{/user/list}">Mitarbeiterübersicht<span class="sr-only"
                                                                                            th:if="${menu} == 'users'">(current)</span></a>
                     <!--
                                     <li class="nav-item" sec:authorize="hasRole('ADMIN')" th:classappend="${menu} == 'balancing'? 'active'">

@@ -52,10 +52,11 @@ public class ReorderManager {
 		Wine wine = (Wine) inventory.findByProductIdentifier(productId).get().getProduct();
 		Money savePrice = wine.getSellPrice();
 		UniqueInventoryItem item = inventory.findByProductIdentifier(productId).get();
+		Quantity maxAmount = Quantity.of(wine.getMaxAmount());
 		var reorder = new OrderCust(userAccount, Cash.CASH, OrderType.REORDER);
 
 		wine.setPrice(wine.getBuyPrice().negate());
-		reorder.addOrderLine(wine, Quantity.of(amount));
+		reorder.addOrderLine(wine, maxAmount);
 		orderManagement.save(reorder);
 		wine.setPrice(savePrice);
 		inventory.save(item);
@@ -199,8 +200,10 @@ public class ReorderManager {
 				OrderCust openPreorder = openPreorderIterator.next();
 				if (openPreorder.isPreorder()) {
 					if (openPreorder.isCloseable(inventory)) {
-						reserveOrder(openPreorder.getId());
-						System.out.println(openPreorder.isReserved());
+						if (!openPreorder.isReserved()) {
+							reserveOrder(openPreorder.getId());
+							System.out.println(openPreorder.isReserved());
+						}
 					}
 				} else {
 					continue;

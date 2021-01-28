@@ -55,7 +55,7 @@
     <div th:if="${order.isReorder()}">
         <div th:if="${order.isOpen()}">
             <form method="post" th:action="@{/reorders/close}">
-                <button type="submit" class="btn btn-info">Ankunft bestätigen</button>
+                <button type="submit" class="btn btn-primary" onclick="return confirm('Wollen Sie diese Nachbestellung wirklich schließen?')">Ankunft bestätigen</button>
                 <input type="hidden" name="id" th:value="${order.id}"/>
             </form>
         </div>
@@ -63,10 +63,12 @@
     <div th:if="${order.isPreorder()}">
         <div th:if="${order.isOpen()}">
             <div th:if="${order.isCloseable(inventory)}">
-                <form method="post" th:action="@{/preorders/close}">
-                    <button type="submit" class="btn btn-info">Vorbestellung abschließen</button>
-                    <input type="hidden" name="id" th:value="${order.id}"/>
-                </form>
+                <div th:if="${order.isReserved()}">
+                    <form method="post" th:action="@{/preorders/close}">
+                        <button type="submit" class="btn btn-primary" onclick="return confirm('Wollen Sie diese Vorbestellung wirklich schließen?')">Vorbestellung abschließen</button>
+                        <input type="hidden" name="id" th:value="${order.id}"/>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

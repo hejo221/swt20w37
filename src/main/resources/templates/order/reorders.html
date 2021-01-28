@@ -60,7 +60,7 @@
                 </td>
                 <td>
                     <form method="post" th:action="@{/reorders/close}">
-                        <button type="submit" class="btn btn-info">Ankunft bestätigen</button>
+                        <button type="submit" class="btn btn-primary" onclick="return confirm('Wollen Sie diese Nachbestellung wirklich schließen?')">Ankunft bestätigen</button>
                         <input type="hidden" name="id" th:value="${reorder.id}"/>
                     </form>
                 </td>

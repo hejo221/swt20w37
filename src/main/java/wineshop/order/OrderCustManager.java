@@ -76,9 +76,9 @@ public class OrderCustManager {
 							if (reorder.isReorder() && reorder.getOrderLines().iterator().next().getProductName().equals(cartItem.getProductName())) {
 								break;
 							} else if (reorder.isReorder() && !reorder.getOrderLines().iterator().next().getProductName().equals(cartItem.getProductName()) && !reorderIterator.hasNext()) {
-								reorderManager.reorderWine(wine.getId(), Quantity.of(inventoryWine.getMaxAmount()).subtract(inventoryItem.getQuantity().subtract(cartItem.getQuantity())).getAmount().intValue(), userAccount);
+								reorderManager.reorderWine(wine.getId(), inventoryWine.getMaxAmount(), userAccount);
 							} else if (!reorder.isReorder() && !reorderIterator.hasNext()) {
-								reorderManager.reorderWine(wine.getId(), Quantity.of(inventoryWine.getMaxAmount()).subtract(inventoryItem.getQuantity().subtract(cartItem.getQuantity())).getAmount().intValue(), userAccount);
+								reorderManager.reorderWine(wine.getId(), inventoryWine.getMaxAmount(), userAccount);
 							}
 						} while (reorderIterator.hasNext());
 					} else {
