@@ -105,33 +105,34 @@ public class PreorderController {
 			ProductIdentifier productId = orderLine.getProductIdentifier();
 			Quantity orderLineQuantity = orderLine.getQuantity();
 			UniqueInventoryItem inventoryItem = inventory.findByProductIdentifier(productId).get();
+			Wine inventoryWine = (Wine) inventoryItem.getProduct();
 			Quantity inventoryQuantity = inventory.findByProductIdentifier(productId).get().getQuantity();
 			Wine wine = (Wine) inventory.findByProductIdentifier(productId).get().getProduct();
 
 			Iterator<OrderCust> reorderIterator = orderManagement.findBy(OrderStatus.OPEN).iterator();
-			do {
+			while (true) {
 				if (reorderIterator.hasNext()) {
 					LOG.info("if");
 					OrderCust reorder = reorderIterator.next();
-					if (reorder.isReorder() && !reorder.getOrderLines().iterator().next().getProductName().equals(orderLine.getProductName())) {
-						if (reorder.isReorder() && reorder.getOrderLines().iterator().next().getProductName().equals(orderLine.getProductName())) {
-							LOG.info("if1");
+					if (reorder.isReorder()) {
+						if (!reorder.getOrderLines().iterator().next().getProductName().equals(orderLine.getProductName())) {
+							continue;
+						} else  if(reorder.getOrderLines().iterator().next().getProductName().equals(orderLine.getProductName())) {
 							break;
-						} else if (reorder.isReorder() && !reorder.getOrderLines().iterator().next().getProductName().equals(orderLine.getProductName()) && !reorderIterator.hasNext()) {
-							LOG.info("if2");
-							reorderManager.reorderWine(productId, wine.getMaxAmount(), userAccount);
-						} else if (!reorder.isReorder() && !reorderIterator.hasNext()) {
-							LOG.info("if3");
-							reorderManager.reorderWine(productId, wine.getMaxAmount(), userAccount);
 						}
 					} else {
-						reorderManager.reorderWine(productId, wine.getMaxAmount(), userAccount);
+						continue;
 					}
 				} else {
 					LOG.info("else");
-					reorderManager.reorderWine(productId, wine.getMaxAmount(), userAccount);
+					if (inventoryQuantity.isLessThan(inventoryWine.getMinAmount())) {
+						reorderManager.reorderWine(productId, wine.getMaxAmount(), userAccount);
+						break;
+					} else {
+						break;
+					}
 				}
-			} while (reorderIterator.hasNext());
+			}
 
 			inventoryManager.increaseAmount(productId, orderLineQuantity);
 
