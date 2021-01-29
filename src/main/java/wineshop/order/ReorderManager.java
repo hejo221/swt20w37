@@ -73,53 +73,6 @@ public class ReorderManager {
 		inventory.save(item);
 	}
 
-	/**
-	 * Eine Email wird an den Kunden gesendet
-	 *
-	 * @param curItem Der derzeitig ausgewählte Lagergegenstand bzw. Wein
-	 * @return int, bzw. ob eine email gesendet wurde
-	 */
-	int sendEmail(UniqueInventoryItem curItem) {
-		int email_flag = 0; // if a mail is send, then it is 1
-		Quantity addedQuantity = curItem.getQuantity();
-
-		List<OrderCust> preorders = orderManagement.findBy(OrderStatus.OPEN).toList();
-		preorders = preorders.stream().filter((e) -> {
-			return e.isReserved();
-		}).collect(Collectors.toList());
-		preorders = preorders.stream().sorted(Comparator.comparing(OrderCust::getDateCreated)).collect(Collectors.toList());
-
-		for(int i = 0; i < preorders.size(); i++) {
-			OrderCust preorder = preorders.get(i);
-			List<OrderLine> productList = preorder.getOrderLines().toList();
-
-			String text_product = "";
-			for (int j = 0; j < productList.size(); j++) {
-				text_product = text_product + " - " + productList.get(j).getProductName() + ": " + productList.get(j).getQuantity() + "\n";
-			}
-
-			String title = "Der von Ihnen bestellte Wein ist angekommen.";
-			String text = "Der von Ihnen bestellte Wein ist angekommen. \nBitte kontaktieren Sie uns, wenn Sie Ihre Bestellung abschließen möchten.\n"
-					+ "\nKundenname : " + preorder.getCustomer().getFirstName() + " " + preorder.getCustomer().getFamilyName()
-					+ "\nBestellungsdatum : " + preorder.getDateCreated().getDayOfMonth() + "." + preorder.getDateCreated().getMonthValue() + "." + preorder.getDateCreated().getYear()
-					+ "\n\nBestellliste\n" + text_product;
-
-			try {
-				if (preorder.getEmailStatus() == false) {
-					emailService.sendMail(preorder.getCustomer().getEmail(), title, text);
-					preorder.setEmailStatus(true);
-					orderManagement.save(preorder);
-					email_flag = 1;
-				}
-			} catch (Exception e) {
-				LOGGER.error("Email kann nicht gesenden werden.", e);
-				email_flag = 2;
-			}
-		}
-
-		return email_flag;
-	}
-
 	int oldSendEmail(UniqueInventoryItem curItem) {
 		int email_flag = 0; // if a mail is send, then it is 1
 		Quantity addedQuantity = curItem.getQuantity();
