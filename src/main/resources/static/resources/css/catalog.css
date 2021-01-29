@@ -55,20 +55,20 @@ img {
 }
 
 
-.rating {
+.wineglasses {
     unicode-bidi: bidi-override;
     direction: rtl;
 
 }
-.rating > a {
+.wineglasses > a {
     display: inline-block;
     position: relative;
     width: 1.1em;
     color: #34495e;
     text-decoration: none;
 }
-.rating > a:hover:before,
-.rating > a:hover ~ a:before {
+.wineglasses > a:hover:before,
+.wineglasses > a:hover ~ a:before {
 content: "\1F377\FE0E";
     position: absolute;
     text-decoration: none;
