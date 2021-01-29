@@ -22,27 +22,27 @@
     <hr>
     <div class="mt-1">
         <input class="form-control" type="text" name="firstName" placeholder="Vorname"
-               th:field="*{firstName}" required="required" autofocus>
+               th:field="*{formFirstName}" required="required" autofocus>
     </div>
     <div class="mt-1">
         <input class="form-control" type="text" name="familyName" placeholder="Nachname"
-               th:field="*{familyName}" required="required">
+               th:field="*{formFamilyName}" required="required">
     </div>
     <div class="mt-1">
         <input class="form-control" type="email" name="email" placeholder="E-Mail"
-               th:field="*{email}" required="required" autofocus>
+               th:field="*{formEmail}" required="required" autofocus>
     </div>
     <div class="mt-1">
         <input class="form-control" type="text" name="street" placeholder="Straße"
-               th:field="*{street}" required="required" autofocus>
+               th:field="*{formStreet}" required="required" autofocus>
     </div>
     <div class="mt-1">
-        <input class="form-control" type="text" name="address" placeholder="PLZ" maxlength = "5" pattern="[0-9]{5}"
-               th:field="*{zipCode}" required="required" autofocus>
+        <input class="form-control" type="text" name="zipCode" placeholder="PLZ" maxlength = "5" pattern="[0-9]{5}"
+               th:field="*{formZipCode}" required="required" autofocus>
     </div>
     <div class="mt-1">
-        <input class="form-control" type="text" name="address" placeholder="Stadt"
-               th:field="*{city}" required="required" autofocus>
+        <input class="form-control" type="text" name="city" placeholder="Stadt"
+               th:field="*{formCity}" required="required" autofocus>
     </div>
     <button class="btn btn-lg btn-primary btn-block mt-3" type="submit">Speichern</button>
 </form>

@@ -34,7 +34,6 @@ public class Customer {
 		Assert.hasText(zipCode, "ZipCode must not be null or empty!");
 		Assert.hasText(city, "City must not be null or empty!");
 
-
 		this.firstName = firstName;
 		this.familyName = familyName;
 		this.email = email;

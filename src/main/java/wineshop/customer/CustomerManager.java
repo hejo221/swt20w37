@@ -20,12 +20,12 @@ public class CustomerManager {
 	public Customer createCustomer(CustomerRegistrationForm form) {
 		Assert.notNull(form, "Form must not be null!");
 
-		String firstName = form.getFirstName();
-		String familyName = form.getFamilyName();
-		String email = form.getEmail();
-		String street = form.getStreet();
-		String zipCode = form.getZipCode();
-		String city = form.getCity();
+		String firstName = form.getFormFirstName();
+		String familyName = form.getFormFamilyName();
+		String email = form.getFormEmail();
+		String street = form.getFormStreet();
+		String zipCode = form.getFormZipCode();
+		String city = form.getFormCity();
 
 		return customerRepository.save(new Customer(firstName, familyName, email, street, zipCode, city));
 	}

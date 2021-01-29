@@ -5,54 +5,55 @@ import javax.validation.constraints.NotEmpty;
 public class CustomerRegistrationForm {
 
 	@NotEmpty
-	private final String firstName;
+	private final String formFirstName;
 
 	@NotEmpty
-	private final String familyName;
+	private final String formFamilyName;
 
 	@NotEmpty
-	private final String email;
+	private final String formEmail;
 
 	@NotEmpty
-	private final String street;
+	private final String formStreet;
 
 	@NotEmpty
-	private final String zipCode;
+	private final String formZipCode;
 
 	@NotEmpty
-	private final String city;
+	private final String formCity;
 
 
-	public CustomerRegistrationForm(String firstName, String familyName, String email, String street, String zipCode, String city) {
-		this.firstName = firstName;
-		this.familyName = familyName;
-		this.email = email;
-		this.street = street;
-		this.zipCode = zipCode;
-		this.city = city;
+	public CustomerRegistrationForm(String formFirstName, String formFamilyName, String formEmail, String formStreet, String formZipCode,
+									String formCity) {
+		this.formFirstName = formFirstName;
+		this.formFamilyName = formFamilyName;
+		this.formEmail = formEmail;
+		this.formStreet = formStreet;
+		this.formZipCode = formZipCode;
+		this.formCity = formCity;
 	}
 
-	public String getFirstName() {
-		return firstName;
+	public String getFormFirstName() {
+		return formFirstName;
 	}
 
-	public String getFamilyName() {
-		return familyName;
+	public String getFormFamilyName() {
+		return formFamilyName;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getFormEmail() {
+		return formEmail;
 	}
 
-	public String getStreet() {
-		return street;
+	public String getFormStreet() {
+		return formStreet;
 	}
 
-	public String getZipCode() {
-		return zipCode;
+	public String getFormZipCode() {
+		return formZipCode;
 	}
 
-	public String getCity() {
-		return city;
+	public String getFormCity() {
+		return formCity;
 	}
 }
