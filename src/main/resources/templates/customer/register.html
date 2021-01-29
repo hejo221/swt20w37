@@ -37,7 +37,7 @@
                th:field="*{street}" required="required" autofocus>
     </div>
     <div class="mt-1">
-        <input class="form-control" type="text" name="address" placeholder="PLZ" maxlength = "5"
+        <input class="form-control" type="text" name="address" placeholder="PLZ" maxlength = "5" pattern="[0-9]{5}"
                th:field="*{zipCode}" required="required" autofocus>
     </div>
     <div class="mt-1">

@@ -12,6 +12,7 @@
           integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="../static/resources/css/style.css" th:href="@{/resources/css/style.css}" rel="stylesheet">
+    <link href="../static/resources/css/customers.css" th:href="@{/resources/css/customers.css}" rel="stylesheet">
 
 
     <title>Unsere Kund:innen</title>
@@ -73,6 +74,12 @@
         </div>
     </div>
 
+    <div class="alert">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        <strong>Achtung!</strong>
+        Damit unsere Kunden unsere Zufriedenheitsgarantie in Anspruch nehmen können, ist es nicht möglich, Kunden mit abgeschlossenen Bestellungen aus dem System zu entfernen.
+        Ein Versuch dies zu tun wird vom System zurückgewiesen!
+    </div>
 
     <table class="ui celled table text-center">
         <thead>
@@ -98,6 +105,7 @@
             <td>
                 <form th:action="@{/customer/edit/__${customer.getId()}__}" method="get">
                     <button type="submit" class="btn btn-info">Bearbeiten</button>
+
                 </form>
             </td>
             <td>
@@ -106,11 +114,13 @@
                             onclick="return confirm('Wollen Sie diesen Kunden wirklich löschen?')">Entfernen
                     </button>
                     <input type="number" name="id" th:value="${customer.id}" hidden/>
+
                 </form>
             </td>
         </tr>
         </tbody>
     </table>
+
 </main>
 
 <!-- Optional JavaScript; choose one of the two! -->

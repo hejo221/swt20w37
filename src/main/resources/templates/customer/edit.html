@@ -38,7 +38,7 @@
     </div>
     <div class="mt-1">
         <label for="zipCode">PLZ</label>
-        <input class="form-control" type="text" id="zipCode" name="zipCode" required="required" maxlength = "5" th:value="${customer.zipCode}"/>
+        <input class="form-control" type="text" id="zipCode" name="zipCode" required="required" maxlength = "5" pattern="[0-9]{5}" th:value="${customer.zipCode}"/>
     </div>
     <div class="mt-1">
         <label for="city">Stadt</label>
