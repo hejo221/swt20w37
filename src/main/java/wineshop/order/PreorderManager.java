@@ -21,6 +21,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
+/**
+ * Eine Klasse, welche wichtige Funktionen für die Verwaltung von Vorbestellungen zusammenfasst
+ */
 @Service
 @Transactional
 public class PreorderManager {
@@ -42,6 +46,12 @@ public class PreorderManager {
 		this.orderCustManager = orderCustManager;
 	}
 
+	/**
+	 * Eine Email wird an den Kunden gesendet
+	 *
+	 * @param curItem Der derzeitig ausgewählte Lagergegenstand bzw. Wein
+	 * @return int, bzw. ob eine email gesendet wurde
+	 */
 	int sendEmail(UniqueInventoryItem curItem) {
 		int email_flag = 0; // if a mail is send, then it is 1
 		Quantity addedQuantity = curItem.getQuantity();
@@ -83,6 +93,13 @@ public class PreorderManager {
 		return email_flag;
 	}
 
+	/**
+	 * Eine Vorbestellung wird reserviert
+	 * Die in der Vorbestellung enthaltenen Weine werden aus dem Lager entfernt
+	 *
+	 * @param id Die Id der Vorbestellung
+	 * @param userAccount Der angemeldete Mitarbeiter
+	 */
 	@Transactional
 	int reservePreorder(OrderIdentifier id, UserAccount userAccount) {
 		OrderCust preorder = orderManagement.get(id).get();

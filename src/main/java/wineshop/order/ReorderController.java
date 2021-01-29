@@ -28,6 +28,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+
+/**
+ * Ein Spring MVC Controller, welcher für die Veraltung von Nachbestellungen zuständig ist
+ */
 @Controller
 public class ReorderController {
 
@@ -47,6 +51,13 @@ public class ReorderController {
 		this.reorderManager = reorderManager;
 	}
 
+	/**
+	 * Die Nachbestellungen werden angezeigt
+	 *
+	 * @param model
+	 * @param search
+	 * @return View-Name
+	 */
 	@GetMapping("/reorders")
 	String reorders(Model model, @RequestParam("search") Optional<String> search) {
 		List<OrderCust> reorders = orderManagement.findBy(OrderStatus.OPEN).toList();
@@ -78,6 +89,14 @@ public class ReorderController {
 		return "order/reorders";
 	}
 
+	/**
+	 * Ein Wein wird nachbestellt
+	 *
+	 * @param productId Die Id des Weines
+	 * @param amount Die gewünschte Anzahl (veraltet)
+	 * @param userAccount Der angemeldete Mitarbeiter
+	 * @return View-Name
+	 */
 	@PostMapping("/reorders/{productId}")
 	String reorderWine(@PathVariable ProductIdentifier productId, @RequestParam("number") int amount, @LoggedIn UserAccount userAccount) {
 		reorderManager.reorderWine(productId, amount, userAccount);
@@ -85,6 +104,13 @@ public class ReorderController {
 		return "redirect:/inventory";
 	}
 
+	/**
+	 * Die Detailansicht einer Nachbestellung wird angezeigt
+	 *
+	 * @param model
+	 * @param id Die Id der Nachbestellung
+	 * @return View-Name
+	 */
 	@GetMapping("/reorders/detail/{id}")
 	String ordersDetail(Model model, @RequestParam("id") OrderIdentifier id) {
 		OrderCust reorder = orderManagement.get(id).get();
@@ -96,6 +122,12 @@ public class ReorderController {
 		return "order/detail";
 	}
 
+	/**
+	 * Die Nachbestellung wird geschlossen
+	 *
+	 * @param id Die Id der Nachbestellung
+	 * @return View-Name
+	 */
 	@PostMapping("reorders/close")
 	String closeReorder(@RequestParam("id") OrderIdentifier id) {
 		email_flag = reorderManager.closeReorder(id);
@@ -103,27 +135,16 @@ public class ReorderController {
 		return "redirect:/reorders";
 	}
 
+	/**
+	 * Die Nachbestellung wird gelöscht
+	 *
+	 * @param id Die Id der Nachbestellung
+	 * @return View-Name
+	 */
 	@PostMapping("reorders/delete")
 	public String deleteReorder(@RequestParam("id") OrderIdentifier id) {
 		OrderCust reorder = orderManagement.get(id).get();
 		orderManagement.delete(reorder);
 		return "redirect:/reorders";
 	}
-
-	/*
-	@PostMapping("/reorders/createAndClose/{productId}")
-	String createAndClose(@LoggedIn UserAccount userAccount, @PathVariable ProductIdentifier productId) {
-		Wine wine = (Wine) inventory.findByProductIdentifier(productId).get().getProduct();
-		var reorder = new OrderCust(userAccount, Cash.CASH, OrderType.ORDER);
-		reorder.setOrderType(OrderType.REORDER);
-		reorder.addOrderLine(wine, Quantity.of(10));
-		orderManagement.save(reorder);
-		orderManagement.payOrder(reorder);
-		orderManagement.completeOrder(reorder);
-
-		LOG.info(String.valueOf(reorder.getOrderType()));
-
-		return "redirect:/inventory";
-	}
-	*/
 }

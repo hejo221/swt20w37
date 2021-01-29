@@ -26,6 +26,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+
+/**
+ * Ein Spring MVC Controller, welcher für die Verwaltung von Vorbestellungen zuständig ist
+ */
 @Controller
 public class PreorderController {
 
@@ -47,6 +51,13 @@ public class PreorderController {
 		this.reorderManager = reorderManager;
 	}
 
+	/**
+	 * Die Vorbestellungen werden als Datensatz in die View übergeben
+	 *
+	 * @param model
+	 * @param search
+	 * @return View-Name
+	 */
 	@GetMapping("/preorders")
 	public String preorders(Model model, @RequestParam("search") Optional<String> search) {
 		List<OrderCust> preorders = orderManagement.findBy(OrderStatus.OPEN).toList();
@@ -77,6 +88,13 @@ public class PreorderController {
 		return "order/preorders";
 	}
 
+	/**
+	 * Die Detailansicht einer Vorbestellung wird angezeigt
+	 *
+	 * @param model
+	 * @param id Die Id der Vorbestellung
+	 * @return View-Name
+	 */
 	@GetMapping("/preorders/detail/{id}")
 	public String preorderDetail(Model model, @RequestParam("id") OrderIdentifier id) {
 		OrderCust preorder = orderManagement.get(id).get();
@@ -88,6 +106,14 @@ public class PreorderController {
 		return "order/detail";
 	}
 
+	/**
+	 * Eine Vorbestellung wird reserviert
+	 * Die in der Vorbestellung enthaltenen Weine werden aus dem Lager entfernt
+	 *
+	 * @param id Die Id der Vorbestellung
+	 * @param userAccount Der angemeldete Mitarbeiter
+	 * @return View-Name
+	 */
 	@PostMapping("preorders/reserve")
 	public String reservePreorder(@RequestParam("id") OrderIdentifier id,@LoggedIn UserAccount userAccount) {
 		email_flag = preorderManager.reservePreorder(id, userAccount);
@@ -95,6 +121,14 @@ public class PreorderController {
 		return "redirect:/preorders";
 	}
 
+	/**
+	 * Die Vorbestellung wird geschlossen
+	 * Es wird geprüft, ob eine Nachbestellung notwendig ist und bei Bedarf automatisch nachbestellt
+	 *
+	 * @param id Die Id der Vorbestellung
+	 * @param userAccount Der angemeldete Mitarbeiter
+	 * @return View-Name
+	 */
 	@PostMapping("preorders/close")
 	public String closePreorder(@RequestParam("id") OrderIdentifier id,@LoggedIn UserAccount userAccount) {
 		OrderCust preorder = orderManagement.get(id).get();
@@ -109,6 +143,9 @@ public class PreorderController {
 			Quantity inventoryQuantity = inventory.findByProductIdentifier(productId).get().getQuantity();
 			Wine wine = (Wine) inventory.findByProductIdentifier(productId).get().getProduct();
 
+			//Hier werden die offenen Nachbestellungen durchsucht
+			//Wird für die derzeitige oderLine bzw. dem darin enthaltenen Wein keine offene Nachbestellung gefunden und ist der Lagerbstand
+			//unter dem Minimalbestand, wird automatisch für diesen Wein eine Nachbestellung aufgegeben
 			Iterator<OrderCust> reorderIterator = orderManagement.findBy(OrderStatus.OPEN).iterator();
 			while (true) {
 				if (reorderIterator.hasNext()) {
@@ -143,6 +180,13 @@ public class PreorderController {
 		return "redirect:/preorders";
 	}
 
+	/**
+	 * Die Vorbestellung wird gelöscht
+	 * Ist die Vorbestellung bereits reserviert, werden darin enthaltene Weine dem Lager hinzgefügt
+	 *
+	 * @param id Die Id der Vorbestellung
+	 * @return View-Name
+	 */
 	@Transactional
 	@PostMapping("preorders/delete")
 	public String deletePreorder(@RequestParam("id") OrderIdentifier id) {

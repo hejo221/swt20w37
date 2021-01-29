@@ -30,6 +30,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
+/**
+ * Eine Klasse, welche wichtige Funktionen für die Verwaltung von Nachbestellungen zusammenfasst
+ */
 @Service
 @Transactional
 public class ReorderManager {
@@ -47,6 +51,13 @@ public class ReorderManager {
 		this.orderManagement = orderManagement;
 	}
 
+	/**
+	 * Ein Wein wird nachbestellt
+	 *
+	 * @param productId Die Id des Weines
+	 * @param amount Die gewünschte Anzahl (veraltet)
+	 * @param userAccount Der angemeldete Mitarbeiter
+	 */
 	@Transactional
 	void reorderWine(ProductIdentifier productId, int amount, UserAccount userAccount) {
 		Wine wine = (Wine) inventory.findByProductIdentifier(productId).get().getProduct();
@@ -62,6 +73,12 @@ public class ReorderManager {
 		inventory.save(item);
 	}
 
+	/**
+	 * Eine Email wird an den Kunden gesendet
+	 *
+	 * @param curItem Der derzeitig ausgewählte Lagergegenstand bzw. Wein
+	 * @return int, bzw. ob eine email gesendet wurde
+	 */
 	int sendEmail(UniqueInventoryItem curItem) {
 		int email_flag = 0; // if a mail is send, then it is 1
 		Quantity addedQuantity = curItem.getQuantity();
@@ -164,7 +181,12 @@ public class ReorderManager {
 		return email_flag;
 	}
 
-
+	/**
+	 * Eine offene Vorbestellung wird reserviert
+	 * Wird in closeReorder() genutzt, um geeignete Vorbestellungen zu reservieren
+	 *
+	 * @param orderId Die Id der Vorbestellung
+	 */
 	void reserveOrder(OrderIdentifier orderId) {
 		OrderCust order = orderManagement.get(orderId).get();
 
@@ -181,7 +203,12 @@ public class ReorderManager {
 		orderManagement.save(order);
 	}
 
-
+	/**
+	 * Die Nachbestellung wird geschlossen
+	 * Nach dem Schließen der Nachbestellung werden geeignete offene Vorbestellungen automatisch reserviert
+	 *
+	 * @param id Die Id der Nachbestellung
+	 */
 	@Transactional
 	int closeReorder(OrderIdentifier id) {
 
@@ -194,6 +221,7 @@ public class ReorderManager {
 		orderManagement.payOrder(reorder);
 		orderManagement.completeOrder(reorder);
 
+		//Geeignete Vorbestellungen werden automatisch reserviert
 		Iterator<OrderCust> openPreorderIterator = orderManagement.findBy(OrderStatus.OPEN).iterator();
 		do {
 			if (openPreorderIterator.hasNext()) {
