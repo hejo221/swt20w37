@@ -4,12 +4,24 @@ package wineshop.inventory;
 import org.salespointframework.catalog.ProductIdentifier;
 import org.salespointframework.inventory.UniqueInventory;
 import org.salespointframework.inventory.UniqueInventoryItem;
+import org.salespointframework.order.OrderLine;
+import org.salespointframework.order.OrderManagement;
+import org.salespointframework.order.OrderStatus;
 import org.salespointframework.quantity.Quantity;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
+import wineshop.email.EmailService;
+import wineshop.order.OrderCust;
+import wineshop.order.ReorderController;
 import wineshop.wine.Wine;
 
 import javax.transaction.Transactional;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Eine Klasse, welche die für das Lager benötigten Hauptfunktionen zusammenfasst
@@ -19,10 +31,15 @@ import javax.transaction.Transactional;
 public class InventoryManager {
 
 	private final UniqueInventory<UniqueInventoryItem> inventory;
+	private final OrderManagement<OrderCust> orderManagement;
+	@Autowired
+	private EmailService emailService;
+	private static final Logger LOGGER = LoggerFactory.getLogger(InventoryManager.class);
 
-	InventoryManager(UniqueInventory<UniqueInventoryItem> inventory) {
+	InventoryManager(UniqueInventory<UniqueInventoryItem> inventory, OrderManagement<OrderCust> orderManagement) {
 		Assert.notNull(inventory, "Inventory darf nicht leer sein");
 		this.inventory = inventory;
+		this.orderManagement = orderManagement;
 	}
 
 	/**
@@ -99,6 +116,53 @@ public class InventoryManager {
 	 */
 	void deleteItem(ProductIdentifier productId) {
 		inventory.delete(inventory.findByProductIdentifier(productId).get());
+	}
+
+	/**
+	 * Eine Email wird an den Kunden gesendet
+	 *
+	 * @param curItem Der derzeitig ausgewählte Lagergegenstand bzw. Wein
+	 * @return int, bzw. ob eine email gesendet wurde
+	 */
+	public int sendEmail(UniqueInventoryItem curItem) {
+		int email_flag = 0; // if a mail is send, then it is 1
+		Quantity addedQuantity = curItem.getQuantity();
+
+		List<OrderCust> preorders = orderManagement.findBy(OrderStatus.OPEN).toList();
+		preorders = preorders.stream().filter((e) -> {
+			return e.isReserved();
+		}).collect(Collectors.toList());
+		preorders = preorders.stream().sorted(Comparator.comparing(OrderCust::getDateCreated)).collect(Collectors.toList());
+
+		for(int i = 0; i < preorders.size(); i++) {
+			OrderCust preorder = preorders.get(i);
+			List<OrderLine> productList = preorder.getOrderLines().toList();
+
+			String text_product = "";
+			for (int j = 0; j < productList.size(); j++) {
+				text_product = text_product + " - " + productList.get(j).getProductName() + ": " + productList.get(j).getQuantity() + "\n";
+			}
+
+			String title = "Der von Ihnen bestellte Wein ist angekommen.";
+			String text = "Der von Ihnen bestellte Wein ist angekommen. \nBitte kontaktieren Sie uns, wenn Sie Ihre Bestellung abschließen möchten.\n"
+					+ "\nKundenname : " + preorder.getCustomer().getFirstName() + " " + preorder.getCustomer().getFamilyName()
+					+ "\nBestellungsdatum : " + preorder.getDateCreated().getDayOfMonth() + "." + preorder.getDateCreated().getMonthValue() + "." + preorder.getDateCreated().getYear()
+					+ "\n\nBestellliste\n" + text_product;
+
+			try {
+				if (preorder.getEmailStatus() == false) {
+					emailService.sendMail(preorder.getCustomer().getEmail(), title, text);
+					preorder.setEmailStatus(true);
+					orderManagement.save(preorder);
+					email_flag = 1;
+				}
+			} catch (Exception e) {
+				LOGGER.error("Email kann nicht gesenden werden.", e);
+				email_flag = 2;
+			}
+		}
+
+		return email_flag;
 	}
 
 }
