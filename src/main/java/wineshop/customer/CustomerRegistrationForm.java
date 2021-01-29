@@ -23,8 +23,8 @@ public class CustomerRegistrationForm {
 	private final String formCity;
 
 
-	public CustomerRegistrationForm(String formFirstName, String formFamilyName, String formEmail, String formStreet, String formZipCode,
-									String formCity) {
+	public CustomerRegistrationForm(String formFirstName, String formFamilyName, String formEmail, String formStreet,
+									String formZipCode, String formCity) {
 		this.formFirstName = formFirstName;
 		this.formFamilyName = formFamilyName;
 		this.formEmail = formEmail;
