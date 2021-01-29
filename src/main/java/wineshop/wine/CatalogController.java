@@ -67,21 +67,6 @@ class CatalogController {
 	String showUnavailableWines(Model model) {
 
 		List<Wine> items = catalogManager.getUnavailableWines().toList();
-		/*
-		if (search.isPresent()){
-			items =items.stream().filter((e) -> {
-				return e.getName().toLowerCase().contains(search.get().toLowerCase());
-			}).collect(Collectors.toList());
-		}
-		if (sort.isPresent()){
-			if (sort.get().equalsIgnoreCase("A-Z"))
-				items =items.stream().sorted(Comparator.comparing(Product::getName)).collect(Collectors.toList());
-			if (sort.get().equalsIgnoreCase("PreisAufsteigend"))
-				items =items.stream().sorted(Comparator.comparing(Product::getPrice)).collect(Collectors.toList());
-			if (sort.get().equalsIgnoreCase("PreisAbsteigend"))
-				items = Lists.reverse( items.stream().sorted(Comparator.comparing(Product::getPrice)).collect(Collectors.toList()));
-		}
-*/
 		model.addAttribute("wineCatalog", items);
 		model.addAttribute("inventory", inventory);
 		return "wine/unavailableProducts";
@@ -100,7 +85,7 @@ class CatalogController {
 	@PostMapping("/newProduct")
 	String registerNew(@Valid NewProductForm form, Errors result) {
 
-		if (result.hasErrors()) return "index";//FAILURE HINZUFÜGEN!
+		if (result.hasErrors()) return "failure";
 
 		Wine savedWine = catalogManager.createNewProduct(form);
 		inventory.save(new UniqueInventoryItem(savedWine, Quantity.of(0)));
@@ -122,10 +107,10 @@ class CatalogController {
 	@PostMapping("/wine/{wine}")
 	String productEdit(@PathVariable Wine wine, @Valid NewProductForm form, Errors result) {
 
-		if (result.hasErrors()) return "index";//TODO FAILURE HINZUFÜGEN!
+		if (result.hasErrors()) return "failure";
 
 		if (catalogManager.editProductInCatalog(wine, form)) return "redirect:/catalog";
-		else return "index";//TODO FAILURE HINZUFÜGEN!
+		else return "failure";
 	}
 
 
