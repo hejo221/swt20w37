@@ -60,6 +60,20 @@
             </form>
         </div>
     </div>
+
+    <div th:if="${order.isPreorder()}">
+        <div th:if="${order.isCloseable(inventory)}">
+            <div th:if="${order.isOpen()}">
+                <div th:if="${!order.isReserved}">
+                    <form th:action="@{/preorders/reserve}" method="post">
+                        <button type="submit" class="btn btn-info" onclick="return confirm('Wollen Sie diese Vorbestellung wirklich reservieren? Entsprechende Weine werden aus dem Lager entfernt!')">Vorbestellung reservieren</button>
+                        <input type="hidden" name="id" th:value="${order.id}"/>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div th:if="${order.isPreorder()}">
         <div th:if="${order.isOpen()}">
             <div th:if="${order.isCloseable(inventory)}">

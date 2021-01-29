@@ -62,7 +62,7 @@
                 <div th:if="${preorder.isCloseable(inventory)}">
                     <td th:if="${!preorder.isReserved}">
                         <form th:action="@{/preorders/reserve}" method="post">
-                            <button type="submit" class="btn btn-info" onclick="return confirm('Wollen Sie diese Vorbestellung wirklich reservieren?')">reservieren</button>
+                            <button type="submit" class="btn btn-info" onclick="return confirm('Wollen Sie diese Vorbestellung wirklich reservieren? Entsprechende Weine werden aus dem Lager entfernt!')">reservieren</button>
                             <input type="hidden" name="id" th:value="${preorder.id}"/>
                         </form>
                     </td>
