@@ -240,6 +240,6 @@ public class ReorderManager {
 		} while (openPreorderIterator.hasNext());
 
 		// to send mail
-		return sendEmail(item);
+		return inventoryManager.sendEmail(item);
 	}
 }

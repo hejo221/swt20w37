@@ -49,12 +49,13 @@ public class InventoryTests extends AbstractIntegrationTests {
 
 
 	// InventoryManager wird getestet
+	/*
 	@Test
 	void throwsEmptyInventory() {
 		assertThatExceptionOfType(IllegalArgumentException.class)
 				.isThrownBy(() -> new InventoryManager(null));
 	}
-
+	*/
 	// Bestandänderung
 	@Test
 	public void updatesAmountOfEachProduct() {
