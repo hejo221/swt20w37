@@ -17,7 +17,7 @@ Die individuell erfasste Zeit beinhaltet auch das Lesen von Dokumentationen, Bes
 |8  |720   |540    |600  |…      |660   |315    |90   
 |9  |360   |600    |540    |…    |600    |…    |90    
 |10  |…   |600    |600    |…    |700    |…    |90    
-|11  |…   |…    |…    |…    |…    |500    |90    
+|11  |…   |…    |…    |…    |500   |…    |90    
 |12  |…   |…    |…    |…    |…    |…    |…    
 |===
 
