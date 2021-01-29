@@ -93,9 +93,8 @@ System.out.println("Ich bin hier" + itemId);
 	// is called when someone is inside shopping cart and presses 'buy'. you get redirected to index page.
 	@PostMapping("/checkout")
 	String buy(@LoggedIn UserAccount userAccount, @ModelAttribute Cart cart, @Valid CartCustForm cartCustForm, Errors result) {
-		if (result.hasErrors()) return "index";//TODO FAILURE HINZUFÜGEN!)
+		if (result.hasErrors()) return "failure";
 		orderCustManager.cartToOrderAndPreOrder(userAccount, cart, cartCustForm);
-		//TODO: ---
 		cart.clear();
 		return "redirect:/catalog";
 	}

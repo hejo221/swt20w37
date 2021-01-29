@@ -103,7 +103,7 @@ class UserController {
 					   @RequestParam("lastName") String lastname, @RequestParam("id") Long id) {
 
 		if (userRepository.findById(id).isEmpty()){
-			return "index"; //TODO Failure hinzufügen
+			return "failure";
 		}
 
 		User user = userRepository.findById(id).get();
