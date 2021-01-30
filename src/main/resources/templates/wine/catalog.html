@@ -135,7 +135,8 @@
                         <span class="wineglasses" style="text-align: right">
                             <a class="wineglasses" th:each="i : ${#numbers.sequence(10, 1)}" th:value="${i}"
                                style="font-size: large; margin-left: -4px"
-                               th:href="@{/order/addToCart/{productId}/{quantity} (productId=${wine.getProductId()}, quantity=${i})}">🍷&#xFE0E</a>
+                               th:href="@{/order/addToCart/{productId}/{quantity}
+                               (productId=${wine.getProductId()}, quantity=${i})}">🍷&#xFE0E</a>
                         </span>
                     </div>
 
