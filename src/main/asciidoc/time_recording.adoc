@@ -20,7 +20,7 @@ Die individuell erfasste Zeit beinhaltet auch das Lesen von Dokumentationen, Bes
 |11  |360   |500    |360    |500    |500   |510    |90                |2730
 |12  |180   |160    |240    |120    |160    |1470    |90              |2420
 |Summe  |8880   |8680   |8520    |10640    |9890    |8095    |90        |54885
-|Durchschnitt  |740   |723   |710    |886,66    |824    |674,58    |90        |54885
+|Durchschnitt  |740   |723,33   |710    |886,66    |824    |674,58    |90        |4573,75
 |===
 
 Bitte tragen Sie am Ende des Praktikums noch folgende weitere Werte ein:
