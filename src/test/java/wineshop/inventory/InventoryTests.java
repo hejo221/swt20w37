@@ -95,32 +95,6 @@ public class InventoryTests extends AbstractIntegrationTests {
 		}
 	}
 
-	//increase the amount of all Items in the Inventory
-	@Test
-	public void increasesAmountOfEachProduct() {
-		for (UniqueInventoryItem item : inventory.findAll()){
-			inventoryManager.updateAmount(item.getProduct().getId(), 0);
-			inventoryManager.increaseAmount(item.getProduct().getId(), Quantity.of(10));
-		}
-
-		for (UniqueInventoryItem item : inventory.findAll()){
-			assertThat(item.getQuantity().isEqualTo(Quantity.of(10)));
-		}
-	}
-
-	//decrease the amount of all Items in the Inventory
-	@Test
-	public void decreasesAmountOfEachProduct() {
-		for (UniqueInventoryItem item : inventory.findAll()){
-			inventoryManager.updateAmount(item.getProduct().getId(), 0);
-			inventoryManager.decreaseAmount(item.getProduct().getId(), Quantity.of(10));
-		}
-
-		for (UniqueInventoryItem item : inventory.findAll()){
-			assertThat(item.getQuantity().isEqualTo(Quantity.of(10)));
-		}
-	}
-
 	// Deletes all Items in Inventory
 	@Test
 	public void deletesItems(){
