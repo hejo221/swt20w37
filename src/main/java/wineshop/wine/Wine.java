@@ -23,6 +23,7 @@ public class Wine extends Product {
 	private WineType wineType;
 	private Quantity minAmount;
 	private Integer maxAmount;
+	private boolean isAvailable;
 
 	@SuppressWarnings({"unused", "deprecation"})
 	public Wine() {
@@ -44,6 +45,7 @@ public class Wine extends Product {
 		this.details = details;
 		this.minAmount = Quantity.of(10);
 		this.maxAmount = 50;
+		this.isAvailable = true;
 		productId = super.getId();
 	}
 
@@ -57,6 +59,8 @@ public class Wine extends Product {
 	public Quantity getMinAmount() { return minAmount; }
 
 	public Integer getMaxAmount() { return maxAmount; }
+
+	public boolean getIsAvailable() { return isAvailable; }
 
 	//super.getName()
 
@@ -147,4 +151,6 @@ public class Wine extends Product {
 	public  void setMinAmount(Quantity quantity) { this.minAmount = quantity; }
 
 	public void setMaxAmount(Integer integer) { this.maxAmount = integer; }
+
+	public void setIsAvailable(boolean status) { this.isAvailable = status; }
 }
