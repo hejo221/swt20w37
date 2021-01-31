@@ -37,21 +37,27 @@
 
     <div class="row mt-5">
         <table class="ui celled table text-center">
+
             <thead>
             <tr>
                 <th scope="col">Datum</th>
                 <th scope="col">Kunde</th>
                 <th scope="col">Preis</th>
-                <th scope="col">Aktion</th>
+                <th scope="col"></th>
                 <th scope="col"></th>
                 <th scope="col"></th>
             </tr>
             </thead>
+
             <tbody th:remove="all-but-first">
             <tr th:each=" preorder : ${preorders}" th:if="${preorder.isPreorder()}">
+
                 <td th:text="${#temporals.format(preorder.dateCreated, 'dd.MM.yyyy HH:mm')}">2020.11.27</td>
+
                 <td th:text="${preorder.customer.firstName} + ' ' + ${preorder.customer.familyName}">hans</td>
+
                 <td th:text="${preorder.total}">20€</td>
+
                 <td>
                     <form th:action="@{/preorders/detail/{id}(id=${preorder.id})}" method="get">
                         <button type="submit" class="btn btn-info">ansehen</button>
@@ -59,28 +65,39 @@
                     </form>
                 </td>
 
-                <div th:if="${preorder.isCloseable(inventory)}">
-                    <td th:if="${!preorder.isReserved}">
-                        <form th:action="@{/preorders/reserve}" method="post">
-                            <button type="submit" class="btn btn-info" onclick="return confirm('Wollen Sie diese Vorbestellung wirklich reservieren? Entsprechende Weine werden aus dem Lager entfernt!')">reservieren</button>
+                <td>
+                    <div th:if="${preorder.isCloseable(inventory)}">
+                        <div th:if="${!preorder.isReserved}">
+                            <form th:action="@{/preorders/reserve}" method="post">
+                                <button type="submit" class="btn btn-info"
+                                        onclick="return confirm('Wollen Sie diese Vorbestellung wirklich reservieren? Entsprechende Weine werden aus dem Lager entfernt!')">
+                                    reservieren
+                                </button>
+                                <input type="hidden" name="id" th:value="${preorder.id}"/>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div th:if="${preorder.isReserved}">
+                        <form th:action="@{/preorders/close}" method="post">
+                            <button type="submit" class="btn btn-primary"
+                                    onclick="return confirm('Wollen Sie diese Vorbestellung wirklich schließen? Es werden möglicherweise Weine nachbestellt!')">
+                                schließen
+                            </button>
                             <input type="hidden" name="id" th:value="${preorder.id}"/>
                         </form>
-                    </td>
-                </div>
-
-                <td th:if="${preorder.isReserved}">
-                    <form th:action="@{/preorders/close}" method="post">
-                        <button type="submit" class="btn btn-primary" onclick="return confirm('Wollen Sie diese Vorbestellung wirklich schließen? Es werden möglicherweise Weine nachbestellt!')">schließen</button>
-                        <input type="hidden" name="id" th:value="${preorder.id}"/>
-                    </form>
+                    </div>
                 </td>
+
                 <td>
                     <form th:action="@{/preorders/delete}" method="post">
                         <button type="submit" class="btn btn-danger" onclick="return confirm('Wollen Sie diese Vorbestellung wirklich löschen?')">stornieren</button>
                         <input type="hidden"  name="id" th:value="${preorder.id}"/>
                     </form>
                 </td>
-                <td th:if="${!preorder.isCloseable(inventory)}"></td>
+
+                <td th:if="${!preorder.isCloseable(inventory)}">
+
             </tr>
             </tbody>
         </table>
