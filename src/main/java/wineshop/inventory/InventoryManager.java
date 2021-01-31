@@ -17,6 +17,7 @@ import wineshop.email.EmailService;
 import wineshop.order.OrderCust;
 import wineshop.order.ReorderController;
 import wineshop.wine.Wine;
+import wineshop.wine.WineCatalog;
 
 import javax.transaction.Transactional;
 import java.util.Comparator;
@@ -32,14 +33,16 @@ public class InventoryManager {
 
 	private final UniqueInventory<UniqueInventoryItem> inventory;
 	private final OrderManagement<OrderCust> orderManagement;
+	private final WineCatalog wineCatalog;
 	@Autowired
 	private EmailService emailService;
 	private static final Logger LOGGER = LoggerFactory.getLogger(InventoryManager.class);
 
-	InventoryManager(UniqueInventory<UniqueInventoryItem> inventory, OrderManagement<OrderCust> orderManagement) {
+	InventoryManager(UniqueInventory<UniqueInventoryItem> inventory, OrderManagement<OrderCust> orderManagement, WineCatalog wineCatalog) {
 		Assert.notNull(inventory, "Inventory darf nicht leer sein");
 		this.inventory = inventory;
 		this.orderManagement = orderManagement;
+		this.wineCatalog = wineCatalog;
 	}
 
 	/**
@@ -115,7 +118,11 @@ public class InventoryManager {
 	 * @param productId Die Id des Weines
 	 */
 	void deleteItem(ProductIdentifier productId) {
-		inventory.delete(inventory.findByProductIdentifier(productId).get());
+		String wineName = inventory.findByProductIdentifier(productId).get().getProduct().getName();
+		Wine wine = wineCatalog.findByName(wineName).iterator().next();
+
+		inventory.delete(inventory.findByProduct(wine).get());
+		wineCatalog.deleteById(wine.getId());
 	}
 
 	/**
