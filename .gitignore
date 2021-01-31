@@ -23,6 +23,3 @@ out/
 .DS_Store
 Thumbs.db
 Desktop.ini
-
-# H2 database files
-*.h2.db
