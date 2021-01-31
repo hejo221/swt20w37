@@ -45,6 +45,9 @@ public class InventoryTests extends AbstractIntegrationTests {
 
 		returnedView = controller.updateMinAmount(inventory.findAll().toList().get(0).getProduct().getId(), 10);
 		assertThat(returnedView).isEqualTo("redirect:/inventory");
+
+		returnedView = controller.updateMaxAmount(inventory.findAll().toList().get(0).getProduct().getId(), 50);
+		assertThat(returnedView).isEqualTo("redirect:/inventory");
 	}
 
 
@@ -77,6 +80,44 @@ public class InventoryTests extends AbstractIntegrationTests {
 
 		for (Wine wine : catalogManager.getAllWines()){
 			assertThat(wine.getMinAmount()).isEqualTo(Quantity.of(111));
+		}
+	}
+
+	//MAX-Bestandsänderung
+	@Test
+	public void updatesMaxAmountOfEachProduct() {
+		for (Wine wine : catalogManager.getAllWines()){
+			controller.updateMaxAmount(wine.getProductId(), 111);
+		}
+
+		for (Wine wine : catalogManager.getAllWines()){
+			assertThat(wine.getMaxAmount()).isEqualTo(111);
+		}
+	}
+
+	//increase the amount of all Items in the Inventory
+	@Test
+	public void increasesAmountOfEachProduct() {
+		for (UniqueInventoryItem item : inventory.findAll()){
+			inventoryManager.updateAmount(item.getProduct().getId(), 0);
+			inventoryManager.increaseAmount(item.getProduct().getId(), Quantity.of(10));
+		}
+
+		for (UniqueInventoryItem item : inventory.findAll()){
+			assertThat(item.getQuantity().isEqualTo(Quantity.of(10)));
+		}
+	}
+
+	//decrease the amount of all Items in the Inventory
+	@Test
+	public void decreasesAmountOfEachProduct() {
+		for (UniqueInventoryItem item : inventory.findAll()){
+			inventoryManager.updateAmount(item.getProduct().getId(), 0);
+			inventoryManager.decreaseAmount(item.getProduct().getId(), Quantity.of(10));
+		}
+
+		for (UniqueInventoryItem item : inventory.findAll()){
+			assertThat(item.getQuantity().isEqualTo(Quantity.of(10)));
 		}
 	}
 
