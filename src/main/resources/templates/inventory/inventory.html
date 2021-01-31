@@ -184,7 +184,7 @@
 
 
                 <td>
-                    <form class="ui form" method="post" role="form"
+                    <form th:if="${!item.product.getIsAvailable()}" class="ui form" method="post" role="form"
                           th:action="@{/inventory/delete/{productId}(productId=${item.product.productId})}">
                         <button type="submit" onclick="return confirm('Wollen Sie wirklich dieses Produkt entfernen?')"
                                 style="padding: 1px 30px" class="btn btn-outline-danger">

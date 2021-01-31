@@ -137,7 +137,10 @@ class CatalogController {
 	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("/wine/deleteFromCatalog/{wine}")
 	String makeItemUnavailable(@PathVariable Wine wine) {
-
+		UniqueInventoryItem item = inventory.findByProductIdentifier(wine.getId()).get();
+		Wine inventoryWine = (Wine) item.getProduct();
+		inventoryWine.setIsAvailable(false);
+		inventory.save(item);
 		catalogManager.makeItemUnavailable(wine);
 		return "redirect:/catalog";
 	}
@@ -145,7 +148,10 @@ class CatalogController {
 	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("/wine/recover/{wine}")
 	String recoverItem(@PathVariable Wine wine) {
-
+		UniqueInventoryItem item = inventory.findByProductIdentifier(wine.getId()).get();
+		Wine inventoryWine = (Wine) item.getProduct();
+		inventoryWine.setIsAvailable(true);
+		inventory.save(item);
 		catalogManager.makeItemAvailable(wine);
 		return "redirect:/catalog";
 	}
