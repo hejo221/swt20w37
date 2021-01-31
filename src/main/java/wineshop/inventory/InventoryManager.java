@@ -45,6 +45,7 @@ public class InventoryManager {
 		this.wineCatalog = wineCatalog;
 	}
 
+
 	/**
 	 * Der Lagerbestand eines Weines wird aktualisiert
 	 *
@@ -132,22 +133,20 @@ public class InventoryManager {
 	 * @return int, bzw. ob eine email gesendet wurde
 	 */
 	public int sendEmail(UniqueInventoryItem curItem) {
+
 		int email_flag = 0; // if a mail is send, then it is 1
 		Quantity addedQuantity = curItem.getQuantity();
 
 		List<OrderCust> preorders = orderManagement.findBy(OrderStatus.OPEN).toList();
-		preorders = preorders.stream().filter((e) -> {
-			return e.isReserved();
-		}).collect(Collectors.toList());
+		preorders = preorders.stream().filter(OrderCust::isReserved).collect(Collectors.toList());
 		preorders = preorders.stream().sorted(Comparator.comparing(OrderCust::getDateCreated)).collect(Collectors.toList());
 
-		for(int i = 0; i < preorders.size(); i++) {
-			OrderCust preorder = preorders.get(i);
+		for (OrderCust preorder : preorders) {
 			List<OrderLine> productList = preorder.getOrderLines().toList();
 
 			String text_product = "";
-			for (int j = 0; j < productList.size(); j++) {
-				text_product = text_product + " - " + productList.get(j).getProductName() + ": " + productList.get(j).getQuantity() + "\n";
+			for (OrderLine orderLine : productList) {
+				text_product = text_product + " - " + orderLine.getProductName() + ": " + orderLine.getQuantity() + "\n";
 			}
 
 			String title = "Der von Ihnen bestellte Wein ist angekommen.";
@@ -157,7 +156,7 @@ public class InventoryManager {
 					+ "\n\nBestellliste\n" + text_product;
 
 			try {
-				if (preorder.getEmailStatus() == false) {
+				if (!preorder.getEmailStatus()) {
 					emailService.sendMail(preorder.getCustomer().getEmail(), title, text);
 					preorder.setEmailStatus(true);
 					orderManagement.save(preorder);
