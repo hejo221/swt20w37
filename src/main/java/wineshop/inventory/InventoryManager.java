@@ -1,6 +1,7 @@
 package wineshop.inventory;
 
 
+import org.salespointframework.catalog.Product;
 import org.salespointframework.catalog.ProductIdentifier;
 import org.salespointframework.inventory.UniqueInventory;
 import org.salespointframework.inventory.UniqueInventoryItem;
@@ -16,6 +17,7 @@ import org.springframework.util.Assert;
 import wineshop.email.EmailService;
 import wineshop.order.OrderCust;
 import wineshop.order.ReorderController;
+import wineshop.wine.CatalogManager;
 import wineshop.wine.Wine;
 
 import javax.transaction.Transactional;
@@ -32,14 +34,16 @@ public class InventoryManager {
 
 	private final UniqueInventory<UniqueInventoryItem> inventory;
 	private final OrderManagement<OrderCust> orderManagement;
+	private final CatalogManager catalogManager;
 	@Autowired
 	private EmailService emailService;
 	private static final Logger LOGGER = LoggerFactory.getLogger(InventoryManager.class);
 
-	InventoryManager(UniqueInventory<UniqueInventoryItem> inventory, OrderManagement<OrderCust> orderManagement) {
+	InventoryManager(UniqueInventory<UniqueInventoryItem> inventory, OrderManagement<OrderCust> orderManagement, CatalogManager catalogManager) {
 		Assert.notNull(inventory, "Inventory darf nicht leer sein");
 		this.inventory = inventory;
 		this.orderManagement = orderManagement;
+		this.catalogManager = catalogManager;
 	}
 
 
@@ -116,7 +120,13 @@ public class InventoryManager {
 	 * @param productId Die Id des Weines
 	 */
 	void deleteItem(ProductIdentifier productId) {
+		if(inventory.findByProductIdentifier(productId).isEmpty()){
+			return;
+		}
 		inventory.delete(inventory.findByProductIdentifier(productId).get());
+		catalogManager.deleteById(productId);
+
+
 	}
 
 	/**
@@ -164,4 +174,15 @@ public class InventoryManager {
 		return email_flag;
 	}
 
+
+	public Boolean isDeletable(ProductIdentifier id) {
+		for (OrderCust preorder : orderManagement.findBy(OrderStatus.OPEN)){
+			for(OrderLine product : preorder.getOrderLines()){
+				if (product.getProductIdentifier().equals(id)){
+					return false;
+				}
+			}
+		}
+		return true;
+	}
 }

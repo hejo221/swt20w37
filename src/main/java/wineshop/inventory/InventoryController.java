@@ -10,6 +10,11 @@ import org.springframework.web.bind.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 
 /**
  * Ein Spring MVC Controller, welcher für die Lagerverwaltung zuständig ist
@@ -36,7 +41,17 @@ class InventoryController {
 	@GetMapping("/inventory")
 	String stock(Model model) {
 
+
+		List<UniqueInventoryItem> deletableItems = new ArrayList<>();
+		for (UniqueInventoryItem i : inventory.findAll()){
+			if (inventoryManager.isDeletable(i.getProduct().getId())) {
+				deletableItems.add(i);
+			}
+			}
 		model.addAttribute("stock", inventory.findAll());
+		model.addAttribute("deletableItems", deletableItems);
+
+
 
 		return "inventory/inventory";
 	}
