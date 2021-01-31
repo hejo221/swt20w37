@@ -155,16 +155,20 @@ System.out.println("Ich bin hier" + itemId);
 			filtered_orders = orders.stream().filter((e) -> {
 				if(e.isOrder()) {
 					return  e.getCustomer().getFamilyName().toLowerCase().contains(search.get().toLowerCase());
-				} else {
+				} else if(e.isReorder()){
 					return  e.getUserAccount().getUsername().toLowerCase().contains(search.get().toLowerCase());
+				} else {
+					return false;
 				}
 			}).collect(Collectors.toList());
 			if(filtered_orders.isEmpty()) {
 				filtered_orders = orders.stream().filter((e) -> {
 					if(e.isOrder()) {
 						return e.getCustomer().getFirstName().toLowerCase().contains(search.get().toLowerCase());
-					}else {
+					}else if(e.isReorder()){
 						return  e.getUserAccount().getUsername().toLowerCase().contains(search.get().toLowerCase());
+					} else {
+						return false;
 					}
 				}).collect(Collectors.toList());
 			}
@@ -175,6 +179,8 @@ System.out.println("Ich bin hier" + itemId);
 				return  e.getDateCreated().getMonth().toString().contains(monat.get());
 			}).collect(Collectors.toList());
 		}
+
+		filtered_orders = Lists.reverse(filtered_orders.stream().sorted(Comparator.comparing(OrderCust::getDateCreated)).collect(Collectors.toList()));
 
 		double totalPrice = 0;
 
