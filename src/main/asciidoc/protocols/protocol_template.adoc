@@ -355,6 +355,101 @@ __Teilnehmer:__
 * Basisfunktinalität fertiggestellt
 * Vorbereitungen für Cross-Testing
 
+== Treffen am 12.01.2020
+
+Ort:      online +
+Beginn:   09:20 Uhr +
+Ende:     11:00 Uhr
+
+__Schriftführer:__ Henrik John
+
+*Nächstes Treffen:* +
+19.01.2021, 09:20 Uhr, online
+
+__Teilnehmer:__
+
+- Noah Brinschwitz
+- Henrik John
+- Deokgeun Kim
+- David Nicklaser
+- Lavon Śpirydonaŭ
+- Tom Uhlemann
+- Steven Schwarz (Tutor/Kunde)
+
+=== Bemerkungen
+
+* Aufgabenverteilung: 
+** Henrik: Persistenz/Crosstesting
+** Noah: Crosstesting
+** Lavon/David: Tests
+** Tom: Mindestbestand
+** Jeff: Email
+
+=== Aktueller Stand
+
+* Crosstesting beendet
+* Bearbeitung des Feedbacks aus dem Crosstesting
+
+== Treffen am 19.01.2020
+
+Ort:      online +
+Beginn:   09:20 Uhr +
+Ende:     11:00 Uhr
+
+__Schriftführer:__ Henrik John
+
+*Nächstes Treffen:* +
+26.01.2021, 09:20 Uhr, online
+
+__Teilnehmer:__
+
+- Noah Brinschwitz
+- Henrik John
+- Deokgeun Kim
+- David Nicklaser
+- Lavon Śpirydonaŭ
+- Tom Uhlemann
+- Steven Schwarz (Tutor/Kunde)
+
+=== Bemerkungen
+
+* Termin für die Abschlusspräsentation auf den 03.02. festgelegt
+
+=== Aktueller Stand
+
+* alle Funktionen der Anwendung grob fertiggestellt
+* erste Vorbereitungen für Abschlusspräsentation
+
+== Treffen am 26.01.2020
+
+Ort:      online +
+Beginn:   09:20 Uhr +
+Ende:     11:00 Uhr
+
+__Schriftführer:__ Henrik John
+
+*Nächstes Treffen:* +
+02.02.2021, 09:20 Uhr, online
+
+__Teilnehmer:__
+
+- Noah Brinschwitz
+- Henrik John
+- Deokgeun Kim
+- David Nicklaser
+- Lavon Śpirydonaŭ
+- Tom Uhlemann
+- Steven Schwarz (Tutor/Kunde)
+
+=== Bemerkungen
+
+* Abschlusspräsentation das erste Mal grob durchgesprochen
+
+=== Aktueller Stand
+
+* Arbeit an Abschlusspräsentation wird fortgesetzt
+* letzter Feinschliff der Anwendung
+
 ////
 
 == Template:
