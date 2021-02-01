@@ -50,11 +50,7 @@ class WineDataInitializer implements DataInitializer {
 
 		for (Wine wine : wineCatalog.findAll()){
 			if(wine.getItemNr()<10)	wine.addCategory("available");
-			else {
-				wine.addCategory("unavailable");
-				wine.setIsAvailable(false);
-				wineCatalog.save(wine);
-			}
+			else wine.addCategory("unavailable");
 		}
 	}
 }
