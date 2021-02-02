@@ -110,7 +110,7 @@ public class CustomerController {
 	public String deleteCustomer(@RequestParam("id") Long id) {
 		try {
 			customerRepository.deleteCustomerById(id);
-		} catch (Exception exception) {return "redirect:/customer/list";}
+		} catch (Exception exception) {return "failure";}
 		return "redirect:/customer/list";
 	}
 

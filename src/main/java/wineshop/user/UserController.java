@@ -44,15 +44,20 @@ class UserController {
 		return "user/register";
 	}
 
+	@ExceptionHandler(RuntimeException.class)
+	@ResponseBody
+	public RuntimeException processRuntimeException(final RuntimeException rtException) {
+		throw rtException;
+	}
 	@PostMapping("/register")
 	String registerNew(@Valid UserRegistrationForm form, Errors result) {
 
 		if (result.hasErrors()) {
 			return "user/register";
 		}
-
-		userManager.createAccount(form);
-
+		try {
+			userManager.createAccount(form);
+		} catch (Exception exception) {return "failure";}
 		return "redirect:/user/list";
 	}
 
